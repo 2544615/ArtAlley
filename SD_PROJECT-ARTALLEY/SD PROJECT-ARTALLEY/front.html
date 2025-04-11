@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="stylefront.css">
+
+    <script>
+        document.addEventListener("DOMContentLoaded",()=>{
+            const form=document.querySelector("form");
+            form.addEventListener("submit",(event)=>{
+                event.preventDefault();
+                const selectedOption = document.getElementById("selectaRole").value;
+
+                if(selectedOption==="Seller"){
+                    window.location.href="signupasseller.html";
+                }
+                else if(selectedOption==="Buyer"){
+                    window.location.href="signupasbuyer.html";
+                }
+                else{
+                    alert("please select a role.");
+                }
+            });
+        });
+    </script>
+
+</head>
+<body>
+    <h1>Welcome to ArtAlley</h1>
+    <form>
+        <label for=""selectaRole  id="labelled">Select a Role: </label>
+        <select id="selectaRole">
+            <option value=""></option>
+            <option value="Seller">Seller</option>
+            <option value="Buyer">Buyer</option>
+        </select>
+
+        <button type="submit">Submit</button>
+    </form>
+</body>
+
+
+
+</html>
