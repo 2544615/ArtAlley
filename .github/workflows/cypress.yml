@@ -13,19 +13,21 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
+      - name: Use Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+
       - name: Install dependencies
         run: npm ci
 
-      - name: Start the server
-        run: |
-          npm start &  # Start your server in the background
-          npx wait-on http://localhost:3000  # Ensure the server is up before proceeding
+      - name: Start server
+        run: npm start &
+
+      - name: Wait for server
+        run: npx wait-on http://localhost:3000
 
       - name: Run Cypress tests
-        uses: cypress-io/github-action@v6
-        with:
-          start: false  # Prevent starting Cypress test runner (already handled in the next step)
-          wait-on: 'http://localhost:3000'  # Wait for your server to be up
-          wait-on-timeout: 60  # Timeout for waiting for the server to start
+        run: npx cypress run
         
 
