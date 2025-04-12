@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ArtAlley</title>
+    <link rel="stylesheet" href="choose.css">
+</head>
+<body>
+    <form id="roleForm" aria-label="Role selection form">
+        <h2>Choose a role</h2>
+
+        <select id="roleSelect" name="role" required>
+            <option value="" disabled selected>Select a role</option>
+            <option value="login-buyer.html">Buyer</option>
+            <option value="login-seller.html">Seller</option>
+          </select>
+          
+          <button type="submit">Submit</button>
+    </form>
+
+    <script>
+        document.getElementById("roleForm").addEventListener("submit", function(event) {
+          event.preventDefault();
+          const selected = document.getElementById("roleSelect").value;
+          if (selected) {
+            window.location.href = selected;
+          }
+        });
+      </script>
+</body>
+</html>
