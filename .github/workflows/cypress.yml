@@ -18,8 +18,5 @@ jobs:
 
       - name: Run Cypress tests
         uses: cypress-io/github-action@v6
-        with:
-          record: true
-        env:
-          CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
+        
 
