@@ -12,6 +12,7 @@
   "license": "ISC",
   "description": "",
   "devDependencies": {
+    "@cypress/code-coverage": "^3.14.0",
     "cypress": "^14.3.0"
   }
 }
