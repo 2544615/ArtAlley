@@ -26,7 +26,7 @@ jobs:
 
       - name: Install Cypress binary
         run: |
-          npx cypress instal
+          npx cypress install
 
       - name: Run Cypress tests
         run: npm run cy:run
