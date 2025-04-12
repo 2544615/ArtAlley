@@ -13,6 +13,11 @@
   "description": "",
   "devDependencies": {
     "@cypress/code-coverage": "^3.14.0",
-    "cypress": "^14.3.0"
-  }
+    "cypress": "^14.3.0",
+    "rimraf": "^6.0.1"
+  },
+    "overrides": {
+      "rimraf": "^6.0.1"
+    }
+
 }
