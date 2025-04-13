@@ -1,6 +1,6 @@
 describe('Login Page', () => {
   beforeEach(() => {
-    cy.visit('http://localhost:3000/login.html'); // Change if your path differs
+    cy.visit('http://localhost:3000/SignIn Folder/login.html'); // Change if your path differs
   });
 
   it('Loads the login form correctly', () => {
