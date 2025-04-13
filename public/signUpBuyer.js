@@ -17,16 +17,16 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const auth = getAuth();
-
+const username=document.getElementById('username');
 const email = document.getElementById('address');
 const password = document.getElementById('password');
 const submit = document.getElementById('register');
 
 submit.addEventListener('click', function(event){
-    event.preventDefault();
     const emailValue = email.value;
     const passwordValue = password.value;
-    createUserWithEmailAndPassword(auth, emailValue, passwordValue)
+    if(username.value!="" && typeof(username.value)=="string" && emailValue!="" && passwordValue!=""){
+      createUserWithEmailAndPassword(auth, emailValue, passwordValue)
   .then((userCredential) => {
     // Signed up 
     const user = userCredential.user;
