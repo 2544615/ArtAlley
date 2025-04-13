@@ -1,6 +1,6 @@
 describe('Forgot Password Page', () => {
   beforeEach(() => {
-    cy.visit('http://localhost:3000/ForgotPaswword.html');
+    cy.visit('http://localhost:3000/SignIn Folder/ForgotPaswword.html');
   });
 
   it('Checks for coverage data', () => {
