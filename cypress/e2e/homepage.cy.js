@@ -33,7 +33,7 @@ describe('Art Alley Homepage', () => {
   it('Displays footer sections and links', () => {
     cy.contains('Help').should('be.visible');
     cy.contains('Account').should('be.visible');
-    cy.contains('Art Alley').should('be.visible');
+    cy.contains('ArtAlley').should('be.visible');
 
     cy.get('footer a').should('have.length.at.least', 6);
   });
