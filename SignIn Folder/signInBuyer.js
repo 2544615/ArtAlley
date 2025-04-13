@@ -17,22 +17,22 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const auth = getAuth();
-<<<<<<< HEAD:signInBuyer.js
+//<<<<<<< HEAD:signInBuyer.js
 const username= document.getElementById('username');
-=======
->>>>>>> bcdc7c82fee2221c9ac6e2bdc7d16923b5104a28:SignIn Folder/signInBuyer.js
+//=======
+//>>>>>>> bcdc7c82fee2221c9ac6e2bdc7d16923b5104a28:SignIn Folder/signInBuyer.js
 const email = document.getElementById('email');
 const password = document.getElementById('password');
 const submit = document.querySelector('.login-btn');
 const provider = new GoogleAuthProvider();
 
-<<<<<<< HEAD:signInBuyer.js
+//<<<<<<< HEAD:signInBuyer.js
 
 
 
-=======
+//=======
 const google_login = document.getElementById("google-btn");
->>>>>>> bcdc7c82fee2221c9ac6e2bdc7d16923b5104a28:SignIn Folder/signInBuyer.js
+//>>>>>>> bcdc7c82fee2221c9ac6e2bdc7d16923b5104a28:SignIn Folder/signInBuyer.js
 submit.addEventListener('click', function(event){
     event.preventDefault();
     const emailValue = email.value;
@@ -54,8 +54,8 @@ submit.addEventListener('click', function(event){
 }
 })
 
-<<<<<<< HEAD:signInBuyer.js
-=======
+//<<<<<<< HEAD:signInBuyer.js
+//=======
 google_login.addEventListener("click", function(){
 
   signInWithPopup(auth, provider)
@@ -75,4 +75,4 @@ google_login.addEventListener("click", function(){
       console.error("Error during sign-in:", errorCode, errorMessage);
     });
 })
->>>>>>> bcdc7c82fee2221c9ac6e2bdc7d16923b5104a28:SignIn Folder/signInBuyer.js
+//>>>>>>> bcdc7c82fee2221c9ac6e2bdc7d16923b5104a28:SignIn Folder/signInBuyer.js
