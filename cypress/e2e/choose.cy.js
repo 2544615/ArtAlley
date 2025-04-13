@@ -17,7 +17,6 @@ describe('Choose Role Page - ArtAlley', () => {
     });
   
     it('Redirects to seller login when Seller is selected', () => {
-      // Fix the typo in your HTML value (".../SignIn") before running this
       cy.get('#roleSelect').select('../SignIn Folder/login-seller.html');
       cy.get('form#roleForm').submit();
       cy.url().should('include', 'login-seller.html');
