@@ -1,7 +1,7 @@
 describe('Seller Signup Page', () => {
   beforeEach(() => {
     // Visit the signup page before each test
-    cy.visit('http://localhost:3000/seller-signup.html'); // Adjust path if needed
+    cy.visit('http://localhost:3000/SignUp Folder/seller-signup.html'); // Adjust path if needed
   });
 
   it('Loads the signup form correctly', () => {
