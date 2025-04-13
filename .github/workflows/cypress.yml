@@ -21,6 +21,11 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - name: Start the server
+        run: |
+          npm start &  # Start your server in the background
+          npx wait-on http://localhost:3000  # Ensure the server is up before proceeding
+
       - name: Start server
         run: npm start &
 
