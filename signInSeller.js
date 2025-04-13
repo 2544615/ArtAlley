@@ -27,6 +27,7 @@ submit.addEventListener('click', function(event){
     event.preventDefault();
     const emailValue = email.value;
     const passwordValue = password.value;
+    if(emailValue==="" && passwordValue===""){
     signInWithEmailAndPassword(auth, emailValue, passwordValue)
   .then((userCredential) => {
     // Signed in 
@@ -40,4 +41,5 @@ submit.addEventListener('click', function(event){
     const errorMessage = error.message;
     alert(errorMessage);
   });
+}
 })

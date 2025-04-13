@@ -17,16 +17,19 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const auth = getAuth();
-
+const username= document.getElementById('username');
 const email = document.getElementById('email');
 const password = document.getElementById('password');
 const submit = document.querySelector('.login-btn');
+
+
 
 
 submit.addEventListener('click', function(event){
     event.preventDefault();
     const emailValue = email.value;
     const passwordValue = password.value;
+    if(emailValue==="" && passwordValue===""){
     signInWithEmailAndPassword(auth, emailValue, passwordValue)
   .then((userCredential) => {
     // Signed in 
@@ -40,4 +43,6 @@ submit.addEventListener('click', function(event){
     const errorMessage = error.message;
     alert(errorMessage);
   });
+}
 })
+

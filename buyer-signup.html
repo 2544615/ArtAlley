@@ -12,7 +12,7 @@
     crossorigin="anonymous"
     referrerpolicy="no-referrer"
   />
-  <script type="module" src="SignUpBuyer.js" defer></script>
+  <script type="module" src="signUpBuyer.js" defer></script>
 </head>
 <body>
 
@@ -21,11 +21,12 @@
   <form>
     <h2>Sign Up as a Buyer</h2>
 
-    <input type="text" placeholder="Username" required id="username">
+    <input type="text" placeholder="Username" required id="username"  pattern="^[A-Za-z]{4,}$" oninvalid="this.setCustomValidity('Invalid username and must be 3 or more characters')" oninput="this.setCustomValidity('')">
+    
             
     <input type="email" placeholder="Email address" required id="address">
 
-    <input type="tel" placeholder="Phone number" id="number"required>
+    <input type="tel" placeholder="Phone number" id="number" required>
 
     <input type="password" placeholder="Password" required id="password">
     
@@ -35,6 +36,7 @@
     </p>
 
     <button type="submit" id="register">Create Account</button>
+    
 
     <p>Already have an account? <a href="login-buyer.html">Login</a></p>
 
