@@ -7,7 +7,7 @@
     "start": "serve . -l 3000",
     "cy:run": "cypress run",
     "cy:open": "cypress open",
-    "build": "rimraf build && mkdir build && cp -R ./ ./build"
+    "build": "rimraf build && mkdir build && cp -R ./Homepage\\ Folder ./SignIn\\ Folder ./SignUp\\ Folder ./index.html ./public ./build"
   },
   "keywords": [],
   "author": "",
