@@ -86,14 +86,17 @@ input[type="password"] {
 .google-btn {
   border: 1px solid #ccc;
   border-radius: 10px;
-  padding: 0.6rem;
+  padding: 0.7rem;
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 8px;
   background-color: white;
+  font-size: 0.95rem;
   cursor: pointer;
-  transition: background 0.2s ease-in-out;
+  margin: 10px 0 15px;
+  width: 100%;
+  
 }
 
 .google-btn:hover {
