@@ -12,8 +12,8 @@
 
         <select id="roleSelect" name="role" required>
             <option value="" disabled selected>Select a role</option>
-            <option value="../SignIn Folder/login-buyer.html">Buyer</option>
-            <option value="../SignIn Folder/login-seller.html">Seller</option>
+            <option value="buyer">Buyer</option>
+            <option value="seller">Seller</option>
           </select>
           
           <button type="submit">Submit</button>
@@ -23,8 +23,10 @@
         document.getElementById("roleForm").addEventListener("submit", function(event) {
           event.preventDefault();
           const selected = document.getElementById("roleSelect").value;
-          if (selected) {
-            window.location.href = selected;
+          if (selected === "buyer") {
+            window.location.href = "../SignIn Folder/login-buyer.html";
+          } else if (selected === "seller") {
+            window.location.href = "../SignIn Folder/login-seller.html";
           }
         });
       </script>
