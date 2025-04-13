@@ -30,7 +30,7 @@ submit.addEventListener('click', function(event){
     event.preventDefault();
     const emailValue = email.value;
     const passwordValue = password.value;
-    if(emailValue==="" && passwordValue===""){
+    if(emailValue!="" && passwordValue!=""){
     signInWithEmailAndPassword(auth, emailValue, passwordValue)
   .then((userCredential) => {
     // Signed in 

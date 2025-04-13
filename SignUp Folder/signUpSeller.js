@@ -25,7 +25,7 @@ const submit = document.getElementById('register');
 ubmit.addEventListener('click', function(event){
     const emailValue = email.value;
     const passwordValue = password.value;
-    if(username.value!="" && typeof(username.value)=="string" && emailValue==="" && passwordValue===""){
+    if(username.value!="" && typeof(username.value)=="string" && emailValue!="" && passwordValue!=""){
       createUserWithEmailAndPassword(auth, emailValue, passwordValue)
   .then((userCredential) => {
     // Signed up 
