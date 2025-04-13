@@ -20,7 +20,7 @@
   <form>
     <h2>Sign Up as a seller</h2>
 
-    <input type="text" placeholder="Username" required id="username">
+    <input type="text" placeholder="Username" required id="username" pattern="^[A-Za-z]{4,}$" oninvalid="this.setCustomValidity('Invalid username and must be 3 or more characters')" oninput="this.setCustomValidity('')">
             
     <input type="email" placeholder="Email address" required id="address">
 
@@ -35,7 +35,7 @@
 
     <button type="submit" id="register">Create Account</button>
 
-    <p>Already have an account? <a href="login.html">Login</a></p>
+    <p>Already have an account? <a href="../SignIn Folder/login-seller.html">Login</a></p>
 
     <button type="button" id="icon">
       <i class="fa-brands fa-google"></i> Sign Up with Google
