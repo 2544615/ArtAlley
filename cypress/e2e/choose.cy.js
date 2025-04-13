@@ -19,13 +19,13 @@ describe('Choose Role Page - ArtAlley', () => {
     it('Redirects to seller login when Seller is selected', () => {
       cy.get('#roleSelect').select('seller');
       cy.get('form#roleForm').submit();
-      cy.url().should('include', '../SignIn Folder/login-seller.html');
+      cy.url().should('include', 'login-seller');
     });
   
     it('Does not submit form if no role is selected', () => {
       cy.get('#roleSelect').should('have.value', '');
       cy.get('form#roleForm').submit();
-      cy.url().should('include', 'choose.html'); // URL should not change
+      cy.url().should('include', 'choose'); // URL should not change
     });
   });
   
