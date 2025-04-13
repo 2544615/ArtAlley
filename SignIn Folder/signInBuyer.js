@@ -1,6 +1,6 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-app.js";
-import { getAuth, signInWithEmailAndPassword  } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-auth.js";
+import { getAuth, GoogleAuthProvider, signInWithPopup, signInWithEmailAndPassword  } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-auth.js";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -17,14 +17,22 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const auth = getAuth();
+<<<<<<< HEAD:signInBuyer.js
 const username= document.getElementById('username');
+=======
+>>>>>>> bcdc7c82fee2221c9ac6e2bdc7d16923b5104a28:SignIn Folder/signInBuyer.js
 const email = document.getElementById('email');
 const password = document.getElementById('password');
 const submit = document.querySelector('.login-btn');
+const provider = new GoogleAuthProvider();
+
+<<<<<<< HEAD:signInBuyer.js
 
 
 
-
+=======
+const google_login = document.getElementById("google-btn");
+>>>>>>> bcdc7c82fee2221c9ac6e2bdc7d16923b5104a28:SignIn Folder/signInBuyer.js
 submit.addEventListener('click', function(event){
     event.preventDefault();
     const emailValue = email.value;
@@ -46,3 +54,25 @@ submit.addEventListener('click', function(event){
 }
 })
 
+<<<<<<< HEAD:signInBuyer.js
+=======
+google_login.addEventListener("click", function(){
+
+  signInWithPopup(auth, provider)
+    .then((result) => {
+      const credential = GoogleAuthProvider.credentialFromResult(result);
+      const token = credential.accessToken;
+      const user = result.user;
+      console.log(user);
+      alert("Successfully logged in")
+      
+    })
+    .catch((error) => {
+      const errorCode = error.code;
+      const errorMessage = error.message;
+      const email = error.customData.email;
+      const credential = GoogleAuthProvider.credentialFromError(error);
+      console.error("Error during sign-in:", errorCode, errorMessage);
+    });
+})
+>>>>>>> bcdc7c82fee2221c9ac6e2bdc7d16923b5104a28:SignIn Folder/signInBuyer.js

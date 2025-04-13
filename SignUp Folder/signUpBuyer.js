@@ -39,8 +39,12 @@ submit.addEventListener('click', function(event){
     alert(errorMessage);
     // ..
   });
+<<<<<<< HEAD:signUpBuyer.js
       
 
     }
     
 })
+=======
+})
+>>>>>>> bcdc7c82fee2221c9ac6e2bdc7d16923b5104a28:SignUp Folder/signUpBuyer.js

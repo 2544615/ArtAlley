@@ -39,8 +39,12 @@ ubmit.addEventListener('click', function(event){
     alert(errorMessage);
     // ..
   });
+<<<<<<< HEAD:signUpSeller.js
       
 
     }
     
 })
+=======
+})
+>>>>>>> bcdc7c82fee2221c9ac6e2bdc7d16923b5104a28:SignUp Folder/signUpSeller.js
