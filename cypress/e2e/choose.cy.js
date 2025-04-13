@@ -11,13 +11,13 @@ describe('Choose Role Page - ArtAlley', () => {
     });
   
     it('Redirects to buyer login when Buyer is selected', () => {
-      cy.get('#roleSelect').select('../SignIn Folder/login-buyer.html');
+      cy.get('#roleSelect').select('buyer');
       cy.get('form#roleForm').submit();
-      cy.url().should('include', 'login-buyer.html');
+      cy.url().should('include', '../SignIn Folder/login-buyer.html');
     });
   
     it('Redirects to seller login when Seller is selected', () => {
-      cy.get('#roleSelect').select('../SignIn Folder/login-seller.html');
+      cy.get('#roleSelect').select('seller');
       cy.get('form#roleForm').submit();
       cy.url().should('include', '../SignIn Folder/login-seller.html');
     });
