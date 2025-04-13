@@ -29,9 +29,5 @@ jobs:
 
       - name: Run Cypress tests
         run: npx cypress run
-      - name: Run Cypress Tests
-        uses: cypress-io/github-action@v6
-        with:
-          start: npm start            # starts your dev server (like `npm start`)
-          wait-on: http://localhost:3000  # waits for your app to be ready
+        
           wait-on-timeout: 60           # in seconds
