@@ -11,7 +11,7 @@ describe('Art Alley Homepage', () => {
   });
 
   it('Displays title section correctly', () => {
-    cy.contains('Art Alley').should('be.visible');
+    cy.contains('ArtAlley').should('be.visible');
     cy.contains('Where Culture Meets Craft').should('be.visible');
   });
 
