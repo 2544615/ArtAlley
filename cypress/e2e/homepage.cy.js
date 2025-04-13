@@ -1,6 +1,6 @@
 describe('Art Alley Homepage', () => {
   beforeEach(() => {
-    cy.visit('http://localhost:3000/homepage.html'); // Adjust path if needed
+    cy.visit('http://localhost:3000/Homepage Folder/homepage.html'); // Adjust path if needed
   });
 
   it('Displays header icons correctly', () => {
