@@ -1,6 +1,6 @@
 describe('Terms and Conditions Page', () => {
   beforeEach(() => {
-    cy.visit('http://localhost:3000/TermsNConditions.html'); // Ensure the correct URL
+    cy.visit('http://localhost:3000/SignUp Folder/TermsNConditions.html'); // Ensure the correct URL
   });
 
   it('displays the Terms and Conditions heading', () => {
