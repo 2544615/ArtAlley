@@ -18,7 +18,7 @@ describe('Terms and Conditions Page', () => {
     cy.contains(/as\s+is.*as\s+available/i).should('exist'); // Flexible match
 
     cy.contains('indirect, incidental, special, or consequential damages').should('exist');
-    cy.contains('governed by and construed in accordance with the laws of South Africa').should('exist');
+    cy.contains('To the fullest extent permitted by law, ArtAlley shall not be liable').should('exist');
     cy.contains('Johannesburg').should('exist');
   });
 });
