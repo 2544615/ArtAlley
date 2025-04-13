@@ -8,7 +8,7 @@ describe('Terms and Conditions Page', () => {
   });
 
   it('contains key sections of the legal text', () => {
-    cy.contains('Welcome to Art Alley').should('exist');
+    cy.contains('Welcome to ArtAlley').should('exist');
     cy.contains('non-exclusive, non-transferable license').should('exist');
     cy.contains('Privacy Policy').should('exist');
     cy.contains('intellectual property rights').should('exist');
