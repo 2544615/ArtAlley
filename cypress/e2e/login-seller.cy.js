@@ -42,7 +42,7 @@ describe('Login Page', () => {
         .and('include', 'google-logo.png');
     });
   
-    it('Sign up link goes to buyer signup', () => {
+    it('Sign up link goes to seller signup', () => {
       cy.get('footer .signup a')
         .should('exist')
         .and('have.attr', 'href', '../SignUp Folder/seller-signup.html');
