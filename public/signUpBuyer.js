@@ -42,4 +42,6 @@ submit.addEventListener('click', function(event){
     alert(errorMessage);
     // ..
   });
+
+    }
 })
