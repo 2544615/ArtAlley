@@ -3,6 +3,12 @@ describe('Forgot Password Page', () => {
     cy.visit('http://localhost:3000/ForgotPaswword.html');
   });
 
+  it('Checks for coverage data', () => {
+    cy.window().then((win) => {
+      console.log(win.__coverage__); // Logs coverage data to console
+    });
+  });
+
   it('Loads the Forgot Password form correctly', () => {
     cy.contains('Forgot Your Password').should('be.visible');
     cy.get('input[type="email"]').should('have.attr', 'placeholder', 'Email address');

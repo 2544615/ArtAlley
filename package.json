@@ -14,7 +14,11 @@
   "description": "",
   "devDependencies": {
     "@cypress/code-coverage": "^3.14.0",
+    "babel-plugin-istanbul": "^7.0.0",
     "cypress": "^14.3.0",
+    "istanbul-lib-coverage": "^3.2.2",
+    "istanbul-lib-processinfo": "^2.0.3",
+    "nyc": "^17.1.0",
     "rimraf": "^6.0.1",
     "serve": "^14.2.4",
     "wait-on": "^8.0.3"
