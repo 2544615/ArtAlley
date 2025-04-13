@@ -23,25 +23,25 @@ const password = document.getElementById('password');
 const submit = document.getElementById('register');
 
 submit.addEventListener('click', function(event){
-    const emailValue = email.value;
+   const emailValue = email.value;
     const passwordValue = password.value;
     if(username.value!="" && typeof(username.value)=="string" && emailValue!="" && passwordValue!=""){
       createUserWithEmailAndPassword(auth, emailValue, passwordValue)
   .then((userCredential) => {
     // Signed up 
     const user = userCredential.user;
-    alert('creating user...')
+    alert('Account created successfully!');
+    setTimeout(() => {
+      window.location.href = "login.html";
+    }, 1000);
     // ...
   })
   .catch((error) => {
     const errorCode = error.code;
     const errorMessage = error.message;
     alert(errorMessage);
-    //..
+    // ..
   });
-<<<<<<< HEAD:signUpSeller.js
-                       }
-                       })
+
+    }
 })
-=======
->>>>>>> bcdc7c82fee2221c9ac6e2bdc7d16923b5104a28:SignUp Folder/signUpSeller.js
