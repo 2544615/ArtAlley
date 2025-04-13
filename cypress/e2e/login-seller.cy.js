@@ -4,7 +4,7 @@ describe('Seller Login Page', () => {
     });
   
     it('Loads the login form correctly', () => {
-      cy.contains('Login as a buyer').should('be.visible');
+      cy.contains('Login as a seller').should('be.visible');
       cy.contains('Welcome back').should('be.visible');
     });
   
