@@ -1,4 +1,4 @@
-describe('Login Page', () => {
+describe('Seller Login Page', () => {
     beforeEach(() => {
       cy.visit('http://localhost:3000/SignIn Folder/login-seller.html'); 
     });
