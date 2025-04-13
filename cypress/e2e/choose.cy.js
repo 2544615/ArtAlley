@@ -24,6 +24,7 @@ describe('Choose Role Page - ArtAlley', () => {
     });
   
     it('Does not submit form if no role is selected', () => {
+      cy.get('#roleSelect').should('have.value', '');
       cy.get('form#roleForm').submit();
       cy.url().should('include', 'choose.html'); // URL should not change
     });
