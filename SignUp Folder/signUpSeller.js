@@ -22,7 +22,7 @@ const email = document.getElementById('address');
 const password = document.getElementById('password');
 const submit = document.getElementById('register');
 
-ubmit.addEventListener('click', function(event){
+submit.addEventListener('click', function(event){
     const emailValue = email.value;
     const passwordValue = password.value;
     if(username.value!="" && typeof(username.value)=="string" && emailValue!="" && passwordValue!=""){
