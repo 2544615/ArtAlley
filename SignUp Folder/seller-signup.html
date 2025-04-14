@@ -66,6 +66,12 @@
         e.preventDefault(); // Prevent non-numeric keys from being entered
       }
     });
+    const checkbox = document.getElementById("termsCheckbox");
+     const submitButton=document.getElementById("register");
+     submitButton.disabled=true;
+     checkbox.addEventListener('change',()=>{
+        submitButton.disabled=!checkbox.checked;
+     });
   </script>
 
 </body>

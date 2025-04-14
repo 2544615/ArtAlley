@@ -17,7 +17,7 @@
 
   <h1>Welcome to Art Alley</h1>
 
-  <form>
+  <form id="signupForm" action="/submit" method="POST">
     <h2>Sign Up as a Buyer</h2>
 
     <input type="text" placeholder="Username" required id="username"  pattern="^[A-Za-z]{4,}$" oninvalid="this.setCustomValidity('Invalid username and must be 3 or more characters')" oninput="this.setCustomValidity('')">
@@ -29,7 +29,7 @@
     <input type="password" placeholder="Password" required id="password" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[\d\W]).{8,}$" title="Password must be at least 8 characters long and include at least one uppercase letter, one lowercase letter, and one number or special character.">
     
     <p>
-      <input type="checkbox" required />
+      <input type="checkbox" id="termsCheckbox" required />
       Agree to <a href="TermsNConditions.html">Terms and Conditions</a>
     </p>
 
@@ -66,6 +66,13 @@
         e.preventDefault(); // Prevent non-numeric keys from being entered
       }
     });
+
+     const checkbox = document.getElementById("termsCheckbox");
+     const submitButton=document.getElementById("register");
+     submitButton.disabled=true;
+     checkbox.addEventListener('change',()=>{
+        submitButton.disabled=!checkbox.checked;
+     });
   </script>
 
 </body>
