@@ -26,25 +26,40 @@ const provider = new GoogleAuthProvider();
 const google_login = document.getElementById("icon");
 
 submit.addEventListener('click', function(event){
-    event.preventDefault();
-    const emailValue = email.value;
-    const passwordValue = password.value;
-  if(username.value!="" && typeof username.value =="string" && emailValue!="" && passwordValue!=""){
-    createUserWithEmailAndPassword(auth, emailValue, passwordValue)
-  .then((userCredential) => {
-    // Signed up 
-    const user = userCredential.user;
-    alert('creating user...')
-    // ...
-  })
-  .catch((error) => {
-    const errorCode = error.code;
-    const errorMessage = error.message;
-    alert(errorMessage);
-    // ..
-  });
+  event.preventDefault(); // prevent form from refreshing/submitting
+
+  const emailValue = email.value.trim();
+  const usernameValue = username.value.trim();
+  const passwordValue = password.value;
+
+  // Regex: only letters, at least 4 characters
+  const usernameRegex = /^[A-Za-z]{4,}$/;
+
+  // Check all fields
+  if (!usernameValue || !emailValue || !passwordValue) {
+    alert('All fields are required.');
+    return;
   }
-})
+
+  // Validate username format
+  if (!usernameRegex.test(usernameValue)) {
+    alert('Username must be at least 4 letters and contain only alphabets (no numbers or symbols).');
+    return;
+  }
+
+  // Proceed with Firebase sign up
+  createUserWithEmailAndPassword(auth, emailValue, passwordValue)
+    .then((userCredential) => {
+      const user = userCredential.user;
+      alert('Successfully signed up!');
+      // Optional: redirect or store user info
+    })
+    .catch((error) => {
+      const errorMessage = error.message;
+      alert(`Error: ${errorMessage}`);
+    });
+});
+
 
 
 google_login.addEventListener("click", function(){
