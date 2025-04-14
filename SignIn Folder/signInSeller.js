@@ -30,7 +30,6 @@ submit.addEventListener('click', function(event){
     event.preventDefault();
     const emailValue = email.value;
     const passwordValue = password.value;
-    if(emailValue!="" && passwordValue!=""){
     signInWithEmailAndPassword(auth, emailValue, passwordValue)
   .then((userCredential) => {
     // Signed in 
@@ -44,11 +43,7 @@ submit.addEventListener('click', function(event){
     const errorMessage = error.message;
     alert(errorMessage);
   });
-//<<<<<<< HEAD:signInSeller.js
-}
 })
-//=======
-//})
 
 google_login.addEventListener("click", function(){
 
@@ -69,4 +64,3 @@ google_login.addEventListener("click", function(){
       console.error("Error during sign-in:", errorCode, errorMessage);
     });
 })
-//>>>>>>> bcdc7c82fee2221c9ac6e2bdc7d16923b5104a28:SignIn Folder/signInSeller.js
