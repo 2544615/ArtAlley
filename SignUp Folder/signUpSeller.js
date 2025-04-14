@@ -1,6 +1,6 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-app.js";
-import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-auth.js";
+import { getAuth, GoogleAuthProvider,signInWithPopup,createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-auth.js";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -17,23 +17,22 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const auth = getAuth();
-const username=document.getElementById('username');
+auth.languageCode = 'en';
 const email = document.getElementById('address');
 const password = document.getElementById('password');
 const submit = document.getElementById('register');
+const google_login = document.getElementById("icon");
+const provider = new GoogleAuthProvider();
 
 submit.addEventListener('click', function(event){
-   const emailValue = email.value;
+    event.preventDefault();
+    const emailValue = email.value;
     const passwordValue = password.value;
-    if(username.value!="" && typeof(username.value)=="string" && emailValue!="" && passwordValue!=""){
-      createUserWithEmailAndPassword(auth, emailValue, passwordValue)
+    createUserWithEmailAndPassword(auth, emailValue, passwordValue)
   .then((userCredential) => {
     // Signed up 
     const user = userCredential.user;
-    alert('Account created successfully!');
-    setTimeout(() => {
-      window.location.href = "login.html";
-    }, 1000);
+    alert('creating user...')
     // ...
   })
   .catch((error) => {
@@ -42,6 +41,22 @@ submit.addEventListener('click', function(event){
     alert(errorMessage);
     // ..
   });
-
-    }
 })
+
+google_login.addEventListener("click", function(){
+  signInWithPopup(auth, provider)
+      .then((result) => {
+        const credential = GoogleAuthProvider.credentialFromResult(result);
+        const token = credential.accessToken;
+        const user = result.user;
+        console.log(user);
+        alert("Succesfully signed up")
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        const email = error.customData.email;
+        const credential = GoogleAuthProvider.credentialFromError(error);
+        console.error("Error during sign-in:", errorCode, errorMessage);
+      });
+  })
