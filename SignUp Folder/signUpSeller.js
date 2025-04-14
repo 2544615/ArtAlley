@@ -37,13 +37,13 @@ submit.addEventListener('click', function(event){
 
   // Check all fields
   if (!usernameValue || !emailValue || !passwordValue) {
-    //alert('All fields are required.');
+    alert('All fields are required.');
     return;
   }
 
   // Validate username format
   if (!usernameRegex.test(usernameValue)) {
-    username.setCustomValidity('Username must be at least 4 letters and contain only alphabets (no numbers or symbols).');
+    alert("Invalid Username");
     return;
   }
 
