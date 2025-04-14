@@ -37,7 +37,7 @@ submit.addEventListener('click', function(event){
 
   // Check all fields
   if (!usernameValue || !emailValue || !passwordValue) {
-    alert('All fields are required.');
+    //alert('All fields are required.');
     return;
   }
 
