@@ -38,12 +38,14 @@ submit.addEventListener('click', function(event){
   // Check all fields
   if (!usernameValue || !emailValue || !passwordValue) {
     alert('All fields are required.');
+    console.log('all field are required');
     return;
   }
 
   // Validate username format
   if (!usernameRegex.test(usernameValue)) {
-    alert("Invalid username");
+    alert('Invalid username');
+    console.log('invalid username');
     return;
   }
 
@@ -52,11 +54,13 @@ submit.addEventListener('click', function(event){
     .then((userCredential) => {
       const user = userCredential.user;
       alert('Successfully signed up!');
+      console.log('user signed in');
       // Optional: redirect or store user info
     })
     .catch((error) => {
       const errorMessage = error.message;
       alert(`Error: ${errorMessage}`);
+      console.log(errorMessage);
     });
 });
 
