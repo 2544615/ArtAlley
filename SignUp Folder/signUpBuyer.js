@@ -43,7 +43,7 @@ submit.addEventListener('click', function(event){
 
   // Validate username format
   if (!usernameRegex.test(usernameValue)) {
-    alert('Username must be at least 4 letters and contain only alphabets (no numbers or symbols).');
+    username.setCustomValidity('Username must be at least 4 letters and contain only alphabets (no numbers or symbols).');
     return;
   }
 
