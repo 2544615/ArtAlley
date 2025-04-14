@@ -23,6 +23,7 @@ const password = document.getElementById('password');
 const submit = document.getElementById('register');
 
 submit.addEventListener('click', function(event){
+    event.preventDefault();
     const emailValue = email.value;
     const passwordValue = password.value;
     if(username.value!="" && typeof(username.value)=="string" && emailValue!="" && passwordValue!=""){
