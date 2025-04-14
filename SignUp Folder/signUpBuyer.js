@@ -19,6 +19,7 @@ const app = initializeApp(firebaseConfig);
 const auth = getAuth();
 auth.languageCode = 'en';
 const email = document.getElementById('address');
+const username = document.getElementById('username');
 const password = document.getElementById('password');
 const submit = document.getElementById('register');
 const provider = new GoogleAuthProvider();
