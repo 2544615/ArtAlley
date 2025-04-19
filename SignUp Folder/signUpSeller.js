@@ -61,6 +61,12 @@ submit.addEventListener('click', function(event){
 });
 
 google_login.addEventListener("click", function(){
+  const termsChecked = document.getElementById("termsCheckbox").checked;
+
+  if (!termsChecked) {
+    alert("Please agree to the Terms and Conditions before signing up with Google.");
+    return;
+  }
   signInWithPopup(auth, provider)
       .then((result) => {
         const credential = GoogleAuthProvider.credentialFromResult(result);

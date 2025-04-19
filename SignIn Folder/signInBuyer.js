@@ -31,7 +31,7 @@ submit.addEventListener('click', function(event){
   .then((userCredential) => {
     // Signed in 
     const user = userCredential.user;
-    alert('checking user info...');
+    alert('Successfully logged in');
     console.log('user signed in');
     // ...
   })
