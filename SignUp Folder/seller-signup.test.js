@@ -6,19 +6,19 @@ import { fireEvent, getByLabelText, getByText, getByRole, screen } from '@testin
 import fs from 'fs';
 import path from 'path';
 
-describe('Buyer Signup Page', () => {
+describe('Seller Signup Page', () => {
   let container;
 
   beforeEach(() => {
     //window.alert = jest.fn();
-    const html = fs.readFileSync(path.resolve(__dirname, '../SignUp Folder/buyer-signup.html'), 'utf8');
+    const html = fs.readFileSync(path.resolve(__dirname, '../SignUp Folder/seller-signup.html'), 'utf8');
     document.documentElement.innerHTML = html.toString();
     container = document.body;
   });
 
   test('Loads the signup form correctly', () => {
     expect(document.querySelector('h1').textContent).toBe('Welcome to Art Alley');
-    expect(document.querySelector('h2').textContent).toBe('Sign Up as a Buyer');
+    expect(document.querySelector('h2').textContent).toBe('Sign Up as a seller');
   });
 
   test('Has all input fields and buttons', () => {
