@@ -3,11 +3,11 @@
   "version": "1.0.0",
   "main": "cypress.config.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "serve . -l 3000",
-    "cy:run": "cypress run",
+    "start": "serve build -l 3000",
+    "build": "rimraf build && mkdir build && cp -R \"Homepage Folder\" \"SignIn Folder\" \"SignUp Folder\" index.html public build",
     "cy:open": "cypress open",
-    "build": "rimraf build && mkdir build && cp -R ./Homepage\\ Folder ./SignIn\\ Folder ./SignUp\\ Folder ./index.html ./public ./build"
+    "cy:run": "cypress run",
+    "test:ci": "npm run build && serve build -l 3000 & npx wait-on http://localhost:3000 && cypress run"
   },
   "keywords": [],
   "author": "",
