@@ -5,12 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "jest --coverage",
-    "test:e2e": "cypress run",
-    "test:e2e:open": "cypress open",
-    "test:ci": "npm run test && npm run test:e2e",
     "start": "serve . -l 3000",
-    "build": "rimraf build && mkdir build && cp -R './Homepage Folder' './SignIn Folder' './SignUp Folder' ./index.html ./public ./build",
-    "coverage:combined": "nyc report --reporter=lcov"
+    "build": "rimraf build && mkdir build && cp -R './Homepage Folder' './SignIn Folder' './SignUp Folder' ./index.html ./public ./build"
   },
   "keywords": [],
   "author": "",
@@ -18,10 +14,11 @@
   "devDependencies": {
     "@babel/core": "^7.26.10",
     "@babel/preset-env": "^7.26.9",
-    "@cypress/code-coverage": "^3.12.3",
     "@jest/core": "^29.7.0",
+    "@testing-library/react": "^16.3.0",
     "@types/jest": "^29.5.14",
-    "cypress": "^13.6.5",
+    "@testing-library/dom": "^9.3.0",
+    "@testing-library/jest-dom": "^5.17.0",
     "jest": "^29.7.0",
     "jest-environment-jsdom": "^29.7.0",
     "nyc": "^15.1.0",
