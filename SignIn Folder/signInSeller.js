@@ -60,15 +60,9 @@ submit.addEventListener('click', function(event){
   .then(async(userCredential) => {
     // Signed in 
     const user = userCredential.user;
-
-    const userData=await verifyUserRole(user);
-    if(!userData)
-      return;
-    
-    alert(`Successfully logged in as ${userData.role}`);
-    console.log('user signed in as', userData);
-    window.location.href="#";//buyer-dashboard.html
-     // ...
+    alert('Successfully logged in');
+    console.log('user signed in');
+    // ...
   })
   .catch((error) => {
     const errorCode = error.code;
@@ -77,19 +71,22 @@ submit.addEventListener('click', function(event){
   });
 })
 
-google_login.addEventListener("click", async function(){
-  try {
-    const result = await signInWithPopup(auth, provider);
-    const user = result.user;
+google_login.addEventListener("click", function(){
 
-    const userData = await verifyUserRole(user);
-    if (!userData) return;
-
-    alert(`Successfully logged in as ${userData.role}`);
-    console.log('user signed in as a', userData);
-    window.location.href = "#"; // seller-dashboard.html
-  } catch (error) {
-    console.error("Error during sign-in:", error.code, error.message);
-    alert(error.message);
-  }
-});
+  signInWithPopup(auth, provider)
+    .then((result) => {
+      const credential = GoogleAuthProvider.credentialFromResult(result);
+      const token = credential.accessToken;
+      const user = result.user;
+      console.log(user);
+      alert("Successfully logged in")
+      
+    })
+    .catch((error) => {
+      const errorCode = error.code;
+      const errorMessage = error.message;
+      const email = error.customData.email;
+      const credential = GoogleAuthProvider.credentialFromError(error);
+      console.error("Error during sign-in:", errorCode, errorMessage);
+    });
+})
