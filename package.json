@@ -4,26 +4,15 @@
   "description": "Local Artisan Marketplace - Group 30",
   "main": "index.js",
   "scripts": {
-    "test": "jest --coverage",
-    "start": "serve . -l 3000",
-    "build": "rimraf build && mkdir build && cp -R './Homepage Folder' './SignIn Folder' './SignUp Folder' ./index.html ./public ./build"
+    "test": "jest --coverage"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "@babel/core": "^7.26.10",
-    "@babel/preset-env": "^7.26.9",
-    "@jest/core": "^29.7.0",
-    "@types/jest": "^29.5.14",
-    "@testing-library/dom": "^10.4.0",
-    "@testing-library/jest-dom": "^6.1.4",
-    "@testing-library/react": "^14.0.0",
-    "jest": "^29.0.0",
-    "jest-environment-jsdom": "^29.0.0",
-    "nyc": "^15.1.0",
-    "rimraf": "^6.0.1",
-    "serve": "^14.2.4"
+    "@jest/globals": "^29.7.0",
+    "jest": "^29.7.0",
+    "jest-environment-jsdom": "^29.7.0"
   },
   "repository": {
     "type": "git",
