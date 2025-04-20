@@ -14,6 +14,15 @@
     "jest": "^29.7.0",
     "jest-environment-jsdom": "^29.7.0"
   },
+  "jest": {
+    "collectCoverage": true,
+    "collectCoverageFrom": [
+      "src/**/*.{js,jsx,ts,tsx}",
+      "!**/node_modules/**"
+    ],
+    "coverageDirectory": "coverage",
+    "coverageReporters": ["text", "lcov"]
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/2544615/ArtAlley.git"
