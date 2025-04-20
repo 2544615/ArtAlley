@@ -1,6 +1,8 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-app.js";
-import { getAuth,GoogleAuthProvider,signInWithPopup, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-auth.js";
+import { getAuth,GoogleAuthProvider,signInWithPopup, createUserWithEmailAndPassword,signOut } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-auth.js";
+import { serverTimestamp } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-firestore.js";
+import {getFirestore,doc,getDoc,setDoc} from "https://www.gstatic.com/firebasejs/11.6.0/firebase-firestore.js";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -17,6 +19,7 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const auth = getAuth();
+const db=getFirestore(app);
 auth.languageCode = 'en';
 const email = document.getElementById('address');
 const username = document.getElementById('username');
@@ -38,7 +41,7 @@ submit.addEventListener('click', function(event){
   // Check all fields
   if (!usernameValue || !emailValue || !passwordValue) {
     alert('All fields are required.');
-    console.log('all field are required');
+    //console.log('all field are required');
     return;
   }
 
@@ -51,10 +54,24 @@ submit.addEventListener('click', function(event){
 
   // Proceed with Firebase sign up
   createUserWithEmailAndPassword(auth, emailValue, passwordValue)
-    .then((userCredential) => {
+    .then(async(userCredential) => {
       const user = userCredential.user;
-      alert('Successfully signed up!');
-      console.log('user signed in');
+
+      await setDoc(doc(db,"users",user.uid),{
+        uid:user.uid,
+        username:usernameValue,
+        email:emailValue,
+        role:"buyer",
+        createdAt: serverTimestamp()
+      });
+      const docSnap = await getDoc(doc(db,"users",user.uid));
+      if(!docSnap.exists()||docSnap.data().role !=="buyer"){
+        await auth.signOut();
+        throw new Error("Role verification failed");
+      }
+      alert('Successfully signed up as a buyer!');
+      console.log('user signed up');
+      window.location.href="#";//buyer-dashboard
       // Optional: redirect or store user info
     })
     .catch((error) => {
@@ -68,11 +85,22 @@ submit.addEventListener('click', function(event){
 
 google_login.addEventListener("click", function(){
 signInWithPopup(auth, provider)
-    .then((result) => {
+    .then(async(result) => {
       const credential = GoogleAuthProvider.credentialFromResult(result);
       const token = credential.accessToken;
       const user = result.user;
       console.log(user);
+      const docRef = doc(db, "users", user.uid);
+      const docSnap = await getDoc(docRef);
+      if (!docSnap.exists()) {
+        await setDoc(docRef, {
+          uid: user.uid,
+          username: user.displayName || "GoogleUser",
+          email: user.email,
+          role: "buyer",
+          createdAt: serverTimestamp()
+        });
+      }
       alert("Succesfully signed up")
     })
     .catch((error) => {
@@ -82,4 +110,4 @@ signInWithPopup(auth, provider)
       const credential = GoogleAuthProvider.credentialFromError(error);
       console.error("Error during sign-in:", errorCode, errorMessage);
     });
-})
+});

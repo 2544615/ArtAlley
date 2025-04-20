@@ -1,6 +1,7 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-app.js";
-import { getAuth, signInWithEmailAndPassword ,GoogleAuthProvider, signInWithPopup } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-auth.js";
+import{getFirestore,doc,getDoc} from "https://www.gstatic.com/firebasejs/11.6.0/firebase-firestore.js";
+import { getAuth, signInWithEmailAndPassword ,GoogleAuthProvider, signInWithPopup,signOut } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-auth.js";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -17,6 +18,7 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const auth = getAuth();
+const db=getFirestore(app);
 
 const email = document.getElementById('email');
 const password = document.getElementById('password');
@@ -25,18 +27,48 @@ const provider = new GoogleAuthProvider();
 
 const google_login = document.getElementById("google-btn");
 
+const expectedRole="seller";
+
+async function verifyUserRole(user){
+  const userRef=doc(db,"users",user.uid);
+  const userSnap=await getDoc(userRef);
+
+if(!userSnap.exists()){
+  await signOut(auth);
+  alert("User data not found in the database");
+  return false;
+}
+const userData=userSnap.data();
+if(userData.role!==expectedRole){
+  await signOut(auth);
+  alert("Access denied!");
+  return false;
+}
+return userData;
+}
+
 
 submit.addEventListener('click', function(event){
     event.preventDefault();
     const emailValue = email.value;
     const passwordValue = password.value;
+    if(!emailValue||!passwordValue){
+      alert("please enter both email and password");
+      return;
+    }
     signInWithEmailAndPassword(auth, emailValue, passwordValue)
-  .then((userCredential) => {
+  .then(async(userCredential) => {
     // Signed in 
     const user = userCredential.user;
-    alert('Successfully logged in');
-    console.log('user signed in');
-    // ...
+
+    const userData=await verifyUserRole(user);
+    if(!userData)
+      return;
+    
+    alert(`Successfully logged in as ${userData.role}`);
+    console.log('user signed in as', userData);
+    window.location.href="#";//buyer-dashboard.html
+     // ...
   })
   .catch((error) => {
     const errorCode = error.code;
@@ -45,22 +77,19 @@ submit.addEventListener('click', function(event){
   });
 })
 
-google_login.addEventListener("click", function(){
+google_login.addEventListener("click", async function(){
+  try {
+    const result = await signInWithPopup(auth, provider);
+    const user = result.user;
 
-  signInWithPopup(auth, provider)
-    .then((result) => {
-      const credential = GoogleAuthProvider.credentialFromResult(result);
-      const token = credential.accessToken;
-      const user = result.user;
-      console.log(user);
-      alert("Successfully logged in")
-      
-    })
-    .catch((error) => {
-      const errorCode = error.code;
-      const errorMessage = error.message;
-      const email = error.customData.email;
-      const credential = GoogleAuthProvider.credentialFromError(error);
-      console.error("Error during sign-in:", errorCode, errorMessage);
-    });
-})
+    const userData = await verifyUserRole(user);
+    if (!userData) return;
+
+    alert(`Successfully logged in as ${userData.role}`);
+    console.log('user signed in as a', userData);
+    window.location.href = "#"; // seller-dashboard.html
+  } catch (error) {
+    console.error("Error during sign-in:", error.code, error.message);
+    alert(error.message);
+  }
+});
