@@ -1,20 +1,39 @@
 {
   "name": "uat",
   "version": "1.0.0",
-  "description": "",
+  "description": "Local Artisan Marketplace - Group 30",
   "main": "index.js",
   "scripts": {
     "test": "jest --coverage",
+    "test:e2e": "cypress run",
+    "test:e2e:open": "cypress open",
+    "test:ci": "npm run test && npm run test:e2e",
     "start": "serve . -l 3000",
-    "build": "rimraf build && mkdir build && cp -R './Homepage Folder' './SignIn Folder' './SignUp Folder' ./index.html ./public ./build"
+    "build": "rimraf build && mkdir build && cp -R './Homepage Folder' './SignIn Folder' './SignUp Folder' ./index.html ./public ./build",
+    "coverage:combined": "nyc report --reporter=lcov"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@babel/core": "^7.26.10",
+    "@babel/preset-env": "^7.26.9",
+    "@cypress/code-coverage": "^3.12.3",
+    "@jest/core": "^29.7.0",
+    "@types/jest": "^29.5.14",
+    "cypress": "^13.6.5",
     "jest": "^29.7.0",
     "jest-environment-jsdom": "^29.7.0",
+    "nyc": "^15.1.0",
     "rimraf": "^6.0.1",
     "serve": "^14.2.4"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/2544615/ArtAlley.git"
+  },
+  "bugs": {
+    "url": "https://github.com/2544615/ArtAlley/issues"
+  },
+  "homepage": "https://github.com/2544615/ArtAlley#readme"
 }

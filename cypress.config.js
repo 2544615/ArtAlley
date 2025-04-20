@@ -6,12 +6,13 @@ module.exports = defineConfig({
       // implement node event listeners here
       codeCoverageTask(on, config);
 
-      // Add custom task for debugging
+      const fs = require('fs');
+
       on('task', {
         coverageReport(data) {
-          console.log('Coverage data received:', data);
-          return null;
-        },
+          fs.writeFileSync('coverage/cypress-coverage.json', JSON.stringify(data));
+          return { success: true }; // Return meaningful status
+        }
       });
 
       return config;

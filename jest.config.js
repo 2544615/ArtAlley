@@ -1,12 +1,12 @@
 module.exports = {
-    testEnvironment: "jsdom",
-    collectCoverage: true,
-    coverageDirectory: "coverage",
-    collectCoverageFrom: [
-      'src/**/*.{js,jsx}',
-      '!**/node_modules/**',
-      '!**/__tests__/**'
-    ],
-    coverageReporters: ['text', 'lcov']
-  };
-  
+  testEnvironment: 'node', // or 'jsdom' for browser-like env
+  testMatch: ['**/*.test.js', '**/*.spec.js'], // test file patterns
+  collectCoverage: true, // enable coverage
+  coverageDirectory: 'coverage', // where coverage reports go
+  coverageReporters: ['text', 'lcov'], // report formats
+  coveragePathIgnorePatterns: [
+    '/node_modules/',
+    '/dist/',
+    '/coverage/'
+  ],
+};
