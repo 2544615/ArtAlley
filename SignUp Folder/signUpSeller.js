@@ -50,7 +50,7 @@ submit.addEventListener('click', function(event){
     return;
   }
 
-  // Proceed with Firebase sign up
+
   createUserWithEmailAndPassword(auth, emailValue, passwordValue)
     .then(async(userCredential) => {
       const user = userCredential.user;
@@ -68,8 +68,7 @@ submit.addEventListener('click', function(event){
       }
       alert('Successfully signed up as a seller!');
       console.log('user signed up');
-      window.location.href="#";//buyer-dashboard
-      // Optional: redirect or store user info
+      window.location.href="../SignIn Folder/seller-dashboard.html";
     })
     .catch((error) => {
       const errorMessage = error.message;
@@ -93,18 +92,18 @@ google_login.addEventListener("click", async function() {
     const docSnap = await getDoc(userRef);
 
     if (!docSnap.exists()) {
-      // New user — assign role
+
       await setDoc(userRef, {
         uid: user.uid,
         username: user.displayName || "GoogleUser",
         email: user.email,
-        role: "seller", // <-- Assign seller role here
+        role: "seller", 
         createdAt: new Date()
       });
     }
 
     alert("Successfully signed up as a seller!");
-    window.location.href = "#"; // Replace with seller dashboard if needed
+    window.location.href = "../SignIn Folder/seller-dashboard.html"; 
   } catch (error) {
     console.error("Error during sign-in:", error.code, error.message);
     alert(`Error: ${error.message}`);

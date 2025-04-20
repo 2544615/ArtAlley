@@ -1,7 +1,7 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-app.js";
+import { getAuth, GoogleAuthProvider, signInWithPopup, signInWithEmailAndPassword,signOut  } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-auth.js";
 import{getFirestore,doc,getDoc} from "https://www.gstatic.com/firebasejs/11.6.0/firebase-firestore.js";
-import { getAuth, signInWithEmailAndPassword ,GoogleAuthProvider, signInWithPopup,signOut } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-auth.js";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -47,7 +47,6 @@ if(userData.role!==expectedRole){
 return userData;
 }
 
-
 submit.addEventListener('click', function(event){
     event.preventDefault();
     const emailValue = email.value;
@@ -56,15 +55,22 @@ submit.addEventListener('click', function(event){
       alert("please enter both email and password");
       return;
     }
-    signInWithEmailAndPassword(auth, emailValue, passwordValue)
+  signInWithEmailAndPassword(auth, emailValue, passwordValue)
   .then(async(userCredential) => {
     // Signed in 
     const user = userCredential.user;
-    alert('Successfully logged in');
-    console.log('user signed in');
-    // ...
+
+    const userData=await verifyUserRole(user);
+    if(!userData)
+      return;
+    
+    alert(`Successfully logged in as ${userData.role}`);
+    console.log('user signed in as a', userData);
+    window.location.href="seller-dashboard.html";
+     // ...
   })
   .catch((error) => {
+    alert('Login failed!')
     const errorCode = error.code;
     const errorMessage = error.message;
     alert(errorMessage);
@@ -74,13 +80,25 @@ submit.addEventListener('click', function(event){
 google_login.addEventListener("click", function(){
 
   signInWithPopup(auth, provider)
-    .then((result) => {
+    .then(async(result) => {
       const credential = GoogleAuthProvider.credentialFromResult(result);
       const token = credential.accessToken;
       const user = result.user;
-      console.log(user);
-      alert("Successfully logged in")
-      
+      const userRef=doc(db,"users",user.uid);
+      const userSnap=await getDoc(userRef);
+      if(userSnap.exists()){
+        const userData=userSnap.data();
+        if(userData.role!==expectedRole){
+          await signOut(auth);
+          alert("Access denied");
+          return;
+        }
+        console.log(user);
+        alert("Successfully logged in")
+        window.location.href="seller-dashboard.html";
+      }else{
+        alert("User data not found");
+      } 
     })
     .catch((error) => {
       const errorCode = error.code;
@@ -89,4 +107,4 @@ google_login.addEventListener("click", function(){
       const credential = GoogleAuthProvider.credentialFromError(error);
       console.error("Error during sign-in:", errorCode, errorMessage);
     });
-})
+});
