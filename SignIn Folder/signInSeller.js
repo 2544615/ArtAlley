@@ -36,6 +36,7 @@ submit.addEventListener('click', function(event){
     const user = userCredential.user;
     alert('Successfully logged in');
     console.log('user signed in');
+    window.location.href = "seller-dashboard.html";
     // ...
   })
   .catch((error) => {
@@ -53,7 +54,8 @@ google_login.addEventListener("click", function(){
       const token = credential.accessToken;
       const user = result.user;
       console.log(user);
-      alert("Successfully logged in")
+      alert("Successfully logged in");
+      window.location.href = "seller-dashboard.html";
       
     })
     .catch((error) => {

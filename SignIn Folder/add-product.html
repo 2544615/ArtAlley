@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Add New Product</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="add-product.css">
+</head>
+<body>
+  <main class="background">
+    <section class="login-card">
+      <header>
+        <h2>Add New Product</h2>
+      </header>
+
+      <form id="product-form">
+        <label for="productName">Product Name</label>
+        <input type="text" id="productName" required>
+
+        <label for="price">Price (R)</label>
+        <input type="number" id="price" step="0.01" min="0" required>
+
+        <label for="quantity">Quantity</label>
+        <input type="number" id="quantity" min="0" required>
+
+        <label for="description">Description</label>
+        <textarea id="description" rows="4" required></textarea>
+
+        <label for="image">Upload Image</label>
+        <input type="file" id="image" accept="image/*" multiple required>
+
+        <button type="submit" class="login-btn">Submit Product</button>
+      </form>
+    </section>
+  </main>
+
+  <script type="module" src="add-product.js"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+</body>
+</html>

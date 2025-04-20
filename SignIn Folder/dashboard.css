@@ -1,0 +1,62 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+  }
+  
+  html, body {
+    height: 100%;
+    background: #f4f1ec;
+  }
+  
+  .background {
+    background-image: url('https://verveculture.com/cdn/shop/files/oaxacan_cacao_web-20.jpg?v=1729189678&width=533');
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .login-card {
+    background-color: white;
+    border-radius: 20px;
+    padding: 2rem;
+    width: 320px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+  }
+  
+  .login-card h2 {
+    text-align: center;
+    margin-bottom: 0.5rem;
+    font-size: 1.5rem;
+    color: #3e2e1e;
+  }
+  
+  .welcome-msg {
+    text-align: center;
+    margin-bottom: 1.5rem;
+    color: #7b6d5f;
+    font-size: 0.95rem;
+  }
+  
+  .empty-msg {
+    text-align: center;
+    color: #7b6d5f;
+    font-size: 0.9rem;
+  }
+  
+  .login-btn {
+    width: 100%;
+    background-color: #7a4e27;
+    color: white;
+    padding: 0.7rem;
+    border: none;
+    border-radius: 10px;
+    font-size: 0.95rem;
+    cursor: pointer;
+    margin: 10px 0 15px;
+  }
+  

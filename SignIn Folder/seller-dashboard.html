@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Seller Dashboard</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="dashboard.css">
+</head>
+<body>
+  <main class="background">
+    <section class="login-card">
+      <header>
+        <h2>Your Products</h2>
+        <p class="welcome-msg">Welcome! Here's where your listed items will appear.</p>
+      </header>
+
+      <section id="product-list">
+        <p class="empty-msg">You haven't added any products yet.</p>
+      </section>
+
+      <section style="text-align: center; margin-top: 1.5rem;">
+        <button class="login-btn" onclick="addProduct()">Add New Product</button>
+      </section>
+    </section>
+  </main>
+
+  <script>
+    function addProduct() {
+      window.location.href = "add-product.html";
+    }
+
+    // Optionally load products dynamically
+    // (Code can be added here if you want help with JS + Firebase integration)
+  </script>
+</body>
+</html>
+
