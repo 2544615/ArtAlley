@@ -61,6 +61,14 @@ async function loadProducts() {
     const querySnapshot = await getDocs(collection(db, "products"));
     products = querySnapshot.docs.map((doc) => doc.data());
     filteredProducts = products;
+    
+    // Check for stored search query
+    const storedSearch = localStorage.getItem('searchQuery');
+    if (storedSearch) {
+      filteredProducts = searchProducts(storedSearch);
+      localStorage.removeItem('searchQuery'); // Clear after use
+    }
+    
     renderProducts(filteredProducts);
   } catch (error) {
     console.error("Error fetching products:", error);
@@ -84,6 +92,7 @@ document.getElementById("sortOptions").addEventListener("change", (event) => {
   renderProducts(filteredProducts);
 });
 
+
 // Filtering Functionality
 document.getElementById("filterBtn").addEventListener("click", () => {
   const minPrice = parseFloat(document.getElementById("minPrice").value) || 0;
@@ -93,6 +102,16 @@ document.getElementById("filterBtn").addEventListener("click", () => {
   currentPage = 1;
   renderProducts(filteredProducts);
 });
+
+function searchProducts(query) {
+  if (!query.trim()) {
+    return filteredProducts;
+  }
+  const searchTerm = query.toLowerCase();
+  return filteredProducts.filter(product => 
+    product.name.toLowerCase().includes(searchTerm)
+  );
+}
 
 // Pagination Functionality
 document.getElementById("prevPage").addEventListener("click", () => {
@@ -123,13 +142,28 @@ document.addEventListener("DOMContentLoaded", () => {
 
 // Add Click Event Listeners for the Icons
 document.getElementById("searchButton").addEventListener("click", () => {
-  const searchQuery = document.querySelector(".search-bar").value.trim(); 
+  const searchQuery = document.querySelector(".search-bar").value.trim();
   if (searchQuery) {
-    alert(`You searched for: "${searchQuery}"`);
-    localStorage.setItem("lastSearchQuery", searchQuery);
-    window.location.href = `#`; 
+    const searchedProducts = searchProducts(searchQuery);
+    currentPage = 1;
+    renderProducts(searchedProducts);
   } else {
-    alert("Please enter a search term.");
+    currentPage = 1;
+    renderProducts(filteredProducts);
+  }
+});
+
+document.querySelector(".search-bar").addEventListener("keypress", (e) => {
+  if (e.key === "Enter") {
+    const searchQuery = document.querySelector(".search-bar").value.trim();
+    if (searchQuery) {
+      const searchedProducts = searchProducts(searchQuery);
+      currentPage = 1;
+      renderProducts(searchedProducts);
+    } else {
+      currentPage = 1;
+      renderProducts(filteredProducts);
+    }
   }
 });
 
@@ -139,4 +173,4 @@ document.getElementById("cartButton").addEventListener("click", () => {
 
 document.getElementById("profileButton").addEventListener("click", () => {
   window.location.href = "#";
-});
+});  
