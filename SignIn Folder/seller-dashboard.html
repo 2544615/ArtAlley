@@ -14,26 +14,19 @@
         <p class="welcome-msg">Welcome! Here's where your listed items will appear.</p>
       </header>
 
-      <section id="product-list">
-        <p class="empty-msg">You haven't added any products yet.</p>
-      </section>
+      <section id="product-list"></section>
 
       <section style="text-align: center; margin-top: 1.5rem;">
-        <button class="login-btn" onclick="addProduct()">Add New Product</button>
+        <button class="login-btn" id="add-product-btn">Add New Product</button>
       </section>
+
+      <p id="no-products" hidden class="empty-msg">You haven't added any products yet.</p>
     </section>
     
   </main>
   
 
-  <script>
-    function addProduct() {
-      window.location.href = "add-product.html";
-    }
-
-    // Optionally load products dynamically
-    // (Code can be added here if you want help with JS + Firebase integration)
-  </script>
+  <script type="module" src="seller-dashboard.js"></script>
 </body>
 </html>
 
