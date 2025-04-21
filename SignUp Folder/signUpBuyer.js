@@ -38,24 +38,24 @@ submit.addEventListener('click', function(event){
   // Regex: only letters, at least 4 characters
   const usernameRegex = /^[A-Za-z]{4,}$/;
 
-  // Check all fields
+
   if (!usernameValue || !emailValue || !passwordValue) {
     alert('All fields are required.');
     //console.log('all field are required');
     return;
   }
 
-  // Validate username format
+  
   if (!usernameRegex.test(usernameValue)) {
     alert('Invalid username');
     console.log('invalid username');
     return;
   }
 
-  // Proceed with Firebase sign up
   createUserWithEmailAndPassword(auth, emailValue, passwordValue)
     .then(async(userCredential) => {
       const user = userCredential.user;
+
 
       await setDoc(doc(db,"users",user.uid),{
         uid:user.uid,
@@ -83,31 +83,36 @@ submit.addEventListener('click', function(event){
 
 
 
-google_login.addEventListener("click", function(){
-signInWithPopup(auth, provider)
-    .then(async(result) => {
-      const credential = GoogleAuthProvider.credentialFromResult(result);
-      const token = credential.accessToken;
-      const user = result.user;
-      console.log(user);
-      const docRef = doc(db, "users", user.uid);
-      const docSnap = await getDoc(docRef);
-      if (!docSnap.exists()) {
-        await setDoc(docRef, {
-          uid: user.uid,
-          username: user.displayName || "GoogleUser",
-          email: user.email,
-          role: "buyer",
-          createdAt: serverTimestamp()
-        });
-      }
-      alert("Succesfully signed up")
-    })
-    .catch((error) => {
-      const errorCode = error.code;
-      const errorMessage = error.message;
-      const email = error.customData.email;
-      const credential = GoogleAuthProvider.credentialFromError(error);
-      console.error("Error during sign-in:", errorCode, errorMessage);
-    });
+google_login.addEventListener("click", async function() {
+  const termsChecked = document.getElementById("termsCheckbox").checked;
+
+  if (!termsChecked) {
+    alert("Please agree to the Terms and Conditions before signing up with Google.");
+    return;
+  }
+
+  try {
+    const result = await signInWithPopup(auth, provider);
+    const user = result.user;
+
+    const userRef = doc(db, "users", user.uid);
+    const docSnap = await getDoc(userRef);
+
+    if (!docSnap.exists()) {
+
+      await setDoc(userRef, {
+        uid: user.uid,
+        username: user.displayName || "GoogleUser",
+        email: user.email,
+        role: "buyer", 
+        createdAt: new Date()
+      });
+    }
+
+    alert("Successfully signed up as a seller!");
+    window.location.href = "../SignIn Folder/buyer-dashboard.html"; 
+  } catch (error) {
+    console.error("Error during sign-in:", error.code, error.message);
+    alert(`Error: ${error.message}`);
+  }
 });

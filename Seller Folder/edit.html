@@ -22,65 +22,6 @@
         <p id="errorMsg" style="color:red"></p>
     </form>
 
-    <script>
-
-        //fetch current product and edit
-        const form = document.getElementById("form");
-        const errorMsg = document.getElementById("errorMsg");
-        const productId="123";//put the url here
-        fetch(`/api/products/${productId}`)
-        .then(res=>res.json()).then(product=>{
-            document.getElementById("productName").value=product.name;
-            document.getElementById("productPrice").value=product.price;
-            document.getElementById("productQuantity").value=product.quantity;
-            document.getElementById("productDescription").value=product.description;
-            document.getElementById("productImage").value=product.productImage;
-        }).catch(error=>{
-            console.error("Error fetching product:", error);
-        });
-
-        //validate the form inputs
-        form.addEventListener("submit", async function(e) {
-            e.preventDefault();
-
-            const name=document.getElementById("productName").value.trim();
-            const price = parseFloat(document.getElementById("productPrice").value);
-            const quantity = parseInt(document.getElementById("productQuantity").value);
-            const description=document.getElementById("productDescription").value.trim();
-            const image=document.getElementById("productImage").files[0];
-
-            if(name.length<3||name.length>50){
-                errorMsg.textContent="Product name must be between 3 and 50 characters";
-            }else if(isNaN(price)||price<=0){
-                errorMsg.textContent="Enter a valid price greater that 0"
-            }else if(isNaN(quantity)||price<1){
-                    errorMsg.textContent="Quantity must be greater than 0"
-            }else if(!image||!image.type.startsWith("image/")){
-                errorMsg.textContent="Please upload a valide image file.";
-                return;
-            }
-            errorMsg.textContent="";
-            try{
-                //build update object
-                updated={
-                    name,price,quantity,description,image
-                };
-                //submit updated data to backend
-                const response = await fetch(`/api/products/${productId}`,{
-                    method:"PUT",
-                    headers:{"Content-Type":"application/json"},
-                    body: JSON.stringify(updated)
-                });
-                if(response.ok){
-                    alert("Product updated successfully!");
-                }else{
-                    alert("Error updating product.");
-                }
-            }catch(error){
-                console.error("Update failed:",error);
-                alert("Error uploading image or submitting data.");
-            }
-        });
-    </script>
+    <script type="module" src="edit.js"></script>
 </body>
 </html>

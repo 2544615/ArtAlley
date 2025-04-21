@@ -6,8 +6,9 @@
   }
   
   body, html {
-    height: 100%;
-    background: #f4f1ec;
+    width: 100%;
+    background: #ccc;
+
   }
   
   .background {
@@ -36,6 +37,7 @@
   }
   
   form label {
+    bAckground-color:white;
     display: block;
     margin: 10px 0 5px;
     font-weight: 500;

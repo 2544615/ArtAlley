@@ -15,8 +15,8 @@ const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 const auth = getAuth(app);
 
-const cloudName = "dw0ukiusn"; // <-- replace with your Cloudinary cloud name
-const uploadPreset = "ArtAlley"; // <-- replace with your upload preset name
+const cloudName = "dw0ukiusn"; 
+const uploadPreset = "ArtAlley"; 
 
 // Upload image to Cloudinary
 async function uploadToCloudinary(file) {
@@ -30,7 +30,7 @@ async function uploadToCloudinary(file) {
             formData
         );
 
-        // Log the response to see if there’s any error
+        
         console.log(response.data);
 
         if (response.data && response.data.secure_url) {
@@ -41,7 +41,7 @@ async function uploadToCloudinary(file) {
     } catch (error) {
         console.error("Cloudinary upload failed:", error);
         alert("Image upload failed.");
-        throw error; // Make sure we throw to stop further execution
+        throw error; 
     }
   }
 
