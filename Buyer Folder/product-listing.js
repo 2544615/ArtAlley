@@ -1,0 +1,142 @@
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-app.js";
+import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-auth.js";
+import { getFirestore, collection, getDocs, query, orderBy } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-firestore.js";
+
+
+const firebaseConfig = {
+    apiKey: "AIzaSyDUfE0XLFPlpw_SAJIFoQlJhylk-r2VY4Y",
+    authDomain: "artalley-b9c96.firebaseapp.com",
+    projectId: "artalley-b9c96",
+    storageBucket: "artalley-b9c96.firebasestorage.app",
+    messagingSenderId: "1056868925602",
+    appId: "1:1056868925602:web:4fa9734632b255594917fb"
+};
+
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const db = getFirestore(app);
+
+// Variables for Pagination
+let currentPage = 1;
+const itemsPerPage = 24; 
+
+// Variables for Sorting and Filtering
+let products = [];
+let filteredProducts = [];
+
+// Function to Render Products
+function renderProducts(productList) {
+  const productContainer = document.getElementById("productContainer");
+  productContainer.innerHTML = ""; 
+
+  const startIndex = (currentPage - 1) * itemsPerPage;
+  const endIndex = currentPage * itemsPerPage;
+  const paginatedProducts = productList.slice(startIndex, endIndex);
+
+  paginatedProducts.forEach((product) => {
+    const imageUrl = product.imageUrls ? product.imageUrls[0] : "";
+
+    const productCard = document.createElement("div");
+    productCard.classList.add("product-card");
+
+    productCard.innerHTML = `
+      <div class="clickable" onclick="window.location.href='#'">
+        <img src="${imageUrl}" alt="${product.name}">
+        <h2>${product.name}</h2>
+        <p>Price: R${product.price.toFixed(2)}</p>
+      </div>
+    `;
+
+    productContainer.appendChild(productCard);
+  });
+
+  document.getElementById("currentPage").textContent = `Page ${currentPage}`;
+  document.getElementById("prevPage").disabled = currentPage === 1;
+  document.getElementById("nextPage").disabled = endIndex >= productList.length;
+}
+
+// Function to Load Products
+async function loadProducts() {
+  try {
+    const querySnapshot = await getDocs(collection(db, "products"));
+    products = querySnapshot.docs.map((doc) => doc.data());
+    filteredProducts = products;
+    renderProducts(filteredProducts);
+  } catch (error) {
+    console.error("Error fetching products:", error);
+    alert("Failed to load products.");
+  }
+}
+
+// Sorting Functionality
+document.getElementById("sortOptions").addEventListener("change", (event) => {
+  const sortBy = event.target.value;
+
+  if (sortBy === "priceLowHigh") {
+    filteredProducts.sort((a, b) => a.price - b.price);
+  } else if (sortBy === "priceHighLow") {
+    filteredProducts.sort((a, b) => b.price - a.price);
+  } else if (sortBy === "nameAZ") {
+    filteredProducts.sort((a, b) => a.name.localeCompare(b.name));
+  } else if (sortBy === "nameZA") {
+    filteredProducts.sort((a, b) => b.name.localeCompare(a.name));
+  }
+  renderProducts(filteredProducts);
+});
+
+// Filtering Functionality
+document.getElementById("filterBtn").addEventListener("click", () => {
+  const minPrice = parseFloat(document.getElementById("minPrice").value) || 0;
+  const maxPrice = parseFloat(document.getElementById("maxPrice").value) || Infinity;
+
+  filteredProducts = products.filter((product) => product.price >= minPrice && product.price <= maxPrice);
+  currentPage = 1;
+  renderProducts(filteredProducts);
+});
+
+// Pagination Functionality
+document.getElementById("prevPage").addEventListener("click", () => {
+  if (currentPage > 1) {
+    currentPage--;
+    renderProducts(filteredProducts);
+  }
+});
+
+document.getElementById("nextPage").addEventListener("click", () => {
+  if (currentPage * itemsPerPage < filteredProducts.length) {
+    currentPage++;
+    renderProducts(filteredProducts);
+  }
+});
+
+// Check Authentication and Load Products
+document.addEventListener("DOMContentLoaded", () => {
+  onAuthStateChanged(auth, (user) => {
+    if (user) {
+      loadProducts();
+    } else {
+      alert("You need to log in to view the products.");
+      window.location.href = "login.html";
+    }
+  });
+});
+
+// Add Click Event Listeners for the Icons
+document.getElementById("searchButton").addEventListener("click", () => {
+  const searchQuery = document.querySelector(".search-bar").value.trim(); 
+  if (searchQuery) {
+    alert(`You searched for: "${searchQuery}"`);
+    localStorage.setItem("lastSearchQuery", searchQuery);
+    window.location.href = `#`; 
+  } else {
+    alert("Please enter a search term.");
+  }
+});
+
+document.getElementById("cartButton").addEventListener("click", () => {
+  window.location.href = "#";
+});
+
+document.getElementById("profileButton").addEventListener("click", () => {
+  window.location.href = "#";
+});

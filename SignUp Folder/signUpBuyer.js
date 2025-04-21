@@ -71,7 +71,7 @@ submit.addEventListener('click', function(event){
       }
       alert('Successfully signed up as a buyer!');
       console.log('user signed up');
-      window.location.href="#";//buyer-dashboard
+      window.location.href="../Buyer Folder/product-listing.html";//buyer-dashboard
       // Optional: redirect or store user info
     })
     .catch((error) => {
@@ -101,7 +101,10 @@ signInWithPopup(auth, provider)
           createdAt: serverTimestamp()
         });
       }
-      alert("Succesfully signed up")
+      alert("Succesfully signed up");
+      console.log('user signed up');
+      window.location.href="../Buyer Folder/product-listing.html";//buyer-dashboard
+      // Optional: redirect or store user info
     })
     .catch((error) => {
       const errorCode = error.code;
