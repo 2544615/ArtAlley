@@ -46,6 +46,38 @@ async function uploadToCloudinary(file) {
   }
 
 const form = document.getElementById('product-form');
+const imageInput = document.getElementById("image");
+const previewContainer = document.getElementById("preview-images");
+const mainImageIndexInput = document.getElementById("mainImageIndex");
+
+let selectedMainImageIndex = null;
+
+// Preview and select main image
+imageInput.addEventListener("change", () => {
+  previewContainer.innerHTML = ""; // Clear old previews
+  const files = Array.from(imageInput.files);
+
+  files.forEach((file, index) => {
+    const img = document.createElement("img");
+    img.src = URL.createObjectURL(file);
+    img.width = 100;
+    img.style.margin = "10px";
+    img.style.cursor = "pointer";
+    img.style.border = "3px solid transparent";
+
+    img.addEventListener("click", () => {
+      selectedMainImageIndex = index;
+      mainImageIndexInput.value = index;
+
+      // Highlight the selected image
+      Array.from(previewContainer.children).forEach((child, i) => {
+        child.style.border = i === index ? "3px solid green" : "3px solid transparent";
+      });
+    });
+
+    previewContainer.appendChild(img);
+  });
+});
 
 onAuthStateChanged(auth, (user) => {
   if (!user) {
@@ -83,6 +115,7 @@ onAuthStateChanged(auth, (user) => {
         quantity,
         description,
         imageUrls,
+        mainImageUrl: imageUrls[selectedMainImageIndex],
         sellerUID: user.uid,
         timestamp: serverTimestamp()
       });

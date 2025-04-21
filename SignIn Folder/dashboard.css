@@ -8,16 +8,17 @@
   html, body {
     height: 100%;
     background: #f4f1ec;
+    overflow-y: auto;
   }
   
   .background {
     background-image: url('https://verveculture.com/cdn/shop/files/oaxacan_cacao_web-20.jpg?v=1729189678&width=533');
     background-size: cover;
     background-position: center;
-    height: 100vh;
+    min-height: 100vh;
     display: flex;
     justify-content: center;
-    align-items: center;
+    padding: 2rem 1rem;
   }
   
   .login-card {
