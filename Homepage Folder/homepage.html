@@ -9,6 +9,15 @@
 </head>
 <body>
   <header>
+
+    <section id="searchContainer" class="hidden">
+      <form id="searchForm" aria-label="Product search">
+        <label for="homeSearchInput" class="visually-hidden">Search products</label>
+        <input type="text" id="homeSearchInput" placeholder="Search products...">
+        <button type="submit">Search</button>
+      </form>
+    </section>
+
     <nav>
       <ul class="icons">
         <li><button><i class="fas fa-search"></i></button></li>
@@ -78,6 +87,25 @@
         window.location.href = selected;
       }
     });
+  </script>
+
+  <script>
+  document.querySelector('.fa-search').closest('button').addEventListener('click', function() {
+    const searchContainer = document.getElementById('searchContainer');
+    searchContainer.classList.toggle('hidden');
+    if (!searchContainer.classList.contains('hidden')) {
+      document.getElementById('homeSearchInput').focus();
+    }
+  });
+
+  document.getElementById('searchForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const searchQuery = document.getElementById('homeSearchInput').value.trim();
+    if (searchQuery) {
+      localStorage.setItem('searchQuery', searchQuery);
+      window.location.href = '../Buyer Folder/product-listing.html';
+    }
+  });
   </script>
 </body>
 </html>
