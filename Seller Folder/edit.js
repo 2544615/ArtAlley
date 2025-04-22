@@ -70,34 +70,9 @@ onAuthStateChanged(auth, async (user) => {
   document.getElementById("productQuantity").value = product.quantity;
   document.getElementById("productDescription").value = product.description;
   
-  const mainImageIndexInput = document.getElementById("mainImageIndex");
-
-  imageInput.addEventListener("change", () => {
-    previewContainer.innerHTML = ""; 
-    const files = Array.from(imageInput.files);
-  
-    files.forEach((file, index) => {
-      const img = document.createElement("img");
-      img.src = URL.createObjectURL(file);
-      img.width = 100;
-      img.style.margin = "10px";
-      img.style.cursor = "pointer";
-      img.style.border = "3px solid transparent";
-  
-      img.addEventListener("click", () => {
-        selectedMainImageIndex = index;
-        mainImageIndexInput.value = index;
-  
-        // Highlight the selected image
-        Array.from(previewContainer.children).forEach((child, i) => {
-          child.style.border = i === index ? "3px solid green" : "3px solid transparent";
-        });
-      });
-  
-      previewContainer.appendChild(img);
-    });
-    mainImageIndexInput.value=0;
-  });
+  if(product.imageUrls && product.imageUrls.length>0){
+    document.getElementById("productImage").src=product.imageUrls[0];
+  }
 
   form.addEventListener("submit", async (e) => {
     e.preventDefault();
@@ -119,6 +94,10 @@ onAuthStateChanged(auth, async (user) => {
       } catch (error) {
         alert("Image upload failed.");
         return;
+      }
+    }else{
+      if(product.imageUrls && product.imageUrls.length>0){
+        updatedData.imageUrls=product.imageUrls;
       }
     }
 

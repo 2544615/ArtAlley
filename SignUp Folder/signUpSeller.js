@@ -46,7 +46,7 @@ submit.addEventListener('click', function(event){
 
   // Validate username format
   if (!usernameRegex.test(usernameValue)) {
-    alert("Invalid Username");
+    alert("The username should have at least 4 characters,no numbers");
     return;
   }
 
