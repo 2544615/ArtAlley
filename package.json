@@ -4,9 +4,7 @@
   "description": "Local Artisan Marketplace - Group 30",
   "main": "index.js",
   "scripts": {
-    "test": "jest --coverage",
-    "build": "rimraf build && mkdir build && cp -R *.html *.css *.js *.json *.png *.jpg build/ 2>/dev/null || true",
-    "start": "serve . -l 3000"
+    "test": "jest --coverage"
   },
   "keywords": [],
   "author": "",
