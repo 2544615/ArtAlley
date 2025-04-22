@@ -2,44 +2,23 @@
  * @jest-environment jsdom
  */
 
+const fs = require('fs');
+const path = require('path');
+
 describe('Buyer Login Page', () => {
-    beforeEach(() => {
-      // Simulate loading the page
-      document.body.innerHTML = `
-        <main class="background">
-    <section class="login-card">
-      <header>
-        <h2>Login as a seller</h2>
-        <p class="welcome-msg">Welcome back</p>
-      </header>
+     let htmlContent;
+    
+      beforeAll(() => {
+        // Read the HTML file content
+        const htmlPath = path.resolve(__dirname, 'login-seller.html'); // Adjust the path
+        htmlContent = fs.readFileSync(htmlPath, 'utf-8');
+      });
+    
+      beforeEach(() => {
+        // Set the document's innerHTML to the HTML content read from the file
+        document.body.innerHTML = htmlContent;
+      });
 
-      <form>
-        <label for="email">Email Address</label>
-        <input type="email" id="email" placeholder="Enter your email here" required>
-
-        <label for="password">Password</label>
-        <input type="password" id="password" placeholder="**********" required>
-        
-        <nav class="options">
-          <a href="ForgotPaswword.html">Forgot Password</a>
-        </nav>
-
-        <button type="submit" class="login-btn">Login</button>
-
-        <button id="google-btn" class="google-btn" >
-          <img src="https://img.icons8.com/color/16/000000/google-logo.png" alt="Google">
-          Sign in with Google
-      </button>
-      </form>
-
-      <footer>
-        <p class="signup">Don’t have an account? <a href="../SignUp Folder/seller-signup.html">Sign up</a></p>
-      </footer>
-    </section>
-  </main>
-      `;
-    });
-  
     test('Loads the login form correctly', () => {
       expect(document.querySelector('h2')?.textContent).toBe('Login as a seller');
       expect(document.querySelector('p')?.textContent).toBe('Welcome back');

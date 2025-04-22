@@ -9,19 +9,21 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
+  "dependencies": {
+    "firebase": "^10.11.0",
+    "text-encoding": "^0.7.0",
+    "whatwg-url": "^14.0.0"
+  },
   "devDependencies": {
     "@jest/globals": "^29.7.0",
     "jest": "^29.7.0",
-    "jest-environment-jsdom": "^29.7.0"
-  },
-  "jest": {
-    "collectCoverage": true,
-    "collectCoverageFrom": [
-      "src/**/*.{js,jsx,ts,tsx}",
-      "!**/node_modules/**"
-    ],
-    "coverageDirectory": "coverage",
-    "coverageReporters": ["text", "lcov"]
+    "@babel/core": "^7.24.5",
+    "@babel/preset-env": "^7.24.5",
+    "babel-jest": "^29.7.0",
+    "identity-obj-proxy": "^3.0.0",
+    "jest-environment-jsdom": "^29.7.0",
+    "jsdom": "^24.0.0",
+    "util": "^0.12.5"
   },
   "repository": {
     "type": "git",
