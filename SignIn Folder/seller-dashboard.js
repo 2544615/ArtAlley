@@ -107,6 +107,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 async function deleteProduct(productId) {
   try {
+    console.log("Trying to delete product with ID:", productId);
     await deleteDoc(doc(db, "products", productId));
     // Remove the product from the DOM
     document.getElementById(`product-${productId}`).remove();
