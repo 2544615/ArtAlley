@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Product Listing</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="product-listing.css">
+</head>
+<body>
+
+  <header>
+    <h1>ArtAlley</h1>
+    <nav class="icons">
+        <input type="text" placeholder="Search..." class="search-bar" />
+        <button id="searchButton"><i class="fas fa-search search-icon"></i></button>
+        <button id="cartButton"><i class="fas fa-shopping-cart cart-icon"></i></button>
+        <button id="profileButton"><i class="fas fa-user account-icon"></i></button>
+    </nav>
+  </header>
+
+  <main>
+    <section class="controls">
+      <form id="sortFilterForm">
+        <label for="sortOptions">Sort By:</label>
+        <select id="sortOptions">
+          <option value="default">Default</option>
+          <option value="priceLowHigh">Price: Low to High</option>
+          <option value="priceHighLow">Price: High to Low</option>
+          <option value="nameAZ">Name: A-Z</option>
+          <option value="nameZA">Name: Z-A</option>
+        </select>
+        <label for="minPrice">Min Price:</label>
+        <input type="number" id="minPrice" placeholder="Min Price">
+        <label for="maxPrice">Max Price:</label>
+        <input type="number" id="maxPrice" placeholder="Max Price">
+        <button type="button" id="filterBtn">Filter</button>
+      </form>
+    </section>
+    <section class="product-container" id="productContainer">
+      <!-- Products will be dynamically loaded here -->
+    </section>
+    <section class="pagination">
+      <button id="prevPage" disabled>&laquo; Previous</button>
+      <span id="currentPage">Page 1</span>
+      <button id="nextPage">Next &raquo;</button>
+    </section>
+  </main>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
+  <script type="module" src="product-listing.js"></script>
+</body>
+</html>

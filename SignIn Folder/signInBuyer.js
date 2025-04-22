@@ -66,7 +66,7 @@ submit.addEventListener('click', function(event){
     
     alert(`Successfully logged in as ${userData.role}`);
     console.log('user signed in as a', userData);
-    window.location.href="#";//buyer-dashboard.html
+    window.location.href="../Buyer Folder/product-listing.html";//buyer-dashboard.html
      // ...
   })
   .catch((error) => {
@@ -95,7 +95,7 @@ google_login.addEventListener("click", function(){
         }
         console.log(user);
         alert("Successfully logged in")
-        window.location.href="#";//buyer-dashboard.html
+        window.location.href="../Buyer Folder/product-listing.html";//buyer-dashboard.html
       }else{
         alert("User data not found");
       } 

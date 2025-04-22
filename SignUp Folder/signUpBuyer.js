@@ -71,7 +71,7 @@ submit.addEventListener('click', function(event){
       }
       alert('Successfully signed up as a buyer!');
       console.log('user signed up');
-      window.location.href="#";//buyer-dashboard
+      window.location.href="../Buyer Folder/product-listing.html";//buyer-dashboard
       // Optional: redirect or store user info
     })
     .catch((error) => {
@@ -83,36 +83,31 @@ submit.addEventListener('click', function(event){
 
 
 
-google_login.addEventListener("click", async function() {
-  const termsChecked = document.getElementById("termsCheckbox").checked;
-
-  if (!termsChecked) {
-    alert("Please agree to the Terms and Conditions before signing up with Google.");
-    return;
-  }
-
-  try {
-    const result = await signInWithPopup(auth, provider);
-    const user = result.user;
-
-    const userRef = doc(db, "users", user.uid);
-    const docSnap = await getDoc(userRef);
-
-    if (!docSnap.exists()) {
-
-      await setDoc(userRef, {
-        uid: user.uid,
-        username: user.displayName || "GoogleUser",
-        email: user.email,
-        role: "buyer", 
-        createdAt: new Date()
-      });
-    }
-
-    alert("Successfully signed up as a seller!");
-    window.location.href = "../SignIn Folder/buyer-dashboard.html"; 
-  } catch (error) {
-    console.error("Error during sign-in:", error.code, error.message);
-    alert(`Error: ${error.message}`);
-  }
+google_login.addEventListener("click", function(){
+signInWithPopup(auth, provider)
+    .then(async(result) => {
+      const credential = GoogleAuthProvider.credentialFromResult(result);
+      const token = credential.accessToken;
+      const user = result.user;
+      console.log(user);
+      const docRef = doc(db, "users", user.uid);
+      const docSnap = await getDoc(docRef);
+      if (!docSnap.exists()) {
+        await setDoc(docRef, {
+          uid: user.uid,
+          username: user.displayName || "GoogleUser",
+          email: user.email,
+          role: "buyer",
+          createdAt: serverTimestamp()
+        });
+      }
+      alert("Succesfully signed up")
+    })
+    .catch((error) => {
+      const errorCode = error.code;
+      const errorMessage = error.message;
+      const email = error.customData.email;
+      const credential = GoogleAuthProvider.credentialFromError(error);
+      console.error("Error during sign-in:", errorCode, errorMessage);
+    });
 });
