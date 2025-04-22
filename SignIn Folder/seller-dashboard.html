@@ -1,32 +1,52 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Seller Dashboard</title>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="dashboard.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seller dashboard</title>
+    <link rel="stylesheet" href="dashboard.css">
 </head>
 <body>
-  <main class="background">
+
+    <section id="header">
+        <a href="#"><img src="Black White Bold Modern Studio Logo (2).png" class="" alt=""></a>
+        <nav>
+            <ul id="navbar">
+                <li><a class="active" href="index.html">My Store</a></li>
+                <li><a  href="homepage.html">Home</a></li>
+                <li><a href="analytics.html">Analytics</a></li>
+                <li><a href="logout.html">Log Out</a></li>
+               
+            </ul>
+        </nav>
+    </section>
+
+    <main class="background"  id="empty-product-section">
     <section class="login-card">
       <header>
-        <h2>Your Products</h2>
         <p class="welcome-msg">Welcome! Here's where your listed items will appear.</p>
       </header>
 
-      <section id="product-list"></section>
-
-      <section style="text-align: center; margin-top: 1.5rem;">
-        <button class="login-btn" id="add-product-btn">Add New Product</button>
+      <section id="product-list">
+        <p class="empty-msg">You haven't added any products yet.</p>
       </section>
 
-      <p id="no-products" hidden class="empty-msg">You haven't added any products yet.</p>
+      <section style="text-align: center; margin-top: 1.5rem;">
+        <button class="login-btn" id = "add-product-btn" >Add New Product</button>
+      </section>
     </section>
-    
   </main>
   
+  <section id = "products">
+    <h2 id = "feature" >Featured Products</h2>
+    <p id = "paragraph">Beautifully crafted with love</p>
+    <section id = "product" class="product-container"></section>
+    
+    
+  </section>
 
-  <script type="module" src="seller-dashboard.js"></script>
+
+
+  <script type="module" src="seller-dashboard.js"></script>       
 </body>
 </html>
-

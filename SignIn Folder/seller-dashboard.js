@@ -1,6 +1,6 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-app.js";
 import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-auth.js";
-import { getFirestore, collection, query, where, getDocs, deleteDoc, doc } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-firestore.js";
+import { getFirestore, collection, query, where, getDocs } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-firestore.js";
 
 const firebaseConfig = {
   apiKey: "AIzaSyDUfE0XLFPlpw_SAJIFoQlJhylk-r2VY4Y",
@@ -15,36 +15,11 @@ const app = initializeApp(firebaseConfig);
 const auth = getAuth();
 const db = getFirestore(app);
 
-const productList = document.getElementById("product-list");
+
+const productList = document.getElementById("product");
 const noProductsText = document.getElementById("no-products");
-const addProductBtn = document.getElementById("add-product-btn");
 
-// Show product detail in a modal or alert (simplified version)
-function showProductDetails(product) {
-    const detailWindow = window.open("", "_blank", "width=600,height=600");
-    detailWindow.document.write(`<h1>${product.name}</h1>`);
-    detailWindow.document.write(`<p>Price: R${product.price}</p>`);
-    detailWindow.document.write(`<p>Quantity: ${product.quantity}</p>`);
-    detailWindow.document.write(`<p>Description: ${product.description}</p>`);
-  
-    product.imageUrls.forEach((url) => {
-      detailWindow.document.write(`<img src="${url}" width="200" style="margin:5px;">`);
-    });
-  }
-
-
-// Function to delete a product
-async function deleteProduct(productId) {
-    try {
-      await deleteDoc(doc(db, "products", productId));
-      // Remove the product from the DOM
-      document.getElementById(`product-${productId}`).remove();
-      alert("Product deleted successfully.");
-    } catch (error) {
-      console.error("Error deleting product:", error);
-      alert("Failed to delete product.");
-    }
-  }
+const emptyProductSection = document.getElementById("empty-product-section");
 
 
 onAuthStateChanged(auth, async (user) => {
@@ -55,42 +30,44 @@ onAuthStateChanged(auth, async (user) => {
     const querySnapshot = await getDocs(q);
 
     if (querySnapshot.empty) {
-      noProductsText.hidden = false;
+      emptyProductSection.classList.remove("hidden");
       productList.hidden = true;
     } else {
-      noProductsText.hidden = true;
+      emptyProductSection.classList.add("hidden");
       productList.hidden = false;
 
       querySnapshot.forEach((doc) => {
         const product = doc.data();
-        const productId = doc.id;
 
         const article = document.createElement("article");
-        article.id = `product-${productId}`;
 
-        const h3 = document.createElement("h3");
-        h3.textContent = product.name;
+        
 
         const img = document.createElement("img");
         img.src = product.mainImageUrl;
         img.alt = product.name;
-        img.width = 150;
 
         img.addEventListener("click", () => {
-            showProductDetails(product); // You'll define this function
-        });
+          showProductDetails(product); // You'll define this function
+      });
         
+      
 
-        const price = document.createElement("p");
-        price.textContent = `Price: R${product.price}`;
+        const h3 = document.createElement("h3");
+        h3.textContent = product.name;
 
-        const quantity = document.createElement("p");
+        
+        const quantity = document.createElement("h5");
         quantity.textContent = `Quantity: ${product.quantity}`;
+
+        
 
         const desc = document.createElement("p");
         desc.textContent = product.description;
 
-        // Delete Button
+        const price = document.createElement("h4");
+        price.textContent = `Price: R${product.price}`;
+
         const deleteBtn = document.createElement("button");
         deleteBtn.textContent = "Delete";
         deleteBtn.addEventListener("click", () => {
@@ -99,13 +76,14 @@ onAuthStateChanged(auth, async (user) => {
           }
         });
 
-
-        article.appendChild(h3);
+        
         article.appendChild(img);
-        article.appendChild(price);
+        article.appendChild(h3);
         article.appendChild(quantity);
-        //article.appendChild(desc);
+       // article.appendChild(desc);
+        article.appendChild(price);
         article.appendChild(deleteBtn);
+        
 
         productList.appendChild(article);
       });
@@ -115,6 +93,36 @@ onAuthStateChanged(auth, async (user) => {
   }
 });
 
-addProductBtn.addEventListener("click", () => {
-  window.location.href = "add-product.html";
+document.addEventListener("DOMContentLoaded", () => {
+  const addProductBtn = document.getElementById("add-product-btn");
+
+  if (addProductBtn) {
+    addProductBtn.addEventListener("click", () => {
+      window.location.href = "add-product.html";
+    });
+  }
 });
+
+async function deleteProduct(productId) {
+  try {
+    await deleteDoc(doc(db, "products", productId));
+    // Remove the product from the DOM
+    document.getElementById(`product-${productId}`).remove();
+    alert("Product deleted successfully.");
+  } catch (error) {
+    console.error("Error deleting product:", error);
+    alert("Failed to delete product.");
+  }
+}
+
+function showProductDetails(product) {
+  const detailWindow = window.open("", "_blank", "width=600,height=600");
+  detailWindow.document.write(`<h3>${product.name}</h3>`);
+  detailWindow.document.write(`<h4>Price: R${product.price}</h4>`);
+  detailWindow.document.write(`<h5>Quantity: ${product.quantity}</h5>`);
+  detailWindow.document.write(`<p>Description: ${product.description}</p>`);
+
+  product.imageUrls.forEach((url) => {
+    detailWindow.document.write(`<img src="${url}" width="200" style="margin:5px;">`);
+  });
+}
