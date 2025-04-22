@@ -190,7 +190,7 @@ html,body {
 .product-container p {
   margin-bottom: 0.5rem;
   
-<<<<<<< HEAD
+
   .welcome-msg {
     text-align: center;
     margin-bottom: 1.5rem;
@@ -237,7 +237,7 @@ html,body {
     margin: 0 5px;
     transition: background-color 0.3s ease;
   }
-=======
+
   color: #3e2e1e;
   text-align: start;
  
@@ -282,4 +282,3 @@ html,body {
   background-color: #f7b53a;
   color: white;
 }
->>>>>>> 56bbe37ceac3980df051013e69f4f3ef29924abd
