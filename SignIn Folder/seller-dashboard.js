@@ -100,12 +100,11 @@ onAuthStateChanged(auth, async (user) => {
        // article.appendChild(desc);
         article.appendChild(price);
         article.appendChild(deleteBtn);
-<<<<<<< HEAD
+
         article.appendChild(editBtn);
-=======
+
         
 
->>>>>>> 56bbe37ceac3980df051013e69f4f3ef29924abd
         productList.appendChild(article);
       });
     }
