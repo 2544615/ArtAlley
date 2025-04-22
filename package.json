@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "jest --coverage",
-    "build": "rimraf build && mkdir build && cp -R ./ ./build",
+    "build": "rimraf build && mkdir build && cp -R src/ public/ package.json build/",
     "start": "serve . -l 3000"
   },
   "keywords": [],
