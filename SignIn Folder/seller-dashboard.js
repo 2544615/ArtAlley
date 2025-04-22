@@ -38,8 +38,10 @@ onAuthStateChanged(auth, async (user) => {
 
       querySnapshot.forEach((doc) => {
         const product = doc.data();
+        const productId = doc.id;
 
         const article = document.createElement("article");
+        article.id = `product-${productId}`;
 
         
 
@@ -126,3 +128,4 @@ function showProductDetails(product) {
     detailWindow.document.write(`<img src="${url}" width="200" style="margin:5px;">`);
   });
 }
+
