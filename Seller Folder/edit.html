@@ -17,11 +17,18 @@
         <label>Description:</label>
         <textarea type="text" rows="4" columns="100" id="productDescription" name="description"></textarea>
         <label>Upload image:</label>
-        <input type="file" id="productImage" name="productImage" accept="image/*" required>
+        <input type="file" id="productImage" name="productImage" accept="image/*" multiple required>
+
+        <p>Select the main image by clicking on it:</p>
+        <output id="preview-images"></output>
+        <input type="hidden" id="mainImageIndex">
+
         <button type="submit">Update</button>
         <p id="errorMsg" style="color:red"></p>
     </form>
 
     <script type="module" src="edit.js"></script>
+    <script type="module" src="../SignIn Folder/seller-dashboard.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 </body>
 </html>

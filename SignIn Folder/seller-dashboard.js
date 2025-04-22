@@ -47,6 +47,7 @@ async function deleteProduct(productId) {
   }
 
 
+
 onAuthStateChanged(auth, async (user) => {
   if (user) {
     const sellerUID = user.uid;
@@ -92,12 +93,26 @@ onAuthStateChanged(auth, async (user) => {
 
         // Delete Button
         const deleteBtn = document.createElement("button");
-        deleteBtn.textContent = "Delete";
+        
+        //deleteBtn.textContent = "Delete";
+        deleteBtn.className="delete-button";
+        deleteBtn.innerHTML='<i class="fa-solid fa-trash"></i>';
         deleteBtn.addEventListener("click", () => {
           if (confirm("Are you sure you want to delete this product?")) {
             deleteProduct(productId);
           }
         });
+        const editBtn = document.createElement("button1");
+        
+        //deleteBtn.textContent = "Delete";
+        editBtn.className="edit-button";
+        editBtn.innerHTML='<i class="fa-solid fa-pen"></i>';
+        editBtn.addEventListener("click", () => {
+          if (confirm("Are you sure you want to update this product?")) {
+            window.location.href=`../Seller Folder/edit.html?id=${productId}`;
+          }
+        });
+
 
 
         article.appendChild(h3);
@@ -106,7 +121,7 @@ onAuthStateChanged(auth, async (user) => {
         article.appendChild(quantity);
         //article.appendChild(desc);
         article.appendChild(deleteBtn);
-
+        article.appendChild(editBtn);
         productList.appendChild(article);
       });
     }

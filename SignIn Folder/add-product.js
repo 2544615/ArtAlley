@@ -54,7 +54,7 @@ let selectedMainImageIndex = null;
 
 // Preview and select main image
 imageInput.addEventListener("change", () => {
-  previewContainer.innerHTML = ""; // Clear old previews
+  previewContainer.innerHTML = ""; 
   const files = Array.from(imageInput.files);
 
   files.forEach((file, index) => {

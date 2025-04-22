@@ -50,7 +50,7 @@ const form = document.getElementById("form");
 onAuthStateChanged(auth, async (user) => {
   if (!user) {
     alert("Please log in first.");
-    window.location.href = "login-seller.html";
+    window.location.href = "../SignIn Folder/login-seller.html";
     return;
   }
 
@@ -69,6 +69,35 @@ onAuthStateChanged(auth, async (user) => {
   document.getElementById("productPrice").value = product.price;
   document.getElementById("productQuantity").value = product.quantity;
   document.getElementById("productDescription").value = product.description;
+  
+  const mainImageIndexInput = document.getElementById("mainImageIndex");
+
+  imageInput.addEventListener("change", () => {
+    previewContainer.innerHTML = ""; 
+    const files = Array.from(imageInput.files);
+  
+    files.forEach((file, index) => {
+      const img = document.createElement("img");
+      img.src = URL.createObjectURL(file);
+      img.width = 100;
+      img.style.margin = "10px";
+      img.style.cursor = "pointer";
+      img.style.border = "3px solid transparent";
+  
+      img.addEventListener("click", () => {
+        selectedMainImageIndex = index;
+        mainImageIndexInput.value = index;
+  
+        // Highlight the selected image
+        Array.from(previewContainer.children).forEach((child, i) => {
+          child.style.border = i === index ? "3px solid green" : "3px solid transparent";
+        });
+      });
+  
+      previewContainer.appendChild(img);
+    });
+    mainImageIndexInput.value=0;
+  });
 
   form.addEventListener("submit", async (e) => {
     e.preventDefault();
@@ -96,7 +125,7 @@ onAuthStateChanged(auth, async (user) => {
     try {
       await updateDoc(productRef, updatedData);
       alert("Product updated successfully!");
-      window.location.href = "seller-dashboard.html";
+      window.location.href = "../SignIn Folder/seller-dashboard.html";
     } catch (error) {
       console.error("Update failed:", error);
       alert("Failed to update product.");
