@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Login Page</title>
+  <link rel="stylesheet" href="../SignIn Folder/login.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet" />
+  <script type="module" src="admin-signin.js" defer></script>
+</head>
+<body>
+  <main class="background">
+    <section class="login-card">
+      <header>
+        <h2>Admin SignIn</h2>
+        <p class="welcome-msg">Welcome back</p>
+      </header>
+
+      <form>
+        <label for="email">Email Address</label>
+        <input type="email" id="email" placeholder="Enter your email here" required>
+
+        <label for="password">Password</label>
+        <input type="password" id="password" placeholder="**********" required>
+        
+        <nav class="options">
+          <a href="ForgotPaswword.html">Forgot Password</a>
+        </nav>
+
+        <button type="button" class="login-btn">Login</button>
+
+        <button id="google-btn" class="google-btn" >
+          <img src="https://img.icons8.com/color/16/000000/google-logo.png" alt="Google">
+          Sign in with Google
+      </button>
+      </form>
+    </section>
+  </main>
+</body>
+</html>
