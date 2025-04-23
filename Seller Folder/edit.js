@@ -1,15 +1,6 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-app.js";
-import {
-  getFirestore,
-  doc,
-  getDoc,
-  updateDoc,
-  serverTimestamp
-} from "https://www.gstatic.com/firebasejs/10.8.1/firebase-firestore.js";
-import {
-  getAuth,
-  onAuthStateChanged
-} from "https://www.gstatic.com/firebasejs/10.8.1/firebase-auth.js";
+import {getFirestore,doc,getDoc,updateDoc,serverTimestamp} from "https://www.gstatic.com/firebasejs/10.8.1/firebase-firestore.js";
+import {getAuth,onAuthStateChanged} from "https://www.gstatic.com/firebasejs/10.8.1/firebase-auth.js";
 
 // Firebase config
 const firebaseConfig = {
@@ -122,8 +113,8 @@ onAuthStateChanged(auth, async (user) => {
     if (selectedFiles.length > 0) {
       isUsingNewImages = true;
       previewContainer.innerHTML = "";
-      currentImagesContainer.innerHTML = ""; // Hide old images when new ones selected
-      mainImageIndex = 0; // Reset to first image when new files are selected
+      currentImagesContainer.innerHTML = "";
+      mainImageIndex = 0; 
 
       selectedFiles.forEach((file, idx) => {
         const reader = new FileReader();
