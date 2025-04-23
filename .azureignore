@@ -1,13 +1,8 @@
-# Folders to exclude
-node_modules/
-.*
-.cache/
-build/
-dist/
-coverage/
-
-# Files to exclude
+**/node_modules
+**/*.test.js
+**/*.spec.js
+.git
+.gitignore
+README.md
+tests/
 *.log
-*.md
-*.lock
-.DS_Store
