@@ -16,8 +16,11 @@
         <input type="number" min="1"  step="1" value="1" id="productQuantity" id="quantity" required>
         <label>Description:</label>
         <textarea type="text" rows="4" columns="100" id="productDescription" name="description"></textarea>
+        <label>Current Image: </label>
+        <div id="CurrentImage"></div>
+
         <label>Upload image:</label>
-        <input type="file" id="productImage" name="productImage" accept="image/*" multiple required>
+        <input type="file" id="productImage" name="productImage" accept="image/*" multiple >
 
         <p>Select the main image by clicking on it:</p>
         <output id="preview-images"></output>
