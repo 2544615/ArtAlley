@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "jest --coverage",
+    "build": "next build && rm -rf ./.next/cache",
     "build": "rm -rf build && mkdir build && find ./Homepage\\ Folder/ ./SignIn\\ Folder/ ./SignUp\\ Folder/ -type f -not -path '*/.*' -exec cp {} build/ \\; && cp index.html build/",
     "start": "serve . -l 3000"
   },

@@ -3,7 +3,7 @@
 <html lang="en">
 
 <head>
-    <title>Code coverage report for SignIn Folder/signInBuyer.js</title>
+    <title>Code coverage report for Admin Folder/admin-signin.js</title>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="../prettify.css" />
     <link rel="stylesheet" href="../base.css" />
@@ -19,13 +19,13 @@
 <body>
 <div class='wrapper'>
     <div class='pad1'>
-        <h1><a href="../index.html">All files</a> / <a href="index.html">SignIn Folder</a> signInBuyer.js</h1>
+        <h1><a href="../index.html">All files</a> / <a href="index.html">Admin Folder</a> admin-signin.js</h1>
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>0/63</span>
+                <span class='fraction'>0/60</span>
             </div>
         
             
@@ -46,7 +46,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>0/63</span>
+                <span class='fraction'>0/60</span>
             </div>
         
             
@@ -167,15 +167,7 @@
 <a name='L102'></a><a href='#L102'>102</a>
 <a name='L103'></a><a href='#L103'>103</a>
 <a name='L104'></a><a href='#L104'>104</a>
-<a name='L105'></a><a href='#L105'>105</a>
-<a name='L106'></a><a href='#L106'>106</a>
-<a name='L107'></a><a href='#L107'>107</a>
-<a name='L108'></a><a href='#L108'>108</a>
-<a name='L109'></a><a href='#L109'>109</a>
-<a name='L110'></a><a href='#L110'>110</a>
-<a name='L111'></a><a href='#L111'>111</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L105'></a><a href='#L105'>105</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -238,9 +230,6 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -268,7 +257,6 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -287,10 +275,8 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-app.js";
 import { getAuth, GoogleAuthProvider, signInWithPopup, signInWithEmailAndPassword,signOut  } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-auth.js";
 import{getFirestore,doc,getDoc} from "https://www.gstatic.com/firebasejs/11.6.0/firebase-firestore.js";
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
 &nbsp;
-// Your web app's Firebase configuration
+&nbsp;
 const firebaseConfig = <span class="cstat-no" title="statement not covered" >{</span>
   apiKey: "AIzaSyDUfE0XLFPlpw_SAJIFoQlJhylk-r2VY4Y",
   authDomain: "artalley-b9c96.firebaseapp.com",
@@ -312,7 +298,7 @@ const provider = <span class="cstat-no" title="statement not covered" >new Googl
 &nbsp;
 const google_login = <span class="cstat-no" title="statement not covered" >document.getElementById("google-btn");</span>
 &nbsp;
-const expectedRole=<span class="cstat-no" title="statement not covered" >"buyer";</span>
+const expectedRole=<span class="cstat-no" title="statement not covered" >"admin";</span>
 &nbsp;
 async function <span class="fstat-no" title="function not covered" >verifyUserRole(</span>user){
   const userRef=<span class="cstat-no" title="statement not covered" >doc(db,"users",user.uid);</span>
@@ -348,10 +334,7 @@ const userData=<span class="cstat-no" title="statement not covered" >userSnap.da
     const userData=<span class="cstat-no" title="statement not covered" >await verifyUserRole(user);</span>
 <span class="cstat-no" title="statement not covered" >    if(!userData)</span>
 <span class="cstat-no" title="statement not covered" >      return;</span>
-    
-<span class="cstat-no" title="statement not covered" >    alert(`Successfully logged in as ${userData.role}`);</span>
-<span class="cstat-no" title="statement not covered" >    console.log('user signed in as a', userData);</span>
-<span class="cstat-no" title="statement not covered" >    window.location.href="../Buyer Folder/product-listing.html";/</span>/buyer-dashboard.html
+<span class="cstat-no" title="statement not covered" >    window.location.href="admin-dashboard.html";</span>
      // ...
   })
   .catch(<span class="fstat-no" title="function not covered" >(e</span>rror) =&gt; {
@@ -379,8 +362,7 @@ const userData=<span class="cstat-no" title="statement not covered" >userSnap.da
 <span class="cstat-no" title="statement not covered" >          return;</span>
         }
 <span class="cstat-no" title="statement not covered" >        console.log(user);</span>
-<span class="cstat-no" title="statement not covered" >        alert("Successfully logged in")</span>
-<span class="cstat-no" title="statement not covered" >        window.location.href="../Buyer Folder/product-listing.html";/</span>/buyer-dashboard.html
+<span class="cstat-no" title="statement not covered" >        window.location.href="admin-dashboard.html";</span>
       }else{
 <span class="cstat-no" title="statement not covered" >        alert("User data not found");</span>
       } 
