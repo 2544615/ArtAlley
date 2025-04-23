@@ -18,7 +18,7 @@ const db = getFirestore(app);
 
 // Variables for Pagination
 let currentPage = 1;
-const itemsPerPage = 24; 
+const itemsPerPage = 12; 
 
 // Variables for Sorting and Filtering
 let products = [];
