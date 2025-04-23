@@ -11,23 +11,14 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "dependencies": {
-    "firebase": "^10.11.0",
-    "text-encoding": "^0.7.0",
-    "whatwg-url": "^14.0.0"
-  },
   "devDependencies": {
-    "@babel/core": "^7.24.5",
     "@babel/preset-env": "^7.24.5",
     "@jest/globals": "^29.7.0",
-    "babel-jest": "^29.7.0",
-    "identity-obj-proxy": "^3.0.0",
     "jest": "^29.7.0",
     "jest-environment-jsdom": "^29.7.0",
     "jsdom": "^24.0.0",
     "rimraf": "^6.0.1",
-    "serve": "^14.2.4",
-    "util": "^0.12.5"
+    "serve": "^14.2.4"
   },
   "repository": {
     "type": "git",
@@ -36,5 +27,8 @@
   "bugs": {
     "url": "https://github.com/2544615/ArtAlley/issues"
   },
-  "homepage": "https://github.com/2544615/ArtAlley#readme"
+  "homepage": "https://github.com/2544615/ArtAlley#readme",
+  "dependencies": {
+    "firebase": "^11.6.0"
+  }
 }
