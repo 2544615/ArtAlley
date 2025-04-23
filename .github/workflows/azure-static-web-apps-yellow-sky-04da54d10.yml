@@ -33,15 +33,7 @@ jobs:
           output_location: "" # Built app content directory - optional
           skip_app_build: true # Skip the build process for static HTML, CSS, and JS projects
           ###### End of Repository/Build Configurations ######
-          exclude_files: |
-            node_modules/
-            .git/
-            *.log
-            .env
-            .DS_Store
-            coverage/
-          clean_target_directory: true  # Clears stale files from previous deployments
-
+          
   close_pull_request_job:
     if: github.event_name == 'pull_request' && github.event.action == 'closed'
     runs-on: ubuntu-latest
