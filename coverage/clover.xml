@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1745345595549" clover="3.2.0">
-  <project timestamp="1745345595549" name="All files">
-    <metrics statements="706" coveredstatements="0" conditionals="453" coveredconditionals="0" methods="135" coveredmethods="0" elements="1294" coveredelements="0" complexity="0" loc="706" ncloc="706" packages="6" files="13" classes="13"/>
+<coverage generated="1745422875760" clover="3.2.0">
+  <project timestamp="1745422875760" name="All files">
+    <metrics statements="691" coveredstatements="0" conditionals="459" coveredconditionals="0" methods="131" coveredmethods="0" elements="1281" coveredelements="0" complexity="0" loc="691" ncloc="691" packages="6" files="13" classes="13"/>
     <package name="Buyer Folder">
       <metrics statements="90" coveredstatements="0" conditionals="32" coveredconditionals="0" methods="21" coveredmethods="0"/>
       <file name="product-listing.js" path="C:\Users\mmakw\OneDrive\Documents\SD_SOmething\ArtAlley\Buyer Folder\product-listing.js">
@@ -170,9 +170,9 @@
       </file>
     </package>
     <package name="Seller Folder">
-      <metrics statements="66" coveredstatements="0" conditionals="10" coveredconditionals="0" methods="7" coveredmethods="0"/>
+      <metrics statements="52" coveredstatements="0" conditionals="16" coveredconditionals="0" methods="3" coveredmethods="0"/>
       <file name="edit.js" path="C:\Users\mmakw\OneDrive\Documents\SD_SOmething\ArtAlley\Seller Folder\edit.js">
-        <metrics statements="66" coveredstatements="0" conditionals="10" coveredconditionals="0" methods="7" coveredmethods="0"/>
+        <metrics statements="52" coveredstatements="0" conditionals="16" coveredconditionals="0" methods="3" coveredmethods="0"/>
         <line num="12" count="0" type="stmt"/>
         <line num="21" count="0" type="stmt"/>
         <line num="22" count="0" type="stmt"/>
@@ -205,40 +205,26 @@
         <line num="69" count="0" type="stmt"/>
         <line num="70" count="0" type="stmt"/>
         <line num="71" count="0" type="stmt"/>
-        <line num="73" count="0" type="stmt"/>
-        <line num="75" count="0" type="stmt"/>
-        <line num="76" count="0" type="stmt"/>
+        <line num="73" count="0" type="cond" truecount="0" falsecount="4"/>
+        <line num="74" count="0" type="stmt"/>
         <line num="77" count="0" type="stmt"/>
-        <line num="79" count="0" type="stmt"/>
+        <line num="78" count="0" type="stmt"/>
         <line num="80" count="0" type="stmt"/>
-        <line num="81" count="0" type="stmt"/>
-        <line num="82" count="0" type="stmt"/>
-        <line num="83" count="0" type="stmt"/>
-        <line num="84" count="0" type="stmt"/>
-        <line num="85" count="0" type="stmt"/>
-        <line num="87" count="0" type="stmt"/>
         <line num="88" count="0" type="stmt"/>
-        <line num="89" count="0" type="stmt"/>
+        <line num="90" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="91" count="0" type="stmt"/>
         <line num="92" count="0" type="stmt"/>
-        <line num="93" count="0" type="cond" truecount="0" falsecount="2"/>
-        <line num="97" count="0" type="stmt"/>
-        <line num="99" count="0" type="stmt"/>
-        <line num="102" count="0" type="stmt"/>
-        <line num="103" count="0" type="stmt"/>
+        <line num="93" count="0" type="stmt"/>
+        <line num="95" count="0" type="stmt"/>
+        <line num="96" count="0" type="stmt"/>
+        <line num="99" count="0" type="cond" truecount="0" falsecount="4"/>
+        <line num="100" count="0" type="stmt"/>
+        <line num="104" count="0" type="stmt"/>
         <line num="105" count="0" type="stmt"/>
-        <line num="113" count="0" type="stmt"/>
-        <line num="115" count="0" type="cond" truecount="0" falsecount="2"/>
-        <line num="116" count="0" type="stmt"/>
-        <line num="117" count="0" type="stmt"/>
-        <line num="118" count="0" type="stmt"/>
-        <line num="120" count="0" type="stmt"/>
-        <line num="121" count="0" type="stmt"/>
-        <line num="125" count="0" type="stmt"/>
-        <line num="126" count="0" type="stmt"/>
-        <line num="127" count="0" type="stmt"/>
-        <line num="128" count="0" type="stmt"/>
-        <line num="130" count="0" type="stmt"/>
-        <line num="131" count="0" type="stmt"/>
+        <line num="106" count="0" type="stmt"/>
+        <line num="107" count="0" type="stmt"/>
+        <line num="109" count="0" type="stmt"/>
+        <line num="110" count="0" type="stmt"/>
       </file>
     </package>
     <package name="SignIn Folder">
@@ -521,9 +507,9 @@
       </file>
     </package>
     <package name="SignUp Folder">
-      <metrics statements="104" coveredstatements="0" conditionals="32" coveredconditionals="0" methods="10" coveredmethods="0"/>
+      <metrics statements="103" coveredstatements="0" conditionals="32" coveredconditionals="0" methods="10" coveredmethods="0"/>
       <file name="signUpBuyer.js" path="C:\Users\mmakw\OneDrive\Documents\SD_SOmething\ArtAlley\SignUp Folder\signUpBuyer.js">
-        <metrics statements="53" coveredstatements="0" conditionals="15" coveredconditionals="0" methods="6" coveredmethods="0"/>
+        <metrics statements="52" coveredstatements="0" conditionals="15" coveredconditionals="0" methods="6" coveredmethods="0"/>
         <line num="10" count="0" type="stmt"/>
         <line num="20" count="0" type="stmt"/>
         <line num="21" count="0" type="stmt"/>
@@ -546,7 +532,6 @@
         <line num="45" count="0" type="stmt"/>
         <line num="49" count="0" type="cond" truecount="0" falsecount="2"/>
         <line num="50" count="0" type="stmt"/>
-        <line num="51" count="0" type="stmt"/>
         <line num="52" count="0" type="stmt"/>
         <line num="55" count="0" type="stmt"/>
         <line num="57" count="0" type="stmt"/>
