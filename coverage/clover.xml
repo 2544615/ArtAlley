@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1745430393773" clover="3.2.0">
-  <project timestamp="1745430393773" name="All files">
-    <metrics statements="691" coveredstatements="0" conditionals="459" coveredconditionals="0" methods="131" coveredmethods="0" elements="1281" coveredelements="0" complexity="0" loc="691" ncloc="691" packages="6" files="13" classes="13"/>
+<coverage generated="1745430959639" clover="3.2.0">
+  <project timestamp="1745430959639" name="All files">
+    <metrics statements="629" coveredstatements="0" conditionals="459" coveredconditionals="0" methods="119" coveredmethods="0" elements="1207" coveredelements="0" complexity="0" loc="629" ncloc="629" packages="5" files="11" classes="11"/>
     <package name="Buyer Folder">
       <metrics statements="90" coveredstatements="0" conditionals="32" coveredconditionals="0" methods="21" coveredmethods="0"/>
       <file name="product-listing.js" path="C:\Users\mmakw\OneDrive\Documents\SD_SOmething\ArtAlley\Buyer Folder\product-listing.js">
@@ -96,77 +96,6 @@
         <line num="171" count="0" type="stmt"/>
         <line num="174" count="0" type="stmt"/>
         <line num="175" count="0" type="stmt"/>
-      </file>
-    </package>
-    <package name="SD_PROJECT-ARTALLEY.SD PROJECT-ARTALLEY">
-      <metrics statements="62" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="12" coveredmethods="0"/>
-      <file name="SignUpBuyer.js" path="C:\Users\mmakw\OneDrive\Documents\SD_SOmething\ArtAlley\SD_PROJECT-ARTALLEY\SD PROJECT-ARTALLEY\SignUpBuyer.js">
-        <metrics statements="31" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="6" coveredmethods="0"/>
-        <line num="8" count="0" type="stmt"/>
-        <line num="18" count="0" type="stmt"/>
-        <line num="19" count="0" type="stmt"/>
-        <line num="20" count="0" type="stmt"/>
-        <line num="21" count="0" type="stmt"/>
-        <line num="22" count="0" type="stmt"/>
-        <line num="23" count="0" type="stmt"/>
-        <line num="24" count="0" type="stmt"/>
-        <line num="25" count="0" type="stmt"/>
-        <line num="27" count="0" type="stmt"/>
-        <line num="28" count="0" type="stmt"/>
-        <line num="29" count="0" type="stmt"/>
-        <line num="30" count="0" type="stmt"/>
-        <line num="31" count="0" type="stmt"/>
-        <line num="34" count="0" type="stmt"/>
-        <line num="35" count="0" type="stmt"/>
-        <line num="39" count="0" type="stmt"/>
-        <line num="40" count="0" type="stmt"/>
-        <line num="41" count="0" type="stmt"/>
-        <line num="46" count="0" type="stmt"/>
-        <line num="47" count="0" type="stmt"/>
-        <line num="49" count="0" type="stmt"/>
-        <line num="50" count="0" type="stmt"/>
-        <line num="51" count="0" type="stmt"/>
-        <line num="52" count="0" type="stmt"/>
-        <line num="53" count="0" type="stmt"/>
-        <line num="56" count="0" type="stmt"/>
-        <line num="57" count="0" type="stmt"/>
-        <line num="58" count="0" type="stmt"/>
-        <line num="59" count="0" type="stmt"/>
-        <line num="60" count="0" type="stmt"/>
-      </file>
-      <file name="signUpSeller.js" path="C:\Users\mmakw\OneDrive\Documents\SD_SOmething\ArtAlley\SD_PROJECT-ARTALLEY\SD PROJECT-ARTALLEY\signUpSeller.js">
-        <metrics statements="31" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="6" coveredmethods="0"/>
-        <line num="8" count="0" type="stmt"/>
-        <line num="18" count="0" type="stmt"/>
-        <line num="19" count="0" type="stmt"/>
-        <line num="20" count="0" type="stmt"/>
-        <line num="21" count="0" type="stmt"/>
-        <line num="22" count="0" type="stmt"/>
-        <line num="23" count="0" type="stmt"/>
-        <line num="24" count="0" type="stmt"/>
-        <line num="25" count="0" type="stmt"/>
-        <line num="27" count="0" type="stmt"/>
-        <line num="28" count="0" type="stmt"/>
-        <line num="29" count="0" type="stmt"/>
-        <line num="30" count="0" type="stmt"/>
-        <line num="31" count="0" type="stmt"/>
-        <line num="34" count="0" type="stmt"/>
-        <line num="35" count="0" type="stmt"/>
-        <line num="39" count="0" type="stmt"/>
-        <line num="40" count="0" type="stmt"/>
-        <line num="41" count="0" type="stmt"/>
-        <line num="46" count="0" type="stmt"/>
-        <line num="47" count="0" type="stmt"/>
-        <line num="49" count="0" type="stmt"/>
-        <line num="50" count="0" type="stmt"/>
-        <line num="51" count="0" type="stmt"/>
-        <line num="52" count="0" type="stmt"/>
-        <line num="53" count="0" type="stmt"/>
-        <line num="56" count="0" type="stmt"/>
-        <line num="57" count="0" type="stmt"/>
-        <line num="58" count="0" type="stmt"/>
-        <line num="59" count="0" type="stmt"/>
-        <line num="60" count="0" type="stmt"/>
       </file>
     </package>
     <package name="Seller Folder">
