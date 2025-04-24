@@ -19,6 +19,9 @@ jobs:
         with:
           submodules: true
           lfs: false
+      - name: Build App
+        run: npm install && npm run build
+
       - name: Build And Deploy
         id: builddeploy
         uses: Azure/static-web-apps-deploy@v1
@@ -28,10 +31,16 @@ jobs:
           action: "upload"
           ###### Repository/Build Configurations - These values can be configured to match your app requirements. ######
           # For more information regarding Static Web App workflow configurations, please visit: https://aka.ms/swaworkflowconfig
-          app_location: "./" # App source code path
-          api_location: "" # Api source code path - optional
-          output_location: "" # Built app content directory - optional
-          skip_app_build: true # Skip the build process for static HTML, CSS, and JS projects
+
+          app_location: "build" 
+          api_location: ""
+          output_location: ""
+          skip_app_build: true
+
+          #app_location: "./" # App source code path
+          #api_location: "" # Api source code path - optional
+          #output_location: "" # Built app content directory - optional
+          #skip_app_build: true # Skip the build process for static HTML, CSS, and JS projects
           ###### End of Repository/Build Configurations ######
           
   close_pull_request_job:
