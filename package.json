@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "jest --coverage",
-    "build": "rm -rf build && mkdir build && cp -R ./Homepage\\ Folder ./SignIn\\ Folder ./SignUp\\ Folder ./index.html ./build",
+    "build": "rm -rf build && mkdir build && cp -R ./Homepage\\ Folder ./SignIn\\ Folder ./SignUp\\ Folder ./Admin\\ Folder ./Buyer\\ Folder ./Seller\\ Folder ./index.html ./build",
     "start": "serve . -l 3000"
   },
   "keywords": [],
