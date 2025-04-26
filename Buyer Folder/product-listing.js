@@ -1,6 +1,6 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-app.js";
 import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-auth.js";
-import { getFirestore, collection, getDocs, query, orderBy } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-firestore.js";
+import { getFirestore, collection, getDocs, query, orderBy, getDoc, doc } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-firestore.js";
 
 
 const firebaseConfig = {
@@ -18,7 +18,7 @@ const db = getFirestore(app);
 
 // Variables for Pagination
 let currentPage = 1;
-const itemsPerPage = 12; 
+const itemsPerPage = 24; 
 
 // Variables for Sorting and Filtering
 let products = [];
@@ -171,6 +171,40 @@ document.getElementById("cartButton").addEventListener("click", () => {
   window.location.href = "#";
 });
 
-document.getElementById("profileButton").addEventListener("click", () => {
-  window.location.href = "#";
-});  
+document.getElementById("profileButton").addEventListener("click", async () => {
+  const user = auth.currentUser;
+  if (user) {
+    try {
+      const userDocRef = doc(db, "users", user.uid); // Assuming your user profiles are stored in a "users" collection
+      const querySnapshot = await getDoc(userDocRef);
+      //let userData = null;
+
+      if (!querySnapshot.exists()) {
+        // No profile found — redirect to profile.html
+        window.location.href = "../SignUp Folder/buyer-profile.html";
+        return;
+      }
+
+      const userData = querySnapshot.data();
+
+      // Check if any important field is missing
+      const requiredFields = ["firstName","lastName", "email", "phone", "address", "username"]; // Adjust these fields based on your profile structure
+      const hasEmptyField = requiredFields.some(field => {
+        return !userData[field] ||  (typeof userData[field] === 'string' && userData[field].trim() === "");
+      });
+
+      if (hasEmptyField) {
+        window.location.href = "../SignUp Folder/buyer-profile.html"; // Go to profile completion page
+      } else {
+        window.location.href = "../SignIn Folder/my-profile.html"; // Profile is complete
+      }
+      
+    } catch (error) {
+      console.error("Error checking profile:", error);
+      alert("Error loading your profile. Try again.");
+    }
+  } else {
+    window.location.href = "../SignIn Folder/login-buyer.html"; // Just in case user is not authenticated
+  }
+});
+  
