@@ -48,6 +48,7 @@ async function uploadToCloudinary(file) {
 const form = document.getElementById('product-form');
 const imageInput = document.getElementById("image");
 const previewContainer = document.getElementById("preview-images");
+const mainImageText = document.getElementById("select-main-text"); // <p id="select-main-text">Select the main image by clicking on it:</p>
 const mainImageIndexInput = document.getElementById("mainImageIndex");
 
 let selectedMainImageIndex = null;
@@ -57,6 +58,10 @@ imageInput.addEventListener("change", () => {
   previewContainer.innerHTML = ""; // Clear old previews
   const files = Array.from(imageInput.files);
 
+  if (files.length > 0) {
+    mainImageText.style.display = "block"; // Show the <p> when images selected
+  }
+  
   files.forEach((file, index) => {
     const img = document.createElement("img");
     img.src = URL.createObjectURL(file);
@@ -100,6 +105,11 @@ onAuthStateChanged(auth, (user) => {
       return;
     }
 
+    if (selectedMainImageIndex === null) {
+      alert("Please select a main image.");
+      return;
+    }
+
     try {
         const imageUrls = [];
 
@@ -125,6 +135,6 @@ onAuthStateChanged(auth, (user) => {
     } catch (error) {
       console.error("Error uploading product:", error);
       alert("Failed to add product.");
-    }
-  });
+    }
+  });
 });

@@ -47,6 +47,11 @@ if(userData.role!==expectedRole){
 return userData;
 }
 
+function isProfileComplete(userData) {
+  // You can add more fields if you want to check them
+  return userData.firstName && userData.lastName && userData.username && userData.phone && userData.address;
+}
+
 submit.addEventListener('click', function(event){
     event.preventDefault();
     const emailValue = email.value;
@@ -64,10 +69,16 @@ submit.addEventListener('click', function(event){
     if(!userData)
       return;
     
+    if (isProfileComplete(userData)) {
     alert(`Successfully logged in as ${userData.role}`);
     console.log('user signed in as a', userData);
     window.location.href="seller-dashboard.html";
      // ...
+    } else {
+      alert("Please complete your profile first.");
+      console.log('user signed in as a', userData);
+      window.location.href = "../SignUp Folder/seller-profile.html"; // Change to your profile completion page
+    }
   })
   .catch((error) => {
     alert('Login failed!')
@@ -93,9 +104,16 @@ google_login.addEventListener("click", function(){
           alert("Access denied");
           return;
         }
+
+        if (isProfileComplete(userData)) {
         console.log(user);
         alert("Successfully logged in")
         window.location.href="seller-dashboard.html";
+        } else {
+          alert("Please complete your profile first.");
+          console.log(user);
+          window.location.href = "../SignUp Folder/seller-profile.html"; // Change to your profile completion page
+        }
       }else{
         alert("User data not found");
       } 

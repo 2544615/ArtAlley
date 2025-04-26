@@ -18,10 +18,10 @@
         <input type="text" id="productName" required>
 
         <label for="price">Price (R)</label>
-        <input type="number" id="price" step="0.01" min="0" required>
+        <input type="number" id="price" step="0.01" min="0" inputmode="numeric" required>
 
         <label for="quantity">Quantity</label>
-        <input type="number" id="quantity" min="0" required>
+        <input type="number" id="quantity" min="0" step="1" inputmode="numeric" required>
 
         <label for="description">Description</label>
         <textarea id="description" rows="4" required></textarea>
@@ -31,7 +31,7 @@
 
         
 
-        <p>Select the main image by clicking on it:</p>
+        <p id="select-main-text" style="display: none;">Select the main image by clicking on it:</p>
         <output id="preview-images"></output>
         <input type="hidden" id="mainImageIndex">
         <button type="submit" class="login-btn">Submit Product</button>
@@ -41,6 +41,34 @@
 
   <script type="module" src="add-product.js"></script>
 
+  <script>
+    const priceInput = document.getElementById("price");
+    const quantityInput = document.getElementById("quantity");
+  
+    // Block e, +, - for both inputs
+    function preventInvalidInput(e) {
+      const invalidChars = ["e", "E", "+", "-"];
+      if (invalidChars.includes(e.key)) {
+        e.preventDefault();
+      }
+    }
+  
+    // Enforce 2 decimal places in price
+    function enforceTwoDecimalPlaces(e) {
+      const value = e.target.value;
+  
+      // Match up to 2 decimal places
+      const match = value.match(/^(\d+)(\.\d{0,2})?/);
+      if (match) {
+        e.target.value = match[0];
+      }
+    }
+  
+    priceInput.addEventListener("keydown", preventInvalidInput);
+    priceInput.addEventListener("input", enforceTwoDecimalPlaces);
+    quantityInput.addEventListener("keydown", preventInvalidInput);
+  </script> 
+  
   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 
 </body>
