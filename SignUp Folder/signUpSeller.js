@@ -1,6 +1,6 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-app.js";
-import {getFirestore,doc,getDoc,setDoc} from "https://www.gstatic.com/firebasejs/11.6.0/firebase-firestore.js";
+import {getFirestore,doc,getDoc,setDoc, collection, query, where, getDocs} from "https://www.gstatic.com/firebasejs/11.6.0/firebase-firestore.js";
 import { getAuth, GoogleAuthProvider,signInWithPopup,createUserWithEmailAndPassword,signOut } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-auth.js";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -18,69 +18,111 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const auth = getAuth();
-const db=getFirestore(app);
+const db = getFirestore(app);
 auth.languageCode = 'en';
 
 const email = document.getElementById('address');
-const username= document.getElementById('username');
+//const username= document.getElementById('username');
 const password = document.getElementById('password');
+const confirmPassword = document.getElementById('confirmPassword');
 const submit = document.getElementById('register');
 const google_login = document.getElementById("icon");
+const togglePassword = document.getElementById('togglePassword');
+const eyeIcon = document.getElementById('eyeIcon');
+const termsCheckbox = document.getElementById('termsCheckbox');
 const provider = new GoogleAuthProvider();
 
-submit.addEventListener('click', function(event){
+// Toggle Password Visibility
+togglePassword.addEventListener('click', () => {
+  const isPassword = password.type === 'password';
+  password.type = isPassword ? 'text' : 'password';
+  eyeIcon.classList.toggle('fa-eye');
+  eyeIcon.classList.toggle('fa-eye-slash');
+});
+
+submit.addEventListener('click', async function(event){
   event.preventDefault(); // prevent form from refreshing/submitting
 
   const emailValue = email.value.trim();
-  const usernameValue = username.value.trim();
+  //const usernameValue = username.value.trim();
   const passwordValue = password.value;
+  const confirmPasswordValue = confirmPassword.value;
+  
+  if (!emailValue || !passwordValue || !confirmPasswordValue) {
+    let missing = [];
+    if (!emailValue) missing.push("Email");
+    if (!passwordValue) missing.push("Password");
+    if (!confirmPasswordValue) missing.push("Confirm Password");
+    alert("Please fill in the following fields:\n" + missing.join(", "));
+    return;
+  }
+
+  // ✅ Password Format Check
+  const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[\d\W]).{8,}$/;
+  if (!passwordRegex.test(passwordValue)) {
+    alert("Password must be at least 8 characters long, with at least 1 lowercase letter, 1 uppercase letter, and 1 number or special character.");
+    return;
+  }
+
+  if (passwordValue !== confirmPasswordValue) {
+    alert("Passwords do not match.");
+    return;
+  }
+
+  if (!termsCheckbox.checked) {
+    alert("Please accept the terms and conditions first.");
+    return;
+  }
+
+  
 
   // Regex: only letters, at least 4 characters
-  const usernameRegex = /^[A-Za-z]{4,}$/;
+  //const usernameRegex = /^[A-Za-z]{4,}$/;
+
+  
 
   // Check all fields
-  if (!usernameValue || !emailValue || !passwordValue) {
-    alert('All fields are required.');
-    return;
-  }
+  // if (!usernameValue || !emailValue || !passwordValue) {
+  //   alert('All fields are required.');
+  //   return;
+  // }
 
   // Validate username format
-  if (!usernameRegex.test(usernameValue)) {
-    alert("The username should have at least 4 characters,no numbers");
-    return;
-  }
+  // if (!usernameRegex.test(usernameValue)) {
+  //   alert("The username should have at least 4 characters,no numbers");
+  //   return;
+  // }
 
 
-  createUserWithEmailAndPassword(auth, emailValue, passwordValue)
-    .then(async(userCredential) => {
-      const user = userCredential.user;
-      await setDoc(doc(db,"users",user.uid),{
-        uid:user.uid,
-        username:usernameValue,
-        email:emailValue,
-        role:"seller",
-        createdAt:new Date()
-      });
-      const docSnap = await getDoc(doc(db,"users",user.uid));
-      if(!docSnap.exists()||docSnap.data().role !=="seller"){
-        await auth.signOut();
-        throw new Error("Role verification failed");
-      }
-      alert('Successfully signed up as a seller!');
-      console.log('user signed up');
-      window.location.href="../SignIn Folder/seller-dashboard.html";
-    })
-    .catch((error) => {
+  try {
+    const userCredential = await createUserWithEmailAndPassword(auth, emailValue, passwordValue);
+    const user = userCredential.user;
+    await setDoc(doc(db,"users",user.uid),{
+      uid:user.uid,
+      //username:usernameValue,
+      email:emailValue,
+      role:"seller",
+      createdAt:new Date()
+    });
+    const docSnap = await getDoc(doc(db,"users",user.uid));
+    if(!docSnap.exists()||docSnap.data().role !=="seller"){
+      await auth.signOut();
+      throw new Error("Role verification failed");
+    }
+    alert('Successfully signed up as a seller!');
+    console.log('user signed up');
+    window.location.href="seller-profile.html";
+    } catch(error) {
       const errorMessage = error.message;
       alert(`Error: ${errorMessage}`);
-    });
+    };
 });
 
 google_login.addEventListener("click", async function() {
-  const termsChecked = document.getElementById("termsCheckbox").checked;
+  //const termsChecked = document.getElementById("termsCheckbox").checked;
 
-  if (!termsChecked) {
-    alert("Please agree to the Terms and Conditions before signing up with Google.");
+  if (!termsCheckbox.checked) {
+    alert("Please accept the terms and conditions first.");
     return;
   }
 
@@ -95,7 +137,7 @@ google_login.addEventListener("click", async function() {
 
       await setDoc(userRef, {
         uid: user.uid,
-        username: user.displayName || "GoogleUser",
+        //username: user.displayName || "GoogleUser",
         email: user.email,
         role: "seller", 
         createdAt: new Date()
@@ -103,7 +145,7 @@ google_login.addEventListener("click", async function() {
     }
 
     alert("Successfully signed up as a seller!");
-    window.location.href = "../SignIn Folder/seller-dashboard.html"; 
+    window.location.href = "profile.html"; 
   } catch (error) {
     console.error("Error during sign-in:", error.code, error.message);
     alert(`Error: ${error.message}`);

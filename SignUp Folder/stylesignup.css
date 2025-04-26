@@ -44,9 +44,8 @@ form h2 {
   color: chocolate;
 }
 
-input[type="text"],
+
 input[type="email"],
-input[type="tel"],
 input[type="password"] {
   width: 100%;
   padding: 12px;
@@ -59,6 +58,39 @@ input[type="password"] {
 input::placeholder {
   color: #999;
 }
+
+fieldset {
+  border: none;
+  padding: 0;
+  margin: 0;
+  position: relative;
+}
+
+fieldset input[type="password"] {
+  width: 100%;
+  padding: 12px 40px 12px 12px; /* extra padding on the right for the eye icon */
+  margin-bottom: 15px;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+}
+
+#togglePassword {
+  position: absolute;
+  top: 50%;
+  right: 12px;
+  transform: translateY(-50%);
+  background: transparent;
+  border: none;
+  font-size: 1.1rem;
+  cursor: pointer;
+  color: #5d4037;
+  padding: 0;
+  margin: 0;
+  line-height: 1;
+  display: none;
+}
+
 
 button {
   width: 100%;

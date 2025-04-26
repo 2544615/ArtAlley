@@ -15,18 +15,28 @@
 </head>
 <body>
 
-  <h1>Welcome to Art Alley</h1>
+  <h1>Welcome to ArtAlley</h1>
 
   <form id="signupForm" action="/submit" method="POST">
     <h2>Sign Up as a seller</h2>
-
-    <input type="text" placeholder="Username" required id="username" pattern="^[A-Za-z]{4,}$" oninvalid="this.setCustomValidity('Invalid username and must be 3 or more characters')" oninput="this.setCustomValidity('')">
             
     <input type="email" placeholder="Email address" required id="address">
 
-    <input type="tel" placeholder="Phone number" id="number" inputmode="numeric" pattern="[0-9]{10}" maxlength="10" required>
+    <fieldset>
+      <input
+        type="password"
+        id="password"
+        placeholder="Password"
+        title="Password must be at least 8 characters long and include at least one uppercase letter, one lowercase letter, and one number or special character."
+        required
+        pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[\d\W]).{8,}$"
+      />
+      <button type="button" id="togglePassword" aria-label="Show password">
+        <i class="fa-solid fa-eye" id="eyeIcon"></i>
+      </button>
+    </fieldset>
 
-    <input type="password" placeholder="Password" required id="password" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[\d\W]).{8,}$" title="Password must be at least 8 characters long and include at least one uppercase letter, one lowercase letter, and one number or special character.">
+    <input type="password" id="confirmPassword" placeholder="Confirm Password" required />
 
     <p>
       <input type="checkbox" id="termsCheckbox" required />

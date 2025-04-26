@@ -19,7 +19,7 @@ describe('Buyer Signup Page', () => {
     });
 
   test('Loads the signup form correctly', () => {
-    expect(document.querySelector('h1').textContent).toBe('Welcome to Art Alley');
+    expect(document.querySelector('h1').textContent).toBe('Welcome to ArtAlley');
     expect(document.querySelector('h2').textContent).toBe('Sign Up as a Buyer');
   });
 
