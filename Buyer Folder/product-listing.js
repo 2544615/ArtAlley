@@ -15,7 +15,8 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const db = getFirestore(app);
-
+import { addToCart } from './Carts.js';
+//require('./cart.js');
 // Variables for Pagination
 let currentPage = 1;
 const itemsPerPage = 24; 
@@ -45,10 +46,17 @@ function renderProducts(productList) {
         <h2>${product.name}</h2>
         <p>Price: R${product.price.toFixed(2)}</p>
       </div>
+      <button class="add-to-cart-btn">Add to cart</button>
     `;
 
     productContainer.appendChild(productCard);
+    const button = productCard.querySelector('.add-to-cart-btn');
+    button.addEventListener('click', (e) => {
+      e.stopPropagation(); // So it doesn't trigger the "clickable" navigation
+      addToCart(product);
+    });
   });
+ 
 
   document.getElementById("currentPage").textContent = `Page ${currentPage}`;
   document.getElementById("prevPage").disabled = currentPage === 1;
@@ -168,7 +176,7 @@ document.querySelector(".search-bar").addEventListener("keypress", (e) => {
 });
 
 document.getElementById("cartButton").addEventListener("click", () => {
-  window.location.href = "#";
+  window.location.href = "cart.html";
 });
 
 document.getElementById("profileButton").addEventListener("click", async () => {
