@@ -1,36 +1,37 @@
-body {
+/* Global Styles */
+* {
     margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
     font-family: 'Roboto', sans-serif;
     background-color: #f4f1ec;
     color: #3e2723;
     overflow-y: scroll;
   }
- h1, h2, h3, p, ul, li, form {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  
+  h1, h2, h3, p, ul, li, form {
     font-family: sans-serif;
   }
   
   /* Header Styling */
   header {
     display: flex;
-    justify-content: space-between; 
-    align-items: center; 
-    height: 60px; 
-    padding: 0 15px; 
-    background-color:chocolate;
+    justify-content: space-between;
+    align-items: center;
+    height: 60px;
+    padding: 0 15px;
+    background-color: chocolate;
   }
   
-  
-  /* Centering title */
   header h1 {
     font-size: 2.5rem;
-    text-align: center; 
     color: white;
     font-weight: bold;
-    margin: 0;
-    flex-grow: 1; 
+    flex-grow: 1;
+    text-align: center;
   }
   
   header nav {
@@ -38,105 +39,130 @@ body {
     gap: 5px;
   }
   
-  /* General Styling for Icons */
+  /* Search Bar */
+  .search-bar {
+    flex: 1;
+    padding: 8px;
+    font-size: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    outline: none;
+  }
+  
+  /* Icon Buttons */
   .icons button {
     background: none;
     border: none;
     cursor: pointer;
-    font-size: 1.5rem; 
+    font-size: 1.5rem;
     color: white;
-  }
-   
-  /*Search Bar */
- .search-bar {
-    flex: 1; 
-    padding: 8px; 
-    font-size: 1rem; 
-    border: 1px solid #ddd; 
-    border-radius: 5px; 
-    outline: none; 
-  }
-  
-  /* Search Icon */
-  .search-icon {
-    color: white; 
-    transition: transform 0.3s ease, color 0.3s ease; 
-  }
-  
-  .search-icon:hover {
-    color: #392903; 
-    transform: scale(1.2);
-  }
-  
-  /* Cart Icon */
-  .cart-icon {
-    color: white; 
-    transition: transform 0.3s ease, color 0.3s ease; 
-  }
-  
-  .cart-icon:hover {
-    color: #392903; 
-    transform: scale(1.2); 
-  }
-  
-  /* Account Icon */
-  .account-icon {
-    color: white; 
     transition: transform 0.3s ease, color 0.3s ease;
   }
   
-  .account-icon:hover {
+  .icons button:hover {
     color: #392903;
     transform: scale(1.2);
-  } 
+  }
   
+  /* Main Section */
   main {
     display: flex;
     justify-content: center;
     padding: 2rem;
   }
-  .cart-item img {
-    width: 100%;
-    height: 200px;
-    object-fit: cover;
-    border-radius: 6px;
-  }
   
-  /* section {
+  section {
     background: white;
     padding: 2rem;
     border-radius: 10px;
-    width: 60%;
+    width: 100%;
+    max-width: 900px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   }
   
-  article {
-    border-bottom: 1px solid #ccc;
-    padding: 1rem 0;
+  /* Cart Products */
+  #CartProducts {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    padding: 1rem;
+    max-width: 800px;
+    margin: auto;
   }
   
-  article:last-of-type {
-    border-bottom: none;
+  .cart-item {
+    display: grid;
+    grid-template-columns: 100px 1fr 120px 80px 80px;
+    align-items: center;
+    padding: 1rem;
+    border-bottom: 1px solid #ddd;
   }
   
-  article h3 {
-    margin-bottom: 0.5rem;
+  .cart-item img {
+    width: 100px;
+    height: auto;
+    object-fit: contain;
   }
   
-  article button {
-    margin-right: 1rem;
-    padding: 0.5rem 1rem;
-    background-color: #d8651a;
+  .cart-item h3 {
+    font-size: 1rem;
+    padding: 1rem;
+  }
+  
+  .cart-item p {
+    margin: 4px 0;
+  }
+  
+  /* Quantity Controls */
+  .quantity-control {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  
+  .quantity-control button {
+    width: 24px;
+    height: 24px;
+    font-weight: bold;
     border: none;
-    color: white;
-    border-radius: 5px;
+    background-color: #eee;
     cursor: pointer;
   }
   
-  footer {
-    text-align: center;
+  /* Cart Total */
+  .cart-total {
+    text-align: right;
+    font-weight: bold;
+    font-size: 1.2rem;
     padding: 1rem;
-    background: #eee;
-    margin-top: 2rem;
   }
-   */
+  
+  /* Remove Button */
+  .remove-button {
+    color: #888;
+    font-size: 0.8rem;
+    cursor: pointer;
+    text-decoration: underline;
+  }
+
+  section h2 {
+    text-align: center;
+    margin-bottom: 1rem;
+    font-size: 1.8rem;
+    color: #3e2723;
+  }
+
+ button{
+    padding: 6px 14px;
+    background-color: #A0522D; /* Sienna brown */
+    color: white;
+    border: none;
+    border-radius: 10px; /* Rounded corners */
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
