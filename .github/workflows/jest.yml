@@ -36,5 +36,6 @@ jobs:
       uses: codecov/codecov-action@v5
       with:
         token: ${{ secrets.CODECOV_TOKEN }}
+        slug: 2544615/ArtAlley
     
 
