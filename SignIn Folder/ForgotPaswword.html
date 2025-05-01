@@ -1,17 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="forgot-password.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Forgot Password - ArtAlley</title>
+  <link rel="stylesheet" href="forgot-password.css">
+
+  <!-- Firebase SDK -->
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
 </head>
 <body>
-    <h1>Forgot Your Password</h1>
-    <form>
-        <input type="email" placeholder="Email address" required>
-
-        <button type="submit">Reset Password</button>
+  <main>
+    <h1>Forgot Your Password?</h1>
+    
+    <form id="resetForm">
+      <input type="email" id="email" placeholder="Email address" required>
+      <button type="submit">Reset Password</button>
     </form>
+
+    <p id="message"></p>
+  </main>
+
+  <!-- Link your script at the end -->
+  <script src="ForgotPassword.js"></script>
 </body>
 </html>
+
