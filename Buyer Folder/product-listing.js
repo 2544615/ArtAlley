@@ -21,7 +21,7 @@ import { addToCart } from './Carts.js';
 let currentPage = 1;
 const itemsPerPage = 24; 
 
-// Variables for Sorting and Filtering
+
 let products = [];
 let filteredProducts = [];
 
