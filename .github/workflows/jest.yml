@@ -25,17 +25,10 @@ jobs:
 
     - name: Run Jest tests
       run: npm test -- --coverage
-    
-    #- name: Upload coverage report
-    #  uses: actions/upload-artifact@v2
-    #  with:
-    #    name: coverage
-    #    path: coverage
 
     - name: Upload coverage report to Codecov
       uses: codecov/codecov-action@v5
       with:
         token: ${{ secrets.CODECOV_TOKEN }}
-        slug: 2544615/ArtAlley
     
 
