@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ArtAlley-Checkout</title>
+    <link rel="stylesheet" href="checkout.css">
+</head>
+<body>
+    <section id="header">
+        <a href="#"><img src="../SignIn Folder/Black White Bold Modern Studio Logo (2).png " class="" alt=""></a>
+        <nav>
+            <ul id="navbar">
+                <li><a class="active" href="checkout.html">Checkout</a></li>
+                <li><a  href="../Homepage Folder/homepage.html">Home</a></li>
+                <li><a href="cart.html">View cart</a></li>
+                <li><a href="logout.html">Log Out</a></li>
+               
+            </ul>
+           
+            
+        </nav>
+        
+    </section>
+    <section id="check">
+        <h2 id="checkout">Ready to check out?</h2>
+        <p id ="cute">Almost there — a few final details and your order will be on its way.</p>
+    </section>
+
+    <main>
+        <form action="/submit-order" method="post" id="form2">
+          <section id="billing">
+            <h5>SHIPPING DETAILS</h5>
+            <fieldset>
+              <label for="firstname">First Name:</label>
+              <input type="text" id="firstname" name="firstname" required>
+
+              <label for="Lastname">Last Name:</label>
+              <input type="text" id="lastname" name="lastname" required>
+    
+              <label for="country">Country:</label>
+                <select id="country" name="country" required>
+                <option value="">Please select...</option>
+                </select>
+                <label for="city">City:</label>
+                <select id="city" name="city" required disabled>
+                  <option value="">Select a country first</option>
+                </select>
+    
+              <label for="address">Address:</label>
+              <textarea id="address" rows="4" required></textarea>
+            
+            </fieldset>
+
+            <h5>CONTACT DETAILS</h5>
+            <fieldset>
+                <label for="Contact">Contact Number:</label>
+              <input type="tel" id="contact" name="contact" required>
+
+              <label for="email">Email:</label>
+              <input type="text" id="email" name="email" required>
+
+            </fieldset>
+
+            <h5>ADDITIONAL INFO (OPTIONAL)</h5>
+            <fieldset>
+                <label for="note">Order Note:</label>
+                <textarea id="note" rows="6" ></textarea>
+              
+
+            </fieldset>
+          </section>
+          <section id="order">
+            <h5>CART SUMMARY</h5>
+        
+           
+            <section id="cart-items"></section>
+        
+            <button id="placeorder" type="submit">Place order</button>
+          </section>
+          </form>
+       
+         
+       
+        
+      </main>
+      <script type="module" src="checkout.js"></script> 
+
+      <footer id="check">
+        <section class="footer-help">
+          <h2>Help</h2>
+          <ul>
+            <li><a href="#">Contact Us</a></li>
+            <li><a href="#">Submit an Idea</a></li>
+            <li><a href="#">Suggest a Product</a></li>
+          </ul>
+        </section>
+    
+        <section class="footer-logo">
+          <h2>ArtAlley</h2>
+        </section>
+    
+        <section class="footer-account">
+          <h2>Account</h2>
+          <ul>
+            <li><a href="#">My Account</a></li>
+            <li><a href="#">Track Order</a></li>
+            <li><a href="#">Personal Details</a></li>
+          </ul>
+        </section>
+      </footer>
+</body>
+</html>

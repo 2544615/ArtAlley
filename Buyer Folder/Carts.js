@@ -237,3 +237,15 @@ console.log(cart);
       window.location.href = "../SignIn Folder/login-buyer.html"; // Just in case user is not authenticated
     }
   });
+
+  const check = document.getElementById('checkout');
+  check.addEventListener("click", function(){
+
+    if(cart.length === 0){
+      alert("Please add to cart first.")
+    }
+    else{
+      window.location.href= "checkout.html";
+    }
+
+  })
