@@ -49,7 +49,7 @@ const cart = [];
       await updateDoc(docRef, {
         quantity: existingItem.quantity + 1
       });
-    } else {
+      } else {
         if (product.quantity < 1) {
             return alert("This product is out of stock.");
         }
@@ -126,7 +126,7 @@ const cart = [];
     <img src="${imageUrl}" alt="${item.name}">
   </figure>
     <h3>${item.name}</h3>
-    <p><button class="remove-button" aria-label="Remove ${item.name} from cart">Remove</button></p>
+    <p><button class="remove-button" id="DeleteBtn" aria-label="Remove ${item.name} from cart">Remove</button></p>
   <nav class="quantity-control" aria-label="Quantity control for ${item.name}" data-name="${item.name}" data-stock="${item.stock}">
     <button class="decreaseQuantity" aria-label="Decrease quantity">−</button>
     <p class="quantity">${item.quantity}</p>
@@ -145,72 +145,112 @@ const cart = [];
     cartSection.appendChild(totalElement);
   }
 
-console.log(cart);
-  document.addEventListener("click", async function (e) {
-    const isIncrease = e.target.classList.contains("increaseQuantity");
-    const isDecrease = e.target.classList.contains("decreaseQuantity");
-    const isRemove = e.target.classList.contains("remove-button");
-  
-    if (!isIncrease && !isDecrease && !isRemove) return;
-    const quantityContainer = e.target.closest(".quantity-control");
-    const quantitySpan = quantityContainer.querySelector(".quantity");
-    const name = quantityContainer.dataset.name;
-    const stock = parseInt(quantityContainer.dataset.stock);
-    let currentQuantity = parseInt(quantitySpan.textContent);
-    console.log(stock);
-  
-    const user = auth.currentUser;
-    if (!user) return alert("You must be logged in.");
-    const cartRef = doc(db, "users", user.uid, "cart", "active");
-    const itemsRef = collection(cartRef, "items");
-  
 
-    const q = query(itemsRef, where("name", "==", name));
-    const snapshot = await getDocs(q);
-    if (snapshot.empty) return;
-    const docRef = snapshot.docs[0].ref;
-  
-    // Increase
-    if (isIncrease && currentQuantity < stock) {
-        console.log("increase in pressed");
-      await updateDoc(docRef, { quantity: currentQuantity + 1 })
-    }else if(isIncrease && currentQuantity >= stock){
-        return alert(`Cannot exceed available stock quantity for ${name}`);
+console.log(cart);
+async function deleteItemFromCart(docRef, name) {
+  const confirmRemove = confirm(`Are you sure you want to delete ${name} from your cart?`);
+  if (confirmRemove) {
+    try {
+      await deleteDoc(docRef);
+      await loadCartFromFirestore();
+    } catch (error) {
+      console.error("Error deleting item:", error);
+      alert("Failed to delete item. Please try again.");
     }
+  }
+}
+
+document.addEventListener("click", async function (e) {
+  const isIncrease = e.target.classList.contains("increaseQuantity");
+  const isDecrease = e.target.classList.contains("decreaseQuantity");
+  const isRemove = e.target.classList.contains("remove-button");
+
+  if (!isIncrease && !isDecrease && !isRemove) return;
+
+  const user = auth.currentUser;
+  if (!user) return alert("You must be logged in.");
+
+  const cartRef = doc(db, "users", user.uid, "cart", "active");
+  const itemsRef = collection(cartRef, "items");
+
   
-    // Decrease
-    if (isDecrease) {
-        console.log("decrease is pressed");
-      if (currentQuantity > 1) {
-        await updateDoc(docRef, { quantity: currentQuantity - 1 });
-      } else {
-        const confirmRemove = confirm("Remove item from cart?");
-        if (confirmRemove) await deleteDoc(docRef);
-      }
+  if (isRemove) {
+    const name = e.target.closest(".cart-item")?.querySelector("h3")?.textContent;
+    if (!name) return;
+
+  /*const user = auth.currentUser;
+  if (!user) return alert("You must be logged in.");
+
+  const cartRef = doc(db, "users", user.uid, "cart", "active");
+  const itemsRef = collection(cartRef, "items");*/
+
+  const q = query(itemsRef, where("name", "==", name));
+  const snapshot = await getDocs(q);
+  if (snapshot.empty) return;
+  const docRef = snapshot.docs[0].ref;
+  await deleteItemFromCart(docRef,name);
+  }
+
+  const quantityContainer = e.target.closest(".quantity-control");
+  if(!quantityContainer)return;
+
+  const quantitySpan = quantityContainer.querySelector(".quantity");
+  const name = quantityContainer.dataset.name;
+  const stock = parseInt(quantityContainer.dataset.stock);
+  let currentQuantity = parseInt(quantitySpan.textContent);
+
+  const q = query(itemsRef, where("name", "==", name));
+  const snapshot = await getDocs(q);
+  if (snapshot.empty) return;
+  const docRef = snapshot.docs[0].ref;
+ 
+
+  if (isIncrease) {
+    if (currentQuantity < stock) {
+      await updateDoc(docRef, { quantity: currentQuantity + 1 });
+    } else {
+      alert(`Cannot exceed available stock quantity for ${name}`);
     }
-    // if(isRemove){
-    //     const confirmRemove = confirm("Are you sure you want to delete item from cart?");
-    //     if (confirmRemove) await deleteDoc(docRef);
-    // }
-  
-    await loadCartFromFirestore(); // ← Reload and re-render
-  });
+  }
+
+  if (isDecrease) {
+    if (currentQuantity > 1) {
+      await updateDoc(docRef, { quantity: currentQuantity - 1 });
+    } else {
+      await deleteItemFromCart(docRef, name);
+    }
+  }
+
+  await loadCartFromFirestore();
+});
+
   
 
   document.getElementById("cartButton").addEventListener("click", () => {
     window.location.href = "cart.html";
   });
+  //ALso here for the go back
+  document.addEventListener("DOMContentLoaded", function () {
+    const goBack = document.getElementById("goBack");
+  
+    if (goBack) {
+      goBack.addEventListener("click", function () {
+        window.history.back();
+      });
+    }
+  });
+  
   
   document.getElementById("profileButton").addEventListener("click", async () => {
     const user = auth.currentUser;
     if (user) {
       try {
-        const userDocRef = doc(db, "users", user.uid); // Assuming your user profiles are stored in a "users" collection
+        const userDocRef = doc(db, "users", user.uid); 
         const querySnapshot = await getDoc(userDocRef);
-        //let userData = null;
+        
   
         if (!querySnapshot.exists()) {
-          // No profile found — redirect to profile.html
+          
           window.location.href = "../SignUp Folder/buyer-profile.html";
           return;
         }
@@ -237,3 +277,4 @@ console.log(cart);
       window.location.href = "../SignIn Folder/login-buyer.html"; // Just in case user is not authenticated
     }
   });
+

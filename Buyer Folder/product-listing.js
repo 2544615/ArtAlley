@@ -54,6 +54,7 @@ function renderProducts(productList) {
     button.addEventListener('click', (e) => {
       e.stopPropagation(); // So it doesn't trigger the "clickable" navigation
       addToCart(product);
+      alert(`${product.name} added to cart`);//added an alert message that your item is added to cart
     });
   });
  
