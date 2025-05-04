@@ -280,7 +280,7 @@ document.addEventListener("click", async function (e) {
 
 
 
- const check = document.getElementById('checkout');
+ const check = document.getElementById("checkout");
   check.addEventListener("click", function(){
 
     if(cart.length === 0){
