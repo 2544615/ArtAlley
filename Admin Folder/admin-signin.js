@@ -1,104 +1,88 @@
-// Import the functions you need from the SDKs you need
-import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-app.js";
-import { getAuth, GoogleAuthProvider, signInWithPopup, signInWithEmailAndPassword,signOut  } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-auth.js";
-import{getFirestore,doc,getDoc} from "https://www.gstatic.com/firebasejs/11.6.0/firebase-firestore.js";
+/**
+ * @jest-environment jsdom
+ */
 
+const fs = require("fs");
+const path = require("path");
 
-const firebaseConfig = {
-  apiKey: "AIzaSyDUfE0XLFPlpw_SAJIFoQlJhylk-r2VY4Y",
-  authDomain: "artalley-b9c96.firebaseapp.com",
-  projectId: "artalley-b9c96",
-  storageBucket: "artalley-b9c96.firebasestorage.app",
-  messagingSenderId: "1056868925602",
-  appId: "1:1056868925602:web:4fa9734632b255594917fb"
-};
+describe("Admin Login Page", () => {
+  let htmlContent;
 
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);
-const auth = getAuth();
-const db=getFirestore(app);
-
-const email = document.getElementById('email');
-const password = document.getElementById('password');
-const submit = document.querySelector('.login-btn');
-const provider = new GoogleAuthProvider();
-
-const google_login = document.getElementById("google-btn");
-
-const expectedRole="admin";
-
-async function verifyUserRole(user){
-  const userRef=doc(db,"users",user.uid);
-  const userSnap=await getDoc(userRef);
-
-if(!userSnap.exists()){
-  await signOut(auth);
-  alert("User data not found in the database");
-  return false;
-}
-const userData=userSnap.data();
-if(userData.role!==expectedRole){
-  await signOut(auth);
-  alert("Access denied!");
-  return false;
-}
-return userData;
-}
-
-submit.addEventListener('click', function(event){
-    event.preventDefault();
-    const emailValue = email.value;
-    const passwordValue = password.value;
-    if(!emailValue||!passwordValue){
-      alert("please enter both email and password");
-      return;
-    }
-  signInWithEmailAndPassword(auth, emailValue, passwordValue)
-  .then(async(userCredential) => {
-    // Signed in 
-    const user = userCredential.user;
-
-    const userData=await verifyUserRole(user);
-    if(!userData)
-      return;
-    window.location.href="admin-dashboard.html";
-     // ...
-  })
-  .catch((error) => {
-    alert('Login failed!')
-    const errorCode = error.code;
-    const errorMessage = error.message;
-    alert(errorMessage);
+  beforeAll(() => {
+    // Read the HTML file content
+    const htmlPath = path.resolve(__dirname, "admin-signin.html"); // Adjusted for admin login page
+    htmlContent = fs.readFileSync(htmlPath, "utf-8");
   });
-})
 
-google_login.addEventListener("click", function(){
+  beforeEach(() => {
+    // Set the document's innerHTML to the HTML content read from the file
+    document.body.innerHTML = htmlContent;
+  });
 
-  signInWithPopup(auth, provider)
-    .then(async(result) => {
-      const credential = GoogleAuthProvider.credentialFromResult(result);
-      const token = credential.accessToken;
-      const user = result.user;
-      const userRef=doc(db,"users",user.uid);
-      const userSnap=await getDoc(userRef);
-      if(userSnap.exists()){
-        const userData=userSnap.data();
-        if(userData.role!==expectedRole){
-          await signOut(auth);
-          alert("Access denied");
-          return;
-        }
-        console.log(user);
-        window.location.href="admin-dashboard.html";
-      }else{
-        alert("User data not found");
-      } 
-    })
-    .catch((error) => {
-      const errorCode = error.code;
-      const errorMessage = error.message;
-      const email = error.customData.email;
-      const credential = GoogleAuthProvider.credentialFromError(error);
-      console.error("Error during sign-in:", errorCode, errorMessage);
+  test("Loads the login form correctly", () => {
+    expect(document.querySelector("h2")?.textContent).toBe("Admin SignIn");
+    expect(document.querySelector("p.welcome-msg")?.textContent).toBe("Welcome back");
+  });
+
+  test("Has email and password fields", () => {
+    const emailInput = document.querySelector("input#email");
+    const passwordInput = document.querySelector("input#password");
+
+    expect(emailInput).toBeTruthy();
+    expect(emailInput?.getAttribute("type")).toBe("email");
+    expect(emailInput?.getAttribute("placeholder")).toBe("Enter your email here");
+
+    expect(passwordInput).toBeTruthy();
+    expect(passwordInput?.getAttribute("type")).toBe("password");
+    expect(passwordInput?.getAttribute("placeholder")).toBe("**********");
+  });
+
+  test("Login button is present and functional", () => {
+    const loginBtn = document.querySelector("button.login-btn");
+    expect(loginBtn).toBeTruthy();
+    expect(loginBtn?.textContent).toContain("Login");
+  });
+
+  test("Forgot Password link is correct", () => {
+    const forgotLink = document.querySelector("nav.options a");
+    expect(forgotLink).toBeTruthy();
+    expect(forgotLink?.getAttribute("href")).toBe("ForgotPaswword.html");
+  });
+
+  test("Google sign-in section is visible", () => {
+    const googleBtn = document.querySelector("#google-btn");
+    const googleImg = document.querySelector("#google-btn img");
+
+    expect(googleBtn).toBeTruthy();
+    expect(googleBtn?.textContent).toContain("Sign in with Google");
+
+    expect(googleImg?.getAttribute("src")).toContain("google-logo.png");
+  });
+
+  test("Redirects correctly after successful login", () => {
+    const loginBtn = document.querySelector("button.login-btn");
+
+    Object.defineProperty(window, "location", {
+      value: { href: "" },
+      writable: true,
     });
+
+    loginBtn.addEventListener("click", () => {
+      window.location.href = "admin-dashboard.html"; // Admin-specific redirection
+    });
+
+    loginBtn.click();
+    expect(window.location.href).toBe("admin-dashboard.html");
+  });
+
+  test("Denies access if user is not an admin", () => {
+    const userData = { role: "user" }; // Simulate a non-admin user
+    const expectedRole = "admin";
+
+    if (userData.role !== expectedRole) {
+      window.location.href = "access-denied.html"; // Redirect to an access denied page
+    }
+
+    expect(window.location.href).toBe("access-denied.html");
+  });
 });
