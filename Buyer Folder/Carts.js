@@ -280,14 +280,15 @@ document.addEventListener("click", async function (e) {
 
 
 
- const check = document.getElementById("checkout");
-  check.addEventListener("click", function(){
-
-    if(cart.length === 0){
-      alert("Please add to cart first.")
-    }
-    else{
-      window.location.href= "checkout.html";
-    }
-
-  })
+document.addEventListener("DOMContentLoaded", function() {
+  const check = document.getElementById('checkout');
+  if (check) {
+    check.addEventListener("click", function() {
+      if (cart.length === 0) {
+        alert("Please add to cart first.");
+      } else {
+        window.location.href = "checkout.html";
+      }
+    });
+  }
+});
