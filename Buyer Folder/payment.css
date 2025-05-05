@@ -1,0 +1,202 @@
+body {
+  display: flex;
+  flex-direction: column; /* Stack elements vertically */
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* Full height */
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+  overflow: hidden; /* Prevent scrolling when the form is in the center */
+}
+
+  h1, h2, h3 {
+    margin-bottom: 10px;
+    color: #222;
+  }
+
+  form {
+    position: relative;
+    width: 400px; /* Set a fixed width for the form */
+    min-width: 300px; /* Ensure the form doesn't become too small */
+    padding: 20px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    overflow: hidden; /* Prevent scrolling when centered */
+  }
+  
+  /* Centering the loader (dots) */
+  form::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    --d: 22px;
+    color: #f38704;
+    box-shadow: 
+      calc(1*var(--d))      calc(0*var(--d))     0 0,
+      calc(0.707*var(--d))  calc(0.707*var(--d)) 0 1px,
+      calc(0*var(--d))      calc(1*var(--d))     0 2px,
+      calc(-0.707*var(--d)) calc(0.707*var(--d)) 0 3px,
+      calc(-1*var(--d))     calc(0*var(--d))     0 4px,
+      calc(-0.707*var(--d)) calc(-0.707*var(--d))0 5px,
+      calc(0*var(--d))      calc(-1*var(--d))    0 6px;
+    animation: spinDots 1s infinite steps(8);
+    visibility: hidden;
+    z-index: 10;
+  }
+  @keyframes spinDots {
+    100% { transform: translate(-50%, -50%) rotate(1turn); }
+  }
+  
+  form.loading::after {
+    visibility: visible;
+  }
+  
+
+  fieldset {
+    margin-bottom: 20px;
+    border: none;
+    padding: 0;
+  }
+
+  label {
+    display: block;
+    margin: 12px 0 5px;
+  }
+
+  input[type="text"],
+  input[type="email"],
+  input[type="number"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #bbb;
+    border-radius: 4px;
+    box-sizing: border-box;
+    transition: border 0.3s;
+  }
+
+  input[type="text"]:focus,
+  input[type="email"]:focus,
+  input[type="number"]:focus {
+    border-color: #0077cc;
+    outline: none;
+  }
+
+  input[type="radio"] {
+    margin-right: 8px;
+  }
+
+  section {
+    margin-top: 15px;
+  }
+
+  .hidden {
+    display: none;
+  }
+
+  button {
+    padding: 12px 25px;
+    margin-top: 20px;
+    background-color: #cc6d00;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+  }
+
+  button:hover {
+    background-color: #cc6d00;
+  }
+
+  .success {
+    margin-top: 20px;
+    color: green;
+    font-weight: bold;
+  }
+
+  .error {
+    color: red;
+    font-size: 14px;
+    margin-top: 10px;
+  }
+
+  /* Confirmation section styling */
+/* Confirmation section styling */
+#confirmation {
+  background-color: #fff;
+  padding: 20px;
+  border-left: 5px solid #f99f05;
+  border-radius: 6px;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+}
+
+  /* Card input group */
+  .card-row {
+    display: flex;
+    gap: 10px;
+  }
+
+  .card-row input {
+    flex: 1;
+  }
+
+  @media (max-width: 600px) {
+    body {
+      padding: 20px;
+    }
+
+    .card-row {
+      flex-direction: column;
+    }
+  }
+  .row {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+  }
+  
+  .row > div {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  #payBtn {
+    display: block;
+    margin: 20px auto;
+  }
+
+  /* Loader for processing state */
+  #loader {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 20px;
+    color: #f38704;
+    font-weight: bold;
+    display: none; /* Initially hidden */
+  }
+  
+  #loader.active {
+    display: block;
+  }
+  
+  #errorMessage {
+    color: red;
+    font-weight: bold;
+  }
+  #message {
+    color: green;
+    font-weight: bold;
+  }
+  
