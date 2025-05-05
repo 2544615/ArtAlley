@@ -1,45 +1,38 @@
-{
-  "name": "uat",
-  "version": "1.0.0",
-  "description": "Local Artisan Marketplace - Group 30",
-  "main": "index.js",
-  "scripts": {
-    "test": "jest --coverage",
-    "test:watch": "jest --watch",
-    "coverage": "jest --coverage --collectCoverageFrom='**/{Buyer Folder,Seller Folder,Admin Folder,SignIn Folder,SignUp Folder,Homepage Folder}/**/*.js'",
-    "build": "rm -rf build && mkdir build && cp -R ./Homepage\\ Folder ./SignIn\\ Folder ./SignUp\\ Folder ./Admin\\ Folder ./Buyer\\ Folder ./Seller\\ Folder ./index.html ./build",
-    "start": "serve . -l 3000"
+module.exports = {
+  // The test environment that will be used for testing
+  testEnvironment: 'jsdom',
+
+  // The glob patterns Jest uses to detect test files
+  testMatch: ["**/*.test.[jt]s?(x)"],
+
+  // An array of directory names to be searched recursively up from the requiring module's location
+  moduleDirectories: ['node_modules'],
+
+  // An array of file extensions your modules use
+  moduleFileExtensions: ['js', 'json', 'jsx', 'node'],
+
+  // Mocks CSS files to return an empty object
+  moduleNameMapper: {
+    '\\.(css|less|scss|sass)$': 'identity-obj-proxy',
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "dependencies": {
-    "text-encoding": "^0.7.0",
-    "whatwg-url": "^14.0.0"
+
+  // Collect coverage information from specified folders
+  collectCoverage: true,
+  collectCoverageFrom: [
+    "**/*.{js,jsx}",
+    "!**/node_modules/**",
+    "!**/*.test.{js,jsx}",
+    "!**/jest.config.js"
+  ],
+
+  // Output coverage information
+  coverageReporters: ['json', 'lcov', 'text', 'clover'],
+
+  transform: {
+    '^.+\\.js$': 'babel-jest',
   },
-  "devDependencies": {
-    "@babel/core": "^7.24.5",
-    "@babel/preset-env": "^7.27.1",
-    "@firebase/app": "^0.11.5",
-    "@firebase/auth": "^1.10.1",
-    "@firebase/firestore": "^4.7.11",
-    "@jest/globals": "^29.7.0",
-    "babel-jest": "^29.7.0",
-    "firebase": "^11.6.1",
-    "identity-obj-proxy": "^3.0.0",
-    "jest": "^29.7.0",
-    "jest-environment-jsdom": "^29.7.0",
-    "jsdom": "^24.0.0",
-    "rimraf": "^6.0.1",
-    "serve": "^14.2.4",
-    "util": "^0.12.5"
+
+  globals: {
+    TextEncoder: require('util').TextEncoder,
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/2544615/ArtAlley.git"
-  },
-  "bugs": {
-    "url": "https://github.com/2544615/ArtAlley/issues"
-  },
-  "homepage": "https://github.com/2544615/ArtAlley#readme"
-}
+};
