@@ -54,7 +54,8 @@ onAuthStateChanged(auth, async(user) => {
         timestamp: serverTimestamp()
       });
 
-      alert("Successfully checked out!");
+      //alert("Successfully checked out!");
+        window.location.href = "payment.html";
       
     } catch (error) {
       console.error("Error uploading product:", error);
