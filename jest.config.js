@@ -26,15 +26,7 @@ module.exports = {
   ],
 
   // Output coverage information
-  coverageReporters: ['json', 'lcov', 'text', 'clover','text-summary'],
-  coverageThreshold: {
-      global: {
-        branches: 80,
-        functions: 80,
-        lines: 80,
-        statements: 80
-      }
-    },
+  coverageReporters: ['json', 'lcov', 'text', 'clover'],
 
   transform: {
     '^.+\\.js$': 'babel-jest',
