@@ -4,8 +4,7 @@ module.exports = {
   moduleDirectories: ['node_modules'],
   moduleFileExtensions: ['js', 'json', 'jsx', 'node'],
   moduleNameMapper: {
-    '\\.(css|less|scss|sass)$': 'identity-obj-proxy',
-    '^https://www.gstatic.com/firebasejs/(.*)$': '<rootDir>/__mocks__/firebase.js'
+    '\\.(css|less|scss|sass)$': 'identity-obj-proxy'
   },
   collectCoverage: true,
   collectCoverageFrom: [
