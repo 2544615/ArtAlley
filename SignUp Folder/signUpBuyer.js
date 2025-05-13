@@ -1,7 +1,7 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-app.js";
 import {getFirestore,doc,getDoc,setDoc, collection, query, where, getDocs} from "https://www.gstatic.com/firebasejs/11.6.0/firebase-firestore.js";
-import { getAuth, GoogleAuthProvider,signInWithPopup,createUserWithEmailAndPassword,signOut } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-auth.js";
+import { getAuth, GoogleAuthProvider,signInWithPopup,createUserWithEmailAndPassword,signOut,sendEmailVerification } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-auth.js";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -97,6 +97,23 @@ submit.addEventListener('click', async function(event){
   try {
     const userCredential = await createUserWithEmailAndPassword(auth, emailValue, passwordValue);
     const user = userCredential.user;
+
+    //Send email verification
+  await sendEmailVerification(user);
+  alert("A verification email has been sent. Please check your inbox.");
+  // Start auto-check for verification
+const checkInterval = setInterval(async () => {
+  await user.reload(); // Refresh user data
+
+  const latestUser = auth.currentUser;
+
+  if (latestUser.emailVerified) {
+    clearInterval(checkInterval);
+    alert("Email verified! Successfully signed up as a buyer! ");
+    window.location.href = "../Buyer Folder/product-listing.html";
+  }
+}, 5000); // Check every 5 seconds
+  
     await setDoc(doc(db,"users",user.uid),{
       uid:user.uid,
       //username:usernameValue,
@@ -109,9 +126,9 @@ submit.addEventListener('click', async function(event){
       await auth.signOut();
       throw new Error("Role verification failed");
     }
-    alert('Successfully signed up as a buyer!');
-    console.log('user signed up');
-    window.location.href="../Buyer Folder/product-listing.html";
+    // alert('Successfully signed up as a buyer!');
+    // console.log('user signed up');
+    // window.location.href="../Buyer Folder/product-listing.html";
     } catch(error) {
       const errorMessage = error.message;
       alert(`Error: ${errorMessage}`);

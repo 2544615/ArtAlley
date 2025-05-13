@@ -97,6 +97,23 @@ submit.addEventListener('click', async function(event){
   try {
     const userCredential = await createUserWithEmailAndPassword(auth, emailValue, passwordValue);
     const user = userCredential.user;
+
+      //Send email verification
+  await sendEmailVerification(user);
+  alert("A verification email has been sent. Please check your inbox.");
+  // Start auto-check for verification
+const checkInterval = setInterval(async () => {
+  await user.reload(); // Refresh user data
+
+  const latestUser = auth.currentUser;
+
+  if (latestUser.emailVerified) {
+    clearInterval(checkInterval);
+    alert("Email verified! Successfully signed up as a seller! ");
+    console.log('user signed up');
+    window.location.href="seller-profile.html";
+  }
+}, 5000); // Check every 5 seconds
     await setDoc(doc(db,"users",user.uid),{
       uid:user.uid,
       //username:usernameValue,
@@ -109,9 +126,9 @@ submit.addEventListener('click', async function(event){
       await auth.signOut();
       throw new Error("Role verification failed");
     }
-    alert('Successfully signed up as a seller!');
-    console.log('user signed up');
-    window.location.href="seller-profile.html";
+    // alert('Successfully signed up as a seller!');
+    // console.log('user signed up');
+    // window.location.href="seller-profile.html";
     } catch(error) {
       const errorMessage = error.message;
       alert(`Error: ${errorMessage}`);
