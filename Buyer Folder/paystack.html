@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Paystack Payment</title>
+  <link rel="stylesheet" href="paystack.css">
+  <script src="https://js.paystack.co/v2/inline.js"></script>
+</head>
+<body>
+
+  <h2>Paystack Payment</h2>
+
+  <form id="paymentForm">
+    <label for="email-address">Email:</label>
+    <input type="email" id="email-address" readonly required placeholder="your@email.com" />
+
+    <label for="amount">Amount (R ZAR):</label>
+    <input type="number" id="amount" readonly placeholder="e.g., 1000" />
+
+    <label for="card-holder-name">Card Holder Name</label>
+    <input type="text" id="cardHolder" pattern="[A-Za-z\s]+" required>
+
+    <button type="submit">Pay with Paystack</button>
+  </form>
+
+
+  <script type="module" src="paystack.js"></script>
+
+</body>
+</html>
