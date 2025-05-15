@@ -16,6 +16,66 @@ header {
   background-color:chocolate;
 }
 
+/* Hamburger Button */
+.hamburger {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  color: white;
+  cursor: pointer;
+  margin-right: 10px;
+}
+
+/* Sidebar */
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: -250px;
+  width: 230px;
+  height: 100%;
+  background-color: #f8e6d4; /* lighter nude background */
+  color: #3e2723; /* dark brown text */
+  padding-top: 70px;
+  transition: left 0.3s ease;
+  box-shadow: 2px 0 8px rgba(0,0,0,0.2);
+  z-index: 1000;
+}
+
+.sidebar.active {
+  left: 0;
+}
+
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+}
+
+.sidebar ul li {
+  padding: 15px 20px;
+  border-bottom: 1px solid #d2b48c;
+}
+
+.sidebar ul li a {
+  color: #3e2723;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.sidebar ul li a:hover {
+  text-decoration: underline;
+}
+
+/* Sidebar Close Icon */
+.sidebar .close-btn {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: none;
+  border: none;
+  font-size: 1.2rem;
+  color: #3e2723;
+  cursor: pointer;
+}
 
 /* Centering title */
 header h1 {
@@ -122,6 +182,7 @@ header nav {
   margin: 5px 0;
   font-weight: bold;
 }
+
 .product-card button{
   padding: 6px 14px;
   background-color: #A0522D; /* Sienna brown */
@@ -135,6 +196,7 @@ header nav {
   align-items: center;
   justify-content: center;
 }
+
 .product-card button:hover {
   background-color: #8B4513; /* Darker brown on hover */
 }
