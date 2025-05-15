@@ -27,6 +27,18 @@ const profileForm = document.getElementById("profileForm");
     if (user) {
       const userDocRef = doc(db, "users", user.uid);
       
+      const userSnap = await getDoc(userDocRef);
+      if (userSnap.exists()) {
+        const userData = userSnap.data();
+        document.getElementById("firstName").value = userData.firstName || "";
+        document.getElementById("lastName").value = userData.lastName || "";
+        document.getElementById("profileUsername").value = userData.username || "";
+        document.getElementById("number").value = userData.phone || "";
+        document.getElementById("address").value = userData.address || "";
+      } else {
+        console.log("No user document found. User might be new.");
+      }
+
 
       profileForm.addEventListener("submit", async (e) => {
         e.preventDefault();
