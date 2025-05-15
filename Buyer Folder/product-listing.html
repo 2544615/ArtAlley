@@ -10,6 +10,11 @@
 <body>
 
   <header>
+    <!-- Hamburger Icon for Sidebar -->
+    <button class="hamburger" id="hamburgerBtn">
+      <i class="fas fa-bars"></i>
+    </button>
+    
     <h1>ArtAlley</h1>
     <nav class="icons">
         <input type="text" placeholder="Search..." class="search-bar" />
@@ -18,6 +23,20 @@
         <button id="profileButton"><i class="fas fa-user account-icon"></i></button>
     </nav>
   </header>
+
+  <!-- Sidebar Navigation -->
+  <aside id="sidebar" class="sidebar">
+  <button class="close-btn" onclick="document.getElementById('sidebar').classList.remove('active')">
+    <i class="fas fa-arrow-left"></i>
+  </button>
+    
+    <ul>
+      <li><a href="#">Manage My Account</a></li>
+      <li><a href="#">Track My Order</a></li>
+      <li><a href="view-orders.html">View Orders</a></li>
+      <li><a href="reviews.html">Product Reviews</a></li>
+    </ul>
+  </aside>
 
   <main>
     <section class="controls">
@@ -46,7 +65,19 @@
       <button id="nextPage">Next &raquo;</button>
     </section>
   </main>
+
   <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
   <script type="module" src="product-listing.js"></script>
+  <script>
+    // Toggle sidebar
+    document.addEventListener("DOMContentLoaded", function () {
+      const sidebar = document.getElementById("sidebar");
+      const hamburgerBtn = document.getElementById("hamburgerBtn");
+      
+      hamburgerBtn.addEventListener("click", () => {
+        sidebar.classList.toggle("active");
+      });
+    });
+  </script>
 </body>
 </html>
