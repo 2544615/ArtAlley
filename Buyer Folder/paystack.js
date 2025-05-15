@@ -1,5 +1,5 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-app.js";
-import {writeBatch, getFirestore, doc, collection, getDocs} from "https://www.gstatic.com/firebasejs/11.6.0/firebase-firestore.js";
+import { writeBatch, getFirestore, doc, collection, getDocs, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-firestore.js";
 import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-auth.js";
 
 // Firebase config
@@ -18,82 +18,108 @@ const auth = getAuth();
 const db = getFirestore(app);
 
 // Restore input values from localStorage
-    
-    document.addEventListener("DOMContentLoaded", () => {
-    const emailInput = document.getElementById("email-address");
-    const amountInput = document.getElementById("amount");
+document.addEventListener("DOMContentLoaded", () => {
+  const emailInput = document.getElementById("email-address");
+  const amountInput = document.getElementById("amount");
 
-    const savedEmail = localStorage.getItem("checkoutEmail");
-    const savedAmount = localStorage.getItem("checkoutAmount");
+  const savedEmail = localStorage.getItem("checkoutEmail");
+  const savedAmount = localStorage.getItem("checkoutAmount");
 
-    if (savedEmail) {
-        emailInput.value = savedEmail;
-    }
+  if (savedEmail) emailInput.value = savedEmail;
+  if (savedAmount) amountInput.value = savedAmount;
+});
 
-    if (savedAmount) {
-        amountInput.value = savedAmount;
-    }
-    });
+// Restrict card holder input to letters and spaces
+document.getElementById('cardHolder').addEventListener('input', e => {
+  e.target.value = e.target.value.replace(/[^A-Za-z\s]/g, '');
+});
 
-    document.getElementById('cardHolder').addEventListener('input', e => {
-      e.target.value = e.target.value.replace(/[^A-Za-z\s]/g, '');
-    });
+const paymentForm = document.getElementById('paymentForm');
+paymentForm.addEventListener("submit", payWithPaystack, false);
 
-    const paymentForm = document.getElementById('paymentForm');
-    paymentForm.addEventListener("submit", payWithPaystack, false);
+function payWithPaystack(e) {
+  e.preventDefault();
 
-    function payWithPaystack(e) {
-      e.preventDefault();
+  let handler = PaystackPop.setup({
+    key: 'pk_test_959f6d667e0fe43328197575f6bbd632b9a5df01',
+    email: document.getElementById("email-address").value,
+    amount: document.getElementById("amount").value * 100,
+    currency: 'ZAR',
+    ref: 'TX_' + Math.floor(Math.random() * 1000000000 + 1),
 
-      let handler = PaystackPop.setup({
-        key: 'pk_test_959f6d667e0fe43328197575f6bbd632b9a5df01',
-        email: document.getElementById("email-address").value,
-        amount: document.getElementById("amount").value * 100,
-        currency: 'ZAR',
-        ref: 'TX_' + Math.floor(Math.random() * 1000000000 + 1),
-        callback: function(response) {
-          alert('✅ Payment successful!\nReference: ' + response.reference);
-          // TODO: Call backend endpoint to verify the payment using this reference
-          // Remove cart items and redirect after success
-            onAuthStateChanged(auth, async (user) => {
-                if (user) {
-                await removeItemsFromCart(user);
-                window.location.href = "checkout.html";
-                } else {
-                alert("⚠️ User not authenticated.");
-                }
+    callback: async function (response) {
+      alert('✅ Payment successful!\nReference: ' + response.reference);
+
+      onAuthStateChanged(auth, async (user) => {
+        if (!user) {
+          alert("⚠️ User not authenticated.");
+          return;
+        }
+
+        try {
+          // ✅ Fetch cart items
+          const cartRef = doc(db, "users", user.uid, "cart", "active");
+          const itemsRef = collection(cartRef, "items");
+          const cartSnapshot = await getDocs(itemsRef);
+
+          const items = [];
+          cartSnapshot.forEach(doc => {
+            const data = doc.data();
+            items.push({
+              name: data.name,
+              imageUrl: data.imageUrl || "",
+              price: data.price,
+              quantity: data.quantity
             });
-        },
-        onClose: function() {
-          alert('❌ Payment window closed.');
+          });
+
+          // ✅ Save to 'orders' collection
+          await addDoc(collection(db, "orders"), {
+            userId: user.uid,
+            timestamp: serverTimestamp(),
+            items: items
+          });
+
+          console.log("✅ Order saved to Firestore");
+
+          // ✅ Remove items from cart
+          await removeItemsFromCart(user);
+
+          // ✅ Redirect
+          window.location.href = "checkout.html";
+
+        } catch (error) {
+          console.error("❌ Error saving order:", error);
+          alert("There was a problem saving your order. Please contact support.");
         }
       });
+    },
 
-      handler.openIframe();
+    onClose: function () {
+      alert('❌ Payment window closed.');
     }
+  });
 
-    // Function to remove items from cart in Firestore
-    async function removeItemsFromCart(user) {
-      const cartRef = doc(db, "users", user.uid, "cart", "active");
-      const itemsRef = collection(cartRef, "items");
-    
-      // Step 1: Get all items in the cart
-      const cartSnapshot = await getDocs(itemsRef);
-      
-      if (cartSnapshot.empty) {
-        console.log("Cart is empty. No items to remove.");
-        return;
-      }
-    
-      // Step 2: Create a batch to delete all items in one atomic operation
-      const batch = writeBatch(db); // Write batch for atomic operations
-      
-      // Step 3: Loop through each document in the cart and delete it
-      cartSnapshot.forEach(doc => {
-        batch.delete(doc.ref); // Delete each item document
-      });
-    
-      // Step 4: Commit the batch operation
-      await batch.commit();
-      console.log("Items successfully removed from the cart.");
-    }
+  handler.openIframe();
+}
+
+// Remove cart items after successful payment
+async function removeItemsFromCart(user) {
+  const cartRef = doc(db, "users", user.uid, "cart", "active");
+  const itemsRef = collection(cartRef, "items");
+
+  const cartSnapshot = await getDocs(itemsRef);
+
+  if (cartSnapshot.empty) {
+    console.log("Cart is empty. No items to remove.");
+    return;
+  }
+
+  const batch = writeBatch(db);
+  cartSnapshot.forEach(doc => {
+    batch.delete(doc.ref);
+  });
+
+  await batch.commit();
+  console.log("🧹 Cart cleared.");
+}
