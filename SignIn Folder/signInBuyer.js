@@ -64,10 +64,13 @@ submit.addEventListener('click', function(event){
     if(!userData)
       return;
     
-    alert(`Successfully logged in as ${userData.role}`);
-    console.log('user signed in as a', userData);
-    window.location.href="../Buyer Folder/product-listing.html";//buyer-dashboard.html
-     // ...
+    if (!userData.username) {
+      window.location.href = "../SignUp Folder/buyer-username.html";
+    } else {
+      alert(`Successfully logged in as ${userData.role}`);
+      console.log('user signed in as a', userData);
+      window.location.href = "../Buyer Folder/product-listing.html";
+    }
   })
   .catch((error) => {
     alert('Login failed!')
@@ -93,9 +96,13 @@ google_login.addEventListener("click", function(){
           alert("Access denied");
           return;
         }
-        console.log(user);
-        alert("Successfully logged in")
-        window.location.href="../Buyer Folder/product-listing.html";//buyer-dashboard.html
+        if (!userData.username) {
+          window.location.href = "../SignUp Folder/buyer-username.html";
+        } else {
+          alert(`Successfully logged in as ${userData.role}`);
+          console.log('user signed in as a', userData);
+          window.location.href = "../Buyer Folder/product-listing.html";
+        }
       }else{
         alert("User data not found");
       } 
