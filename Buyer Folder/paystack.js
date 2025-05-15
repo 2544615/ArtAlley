@@ -86,7 +86,7 @@ function payWithPaystack(e) {
           await removeItemsFromCart(user);
 
           // ✅ Redirect
-          window.location.href = "checkout.html";
+          window.location.href = "product-listing.html";
 
         } catch (error) {
           console.error("❌ Error saving order:", error);
