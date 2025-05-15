@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Reviews - ArtAlley</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="reviews.css">
+  <script src="https://www.gstatic.com/firebasejs/11.6.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/11.6.0/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/11.6.0/firebase-firestore.js"></script>
+</head>
+<body>
+  <main class="reviews-container">
+    <header>
+      <h1>My Product Reviews</h1>
+    </header>
+
+    <section class="filter-section">
+      <label for="reviewFilter">Filter by:</label>
+      <select id="reviewFilter">
+        <option value="all">All Products</option>
+        <option value="reviewed">Reviewed</option>
+        <option value="not-reviewed">Not Reviewed</option>
+      </select>
+    </section>
+    
+    <section id="productsList" class="products-list">
+      <!-- Products will be loaded here -->
+    </section>
+    
+    <!-- Review Dialog (using dialog element instead of div) -->
+    <dialog id="reviewModal">
+      <article>
+        <button class="close" aria-label="Close review dialog">&times;</button>
+        <h2>Write Your Review</h2>
+        <figure class="product-info">
+          <img id="modalProductImage" src="" alt="">
+          <figcaption id="modalProductName"></figcaption>
+        </figure>
+        <fieldset class="rating">
+          <legend>Rating:</legend>
+          <menu class="stars">
+            <li><button class="star" data-value="1" aria-label="1 star">☆</button></li>
+            <li><button class="star" data-value="2" aria-label="2 stars">☆</button></li>
+            <li><button class="star" data-value="3" aria-label="3 stars">☆</button></li>
+            <li><button class="star" data-value="4" aria-label="4 stars">☆</button></li>
+            <li><button class="star" data-value="5" aria-label="5 stars">☆</button></li>
+          </menu>
+        </fieldset>
+        <label for="reviewText" class="sr-only">Your review</label>
+        <textarea id="reviewText" placeholder="Share your experience with this product..."></textarea>
+        <button id="submitReview">Submit Review</button>
+      </article>
+    </dialog>
+  </main>
+  
+  <script type="module" src="reviews.js"></script>
+</body>
+</html>
