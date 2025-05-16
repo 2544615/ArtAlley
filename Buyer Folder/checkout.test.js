@@ -2,119 +2,148 @@
  * @jest-environment jsdom
  */
 
-const fs = require("fs");
-const path = require("path");
+import {
+  initializeCheckout,
+  handleCheckoutSubmit,
+  loadCartItems,
+  loadCountriesAndCities
+} from './checkout.js';
+
+// Mock Firebase modules
+jest.mock('firebase/app', () => ({
+  ...jest.requireActual('firebase/app'), // Keep actual implementations
+  initializeApp: jest.fn(),
+  getAuth: jest.fn(() => ({
+    currentUser: { uid: 'test-user' }
+  })),
+  onAuthStateChanged: jest.fn((auth, callback) => callback({ uid: 'test-user' }))
+}));
+
+jest.mock('firebase/firestore', () => ({
+  getFirestore: jest.fn(),
+  doc: jest.fn(),
+  getDoc: jest.fn(),
+  setDoc: jest.fn(),
+  updateDoc: jest.fn(),
+  collection: jest.fn(),
+  addDoc: jest.fn(() => Promise.resolve()),
+  query: jest.fn(),
+  where: jest.fn(),
+  getDocs: jest.fn(() => Promise.resolve({
+    empty: false,
+    docs: [{ 
+      data: () => ({ 
+        name: 'Test Product', 
+        price: 100, 
+        quantity: 2
+      })
+    }]
+  })),
+  serverTimestamp: jest.fn(),
+  deleteDoc: jest.fn()
+}));
+
+// Mock fetch
+global.fetch = jest.fn(() =>
+  Promise.resolve({
+    json: () => Promise.resolve({ 
+      data: [
+        { name: 'South Africa' },
+        { name: 'United States' }
+      ] 
+    }),
+  })
+);
 
 describe("Checkout Page Functionality", () => {
-  let htmlContent;
+  let originalWindowLocation;
+  let originalLocalStorage;
 
   beforeAll(() => {
-    const htmlPath = path.resolve(__dirname, "checkout.html");
-    htmlContent = fs.readFileSync(htmlPath, "utf-8");
+    // Mock window.location
+    originalWindowLocation = window.location;
+    delete window.location;
+    window.location = { href: '' };
+
+    // Mock localStorage
+    originalLocalStorage = window.localStorage;
+    window.localStorage = {
+      setItem: jest.fn(),
+      getItem: jest.fn()
+    };
+
+    // Mock alert
+    window.alert = jest.fn();
+  });
+
+  afterAll(() => {
+    window.location = originalWindowLocation;
+    window.localStorage = originalLocalStorage;
+    jest.clearAllMocks();
+    localStorage.clear();
   });
 
   beforeEach(() => {
-    document.body.innerHTML = htmlContent;
+    document.body.innerHTML = `
+      <form id="form2">
+        <input id="firstname" value="John">
+        <input id="lastname" value="Doe">
+        <select id="country"></select>
+        <select id="city"></select>
+        <textarea id="address">123 Main St</textarea>
+        <input id="email" value="john@example.com">
+        <input id="contact" value="1234567890">
+        <textarea id="note">Test note</textarea>
+      </form>
+      <section id="cart-items"></section>
+    `;
   });
 
-  test("Checkout page loads correctly", () => {
-    expect(document.querySelector("title").textContent).toBe("ArtAlley-Checkout");
-    expect(document.querySelector("form#form2")).toBeTruthy();
-    expect(document.querySelector("#cart-items")).toBeTruthy();
+  test("initializeCheckout sets up event listeners", () => {
+    initializeCheckout();
+    const firebase = require('firebase/app');
+    expect(firebase.onAuthStateChanged).toHaveBeenCalled();
   });
 
-  test("Redirects to login page if user is not authenticated", () => {
-    Object.defineProperty(window, "location", {
-      value: { href: "" },
-      writable: true,
-    });
+  test("handleCheckoutSubmit processes form data correctly", async () => {
+    const mockUser = { uid: 'test-user' };
+    await handleCheckoutSubmit(mockUser, 200);
 
-    if (!document.body.dataset.authenticated) {
-      window.location.href = "../SignIn Folder/login-buyer.html";
-    }
-
-    expect(window.location.href).toBe("../SignIn Folder/login-buyer.html");
+    const firestore = require('firebase/firestore');
+    expect(firestore.addDoc).toHaveBeenCalled();
+    expect(window.localStorage.setItem).toHaveBeenCalledWith("checkoutAmount", "200.00");
+    expect(window.location.href).toBe("paystack.html");
   });
 
-  test("Handles checkout form submission correctly", () => {
-    const form = document.querySelector("#form2");
+  test("loadCartItems displays cart items and calculates total", async () => {
+    const mockUser = { uid: 'test-user' };
+    const total = await loadCartItems(mockUser);
 
-    Object.defineProperty(window, "location", {
-      value: { href: "" },
-      writable: true,
-    });
-
-    form.addEventListener("submit", (e) => {
-      e.preventDefault();
-      window.location.href = "confirmation.html"; // Simulated redirection after submission
-    });
-
-    form.dispatchEvent(new Event("submit"));
-
-    expect(window.location.href).toBe("confirmation.html");
+    expect(total).toBe(200);
+    const cartItemsSection = document.getElementById("cart-items");
+    expect(cartItemsSection.innerHTML).toContain("Test Product");
+    expect(cartItemsSection.innerHTML).toContain("R200.00");
   });
 
-  test("Loads cart summary and calculates total correctly", () => {
-    const cartItemsSection = document.querySelector("#cart-items");
-    const cartItems = [
-      { name: "Item A", price: 50, quantity: 2 },
-      { name: "Item B", price: 30, quantity: 1 },
-    ];
-
-    let total = 0;
-    cartItems.forEach((item) => {
-      const subtotal = item.price * item.quantity;
-      total += subtotal;
-
-      const itemSummary = document.createElement("section");
-      itemSummary.classList.add("summary-item");
-      itemSummary.innerHTML = `<p>${item.quantity}x ${item.name}</p><p>R${subtotal.toFixed(2)}</p>`;
-      cartItemsSection.appendChild(itemSummary);
-    });
-
-    const totalElement = document.createElement("p");
-    totalElement.innerHTML = `<strong>Total: R${total.toFixed(2)}</strong>`;
-    cartItemsSection.appendChild(totalElement);
-
-    expect(cartItemsSection.innerHTML).toContain("Item A");
-    expect(cartItemsSection.innerHTML).toContain("Item B");
-    expect(cartItemsSection.innerHTML).toContain("R130.00");
+  test("loadCountriesAndCities sets up country/city selection", async () => {
+    loadCountriesAndCities();
+    
+    await Promise.resolve(); // Allow fetch to complete
+    
+    const countrySelect = document.getElementById("country");
+    expect(countrySelect.innerHTML).toContain("option");
+    expect(fetch).toHaveBeenCalledWith("https://countriesnow.space/api/v0.1/countries/positions");
   });
 
-  test("Handles country and city selection dynamically", () => {
-    const countrySelect = document.createElement("select");
-    countrySelect.id = "country";
-    document.body.appendChild(countrySelect);
-
-    const citySelect = document.createElement("select");
-    citySelect.id = "city";
-    document.body.appendChild(citySelect);
-
-    // Simulate fetching countries
-    countrySelect.innerHTML = '<option value="">Select your country</option>';
-    const countries = ["South Africa", "United States"];
-    countries.forEach((country) => {
-      const option = document.createElement("option");
-      option.value = country;
-      option.textContent = country;
-      countrySelect.appendChild(option);
-    });
-
-    expect(countrySelect.innerHTML).toContain("South Africa");
-    expect(countrySelect.innerHTML).toContain("United States");
-
-    // Simulate country selection and fetching cities
-    countrySelect.value = "South Africa";
-    citySelect.innerHTML = '<option value="">Select your city</option>';
-    const cities = ["Johannesburg", "Cape Town"];
-    cities.forEach((city) => {
-      const option = document.createElement("option");
-      option.value = city;
-      option.textContent = city;
-      citySelect.appendChild(option);
-    });
-
-    expect(citySelect.innerHTML).toContain("Johannesburg");
-    expect(citySelect.innerHTML).toContain("Cape Town");
+  test("handles form submission with empty cart", async () => {
+    const firestore = require('firebase/firestore');
+    firestore.getDocs.mockResolvedValueOnce({ empty: true });
+    
+    const mockUser = { uid: 'test-user' };
+    const total = await loadCartItems(mockUser);
+    
+    expect(total).toBe(0);
+    const cartItemsSection = document.getElementById("cart-items");
+    expect(cartItemsSection.innerHTML).toContain("Your cart is empty");
   });
 });

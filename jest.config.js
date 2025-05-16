@@ -1,4 +1,4 @@
-module.exports = {
+export default {
   // The test environment that will be used for testing
   testEnvironment: 'jsdom',
 
@@ -19,10 +19,28 @@ module.exports = {
   // Collect coverage information from specified folders
   collectCoverage: true,
   collectCoverageFrom: [
-    "**/*.{js,jsx}",
+    "**/*.js",
+    "!**/*.test.js",
+    //"!**/node_modules/**",
+    //"**/*.{js,jsx}",
     "!**/node_modules/**",
-    "!**/*.test.{js,jsx}",
-    "!**/jest.config.js"
+    "!src/**/index.js",
+    
+    //"!**/*.test.{js,jsx}",
+    //"!**/firebaseConfig.js", // ⛔ exclude utility/init-only files
+    //"!**/index.js", // ⛔ exclude entry files if not testable
+    "!**/jest.config.js",
+    "!**/coverage",
+    "!**/prettify.js",
+    "!**/block-navigation.js",
+    "!**/sorter.js"
+    //"!**/Homepage Folder"
+
+    
+  ],
+  coveragePathIgnorePatterns: [
+    '/node_modules/',
+    '/__mocks__/'
   ],
 
   // Output coverage information
@@ -32,7 +50,7 @@ module.exports = {
     '^.+\\.js$': 'babel-jest',
   },
 
-  globals: {
+  /*globals: {
     TextEncoder: require('util').TextEncoder,
-  },
+  },*/
 };

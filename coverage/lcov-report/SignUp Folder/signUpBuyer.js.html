@@ -25,28 +25,28 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>0/72</span>
+                <span class='fraction'>0/78</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>0/27</span>
+                <span class='fraction'>0/29</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>0/3</span>
+                <span class='fraction'>0/4</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>0/69</span>
+                <span class='fraction'>0/75</span>
             </div>
         
             
@@ -216,7 +216,24 @@
 <a name='L151'></a><a href='#L151'>151</a>
 <a name='L152'></a><a href='#L152'>152</a>
 <a name='L153'></a><a href='#L153'>153</a>
-<a name='L154'></a><a href='#L154'>154</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L154'></a><a href='#L154'>154</a>
+<a name='L155'></a><a href='#L155'>155</a>
+<a name='L156'></a><a href='#L156'>156</a>
+<a name='L157'></a><a href='#L157'>157</a>
+<a name='L158'></a><a href='#L158'>158</a>
+<a name='L159'></a><a href='#L159'>159</a>
+<a name='L160'></a><a href='#L160'>160</a>
+<a name='L161'></a><a href='#L161'>161</a>
+<a name='L162'></a><a href='#L162'>162</a>
+<a name='L163'></a><a href='#L163'>163</a>
+<a name='L164'></a><a href='#L164'>164</a>
+<a name='L165'></a><a href='#L165'>165</a>
+<a name='L166'></a><a href='#L166'>166</a>
+<a name='L167'></a><a href='#L167'>167</a>
+<a name='L168'></a><a href='#L168'>168</a>
+<a name='L169'></a><a href='#L169'>169</a>
+<a name='L170'></a><a href='#L170'>170</a>
+<a name='L171'></a><a href='#L171'>171</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -315,6 +332,23 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -327,9 +361,9 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -372,7 +406,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">// Import the functions you need from the SDKs you need
 import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-app.js";
 import {getFirestore,doc,getDoc,setDoc, collection, query, where, getDocs} from "https://www.gstatic.com/firebasejs/11.6.0/firebase-firestore.js";
-import { getAuth, GoogleAuthProvider,signInWithPopup,createUserWithEmailAndPassword,signOut } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-auth.js";
+import { getAuth, GoogleAuthProvider,signInWithPopup,createUserWithEmailAndPassword,signOut,sendEmailVerification } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-auth.js";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 &nbsp;
@@ -468,6 +502,23 @@ const provider = <span class="cstat-no" title="statement not covered" >new Googl
 <span class="cstat-no" title="statement not covered" >  try {</span>
     const userCredential = <span class="cstat-no" title="statement not covered" >await createUserWithEmailAndPassword(auth, emailValue, passwordValue);</span>
     const user = <span class="cstat-no" title="statement not covered" >userCredential.user;</span>
+&nbsp;
+    //Send email verification
+<span class="cstat-no" title="statement not covered" >  await sendEmailVerification(user);</span>
+<span class="cstat-no" title="statement not covered" >  alert("A verification email has been sent. Please check your inbox.");</span>
+  // Start auto-check for verification
+const checkInterval = <span class="cstat-no" title="statement not covered" >setInterval(<span class="fstat-no" title="function not covered" >as</span>ync () =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >  await user.reload(); </span>// Refresh user data
+&nbsp;
+  const latestUser = <span class="cstat-no" title="statement not covered" >auth.currentUser;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  if (latestUser.emailVerified) {</span>
+<span class="cstat-no" title="statement not covered" >    clearInterval(checkInterval);</span>
+<span class="cstat-no" title="statement not covered" >    alert("Email verified! Successfully signed up as a buyer! ");</span>
+<span class="cstat-no" title="statement not covered" >    window.location.href = "../SignUp Folder/buyer-username.html";</span>
+  }
+}, 5000); // Check every 5 seconds
+  
 <span class="cstat-no" title="statement not covered" >    await setDoc(doc(db,"users",user.uid),{</span>
       uid:user.uid,
       //username:usernameValue,
@@ -480,9 +531,9 @@ const provider = <span class="cstat-no" title="statement not covered" >new Googl
 <span class="cstat-no" title="statement not covered" >      await auth.signOut();</span>
 <span class="cstat-no" title="statement not covered" >      throw new Error("Role verification failed");</span>
     }
-<span class="cstat-no" title="statement not covered" >    alert('Successfully signed up as a buyer!');</span>
-<span class="cstat-no" title="statement not covered" >    console.log('user signed up');</span>
-<span class="cstat-no" title="statement not covered" >    window.location.href="../Buyer Folder/product-listing.html";</span>
+    // alert('Successfully signed up as a buyer!');
+    // console.log('user signed up');
+    // window.location.href="../Buyer Folder/product-listing.html";
     } catch(error) {
       const errorMessage = <span class="cstat-no" title="statement not covered" >error.message;</span>
 <span class="cstat-no" title="statement not covered" >      alert(`Error: ${errorMessage}`);</span>
@@ -516,7 +567,7 @@ const provider = <span class="cstat-no" title="statement not covered" >new Googl
     }
 &nbsp;
 <span class="cstat-no" title="statement not covered" >    alert("Successfully signed up as a buyer!");</span>
-<span class="cstat-no" title="statement not covered" >    window.location.href = "../Buyer Folder/product-listing.html"; </span>
+<span class="cstat-no" title="statement not covered" >    window.location.href = "../SignUp Folder/buyer-username.html"; </span>
   } catch (error) {
 <span class="cstat-no" title="statement not covered" >    console.error("Error during sign-in:", error.code, error.message);</span>
 <span class="cstat-no" title="statement not covered" >    alert(`Error: ${error.message}`);</span>
@@ -529,7 +580,7 @@ const provider = <span class="cstat-no" title="statement not covered" >new Googl
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2025-05-13T14:30:06.171Z
+                at 2025-05-16T23:36:54.300Z
             </div>
         <script src="../prettify.js"></script>
         <script>

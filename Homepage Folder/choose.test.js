@@ -1,7 +1,7 @@
 /**
  * @jest-environment jsdom
  */
-
+require('./homepage.test.js');
 describe('Choose Role Page - ArtAlley', () => {
     let originalLocation;
     let form;
@@ -12,7 +12,7 @@ describe('Choose Role Page - ArtAlley', () => {
       delete window.location;
       window.location = { href: '' };
       originalLocation = window.location;
-    });
+    });  
   
     beforeEach(() => {
       // Set up DOM
@@ -41,18 +41,22 @@ describe('Choose Role Page - ArtAlley', () => {
           window.location.href = 'login-seller';
         }
       });
+      //i'm here
+      require('./choose.test.js');
     });
   
     afterAll(() => {
       // Restore original location
       window.location = originalLocation;
     });
+
+    
   
     test('Displays the role selection form', () => {
       expect(form).toBeTruthy();
       expect(document.querySelector('h2').textContent).toBe('Choose a role');
       expect(select).toBeTruthy();
-      expect(select.options.length).toBe(3); // includes the default disabled option
+      expect(select.options.length).toBe(3); //includes the default disabled option
     });
   
     test('Redirects to buyer login when Buyer is selected', () => {

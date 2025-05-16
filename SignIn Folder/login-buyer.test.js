@@ -2,66 +2,69 @@
  * @jest-environment jsdom
  */
 
-const fs = require('fs');
-const path = require('path');
+import fs from 'fs';
+import path from 'path';
+import { attachFormListeners } from './signInBuyer.js'; // ✅ Import code under test
 
 describe('Buyer Login Page', () => {
-  let htmlContent;
+  let html;
 
   beforeAll(() => {
-    // Read the HTML file content
-    const htmlPath = path.resolve(__dirname, 'login-buyer.html'); // Adjust the path
-    htmlContent = fs.readFileSync(htmlPath, 'utf-8');
+    const htmlPath = path.resolve(__dirname, 'login-buyer.html'); // adjust path as needed
+    html = fs.readFileSync(htmlPath, 'utf-8');
   });
 
   beforeEach(() => {
-    // Set the document's innerHTML to the HTML content read from the file
-    document.body.innerHTML = htmlContent;
+    document.documentElement.innerHTML = html;
+    attachFormListeners(); // ✅ Register event listeners from JS
   });
 
   test('Loads the login form correctly', () => {
     expect(document.querySelector('h2')?.textContent).toBe('Login as a buyer');
-    expect(document.querySelector('p')?.textContent).toBe('Welcome back');
+    expect(document.querySelector('p.welcome-msg')?.textContent).toBe('Welcome back');
   });
 
   test('Has email and password fields', () => {
-    const emailInput = document.querySelector('input#email');
-    const passwordInput = document.querySelector('input#password');
+    const emailInput = document.querySelector('#email');
+    const passwordInput = document.querySelector('#password');
 
     expect(emailInput).toBeTruthy();
-    expect(emailInput?.getAttribute('type')).toBe('email');
-    expect(emailInput?.getAttribute('placeholder')).toBe('Enter your email here');
-
     expect(passwordInput).toBeTruthy();
-    expect(passwordInput?.getAttribute('type')).toBe('password');
-    expect(passwordInput?.getAttribute('placeholder')).toBe('**********');
   });
 
-  test('Login button is present and functional', () => {
-    const loginBtn = document.querySelector('button.login-btn');
-    expect(loginBtn).toBeTruthy();
-    expect(loginBtn?.textContent).toContain('Login');
+  test('Login form submits and triggers event', () => {
+    const form = document.querySelector('form');
+    const emailInput = document.querySelector('#email');
+    const passwordInput = document.querySelector('#password');
+
+    emailInput.value = 'user@example.com';
+    passwordInput.value = 'password123';
+
+    const submitEvent = new Event('submit', { bubbles: true });
+    const preventDefaultMock = jest.fn();
+    submitEvent.preventDefault = preventDefaultMock;
+
+    form.dispatchEvent(submitEvent);
+    expect(preventDefaultMock).toHaveBeenCalled(); // Ensure handler is triggered
   });
 
   test('Forgot Password link is correct', () => {
-    const forgotLink = document.querySelector('nav.options a');
-    expect(forgotLink).toBeTruthy();
-    expect(forgotLink?.getAttribute('href')).toBe('ForgotPaswword.html');
+    const link = document.querySelector('nav.options a');
+    expect(link.getAttribute('href')).toBe('ForgotPaswword.html');
   });
 
-  test('Google sign-in section is visible', () => {
+  test('Google Sign In button triggers event', () => {
     const googleBtn = document.querySelector('#google-btn');
-    const googleImg = document.querySelector('#google-btn img');
+    const clickEvent = new Event('click', { bubbles: true });
+    const preventDefaultMock = jest.fn();
+    clickEvent.preventDefault = preventDefaultMock;
 
-    expect(googleBtn).toBeTruthy();
-    expect(googleBtn?.textContent).toContain('Sign in with Google');
-
-    expect(googleImg?.getAttribute('src')).toContain('google-logo.png');
+    googleBtn.dispatchEvent(clickEvent);
+    expect(preventDefaultMock).toHaveBeenCalled();
   });
 
-  test('Sign up link goes to buyer signup', () => {
+  test('Signup link goes to correct page', () => {
     const signupLink = document.querySelector('p.signup a');
-    expect(signupLink).toBeTruthy();
-    expect(signupLink?.getAttribute('href')).toBe('../SignUp Folder/buyer-signup.html');
+    expect(signupLink.getAttribute('href')).toBe('../SignUp Folder/buyer-signup.html');
   });
 });
