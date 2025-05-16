@@ -110,7 +110,7 @@ const checkInterval = setInterval(async () => {
   if (latestUser.emailVerified) {
     clearInterval(checkInterval);
     alert("Email verified! Successfully signed up as a buyer! ");
-    window.location.href = "../Buyer Folder/product-listing.html";
+    window.location.href = "../SignUp Folder/buyer-username.html";
   }
 }, 5000); // Check every 5 seconds
   
@@ -162,7 +162,7 @@ google_login.addEventListener("click", async function() {
     }
 
     alert("Successfully signed up as a buyer!");
-    window.location.href = "../Buyer Folder/product-listing.html"; 
+    window.location.href = "../SignUp Folder/buyer-username.html"; 
   } catch (error) {
     console.error("Error during sign-in:", error.code, error.message);
     alert(`Error: ${error.message}`);
