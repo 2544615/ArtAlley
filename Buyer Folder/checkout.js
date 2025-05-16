@@ -23,6 +23,7 @@ onAuthStateChanged(auth, async(user) => {
     window.location.href = "../SignIn Folder/login-buyer.html";
     return;
   }
+  let total = 0;
 
   ship.addEventListener("submit", async (e) => {
     e.preventDefault();
@@ -53,9 +54,13 @@ onAuthStateChanged(auth, async(user) => {
         buyeruid: user.uid,
         timestamp: serverTimestamp()
       });
+      
+      // Save email and total for Paystack
+      localStorage.setItem("checkoutAmount", total.toFixed(2));
+      localStorage.setItem("checkoutEmail", email);
 
       //alert("Successfully checked out!");
-        window.location.href = "payment.html";
+      window.location.href = "paystack.html";
       
     } catch (error) {
       console.error("Error uploading product:", error);
@@ -75,7 +80,7 @@ onAuthStateChanged(auth, async(user) => {
   const snapshot = await getDocs(cartItemsRef);
 
   const cartItemsSection = document.getElementById("cart-items");
-  let total = 0;
+  total = 0;
 
   if (snapshot.empty) {
     cartItemsSection.innerHTML = "<p>Your cart is empty.</p>";
@@ -174,5 +179,4 @@ countrySelect.addEventListener("change", () => {
     citySelect.disabled = true;
   });
 });
-
 

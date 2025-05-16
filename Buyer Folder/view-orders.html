@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>My Orders - ArtAlley</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="view-orders.css">
+  <script src="https://www.gstatic.com/firebasejs/10.8.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.8.1/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.8.1/firebase-firestore.js"></script>
+  <script type="module" src="view-orders.js"></script>
+  <style>
+    .back-button {
+      display: inline-block;
+      margin: 20px;
+      font-size: 1.5rem;
+      background-color: chocolate;
+      color: white;
+      padding: 10px 15px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+    .back-button:hover {
+      background-color: #8b4513;
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <button class="back-button" onclick="window.location.href='product-listing.html'">← Back to Products</button>
+    <h1>My Orders</h1>
+    <p class="filter-text">Filter Orders: <a href="#">Last 3 months</a></p>
+    <section id="ordersContainer">
+      <!-- Orders will load here -->
+    </section>
+  </main>
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Create Username</title>
+  <link rel="stylesheet" href="buyer-username.css" />
+</head>
+<body>
+  <h1>Create Your Username</h1>
+
+  <form id="usernameForm">
+    <input type="text" id="username" placeholder="Choose a username" required pattern="^[A-Za-z][A-Za-z0-9]{3,}$" oninvalid="this.setCustomValidity('Username must start with a letter, be at least 4 characters, and contain no special characters')"
+          oninput="this.setCustomValidity('')">
+    <button type="submit">Continue</button>
+  </form>
+
+  <script type="module" src="buyer-username.js"></script>
+  <script>
+        const usernameInput = document.getElementById('username');
+        // Allow only letters and numbers in username (no special characters)
+        usernameInput.addEventListener('keydown', (e) => {
+          const allowedKeys = ['Backspace', 'Delete', 'ArrowLeft', 'ArrowRight', 'Tab'];
+          if (!/^[A-Za-z0-9]$/.test(e.key) && !allowedKeys.includes(e.key)) {
+            e.preventDefault();
+          }
+        });
+      </script>
+</body>
+</html>
