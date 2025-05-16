@@ -83,7 +83,7 @@ onAuthStateChanged(auth, async (user) => {
         });
         const editBtn = document.createElement("button1");
         
-    
+        //deleteBtn.textContent = "Delete";
         editBtn.className="edit-button";
         editBtn.innerHTML='<i class="fa-solid fa-pen"></i>';
         editBtn.addEventListener("click", () => {
