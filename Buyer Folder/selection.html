@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>selection</title>
+    <link rel="stylesheet" href="selection.css">
+</head>
+<body>
+  <header>
+    <img src="../SignIn Folder/Black White Bold Modern Studio Logo (2).png " alt="Logo" class="logo">
+    <h1>ART ALLEY</h1>
+    <p>South Africa & International</p>
+  </header>
+
+  <main>
+    <section class="link-item" id="south-link">South Africa</section>
+    <section class="link-item" id="intl-link">International</section>
+    
+  </main>
+
+  <script>
+  document.getElementById("south-link").addEventListener("click", function() {
+    window.location.href = "delivery.html";
+  });
+
+  document.getElementById("intl-link").addEventListener("click", function() {
+    window.location.href = "checkout.html";
+  });
+</script>
+</body>
+</html>

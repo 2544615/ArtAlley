@@ -37,17 +37,30 @@ function renderProducts(productList) {
   paginatedProducts.forEach((product) => {
     const imageUrl = product.imageUrls ? product.imageUrls[0] : "";
 
-    const productCard = document.createElement("div");
-    productCard.classList.add("product-card");
+    const productCard = document.createElement("article");
+productCard.classList.add("product-card");
 
-    productCard.innerHTML = `
-      <div class="clickable" onclick="window.location.href='#'">
-        <img src="${imageUrl}" alt="${product.name}">
+productCard.innerHTML = `
+  <a class="clickable" data-product-id="${product.id}" style="text-decoration: none; color: inherit; cursor: pointer;">
+    <figure>
+      <img src="${imageUrl}" alt="${product.name}" />
+      <figcaption>
         <h2>${product.name}</h2>
         <p>Price: R${product.price.toFixed(2)}</p>
-      </div>
-      <button class="add-to-cart-btn">Add to cart</button>
-    `;
+      </figcaption>
+    </figure>
+  </a>
+  <button class="add-to-cart-btn">Add to cart</button>
+`;
+
+
+// Attach click listener to the product link (before appending to DOM)
+productCard.querySelector('.clickable').addEventListener('click', () => {
+  localStorage.setItem("selectedProductId", product.id); // Save product ID
+  window.location.href = "product-details.html"; // Redirect to detail page
+  console.log("Selected Product ID saved to localStorage:", product.id);
+});
+
 
     productContainer.appendChild(productCard);
     const button = productCard.querySelector('.add-to-cart-btn');
@@ -68,7 +81,8 @@ function renderProducts(productList) {
 async function loadProducts() {
   try {
     const querySnapshot = await getDocs(collection(db, "products"));
-    products = querySnapshot.docs.map((doc) => doc.data());
+    products = querySnapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
+    //products = querySnapshot.docs.map((doc) => doc.data());
     filteredProducts = products;
     
     // Check for stored search query

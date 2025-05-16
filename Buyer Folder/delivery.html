@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ArtAlley-Checkout</title>
+    <link rel="stylesheet" href="delivery.css">
+</head>
+<body>
+    <section id="header">
+        <a href="#"><img src="../SignIn Folder/Black White Bold Modern Studio Logo (2).png " class="" alt=""></a>
+        <nav>
+            <ul id="navbar">
+                <li><a class="active" href="checkout.html">Checkout</a></li>
+                <li><a href="cart.html">View cart</a></li>
+                <li><a href="logout.html">Log Out</a></li>
+               
+            </ul>
+           
+            
+        </nav>
+        
+    </section>
+    <section id="check">
+        <h2 id="checkout">Please select delivery Option</h2>
+        <p id ="cute">Almost there — a few final details and your order will be on its way.</p>
+    </section>
+
+    <main>
+        <form action="/submit-order" method="post" id="form2">
+          <section id="left-column">
+            <section id="billing">
+              <section class="text-content">
+                 <h5>Delivery</h5>
+                  <p>Delivered in 1-3 working days.</p>
+                    
+
+              </section>
+              <button id="deliver" type="click" class="button-link">Deliver my order</button>
+            </section>
+            <section id="collect">
+              <section class="text-content">
+                <h5>Collect</h5>
+              <p>Located at 36 Rssik street Marshalltown, Open 7 days a week for your convenience.</p>
+              
+              </section>
+              <button id="collect1" type="click" class="button-link">Collect my order</button>
+              
+            </section>
+
+          </section>
+          
+          <section id="order">
+            <h5>CART SUMMARY</h5>
+        
+           
+            <section id="cart-items"></section>
+        
+            
+          </section>
+          </form>
+       
+         
+       
+        
+      </main>
+      <script type="module" src="delivery.js"></script> 
+
+</body>
+</html>

@@ -36,7 +36,7 @@ onAuthStateChanged(auth, async (user) => {
     console.log("Orders snapshot:", snapshot);
     
     if (snapshot.empty) {
-      console.log("No orders found for user");
+      console.log("No orders found for user"); 
       ordersContainer.innerHTML = "<p style='text-align:center;'>You have no orders yet.</p>";
       return;
     }

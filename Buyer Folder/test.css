@@ -1,0 +1,141 @@
+/* Reset and base styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+  background-color: #f5f5f5;
+  color: #333;
+  line-height: 1.6;
+  padding-bottom: 2rem;
+}
+
+/* Header */
+#header {
+  background-color: #fff;
+  padding: 1rem 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+#header img {
+  height: 50px;
+}
+
+#navbar {
+  list-style: none;
+  display: flex;
+  gap: 2rem;
+}
+
+#navbar li a {
+  text-decoration: none;
+  color: #333;
+  font-weight: bold;
+}
+
+#navbar li a.active {
+  color: #0073e6;
+}
+
+/* Checkout title section */
+#check {
+  text-align: center;
+  margin: 2rem 0;
+}
+
+#checkout {
+  font-size: 1.8rem;
+  margin-bottom: 0.5rem;
+}
+
+#cute {
+  font-size: 1rem;
+  color: #666;
+}
+
+/* Main form layout */
+main {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  padding: 0 2rem;
+  flex-wrap: wrap;
+}
+
+/* Sections inside form */
+#form2 > section {
+  background-color: white;
+  padding: 1.5rem;
+  border-radius: 6px;
+  width: 300px;
+  box-shadow: 0 0 8px rgba(0,0,0,0.1);
+}
+
+#form2 h5 {
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+  color: #0073e6;
+}
+
+/* Cart and button */
+#order {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#cart-items {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+#placeorder {
+  padding: 0.8rem 2rem;
+  background-color: #0073e6;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+#placeorder:hover {
+  background-color: #005bb5;
+}
+
+/* Footer */
+footer {
+  background-color: #eee;
+  display: flex;
+  justify-content: space-around;
+  padding: 2rem;
+  margin-top: 3rem;
+  flex-wrap: wrap;
+}
+
+footer section {
+  margin: 1rem;
+}
+
+footer h2 {
+  margin-bottom: 1rem;
+}
+
+footer ul {
+  list-style: none;
+  padding: 0;
+}
+
+footer ul li a {
+  text-decoration: none;
+  color: #333;
+}
+
+footer ul li a:hover {
+  text-decoration: underline;
+}

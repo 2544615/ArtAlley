@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Product Details</title>
+  <script type="module" src="product-details.js" defer></script>
+</head>
+<body>
+  <button onclick="window.history.back()" style="margin: 1rem;">← Back to Products</button>
+
+  <main id="productDetailsContainer">
+    <article>
+      <header>
+        <h1 id="productName"></h1>
+        <p id="productPrice"></p>
+      </header>
+
+      <section>
+        <p id="productDescription"></p>
+      </section>
+
+      <section id="imageGallery" aria-label="Product Image Gallery">
+        <!-- Additional images will be inserted here -->
+      </section>
+
+      <footer>
+        <button id="addToCartBtn">Add to Cart</button>
+      </footer>
+    </article>
+  </main>
+</body>
+</html>
