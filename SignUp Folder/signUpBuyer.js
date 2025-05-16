@@ -57,7 +57,7 @@ submit.addEventListener('click', async function(event){
     return;
   }
 
-  // ✅ Password Format Check
+  //Password Format Check
   const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[\d\W]).{8,}$/;
   if (!passwordRegex.test(passwordValue)) {
     alert("Password must be at least 8 characters long, with at least 1 lowercase letter, 1 uppercase letter, and 1 number or special character.");

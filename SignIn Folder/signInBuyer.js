@@ -60,6 +60,12 @@ submit.addEventListener('click', function(event){
     // Signed in 
     const user = userCredential.user;
 
+    const latestUser = auth.currentUser;
+
+    if (!latestUser.emailVerified) {
+      await auth.signOut();
+      alert("Please verify your email before logging in");
+    }
     const userData=await verifyUserRole(user);
     if(!userData)
       return;
