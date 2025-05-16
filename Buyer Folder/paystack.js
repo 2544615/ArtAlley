@@ -7,7 +7,7 @@ const firebaseConfig = {
   apiKey: "AIzaSyDUfE0XLFPlpw_SAJIFoQlJhylk-r2VY4Y",
   authDomain: "artalley-b9c96.firebaseapp.com",
   projectId: "artalley-b9c96",
-  storageBucket: "artalley-b9c96.appspot.com",
+  storageBucket: "artalley-b9c96.firebasestorage.app",
   messagingSenderId: "1056868925602",
   appId: "1:1056868925602:web:4fa9734632b255594917fb"
 };
@@ -58,6 +58,31 @@ const db = getFirestore(app);
             onAuthStateChanged(auth, async (user) => {
               try{
                 if (user) {
+                  // ✅ Fetch cart items
+                  const cartRef = doc(db, "users", user.uid, "cart", "active");
+                  const itemsRef = collection(cartRef, "items");
+                  const cartSnapshot = await getDocs(itemsRef);
+                
+                  const items = [];
+                  cartSnapshot.forEach(doc => {
+                    const data = doc.data();
+                    items.push({
+                      name: data.name,
+                      imageUrl: data.imageUrl || "",
+                      price: data.price,
+                      quantity: data.quantity
+                    });
+                  });
+                
+                  // ✅ Save to 'orders' collection
+                  await addDoc(collection(db, "orders"), {
+                    userId: user.uid,
+                    timestamp: serverTimestamp(),
+                    items: items
+                  });
+                
+                  console.log("✅ Order saved to Firestore");  
+
                   // 1. First finalize the order (decrease stock)
                   await finalizeOrder(user.uid, db);
 
