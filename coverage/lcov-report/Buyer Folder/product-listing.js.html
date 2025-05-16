@@ -25,7 +25,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>0/118</span>
+                <span class='fraction'>0/122</span>
             </div>
         
             
@@ -39,14 +39,14 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>0/23</span>
+                <span class='fraction'>0/24</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>0/112</span>
+                <span class='fraction'>0/116</span>
             </div>
         
             
@@ -282,7 +282,20 @@
 <a name='L217'></a><a href='#L217'>217</a>
 <a name='L218'></a><a href='#L218'>218</a>
 <a name='L219'></a><a href='#L219'>219</a>
-<a name='L220'></a><a href='#L220'>220</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L220'></a><a href='#L220'>220</a>
+<a name='L221'></a><a href='#L221'>221</a>
+<a name='L222'></a><a href='#L222'>222</a>
+<a name='L223'></a><a href='#L223'>223</a>
+<a name='L224'></a><a href='#L224'>224</a>
+<a name='L225'></a><a href='#L225'>225</a>
+<a name='L226'></a><a href='#L226'>226</a>
+<a name='L227'></a><a href='#L227'>227</a>
+<a name='L228'></a><a href='#L228'>228</a>
+<a name='L229'></a><a href='#L229'>229</a>
+<a name='L230'></a><a href='#L230'>230</a>
+<a name='L231'></a><a href='#L231'>231</a>
+<a name='L232'></a><a href='#L232'>232</a>
+<a name='L233'></a><a href='#L233'>233</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -333,12 +346,25 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -353,6 +379,7 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -498,7 +525,6 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-app.js";
@@ -540,17 +566,30 @@ function <span class="fstat-no" title="function not covered" >renderProducts(</s
 <span class="cstat-no" title="statement not covered" >  paginatedProducts.forEach(<span class="fstat-no" title="function not covered" >(p</span>roduct) =&gt; {</span>
     const imageUrl = <span class="cstat-no" title="statement not covered" >product.imageUrls ? product.imageUrls[0] : "";</span>
 &nbsp;
-    const productCard = <span class="cstat-no" title="statement not covered" >document.createElement("div");</span>
-<span class="cstat-no" title="statement not covered" >    productCard.classList.add("product-card");</span>
+    const productCard = <span class="cstat-no" title="statement not covered" >document.createElement("article");</span>
+<span class="cstat-no" title="statement not covered" >productCard.classList.add("product-card");</span>
 &nbsp;
-<span class="cstat-no" title="statement not covered" >    productCard.innerHTML = `</span>
-      &lt;div class="clickable" onclick="window.location.href='#'"&gt;
-        &lt;img src="${imageUrl}" alt="${product.name}"&gt;
+<span class="cstat-no" title="statement not covered" >productCard.innerHTML = `</span>
+  &lt;a class="clickable" data-product-id="${product.id}" style="text-decoration: none; color: inherit; cursor: pointer;"&gt;
+    &lt;figure&gt;
+      &lt;img src="${imageUrl}" alt="${product.name}" /&gt;
+      &lt;figcaption&gt;
         &lt;h2&gt;${product.name}&lt;/h2&gt;
         &lt;p&gt;Price: R${product.price.toFixed(2)}&lt;/p&gt;
-      &lt;/div&gt;
-      &lt;button class="add-to-cart-btn"&gt;Add to cart&lt;/button&gt;
-    `;
+      &lt;/figcaption&gt;
+    &lt;/figure&gt;
+  &lt;/a&gt;
+  &lt;button class="add-to-cart-btn"&gt;Add to cart&lt;/button&gt;
+`;
+&nbsp;
+&nbsp;
+// Attach click listener to the product link (before appending to DOM)
+<span class="cstat-no" title="statement not covered" >productCard.querySelector('.clickable').addEventListener('click', <span class="fstat-no" title="function not covered" >()</span> =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >  localStorage.setItem("selectedProductId", product.id); </span>// Save product ID
+<span class="cstat-no" title="statement not covered" >  window.location.href = "product-details.html"; </span>// Redirect to detail page
+<span class="cstat-no" title="statement not covered" >  console.log("Selected Product ID saved to localStorage:", product.id);</span>
+});
+&nbsp;
 &nbsp;
 <span class="cstat-no" title="statement not covered" >    productContainer.appendChild(productCard);</span>
     const button = <span class="cstat-no" title="statement not covered" >productCard.querySelector('.add-to-cart-btn');</span>
@@ -571,7 +610,8 @@ function <span class="fstat-no" title="function not covered" >renderProducts(</s
 async function <span class="fstat-no" title="function not covered" >loadProducts(</span>) {
 <span class="cstat-no" title="statement not covered" >  try {</span>
     const querySnapshot = <span class="cstat-no" title="statement not covered" >await getDocs(collection(db, "products"));</span>
-<span class="cstat-no" title="statement not covered" >    products = querySnapshot.docs.map(<span class="fstat-no" title="function not covered" >(d</span>oc) =&gt; <span class="cstat-no" title="statement not covered" >doc.data())</span>;</span>
+<span class="cstat-no" title="statement not covered" >    products = querySnapshot.docs.map(<span class="fstat-no" title="function not covered" >(d</span>oc) =&gt; (<span class="cstat-no" title="statement not covered" >{ id: doc.id, ...doc.data() })</span>);</span>
+    //products = querySnapshot.docs.map((doc) =&gt; doc.data());
 <span class="cstat-no" title="statement not covered" >    filteredProducts = products;</span>
     
     // Check for stored search query
@@ -719,15 +759,14 @@ function <span class="fstat-no" title="function not covered" >searchProducts(</s
 <span class="cstat-no" title="statement not covered" >    window.location.href = "../SignIn Folder/login-buyer.html"; </span>// Just in case user is not authenticated
   }
 });
-  
-&nbsp;</pre></td></tr></table></pre>
+  </pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
             </div><!-- /wrapper -->
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2025-05-16T23:36:54.300Z
+                at 2025-05-16T23:51:21.902Z
             </div>
         <script src="../prettify.js"></script>
         <script>

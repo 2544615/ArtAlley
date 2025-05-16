@@ -30,7 +30,7 @@ export default {
     //"!**/firebaseConfig.js", // ⛔ exclude utility/init-only files
     //"!**/index.js", // ⛔ exclude entry files if not testable
     "!**/jest.config.js",
-    "!**/coverage",
+    "**/coverage",
     "!**/prettify.js",
     "!**/block-navigation.js",
     "!**/sorter.js"
