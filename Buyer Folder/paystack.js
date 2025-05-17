@@ -1,5 +1,5 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-app.js";
-import {writeBatch, updateDoc, getFirestore, doc, collection, getDocs, setDoc, serverTimestamp, getDoc, increment} from "https://www.gstatic.com/firebasejs/11.6.0/firebase-firestore.js";
+import {writeBatch, updateDoc, getFirestore, doc, collection, getDocs, setDoc, serverTimestamp, getDoc, increment, addDoc} from "https://www.gstatic.com/firebasejs/11.6.0/firebase-firestore.js";
 import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-auth.js";
 
 // Firebase config
