@@ -19,18 +19,18 @@ export default {
   // Collect coverage information from specified folders
   collectCoverage: true,
   collectCoverageFrom: [
-    "**/*.js",
-    "!**/*.test.js",
+    //"**/*.js",
+    //"!**/*.test.js",
     //"!**/node_modules/**",
-    //"**/*.{js,jsx}",
+    "**/*.{js,jsx}",
     "!**/node_modules/**",
-    "!src/**/index.js",
+    "!/**/index.js",
     
-    //"!**/*.test.{js,jsx}",
+    "!**/*.test.{js,jsx}",
     //"!**/firebaseConfig.js", // ⛔ exclude utility/init-only files
     //"!**/index.js", // ⛔ exclude entry files if not testable
     "!**/jest.config.js",
-    "**/coverage",
+    //"!**/coverage",
     "!**/prettify.js",
     "!**/block-navigation.js",
     "!**/sorter.js"
