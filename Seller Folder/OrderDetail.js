@@ -23,8 +23,8 @@ onAuthStateChanged(auth, async (user) => {
     return;
   }
 
-  const OrdersList = document.getElementById("Orders");
-  //const orderDetail = document.getElementById("orderDetail");
+  //const OrdersList = document.getElementById("Orders");
+  const orderDetail = document.getElementById("orderDetail");
 
   try {
     const ordersSnapshot = await getDocs(collection(db, "orders"));
@@ -49,10 +49,8 @@ onAuthStateChanged(auth, async (user) => {
     }
 
     // Generate HTML
-    OrdersList.innerHTML = "";
-    console.log("done");
-    // orderDetail.innerHTML= "";
-    // console.log("this is a problem");
+    orderDetail.innerHTML= "";
+    console.log("this is a problem");
 
     for (const order of sellerOrders) {
       const shippingQuery = query(
@@ -62,52 +60,40 @@ onAuthStateChanged(auth, async (user) => {
 
       const shippingSnapshot = await getDocs(shippingQuery);
       let fullName = "Unknown Buyer";
+      let contact = "123456789";
 
       if (!shippingSnapshot.empty) {
         const shippingData = shippingSnapshot.docs[0].data();
         fullName = `${shippingData.firstname} ${shippingData.lastname}`;
+        contact = `${shippingData.contact}`;
       }
 
       const productCount = order.sellerItems.reduce((sum, item) => sum + item.quantity, 0);
 
-      const listItem = document.createElement("section");
-      listItem.className = "order-box";
-      listItem.innerHTML = `
-        <article class="order-content">
-          <header>
-            <h3>${fullName}</h3>
-            <p><strong>Products bought:</strong> ${productCount}</p>
-          </header>
-          
-        </article>
-      `;
-      // const BuyerOrders=document.createElement('section');
-      // BuyerOrders.innerHTML=`
-      //   <h3>Order from: ${fullName}</h3>
-      //   <section class="product-list">
-      //       ${order.sellerItems.map(item => `
-      //         <figure class="product-item">
-      //           <img src="${item.imageUrl || '#'}" alt="${item.name}" />
-      //           <figcaption>
-      //             <p><strong>${item.name}</strong></p>
-      //             <p>Qty: ${item.quantity}</p>
-      //             <p>Price: R${item.price?.toFixed(2) || 'N/A'}</p>
-      //           </figcaption>
-      //         </figure>
-      //       `).join("")}
-      //     </section>
+    
+      const BuyerOrders=document.createElement('section');
+      BuyerOrders.innerHTML=`
+        <h3>Order from: ${fullName}</h3>
+        <p>Contact Detail: ${contact}</p>
+        <section class="product-list">
+            ${order.sellerItems.map(item => `
+              <figure class="product-item">
+                <img src="${item.imageUrl || '#'}" alt="${item.name}" />
+                <figcaption>
+                  <p><strong>${item.name}</strong></p>
+                  <p>Qty: ${item.quantity}</p>
+                  <p>Price: R${item.price?.toFixed(2) || 'N/A'}</p>
+                </figcaption>
+              </figure>
+            `).join("")}
+          </section>
       
-      // `;
+       `;
 
       
-      OrdersList.appendChild(listItem);
-      //orderDetail.appendChild(BuyerOrders);
-  // Example click handler
-  listItem.addEventListener("click", () => {
-    //alert(`Order from ${fullName}`);
-    window.location.href = "OrderDetail.html";
-  });
-
+      
+      orderDetail.appendChild(BuyerOrders);
+  
     }
 
   } catch (error) {

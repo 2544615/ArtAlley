@@ -54,13 +54,15 @@ const cart = [];
             return alert("This product is out of stock.");
         }
 
+        console.log(product.sellerUID);
       await addDoc(itemsRef, {
         name: product.name,
         price: product.price,
         quantity: 1,
         user: userId,
         imageUrl: product.imageUrls[0], // First Cloudinary URL
-        stock: product.quantity
+        stock: product.quantity,
+        sellerId: product.sellerUID
       });
     }
   
