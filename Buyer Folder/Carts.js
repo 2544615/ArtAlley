@@ -289,7 +289,7 @@ document.addEventListener("DOMContentLoaded", function() {
       if (cart.length === 0) {
         alert("Please add to cart first.");
       } else {
-        window.location.href = "checkout.html";
+        window.location.href = "selection.html";
       }
     });
   }

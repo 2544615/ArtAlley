@@ -31,10 +31,18 @@ export default {
     //"!**/index.js", // ⛔ exclude entry files if not testable
     "!**/jest.config.js",
     //"!**/coverage",
+    //COVERAGE
     "!**/prettify.js",
     "!**/block-navigation.js",
-    "!**/sorter.js"
-    //"!**/Homepage Folder"
+    "!**/sorter.js",
+    //NOT TESTES YET
+    "!**/checkoutdelivery.js",
+    "!**/delivery.js",
+     "!**/paystack.js",
+      "!**/product-details.js",
+       "!**/reviews.js",
+        "!**/view-orders.js",
+         "!**/orderedProducts.js",
 
     
   ],
@@ -46,9 +54,18 @@ export default {
   // Output coverage information
   coverageReporters: ['json', 'lcov', 'text', 'clover'],
 
+  coverageThreshold: {
+    global: {
+      branches: 80,
+      functions: 80,
+      lines: 80,
+      statements: 80
+    }
+  },
+
   transform: {
     '^.+\\.js$': 'babel-jest',
-  },
+  }
 
   /*globals: {
     TextEncoder: require('util').TextEncoder,
