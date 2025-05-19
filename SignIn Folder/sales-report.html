@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Sales Report</title>
+  <link rel="stylesheet" href="dashboard.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script type="module" src="sales-report.js" defer></script>
+  <style>
+    /* Add this CSS if not already in dashboard.css */
+    .login-card {
+      width: 100%;
+      max-width: 100%;
+      padding: 2rem;
+      box-sizing: border-box;
+    }
+
+    #salesChart {
+      width: 100% !important;
+      height: 60vh !important;
+      display: block;
+      margin-top: 2rem;
+    }
+
+    #sales-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 1rem;
+    }
+    #sales-table th, #sales-table td {
+      border: 1px solid #ddd;
+      padding: 8px;
+    }
+    #sales-table th {
+      background-color: #f2f2f2;
+    }
+  </style>
+</head>
+<body>
+  <section id="header">
+    <a href="#"><img src="Black White Bold Modern Studio Logo (2).png" alt="Logo"></a>
+    <nav>
+      <ul id="navbar">
+        <li><a class="active" href="index.html">My Store</a></li>
+        <li><a href="../Homepage Folder/homepage.html">Home</a></li>
+        <li><a href="add-product.html">Add new products</a></li>
+        <li><a href="sales-report.html">📊 Sales Report</a></li>
+        <li><a href="my-profile.html">👤 My Profile</a></li>
+        <li><a href="logout.html">Log Out</a></li>
+      </ul>
+    </nav>
+  </section>
+
+  <main class="background">
+    <section class="login-card">
+      <header>
+        <h2>Sales Report</h2>
+        <p class="welcome-msg">Here's a summary of your product sales.</p>
+        <p id="total-sales-summary" style="font-weight: bold; margin-top: 1rem;"></p>
+        -<p id="total-quantity-summary" style="font-weight: bold; margin-top: 0.5rem;"></p>
+
+        <label for="trendFilter">Show trends for:</label>
+        <select id="trendFilter">
+          <option value="7">Last 7 days</option>
+          <option value="30" selected>Last 30 days</option>
+          <option value="90">Last 90 days</option>
+        </select>
+
+        <label for="reportType" style="margin-left: 1rem;">Report Type:</label>
+        <select id="reportType">
+          <option value="table" selected>Table</option>
+          <option value="line">Trend Line</option>
+          <option value="bar">Bar Chart</option>
+          <option value="pie">Pie Chart</option>
+        </select>
+
+        <label for="valueTypeFilter" style="margin-left: 1rem;">Filter by:</label>
+      <select id="valueTypeFilter">
+        <option value="sales" selected>Total Sales (R)</option>
+        <option value="quantity">Total Quantity Sold</option>
+      </select>
+
+      </header>
+
+      <table id="sales-table">
+        <thead>
+          <tr>
+            <th>Product</th>
+            <th>Quantity Sold</th>
+            <th>Total Price (R)</th>
+            <th>Date</th>
+          </tr>
+        </thead>
+        <tbody id="sales-body">
+          <!-- Sales data will be injected here -->
+        </tbody>
+      </table>
+
+      <canvas id="salesChart" style="display: none;"></canvas>
+    </section>
+  </main>
+</body>
+</html>
