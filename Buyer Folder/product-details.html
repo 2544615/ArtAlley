@@ -4,12 +4,23 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Product Details</title>
+  <link rel="stylesheet" href="product-details.css" />
   <script type="module" src="product-details.js" defer></script>
 </head>
 <body>
-  <button onclick="window.history.back()" style="margin: 1rem;">← Back to Products</button>
+  <form id="productDetailsForm">
+  <button type="button" onclick="window.history.back()" id="backBtn">← Back</button>
+
+  
 
   <main id="productDetailsContainer">
+
+    <section id="imageGalleryWrapper">
+    <section id="thumbnailColumn" aria-label="Thumbnails"></section>
+      <section id="mainImageContainer">
+        <img id="mainImage" src="" alt="Main Product Image" />
+      </section>
+    </section>
     <article>
       <header>
         <h1 id="productName"></h1>
@@ -20,14 +31,13 @@
         <p id="productDescription"></p>
       </section>
 
-      <section id="imageGallery" aria-label="Product Image Gallery">
-        <!-- Additional images will be inserted here -->
-      </section>
+      
 
       <footer>
         <button id="addToCartBtn">Add to Cart</button>
       </footer>
     </article>
   </main>
+  </form>
 </body>
 </html>

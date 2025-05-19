@@ -42,17 +42,28 @@ async function loadProductDetails() {
     document.getElementById("productPrice").textContent = `Price: R${product.price.toFixed(2)}`;
     document.getElementById("productDescription").textContent = product.description || "No description available.";
 
-    const imageGallery = document.getElementById("imageGallery");
-    imageGallery.innerHTML = "";
+    const thumbnailColumn = document.getElementById("thumbnailColumn");
+    const mainImage = document.getElementById("mainImage");
+
+    thumbnailColumn.innerHTML = "";
 
     if (product.imageUrls && product.imageUrls.length > 0) {
-      product.imageUrls.forEach(url => {
-        const img = document.createElement("img");
-        img.src = url;
-        img.alt = product.name;
-        img.style.width = "200px";
-        img.style.margin = "10px";
-        imageGallery.appendChild(img);
+      mainImage.src = product.imageUrls[0];
+      mainImage.alt = product.name;
+
+      product.imageUrls.forEach((url, index) => {
+        const thumb = document.createElement("img");
+        thumb.src = url;
+        thumb.alt = `Thumbnail ${index + 1}`;
+        if (index === 0) thumb.classList.add("selected");
+
+        thumb.addEventListener("click", () => {
+          mainImage.src = url;
+          document.querySelectorAll("#thumbnailColumn img").forEach(img => img.classList.remove("selected"));
+          thumb.classList.add("selected");
+        });
+
+        thumbnailColumn.appendChild(thumb);
       });
     }
 
