@@ -1,111 +1,119 @@
 /**
  * @jest-environment jsdom
  */
+import '../../SignUp Folder/signUpBuyer';
+import { getAuth, createUserWithEmailAndPassword, sendEmailVerification, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
+import { getFirestore, doc, getDoc, setDoc } from "firebase/firestore";
 
-describe('Buyer Signup Page', () => {
-  let container;
+jest.mock("firebase/auth");
+jest.mock("firebase/firestore");
 
-  beforeEach(() => {
-    document.body.innerHTML = `
-        <h1>Welcome to ArtAlley</h1>
-        <h2>Sign Up as a Buyer</h2>
-        <form>
-          <input id="address" type="email" required>
-          <input id="password" type="password" 
-                 pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[\\d\\W]).{8,}$" 
-                 required>
-          <input id="confirmPassword" type="password" required>
-          <input type="checkbox" id="termsCheckbox" required>
-          <button id="register" type="submit">Create Account</button>
-          <a href="TermsNConditions.html">Terms & Conditions</a>
-          <div id="icon">Sign Up with Google</div>
-        </form>
-    `;
-    container = document.body;
-  });
+// Helper to setup DOM elements
+function setupDOM({
+  email = "test@example.com",
+  password = "Test@1234",
+  confirmPassword = "Test@1234",
+  termsChecked = true
+} = {}) {
+  document.body.innerHTML = `
+    <input id="address" value="${email}" />
+    <input id="password" type="password" value="${password}" />
+    <input id="confirmPassword" type="password" value="${confirmPassword}" />
+    <button id="register">Register</button>
+    <button id="icon">Google Sign In</button>
+    <input type="checkbox" id="termsCheckbox" ${termsChecked ? "checked" : ""} />
+    <span id="eyeIcon" class="fa-eye"></span>
+    <button id="togglePassword"></button>
+  `;
+}
 
-  test('Loads the signup form correctly', () => {
-    expect(document.querySelector('h1').textContent).toBe('Welcome to ArtAlley');
-    expect(document.querySelector('h2').textContent).toBe('Sign Up as a Buyer');
-  });
+beforeEach(() => {
+  setupDOM(); // default
+  jest.clearAllMocks();
+});
 
-  test('Has all input fields and buttons', () => {
-    expect(document.querySelector('#address')).not.toBeNull();
-    expect(document.querySelector('#password')).not.toBeNull();
-    expect(document.querySelector('#confirmPassword')).not.toBeNull();
-    expect(document.querySelector('#address').type).toBe('email');
-    expect(document.querySelector('#password').type).toBe('password');
-    expect(document.querySelector('a').href).toContain('TermsNConditions.html');
-    expect(document.querySelector('#register').textContent).toContain('Create Account');
-    expect(document.querySelector('#icon').textContent).toContain('Sign Up with Google');
-  });
+test("should alert if terms are not accepted", () => {
+  setupDOM({ termsChecked: false });
+  const alertMock = jest.spyOn(window, "alert").mockImplementation(() => {});
+  document.getElementById("register").click();
+  expect(alertMock).toHaveBeenCalledWith("Please accept the terms and conditions first.");
+});
 
-  test('prevents submission when required fields are empty', () => {
-    const form = container.querySelector('form');
-    expect(form.checkValidity()).toBe(false);
-  });
+test("should alert if Firebase signup fails", async () => {
+  createUserWithEmailAndPassword.mockRejectedValue(new Error("Email already in use"));
+  const alertMock = jest.spyOn(window, "alert").mockImplementation(() => {});
+  await document.getElementById("register").click();
+  expect(alertMock).toHaveBeenCalledWith(expect.stringContaining("Email already in use"));
+});
 
-  test('rejects invalid email format', () => {
-    const emailInput = container.querySelector('#address');
-    emailInput.value = 'notanemail';
-    expect(emailInput.validity.valid).toBe(false);
-  });
+test("should handle email verification wait", async () => {
+  const reloadMock = jest.fn();
+  const fakeUser = {
+    uid: "123",
+    email: "test@example.com",
+    reload: reloadMock,
+    emailVerified: false,
+  };
 
-  test('prevents submission if Terms and Conditions checkbox is not checked', () => {
-    const checkbox = container.querySelector('#termsCheckbox');
-    expect(checkbox.checked).toBe(false);
-    expect(checkbox.validity.valid).toBe(false);
-  });
+  createUserWithEmailAndPassword.mockResolvedValue({ user: fakeUser });
+  sendEmailVerification.mockResolvedValue();
+  getDoc.mockResolvedValue({ exists: () => true, data: () => ({ role: "buyer" }) });
+  setDoc.mockResolvedValue();
 
-  test('rejects password without uppercase letters', () => {
-    const password = container.querySelector('#password');
-    password.value = 'lowercase123';
-    expect(password.validity.valid).toBe(false);
-  });
+  jest.useFakeTimers(); // for setInterval
 
-  test('rejects password without lowercase letters', () => {
-    const password = container.querySelector('#password');
-    password.value = 'UPPERCASE123';
-    expect(password.validity.valid).toBe(false);
-  });
+  const alertMock = jest.spyOn(window, "alert").mockImplementation(() => {});
+  await document.getElementById("register").click();
 
-  test('rejects password without numbers or special characters', () => {
-    const password = container.querySelector('#password');
-    password.value = 'NoSpecialsHere';
-    expect(password.validity.valid).toBe(false);
-  });
+  // Simulate passage of time
+  jest.advanceTimersByTime(10000);
+  jest.useRealTimers();
+  expect(alertMock).toHaveBeenCalledWith(expect.stringContaining("verification email has been sent"));
+});
 
-  test('rejects password with less than 8 characters', () => {
-    const password = container.querySelector('#password');
-    password.value = 'Ab1!';
-    expect(password.validity.valid).toBe(false);
-  });
+test("should sign out if role is not buyer", async () => {
+  const fakeUser = { uid: "123", email: "test@example.com", reload: jest.fn(), emailVerified: true };
+  createUserWithEmailAndPassword.mockResolvedValue({ user: fakeUser });
+  sendEmailVerification.mockResolvedValue();
+  getDoc.mockResolvedValue({ exists: () => true, data: () => ({ role: "admin" }) });
+  setDoc.mockResolvedValue();
 
-  test('accepts strong password meeting all criteria', () => {
-    const password = container.querySelector('#password');
-    password.value = 'StrongPass1!';
-    expect(password.validity.valid).toBe(true);
-  });
+  const signOutMock = jest.fn();
+  getAuth.mockReturnValue({ signOut: signOutMock });
 
-  test('Shows validation for short password', () => {
-    document.querySelector('#address').value = 'test@example.com';
-    document.querySelector('#password').value = 'Ab1!';
-    document.querySelector('#confirmPassword').value = 'Ab1!';
-    document.querySelector('#termsCheckbox').checked = true;
-    
-    const passwordInput = document.querySelector('#password');
-    expect(passwordInput.validity.patternMismatch).toBe(true);
-    expect(passwordInput.checkValidity()).toBe(false);
-  });
+  const alertMock = jest.spyOn(window, "alert").mockImplementation(() => {});
+  await document.getElementById("register").click();
 
-  test('Google sign-up button is visible and clickable', () => {
-    const googleButton = document.querySelector('#icon');
-    expect(googleButton).not.toBeNull();
-    expect(googleButton.style.display).not.toBe('none');
-    
-    const clickHandler = jest.fn();
-    googleButton.addEventListener('click', clickHandler);
-    googleButton.click();
-    expect(clickHandler).toHaveBeenCalled();
-  });
+  expect(alertMock).toHaveBeenCalledWith(expect.stringContaining("Role verification failed"));
+});
+
+test("should handle Google login for existing buyer", async () => {
+  const mockUser = { uid: "google123", email: "google@example.com" };
+  signInWithPopup.mockResolvedValue({ user: mockUser });
+  getDoc.mockResolvedValue({ exists: () => true, data: () => ({ role: "buyer" }) });
+
+  const alertMock = jest.spyOn(window, "alert").mockImplementation(() => {});
+  const locationMock = jest.spyOn(window.location, "href", "set");
+
+  await document.getElementById("icon").click();
+
+  expect(alertMock).toHaveBeenCalledWith("Successfully signed up as a buyer!");
+  expect(locationMock).toHaveBeenCalledWith(expect.stringContaining("buyer-username.html"));
+});
+
+test("should alert on Google sign-in failure", async () => {
+  signInWithPopup.mockRejectedValue(new Error("Popup closed by user"));
+  const alertMock = jest.spyOn(window, "alert").mockImplementation(() => {});
+  await document.getElementById("icon").click();
+  expect(alertMock).toHaveBeenCalledWith(expect.stringContaining("Popup closed by user"));
+});
+
+test("should toggle password visibility", () => {
+  const toggleBtn = document.getElementById("togglePassword");
+  const passwordInput = document.getElementById("password");
+  const eyeIcon = document.getElementById("eyeIcon");
+
+  passwordInput.type = "password";
+  toggleBtn.click(); // should toggle to text
+  expect(passwordInput.type).toBe("text");
 });
