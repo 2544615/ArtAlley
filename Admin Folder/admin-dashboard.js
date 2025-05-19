@@ -1,6 +1,5 @@
 document.getElementById("view-users").addEventListener("click", function () {
-    alert("View users logic goes here!");
-    window.location.href="#";
+    window.location.href="admin-users.html";
 });
 
 document.getElementById("view-orders").addEventListener("click", function () {
@@ -13,10 +12,6 @@ document.getElementById("add-admin").addEventListener("click", function () {
     window.location.href="#";
 });
 
-document.getElementById("manage-access").addEventListener("click", function () {
-    alert("User access management logic goes here!");
-    window.location.href="#";
-});
 
 document.getElementById("manage-transactions").addEventListener("click", function () {
     alert("Transaction management logic goes here!");

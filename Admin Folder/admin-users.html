@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin - User Management</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="admin-dashboard.css"> <!-- Header styling -->
+  <link rel="stylesheet" href="admin-users.css"> <!-- Main styling -->
+</head>
+<body>
+
+  <!-- HEADER (Uses admin-dashboard.css) -->
+  <header>
+    <h1>ArtAlley Admin Dashboard</h1>
+    <nav class="header-icons">
+      <button id="accountButton"><i class="fas fa-user account-icon"></i></button>
+      <button id="signOutButton"><i class="fas fa-sign-out-alt"></i></button>
+    </nav>
+  </header>
+
+  <!-- MAIN CONTENT -->
+  <main class="container">
+    <section class="search-controls">
+      <input type="text" id="searchInput" placeholder="Search by username or email">
+      <button id="searchBtn">Search</button>
+    </section>
+
+    <section class="controls">
+      <label for="roleFilter">Filter by Role:</label>
+      <select id="roleFilter">
+        <option value="all">All Roles</option>
+        <option value="admin">Admins</option>
+        <option value="seller">Sellers</option>
+        <option value="buyer">Buyers</option>
+      </select>
+      <button id="filterBtn">Filter</button>
+    </section>
+
+    <section id="loadingIndicator" class="loading">Loading users...</section>
+    <section id="errorMessage" class="message"></section>
+
+    <section id="usersContainer" class="user-list">
+      <!-- User cards will be dynamically inserted here -->
+    </section>
+
+  </main>
+
+  <script type="module" src="admin-users.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
+</body>
+</html>

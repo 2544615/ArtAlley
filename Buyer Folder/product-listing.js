@@ -116,14 +116,61 @@ document.getElementById("sortOptions").addEventListener("change", (event) => {
 });
 
 
+// Populate seller dropdown dynamically
+async function populateSellerDropdown() {
+  try {
+    const querySnapshot = await getDocs(collection(db, "products"));
+    const sellerUIDs = new Set(); // Store unique seller IDs
+
+    querySnapshot.forEach(doc => {
+      const sellerUID = doc.data().sellerUID;
+      if (sellerUID) {
+        sellerUIDs.add(sellerUID);
+      }
+    });
+
+    const sellerDropdown = document.getElementById("sellerDropdown");
+    sellerDropdown.innerHTML = '<option value="all">All Sellers</option>'; // Default option
+
+    // Retrieve seller information based on sellerUIDs
+    for (const uid of sellerUIDs) {
+      const sellerRef = doc(db, "users", uid);
+      const sellerSnapshot = await getDoc(sellerRef);
+
+      if (sellerSnapshot.exists()) {
+        const sellerData = sellerSnapshot.data();
+        const sellerName = sellerData.username || sellerData.email; // Show username or fallback to email
+
+        const option = document.createElement("option");
+        option.value = uid; // Store UID for filtering
+        option.textContent = sellerName;
+        sellerDropdown.appendChild(option);
+      }
+    }
+  } catch (error) {
+    console.error("Error loading sellers:", error);
+  }
+}
+
 // Filtering Functionality
 document.getElementById("filterBtn").addEventListener("click", () => {
   const minPrice = parseFloat(document.getElementById("minPrice").value) || 0;
   const maxPrice = parseFloat(document.getElementById("maxPrice").value) || Infinity;
+  const selectedSellerUID = document.getElementById("sellerDropdown").value;
 
-  filteredProducts = products.filter((product) => product.price >= minPrice && product.price <= maxPrice);
+  filteredProducts = products.filter(product => {
+    const matchesSeller = selectedSellerUID === "all" || product.sellerUID === selectedSellerUID;
+
+    return product.price >= minPrice && product.price <= maxPrice && matchesSeller;
+  });
+
   currentPage = 1;
   renderProducts(filteredProducts);
+});
+
+// Call function to populate dropdown on page load
+document.addEventListener("DOMContentLoaded", () => {
+  populateSellerDropdown();
 });
 
 function searchProducts(query) {
