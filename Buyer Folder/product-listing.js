@@ -230,4 +230,3 @@ document.getElementById("profileButton").addEventListener("click", async () => {
     window.location.href = "../SignIn Folder/login-buyer.html"; // Just in case user is not authenticated
   }
 });
-  
