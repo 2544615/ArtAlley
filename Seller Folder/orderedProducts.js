@@ -104,9 +104,20 @@ onAuthStateChanged(auth, async (user) => {
       //orderDetail.appendChild(BuyerOrders);
   // Example click handler
   listItem.addEventListener("click", () => {
-    //alert(`Order from ${fullName}`);
-    window.location.href = "OrderDetail.html";
+    try {
+      const orderJson = JSON.stringify(order);
+      sessionStorage.setItem("selectedOrder", orderJson);
+      console.log("Order saved:", orderJson);
+  
+      // Delay redirect by 100ms
+      setTimeout(() => {
+        window.location.href = "OrderDetail.html";
+      }, 100);
+    } catch (err) {
+      console.error("Could not save order:", err);
+    }
   });
+  
 
     }
 
