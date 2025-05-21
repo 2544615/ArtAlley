@@ -134,6 +134,8 @@ function updateCartUI() {
   const totalElement = document.createElement("p");
   totalElement.innerHTML = `<strong>Total: R${total.toFixed(2)}</strong>`;
   cartSection.appendChild(totalElement);
+
+  localStorage.setItem('cartTotal', total.toFixed(2));
 }
 
 
