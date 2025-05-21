@@ -24,7 +24,7 @@ const db = getFirestore(app);
     const amountInput = document.getElementById("amount");
 
     const savedEmail = localStorage.getItem("checkoutEmail");
-    const savedAmount = localStorage.getItem("checkoutAmount");
+    const savedAmount = localStorage.getItem("cartTotal"); // 👈 get cart total
 
     if (savedEmail) {
         emailInput.value = savedEmail;
