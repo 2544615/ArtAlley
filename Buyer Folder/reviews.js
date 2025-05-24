@@ -78,9 +78,11 @@ async function loadProducts() {
           if (!productsMap.has(item.name)) {
             productsMap.set(item.name, {
               ...item,
+              productId: item.productId, // ✅ This ensures it's in currentProduct
               orderId: orderDoc.id,
               orderDate: orderData.timestamp?.toDate() || new Date()
             });
+
           }
         });
       }
