@@ -15,10 +15,9 @@ const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 const auth = getAuth(app);
 
-const cloudName = "dw0ukiusn"; // <-- replace with your Cloudinary cloud name
-const uploadPreset = "ArtAlley"; // <-- replace with your upload preset name
+const cloudName = "dw0ukiusn"; 
+const uploadPreset = "ArtAlley";
 
-// Upload image to Cloudinary
 async function uploadToCloudinary(file) {
     const formData = new FormData();
     formData.append("file", file);
@@ -30,36 +29,34 @@ async function uploadToCloudinary(file) {
             formData
         );
 
-        // Log the response to see if there’s any error
         console.log(response.data);
 
         if (response.data && response.data.secure_url) {
-            return response.data.secure_url;  // Return the image URL
+            return response.data.secure_url;  
         } else {
             throw new Error("Cloudinary did not return a valid URL.");
         }
     } catch (error) {
         console.error("Cloudinary upload failed:", error);
         alert("Image upload failed.");
-        throw error; // Make sure we throw to stop further execution
+        throw error; 
     }
   }
 
 const form = document.getElementById('product-form');
 const imageInput = document.getElementById("image");
 const previewContainer = document.getElementById("preview-images");
-const mainImageText = document.getElementById("select-main-text"); // <p id="select-main-text">Select the main image by clicking on it:</p>
+const mainImageText = document.getElementById("select-main-text"); 
 const mainImageIndexInput = document.getElementById("mainImageIndex");
 
 let selectedMainImageIndex = null;
 
-// Preview and select main image
 imageInput.addEventListener("change", () => {
-  previewContainer.innerHTML = ""; // Clear old previews
+  previewContainer.innerHTML = ""; 
   const files = Array.from(imageInput.files);
 
   if (files.length > 0) {
-    mainImageText.style.display = "block"; // Show the <p> when images selected
+    mainImageText.style.display = "block";
   }
   
   files.forEach((file, index) => {
@@ -74,7 +71,6 @@ imageInput.addEventListener("change", () => {
       selectedMainImageIndex = index;
       mainImageIndexInput.value = index;
 
-      // Highlight the selected image
       Array.from(previewContainer.children).forEach((child, i) => {
         child.style.border = i === index ? "3px solid green" : "3px solid transparent";
       });
