@@ -238,8 +238,7 @@ html,body {
     transition: background-color 0.3s ease;
   }
 
-  color: #3e2e1e;
-  text-align: start;
+ 
  
 }
 
@@ -282,3 +281,91 @@ html,body {
   background-color: #f7b53a;
   color: white;
 }
+
+/* Tablets (768px and below) */
+@media (max-width: 768px) {
+  #header {
+    flex-direction: row;
+    padding: 15px 30px;
+    text-align: center;
+  }
+
+  #navbar {
+    flex-direction: column;
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .product-container {
+    padding: 20px;
+    column-gap: 20px;
+    row-gap: 20px;
+    justify-content: center;
+    display: flex;
+  flex-wrap: wrap;
+  }
+  .background{
+    justify-content: center;
+
+  }
+  #products h2{
+  list-style: none;
+  position: relative;
+  font-size: 25px;
+  font-family: 'Spartan',sans-serif ;
+  color: #4f1e0c;
+  text-align: center;
+  margin-top: 20px;
+  margin-bottom: 1px;
+  
+}
+
+
+  
+}
+
+/* Phones (480px and below) */
+@media (max-width: 480px) {
+  #header {
+    padding: 10px 15px;
+  }
+  #navbar {
+    flex-direction: column;
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
+  }
+
+  #navbar li {
+    padding: 10px 0;
+  }
+
+  #navbar li a {
+    font-size: 14px;
+  }
+
+  .product-container {
+    grid-template-columns: 1fr;
+    padding: 15px;
+  }
+
+  .product-container article {
+    height: auto;
+  }
+
+  .login-card h2 {
+    font-size: 1.25rem;
+  }
+
+  .welcome-msg,
+  .empty-msg {
+    font-size: 0.85rem;
+  }
+
+  .login-btn {
+    font-size: 0.85rem;
+  }
+}
+
+
