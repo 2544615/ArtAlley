@@ -1,5 +1,5 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-app.js";
-import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-firestore.js";
+import { getFirestore, collection, addDoc, serverTimestamp, setDoc, doc } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-firestore.js";
 import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-auth.js";
 
 const firebaseConfig = {
@@ -117,9 +117,12 @@ onAuthStateChanged(auth, (user) => {
             const imageUrl = await uploadToCloudinary(file);
             imageUrls.push(imageUrl);
         }
-        
 
-      await addDoc(collection(db, "products"), {
+        const productRef = doc(collection(db, "products"));
+        const productId = productRef.id;
+
+      await setDoc(productRef, {
+        productId,
         name,
         price,
         quantity,
