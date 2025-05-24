@@ -67,6 +67,7 @@ const db = getFirestore(app);
                   cartSnapshot.forEach(doc => {
                     const data = doc.data();
                     items.push({
+                      productId: data.productId,
                       name: data.name,
                       imageUrl: data.imageUrl || "",
                       price: data.price,
