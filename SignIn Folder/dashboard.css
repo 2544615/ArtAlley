@@ -189,6 +189,7 @@ html,body {
 .product-container h4,
 .product-container p {
   margin-bottom: 0.5rem;
+  text-align: start;
   
 
   .welcome-msg {
