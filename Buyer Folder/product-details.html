@@ -5,38 +5,26 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Product Details</title>
   <link rel="stylesheet" href="product-details.css" />
-  <script type="module" src="product-details.js" defer></script>
+  <script type="module" src="product-details.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
 </head>
 <body>
+  <header class="main-header">
+    <h1>ArtAlley</h1>
+    <nav class="icons">
+      <button id="cartButton"><i class="fas fa-shopping-cart cart-icon"></i></button>
+      <button id="profileButton"><i class="fas fa-user account-icon"></i></button>
+      <button id="goBack" class="go-back" onclick="goBack()"><i class="fa-solid fa-left-long"></i></button>
+    </nav>
+  </header>
+
   <form id="productDetailsForm">
-  <button type="button" onclick="window.history.back()" id="backBtn">← Back</button>
+  <!--button type="button" onclick="window.history.back()" id="backBtn">← Back</button-->
 
-  
-
-  <main id="productDetailsContainer">
-
-    <section id="imageGalleryWrapper">
-    <section id="thumbnailColumn" aria-label="Thumbnails"></section>
-      <section id="mainImageContainer">
-        <img id="mainImage" src="" alt="Main Product Image" />
-      </section>
+  <main>
+    <section class="product-container" id="productContainer">
+      <!-- Products will be dynamically loaded here -->
     </section>
-    <article>
-      <header>
-        <h1 id="productName"></h1>
-        <p id="productPrice"></p>
-      </header>
-
-      <section>
-        <p id="productDescription"></p>
-      </section>
-
-      
-
-      <footer>
-        <button id="addToCartBtn">Add to Cart</button>
-      </footer>
-    </article>
   </main>
   </form>
 </body>

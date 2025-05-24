@@ -1,7 +1,7 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-app.js";
+import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-auth.js";
 import { getFirestore, doc, getDoc } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-firestore.js";
-import { getAuth, signInAnonymously, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-auth.js";
-import { addToCart } from './Carts.js';
+import { addToCart } from './Carts.js';  // Adjust path as needed
 
 const firebaseConfig = {
   apiKey: "AIzaSyDUfE0XLFPlpw_SAJIFoQlJhylk-r2VY4Y",
@@ -13,87 +13,103 @@ const firebaseConfig = {
 };
 
 const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
 const auth = getAuth(app);
+const db = getFirestore(app);
 
-const productId = localStorage.getItem("selectedProductId");
+function createProductDetailHTML(product) {
+  // Create thumbnails HTML
+  const thumbnails = product.imageUrls.map((url, index) => 
+    `<img src="${url}" alt="Thumbnail ${index + 1}" class="thumbnail" data-index="${index}">`
+  ).join("");
 
-async function loadProductDetails() {
-  if (!productId) {
-    alert("No product selected.");
-    return;
-  }
+  return `
+    <section id="imageGalleryWrapper">
+      <section id="thumbnailColumn" aria-label="Thumbnails">
+        ${thumbnails}
+      </section>
+      <section id="mainImageContainer">
+        <img id="mainImage" src="${product.imageUrls[0]}" alt="${product.name}" />
+      </section>
+    </section>
 
-  try {
-    const docRef = doc(db, "products", productId);
-    const docSnap = await getDoc(docRef);
+    <article>
+      <header>
+        <h1 id="productName">${product.name}</h1>
+        <p id="productPrice">Price: R${product.price.toFixed(2)}</p>
+      </header>
 
-    console.log("docSnap.exists():", docSnap.exists());
+      <section>
+        <p id="productDescription">${product.description || "No description available."}</p>
+      </section>
 
-    if (!docSnap.exists()) {
-      alert("Product not found.");
+      <footer class="add-to-cart-footer">
+        <button id="addToCartBtn" type="button">Add to Cart</button>
+      </footer>
+    </article>
+  `;
+}
+
+function setupThumbnailClicks(product) {
+  const thumbnails = document.querySelectorAll("#thumbnailColumn .thumbnail");
+  const mainImage = document.getElementById("mainImage");
+
+  thumbnails.forEach(thumb => {
+    thumb.addEventListener("click", () => {
+      mainImage.src = thumb.src;
+    });
+  });
+}
+
+function setupAddToCart(product) {
+  const btn = document.getElementById("addToCartBtn");
+  btn.addEventListener("click", () => {
+    addToCart(product);
+    alert(`${product.name} added to cart`);
+  });
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  onAuthStateChanged(auth, async (user) => {
+    if (!user) {
+      alert("Please log in to view product details.");
+      window.location.href = "login.html";
       return;
     }
 
-    const product = docSnap.data();
-    console.log("Product data:", product);
-
-    document.getElementById("productName").textContent = product.name;
-    document.getElementById("productPrice").textContent = `Price: R${product.price.toFixed(2)}`;
-    document.getElementById("productDescription").textContent = product.description || "No description available.";
-
-    const thumbnailColumn = document.getElementById("thumbnailColumn");
-    const mainImage = document.getElementById("mainImage");
-
-    thumbnailColumn.innerHTML = "";
-
-    if (product.imageUrls && product.imageUrls.length > 0) {
-      mainImage.src = product.imageUrls[0];
-      mainImage.alt = product.name;
-
-      product.imageUrls.forEach((url, index) => {
-        const thumb = document.createElement("img");
-        thumb.src = url;
-        thumb.alt = `Thumbnail ${index + 1}`;
-        if (index === 0) thumb.classList.add("selected");
-
-        thumb.addEventListener("click", () => {
-          mainImage.src = url;
-          document.querySelectorAll("#thumbnailColumn img").forEach(img => img.classList.remove("selected"));
-          thumb.classList.add("selected");
-        });
-
-        thumbnailColumn.appendChild(thumb);
-      });
+    const productId = localStorage.getItem("selectedProductId");
+    if (!productId) {
+      alert("No product selected.");
+      window.location.href = "products.html";
+      return;
     }
 
-    document.getElementById("addToCartBtn").addEventListener("click", () => {
-      addToCart(product);
-      alert(`${product.name} added to cart.`);
-    });
+    // const goBack = document.getElementById("goBack");
+    // if (goBack) {
+    //   goBack.addEventListener("click", function () {
+    //     window.history.back();
+    //   });
+    // }
 
-  } catch (error) {
-    console.error("Error loading product:", error);
-    alert("Failed to load product details.");
-  }
-}
+    try {
+      const productRef = doc(db, "products", productId);
+      const productSnap = await getDoc(productRef);
 
-// Authenticate before loading product
-document.addEventListener("DOMContentLoaded", () => {
-  onAuthStateChanged(auth, (user) => {
-    if (user) {
-      console.log("User signed in:", user.uid);
-      loadProductDetails();
-    } else {
-      signInAnonymously(auth)
-        .then(() => {
-          console.log("Signed in anonymously.");
-          // `onAuthStateChanged` will re-trigger and call `loadProductDetails()`
-        })
-        .catch((error) => {
-          console.error("Anonymous sign-in failed:", error);
-          alert("You must be signed in to view product details.");
-        });
+      if (!productSnap.exists()) {
+        alert("Product not found.");
+        return;
+      }
+
+      const product = { id: productSnap.id, ...productSnap.data() };
+
+      const container = document.getElementById("productContainer");
+      container.innerHTML = createProductDetailHTML(product);
+
+      setupThumbnailClicks(product);
+      setupAddToCart(product);
+
+    } catch (error) {
+      console.error("Error loading product:", error);
+      alert("Failed to load product details.");
     }
   });
 });
