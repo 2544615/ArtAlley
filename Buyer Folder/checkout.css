@@ -325,4 +325,88 @@ footer a:hover {
 
 
 
+/* Tablets (max-width: 768px) */
+@media (max-width: 768px) {
+  #header {
+    flex-direction: row;
+    padding: 15px 20px;
+    text-align: center;
+  }
 
+  #navbar {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  #form2 {
+    grid-template-columns: 1fr; /* Stack form and order summary */
+    gap: 30px;
+    padding: 1rem;
+  }
+
+  #billing {
+    margin-left: 0;
+  }
+
+  footer {
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+  }
+
+  .footer-help,
+  .footer-account,
+  .footer-logo {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+  #placeorder {
+    width: 80%;
+  }
+}
+
+/* Phones (max-width: 480px) */
+@media (max-width: 480px) {
+  #header {
+    padding: 10px;
+  }
+
+  #navbar li {
+    padding: 10px 0;
+  }
+
+  #navbar li a {
+    font-size: 14px;
+  }
+
+  h5, p {
+    font-size: 14px;
+  }
+
+  label, input, textarea, select {
+    font-size: 14px;
+  }
+
+  #placeorder {
+    width: 90%;
+    font-size: 14px;
+  }
+
+  .summary-item {
+    flex-direction: column;
+    align-items: flex-start;
+    font-size: 14px;
+  }
+
+  .summary-total h4,
+  .total-price {
+    font-size: 16px;
+  }
+}
+
+input, textarea, select {
+  width: 100%;
+  max-width: 100%;
+}
