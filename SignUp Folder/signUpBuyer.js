@@ -161,7 +161,7 @@ google_login.addEventListener("click", async function() {
       });
     }
 
-    alert("Successfully signed up as a buyer!");
+    
     window.location.href = "../SignUp Folder/buyer-username.html"; 
   } catch (error) {
     console.error("Error during sign-in:", error.code, error.message);
