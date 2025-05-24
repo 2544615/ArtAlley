@@ -72,23 +72,23 @@ document.addEventListener("DOMContentLoaded", () => {
   onAuthStateChanged(auth, async (user) => {
     if (!user) {
       alert("Please log in to view product details.");
-      window.location.href = "login.html";
+      window.location.href = "login-buyer.html";
       return;
     }
 
     const productId = localStorage.getItem("selectedProductId");
     if (!productId) {
       alert("No product selected.");
-      window.location.href = "products.html";
+      window.location.href = "product-listing.html";
       return;
     }
 
-    // const goBack = document.getElementById("goBack");
-    // if (goBack) {
-    //   goBack.addEventListener("click", function () {
-    //     window.history.back();
-    //   });
-    // }
+    const goBack = document.getElementById("goBack");
+    if (goBack) {
+      goBack.addEventListener("click", function () {
+         window.location.href = "product-listing.html";
+      });
+    }
 
     try {
       const productRef = doc(db, "products", productId);
