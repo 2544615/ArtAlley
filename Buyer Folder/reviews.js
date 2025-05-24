@@ -206,6 +206,7 @@ async function submitReview() {
     const reviewRef = doc(db, "reviews", `${currentUser.uid}_${currentProduct.name.replace(/\s+/g, '_')}`);
     
     await setDoc(reviewRef, {
+      productId: currentProduct.productId,
       userId: currentUser.uid,
       productName: currentProduct.name,
       productImage: currentProduct.imageUrl,
