@@ -93,7 +93,7 @@ onAuthStateChanged(auth, async (user) => {
         });
 
 
-        
+        article.appendChild(editBtn);
         article.appendChild(img);
         article.appendChild(h3);
         article.appendChild(quantity);
@@ -101,7 +101,7 @@ onAuthStateChanged(auth, async (user) => {
         article.appendChild(price);
         article.appendChild(deleteBtn);
 
-        article.appendChild(editBtn);
+       
 
         
 
