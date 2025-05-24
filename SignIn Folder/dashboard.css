@@ -216,27 +216,22 @@ html,body {
     cursor: pointer;
     margin: 10px 0 15px;
   }
-  .delete-button{
-    border: none;
-    color: black;
-    padding: 8px 12px;
-    border-radius: 6px;
-    cursor: pointer;
-    font-size: 16px;
-    margin: 0 5px;
-    transition: background-color 0.3s ease;
-    margin-left: 8px;
-    margin-right: 8px;
-  }
+
   .edit-button{
+    position: absolute;
     border: none;
     color: black;
     padding: 8px 12px;
     border-radius: 6px;
     cursor: pointer;
     font-size: 16px;
-    margin: 0 5px;
+    
     transition: background-color 0.3s ease;
+    align-items: end;
+    align-content: end;
+    display: flex;
+   justify-content: flex-end; /* moves content to the right */
+   align-items: center;
   }
 
  
@@ -275,6 +270,8 @@ html,body {
   border-radius: 8px;
   cursor: pointer;
   transition: all 0.3s ease;
+  align-content: end;
+  align-items: end;
 }
 
 .product-container button:hover,
@@ -282,6 +279,22 @@ html,body {
   background-color: #f7b53a;
   color: white;
 }
+
+.product-container button1 {
+  
+  border: none;
+  
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  align-content: end;
+  align-items: end;
+  display: flex;
+   justify-content: flex-end; /* moves content to the right */
+   align-items: center;
+   
+}
+
 
 /* Tablets (768px and below) */
 @media (max-width: 768px) {
@@ -368,5 +381,4 @@ html,body {
     font-size: 0.85rem;
   }
 }
-
 
