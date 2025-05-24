@@ -76,7 +76,7 @@ submit.addEventListener('click', function(event){
       return;
     
     if (isProfileComplete(userData)) {
-    alert(`Successfully logged in as ${userData.role}`);
+    
     console.log('user signed in as a', userData);
     window.location.href="seller-dashboard.html";
      // ...
@@ -113,7 +113,7 @@ google_login.addEventListener("click", function(){
 
         if (isProfileComplete(userData)) {
         console.log(user);
-        alert("Successfully logged in")
+        
         window.location.href="seller-dashboard.html";
         } else {
           alert("Please complete your profile first.");
