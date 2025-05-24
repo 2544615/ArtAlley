@@ -78,11 +78,10 @@ async function loadProducts() {
           if (!productsMap.has(item.name)) {
             productsMap.set(item.name, {
               ...item,
-              productId: item.productId, // ✅ This ensures it's in currentProduct
+              productId: item.productId,
               orderId: orderDoc.id,
               orderDate: orderData.timestamp?.toDate() || new Date()
             });
-
           }
         });
       }
@@ -225,7 +224,6 @@ async function submitReview() {
     alert('There was an error submitting your review. Please try again.');
   }
 }
-
 
 // Get list of product names that user has reviewed
 async function getReviewedProducts() {
