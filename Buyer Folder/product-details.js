@@ -34,7 +34,7 @@ function createProductDetailHTML(product) {
 
     <article>
       <header>
-        <h1 id="productName">${product.name}</h1>
+        <h2 id="productName">${product.name}</h2>
         <p id="productPrice">Price: R${product.price.toFixed(2)}</p>
       </header>
 
