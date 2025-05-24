@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Log Out</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      font-family: 'Spartan', sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: #fef9f3;
+    }
+
+    section {
+      background: #fff;
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+      text-align: center;
+      max-width: 400px;
+      width: 90%;
+    }
+
+    header h2 {
+      color: #4f1e0c;
+      margin-bottom: 1rem;
+    }
+
+    article p {
+      color: #555;
+      margin-bottom: 2rem;
+    }
+
+    footer {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+    }
+
+    button {
+      flex: 1;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 6px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .cancel {
+      background-color: #eee;
+      color: #333;
+    }
+
+    .cancel:hover {
+      background-color: #ddd;
+    }
+
+    .confirm {
+      background-color:  #eee;
+      color: #333;
+    }
+
+    .confirm:hover {
+      background-color:#f5deb3;
+    }
+  </style>
+</head>
+<body>
+  <section>
+    <header>
+      <h2>Are you sure?</h2>
+    </header>
+    <article>
+      <p>Do you really want to log out?</p>
+    </article>
+    <footer>
+      <button class="cancel" onclick="goBack()">Cancel</button>
+      <button class="confirm" onclick="logout()">Log Out</button>
+    </footer>
+  </section>
+
+  <script>
+    function goBack() {
+      window.history.back();
+    }
+
+    function logout() {
+      localStorage.clear();
+      sessionStorage.clear();
+      window.location.href = "homepage.html"; // change to your homepage if needed
+    }
+  </script>
+</body>
+</html>
