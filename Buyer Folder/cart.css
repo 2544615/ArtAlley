@@ -139,10 +139,10 @@
   
   /* Remove Button */
   .remove-button {
-    color: #888;
+    color: white;
     font-size: 0.8rem;
     cursor: pointer;
-    text-decoration: underline;
+    
   }
 
   section h2 {
