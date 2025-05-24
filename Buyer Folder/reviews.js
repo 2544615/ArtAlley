@@ -195,43 +195,34 @@ async function submitReview() {
     alert('Please select a rating');
     return;
   }
-
+  
   if (!reviewText.value.trim()) {
     alert('Please write your review');
     return;
   }
-
+  
   try {
-    if (!currentProduct.productId) {
-  alert("❌ Missing product ID. Review cannot be submitted.");
-  console.error("Missing productId in:", currentProduct);
-  return;
-}
-
-const reviewRef = doc(db, "products", currentProduct.productId, "reviews", currentUser.uid);
-
-
+    // Create or update review document
+    const reviewRef = doc(db, "reviews", `${currentUser.uid}_${currentProduct.name.replace(/\s+/g, '_')}`);
+    
     await setDoc(reviewRef, {
-      productId: currentProduct.productId, 
       userId: currentUser.uid,
-      username: currentUser.displayName || "Anonymous",
       productName: currentProduct.name,
       productImage: currentProduct.imageUrl,
       rating: selectedRating,
       reviewText: reviewText.value.trim(),
       timestamp: new Date()
     }, { merge: true });
-
-    alert('✅ Thank you for your review!');
+    
+    alert('Thank you for your review!');
     modal.style.display = 'none';
     loadProducts(); // Refresh the list
-
+    
   } catch (error) {
-    console.error("❌ Error submitting review:", error);
+    console.error("Error submitting review:", error);
     alert('There was an error submitting your review. Please try again.');
   }
 }
-
 
 // Get list of product names that user has reviewed
 async function getReviewedProducts() {
