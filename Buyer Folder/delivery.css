@@ -354,3 +354,142 @@
 
 
 
+/* -------------------- Responsive Design -------------------- */
+@media (max-width: 1024px) {
+  #form2 {
+    grid-template-columns: 1fr; /* Stack columns vertically */
+    gap: 40px;
+    padding: 1rem;
+    text-align: center;
+  }
+
+  .text-content {
+    width: auto;
+    margin: 0;
+  }
+
+  #billing::before,
+  #collect::before {
+    width: 80px;
+    height: 80px;
+  }
+
+  #header {
+    padding: 15px 30px;
+    flex-direction: row;
+    align-items: flex-start;
+  }
+
+  #navbar {
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+  }
+
+  #navbar li {
+    padding: 10px 0;
+  }
+
+  #left-column {
+    margin-left: 0;
+  }
+}
+
+@media (max-width: 768px) {
+  #header {
+    padding: 10px 20px;
+  }
+
+  #navbar li a {
+    font-size: 14px;
+  }
+
+  #checkout {
+    font-size: 24px;
+  }
+
+  .text-content {
+    width: 100%;
+    margin: 0;
+  }
+
+  .button-link {
+    width: 100%;
+    margin-top: 10px;
+  }
+
+  #placeorder {
+    width: 90%;
+    font-size: 14px;
+  }
+
+  footer {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 20px;
+  }
+
+  .footer-help,
+  .footer-account,
+  .footer-logo {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  #billing::before,
+  #collect::before {
+    /* Hide images on very small screens */
+  }
+
+  #billing, #collect {
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+  }
+
+  .text-content {
+    margin: 0;
+    width: 100%;
+  }
+
+  #header {
+    padding: 10px 10px;
+  }
+
+  #navbar {
+    align-items: center;
+  }
+
+  #navbar li {
+    text-align: center;
+    width: 100%;
+  }
+
+  #navbar li a {
+    font-size: 13px;
+  }
+
+  #form2 {
+    padding: 1rem 0.5rem;
+  }
+
+  #order h5 {
+    font-size: 16px;
+  }
+
+  p {
+    font-size: 14px;
+  }
+
+  .summary-item {
+    font-size: 13px;
+  }
+}
+
+
+
+
+
