@@ -202,8 +202,14 @@ async function submitReview() {
   }
 
   try {
-    // Store the review in the subcollection of the specific product
-    const reviewRef = doc(db, "products", currentProduct.productId, "reviews", currentUser.uid);
+    if (!currentProduct.productId) {
+  alert("❌ Missing product ID. Review cannot be submitted.");
+  console.error("Missing productId in:", currentProduct);
+  return;
+}
+
+const reviewRef = doc(db, "products", currentProduct.productId, "reviews", currentUser.uid);
+
 
     await setDoc(reviewRef, {
       productId: currentProduct.productId, 
