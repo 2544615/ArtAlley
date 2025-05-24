@@ -73,7 +73,7 @@ submit.addEventListener('click', function(event){
     if (!userData.username) {
       window.location.href = "../SignUp Folder/buyer-username.html";
     } else {
-      alert(`Successfully logged in as ${userData.role}`);
+      
       console.log('user signed in as a', userData);
       window.location.href = "../Buyer Folder/product-listing.html";
     }
@@ -105,7 +105,7 @@ google_login.addEventListener("click", function(){
         if (!userData.username) {
           window.location.href = "../SignUp Folder/buyer-username.html";
         } else {
-          alert(`Successfully logged in as ${userData.role}`);
+          
           console.log('user signed in as a', userData);
           window.location.href = "../Buyer Folder/product-listing.html";
         }
