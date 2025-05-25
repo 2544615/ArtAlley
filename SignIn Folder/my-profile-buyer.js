@@ -10,7 +10,7 @@ const firebaseConfig = {
   apiKey: "AIzaSyDUfE0XLFPlpw_SAJIFoQlJhylk-r2VY4Y",
   authDomain: "artalley-b9c96.firebaseapp.com",
   projectId: "artalley-b9c96",
-  storageBucket: "artalley-b9c96.appspot.com",
+  storageBucket: "artalley-b9c96.firebasestorage.app",
   messagingSenderId: "1056868925602",
   appId: "1:1056868925602:web:4fa9734632b255594917fb"
 };
@@ -81,16 +81,12 @@ numberInput.addEventListener("blur", () => {
   }
 });
 
-<<<<<<< HEAD
   if (backBtn) {
     backBtn.addEventListener("click", function () {
       window.history.back();
     });
   }
-// Prevent invalid key presses in name & number fields
-=======
 
->>>>>>> a35b84d0b32714a14d5c9f4d6c5b9a73988c0bca
 [firstNameInput, lastNameInput].forEach((input) => {
   input.addEventListener("keydown", (e) => {
     const allowedKeys = ["Backspace", "Delete", "ArrowLeft", "ArrowRight", "Tab"];
