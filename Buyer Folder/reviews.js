@@ -15,7 +15,7 @@ const app = initializeApp(firebaseConfig);
 const auth = getAuth();
 const db = getFirestore(app);
 
-// DOM Elements
+
 const productsList = document.getElementById('productsList');
 const reviewFilter = document.getElementById('reviewFilter');
 const modal = document.getElementById('reviewModal');
@@ -26,12 +26,12 @@ const modalProductName = document.getElementById('modalProductName');
 const reviewText = document.getElementById('reviewText');
 const stars = document.querySelectorAll('.star');
 
-// State
+
 let currentUser = null;
 let currentProduct = null;
 let selectedRating = 0;
 
-// Event Listeners
+
 reviewFilter.addEventListener('change', loadProducts);
 closeBtn.addEventListener('click', () => modal.style.display = 'none');
 submitReviewBtn.addEventListener('click', submitReview);
@@ -39,14 +39,14 @@ stars.forEach(star => {
   star.addEventListener('click', () => setRating(star));
 });
 
-// Close modal when clicking outside
+
 window.addEventListener('click', (e) => {
   if (e.target === modal) {
     modal.style.display = 'none';
   }
 });
 
-// Initialize
+
 onAuthStateChanged(auth, async (user) => {
   if (user) {
     currentUser = user;
@@ -56,21 +56,21 @@ onAuthStateChanged(auth, async (user) => {
   }
 });
 
-// Load products from orders
+
 async function loadProducts() {
   try {
     productsList.innerHTML = '<div class="loading">Loading your products...</div>';
     
-    // Get all orders for current user
+    
     const q = query(
       collection(db, "orders"),
       where("userId", "==", currentUser.uid)
     );
     
     const querySnapshot = await getDocs(q);
-    const productsMap = new Map(); // To avoid duplicates
+    const productsMap = new Map(); 
     
-    // Extract all unique products from orders
+    
     querySnapshot.forEach(orderDoc => {
       const orderData = orderDoc.data();
       if (orderData.items && orderData.items.length > 0) {
@@ -87,15 +87,15 @@ async function loadProducts() {
       }
     });
     
-    // Convert to array and sort by order date (newest first)
+    
     const products = Array.from(productsMap.values()).sort((a, b) => b.orderDate - a.orderDate);
     
-    // Filter based on selection
+    
     const filterValue = reviewFilter.value;
     let filteredProducts = products;
     
     if (filterValue === 'reviewed') {
-      // Check which products have reviews
+      
       const reviewedProducts = await getReviewedProducts();
       filteredProducts = products.filter(p => reviewedProducts.includes(p.name));
     } else if (filterValue === 'not-reviewed') {
@@ -103,7 +103,7 @@ async function loadProducts() {
       filteredProducts = products.filter(p => !reviewedProducts.includes(p.name));
     }
     
-    // Display products
+    
     displayProducts(filteredProducts);
     
   } catch (error) {
@@ -112,7 +112,7 @@ async function loadProducts() {
   }
 }
 
-// Display products in the UI
+
 async function displayProducts(products) {
   if (products.length === 0) {
     productsList.innerHTML = '<div class="no-products">No products found matching your criteria.</div>';
@@ -121,7 +121,7 @@ async function displayProducts(products) {
   
   productsList.innerHTML = '';
   
-  // Get list of reviewed products to show badges
+  
   const reviewedProducts = await getReviewedProducts();
   
   products.forEach(product => {
@@ -151,7 +151,7 @@ async function displayProducts(products) {
     
     productsList.appendChild(productCard);
     
-    // Add event listener to review button if it exists
+    
     const reviewBtn = productCard.querySelector('.review-btn');
     if (reviewBtn) {
       reviewBtn.addEventListener('click', () => openReviewModal(product));
@@ -159,16 +159,16 @@ async function displayProducts(products) {
   });
 }
 
-// Open review modal with product info
+
 function openReviewModal(product) {
   currentProduct = product;
   selectedRating = 0;
   reviewText.value = '';
   
-  // Reset stars
+  
   stars.forEach(star => star.classList.remove('active'));
   
-  // Set product info in modal
+  
   modalProductImage.src = product.imageUrl || 'https://via.placeholder.com/150';
   modalProductImage.alt = product.name;
   modalProductName.textContent = product.name;
@@ -176,7 +176,7 @@ function openReviewModal(product) {
   modal.style.display = 'block';
 }
 
-// Set star rating
+
 function setRating(star) {
   const value = parseInt(star.getAttribute('data-value'));
   selectedRating = value;
@@ -192,7 +192,7 @@ function setRating(star) {
   });
 }
 
-// Submit review to Firestore
+
 async function submitReview() {
   if (selectedRating === 0) {
     alert('Please select a rating');
@@ -205,7 +205,7 @@ async function submitReview() {
   }
   
   try {
-    // Create or update review document
+    
     const reviewRef = doc(db, "reviews", `${currentUser.uid}_${currentProduct.name.replace(/\s+/g, '_')}`);
     
     await setDoc(reviewRef, {
@@ -219,7 +219,7 @@ async function submitReview() {
     
     alert('Thank you for your review!');
     modal.style.display = 'none';
-    loadProducts(); // Refresh the list
+    loadProducts(); 
     
   } catch (error) {
     console.error("Error submitting review:", error);
@@ -227,7 +227,7 @@ async function submitReview() {
   }
 }
 
-// Get list of product names that user has reviewed
+
 async function getReviewedProducts() {
   const q = query(
     collection(db, "reviews"),
