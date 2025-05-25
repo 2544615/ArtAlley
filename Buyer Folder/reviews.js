@@ -208,7 +208,6 @@ async function submitReview() {
     
     await setDoc(reviewRef, {
       userId: currentUser.uid,
-      productId: currentProduct.productId, 
       productName: currentProduct.name,
       productImage: currentProduct.imageUrl,
       rating: selectedRating,
