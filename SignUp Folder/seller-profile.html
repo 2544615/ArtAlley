@@ -49,22 +49,22 @@
         const phoneInput = document.getElementById('number');
     
         phoneInput.addEventListener('input', (e) => {
-        // Remove all non-digit characters
+       
         e.target.value = e.target.value.replace(/\D/g, ''); 
 
-        // Check if the phone number is complete (10 digits)
+       
         if (e.target.value.length < 10) {
-            phoneInput.setCustomValidity("Phone number must be 10 digits"); // Custom validation message
+            phoneInput.setCustomValidity("Phone number must be 10 digits"); 
         } else {
-            phoneInput.setCustomValidity(""); // Reset custom validation if the phone number is correct
+            phoneInput.setCustomValidity(""); 
         }
         });
         
         phoneInput.addEventListener('keydown', (e) => {
         const allowedKeys = ['Backspace', 'Delete', 'ArrowLeft', 'ArrowRight', 'Tab'];
-        // Prevent any non-numeric keys from being typed
+        
         if (!/^\d$/.test(e.key) && !allowedKeys.includes(e.key)) {
-            e.preventDefault(); // Prevent non-numeric keys from being entered
+            e.preventDefault(); 
         }
         });
 
@@ -73,23 +73,22 @@
         
         [firstNameInput, lastNameInput].forEach(input => {
           input.addEventListener('input', (e) => {
-            e.target.value = e.target.value.replace(/[^A-Za-z]/g, '');
+            e.target.value = e.target.value.replace(/[^A-Za-z\-'\s]/g, '');
           });
         });
 
-        //e.target.value = e.target.value.replace(/[^A-Za-z]/g, '');
-        // Allow only letters in first name and last name (during typing)
+        
         [firstNameInput, lastNameInput].forEach(input => {
           input.addEventListener('keydown', (e) => {
-            const allowedKeys = ['Backspace', 'Delete', 'ArrowLeft', 'ArrowRight', 'Tab'];
+            const allowedKeys = ['Backspace', 'Delete', 'ArrowLeft', 'ArrowRight', 'Tab', '-', '\'', ' '];
             if (!/^[A-Za-z]$/.test(e.key) && !allowedKeys.includes(e.key)) {
-              e.preventDefault();
+              e.preventDefault(); 
             }
           });
         });
 
         const usernameInput = document.getElementById('profileUsername');
-        // Allow only letters and numbers in username (no special characters)
+        
         usernameInput.addEventListener('keydown', (e) => {
           const allowedKeys = ['Backspace', 'Delete', 'ArrowLeft', 'ArrowRight', 'Tab'];
           if (!/^[A-Za-z0-9]$/.test(e.key) && !allowedKeys.includes(e.key)) {
