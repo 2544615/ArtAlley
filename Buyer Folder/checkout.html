@@ -120,7 +120,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
     <script type="module" src="checkout.js"></script> 
     <script>
-    // Toggle sidebar
+    
     document.addEventListener("DOMContentLoaded", function () {
       const sidebar = document.getElementById("sidebar");
       const hamburgerBtn = document.getElementById("hamburgerBtn");
@@ -129,6 +129,46 @@
         sidebar.classList.toggle("active");
       });
     });
+
+        const firstNameInput = document.getElementById('firstName');
+        const lastNameInput = document.getElementById('lastName');
+        
+        [firstNameInput, lastNameInput].forEach(input => {
+          input.addEventListener('input', (e) => {
+            e.target.value = e.target.value.replace(/[^A-Za-z\-'\s]/g, '');
+          });
+        });
+
+        
+        [firstNameInput, lastNameInput].forEach(input => {
+          input.addEventListener('keydown', (e) => {
+            const allowedKeys = ['Backspace', 'Delete', 'ArrowLeft', 'ArrowRight', 'Tab', '-', '\'', ' '];
+            if (!/^[A-Za-z]$/.test(e.key) && !allowedKeys.includes(e.key)) {
+              e.preventDefault(); 
+            }
+          });
+        });
+
+        const phoneInput = document.getElementById('contact');
+        
+        phoneInput.addEventListener('input', (e) => {
+          
+          e.target.value = e.target.value
+            .replace(/[^\d+]/g, '')       
+            .replace(/^(\+)(?=.*\+)/g, '') 
+            .replace(/(?!^)\+/g, '');      
+        });
+        
+        
+        phoneInput.addEventListener('keydown', (e) => {
+          const allowedKeys = ['Backspace', 'Delete', 'ArrowLeft', 'ArrowRight', 'Tab'];
+          const isDigit = /^\d$/.test(e.key);
+          const isPlusAtStart = e.key === '+' && phoneInput.selectionStart === 0 && !phoneInput.value.includes('+');
+        
+          if (!isDigit && !isPlusAtStart && !allowedKeys.includes(e.key)) {
+            e.preventDefault();
+          }
+        });  
   </script>
 </body>
 </html>
