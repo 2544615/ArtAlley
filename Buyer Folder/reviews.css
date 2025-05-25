@@ -30,6 +30,8 @@
     border-radius: 12px;
     box-shadow: 0 4px 15px rgba(139, 69, 19, 0.08);
   }
+
+   
   
   /* Header */
   .reviews-container header {
@@ -368,3 +370,35 @@
       height: 120px;
     }
   }
+
+/* Back Button Styles */
+.back-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--nude-dark);
+  text-decoration: none;
+  font-weight: 500;
+  margin-bottom: 15px;
+  transition: all 0.3s ease;
+  padding: 8px 12px;
+  border-radius: 6px;
+  background-color: var(--nude-beige);
+}
+
+.back-button:hover {
+  background-color: var(--nude-tan);
+  color: var(--text-dark);
+  transform: translateY(-2px);
+}
+
+header nav {
+  margin-bottom: 10px;
+}
+
+/* Adjust header spacing */
+.reviews-container header {
+  border-bottom: 1px solid var(--nude-beige);
+  padding-bottom: 15px;
+  margin-bottom: 15px; /* Reduced from 25px */
+}
