@@ -136,6 +136,19 @@
             e.preventDefault();
           }
         });  
+
+        const nameInput = document.getElementById('firstname');
+        
+        nameInput.addEventListener('input', (e) => {
+            e.target.value = e.target.value.replace(/[^A-Za-z\-'\s]/g, '');
+        });
+        
+        nameInput.addEventListener('keydown', (e) => {
+          const allowedKeys = ['Backspace', 'Delete', 'ArrowLeft', 'ArrowRight', 'Tab', '-', '\'', ' '];
+          if (!/^[A-Za-z]$/.test(e.key) && !allowedKeys.includes(e.key)) {
+              e.preventDefault();
+          }
+        });
     </script>
 </body>
 </html>
