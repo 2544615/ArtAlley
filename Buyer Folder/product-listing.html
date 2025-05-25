@@ -9,20 +9,30 @@
 </head>
 <body>
 
-  <header>
+  <header id="header">
     <!-- Hamburger Icon for Sidebar -->
     <button class="hamburger" id="hamburgerBtn">
       <i class="fas fa-bars"></i>
     </button>
     
-    <h1>ArtAlley</h1>
+    <a href="#"><img src="../SignIn Folder/Black White Bold Modern Studio Logo (2).png " class="" alt=""></a>
     <nav class="icons">
+      
         <input type="text" placeholder="Search..." class="search-bar" />
         <button id="searchButton"><i class="fas fa-search search-icon"></i></button>
-        <button id="cartButton"><i class="fas fa-shopping-cart cart-icon"></i></button>
-        <button id="profileButton"><i class="fas fa-user account-icon"></i></button>
+        <ul id="navbar">
+                <li><a href="../Buyer Folder/product-listing.html">View Products</a></li>
+                <li><a class="active" href="checkout.html">Checkout</a></li>
+                <li><a  href="../Homepage Folder/homepage.html">Home</a></li>
+                <li><a href="cart.html">View cart</a></li>
+                <li><a href="..SignIn Folder/logout.html">Log Out</a></li>
+          </ul>
+        
+        <!--<button id="cartButton"><i class="fas fa-shopping-cart cart-icon"></i></button>
+        <button id="profileButton"><i class="fas fa-user account-icon"></i></button>-->
     </nav>
   </header>
+
 
   <!-- Sidebar Navigation -->
   <aside id="sidebar" class="sidebar">

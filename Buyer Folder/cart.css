@@ -17,7 +17,7 @@
   }
   
   /* Header Styling */
-  header {
+  /*header {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -37,7 +37,118 @@
   header nav {
     display: flex;
     gap: 5px;
+  }*/
+   #header{
+    display : flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 55px;
+    background-color: #f5deb3;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.06);
+    position: sticky;
+    top: 0;
+    left: 0;
+    z-index: 999;
+
   }
+ 
+  #navbar{
+    display: flex;
+    align-items: center;
+    justify-content: center ;
+  
+  }
+  
+  #navbar li{
+    list-style: none;
+    padding:  0 20px;
+    position: relative;
+  }
+  
+  #navbar li a{
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 600;
+    color: #d2691e;
+    transition: 0.3s ease;
+  }
+  
+  #navbar li a:hover,
+  #navbar li a.active {
+    color : #f5a718;
+
+  }
+  
+  #navbar li a.active::after,
+  #navbar li a:hover::after{
+    content: "";
+    width: 30%;
+    height: 2px;
+    background: #f5a718;
+    position: absolute;
+    bottom: -4px;
+    left: 20px
+  }
+
+/* Hamburger Button */
+.hamburger {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  color: white;
+  cursor: pointer;
+  margin-right: 10px;
+}
+/* Sidebar */
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: -250px;
+  width: 230px;
+  height: 100%;
+  background-color: #f8e6d4; /* lighter nude background */
+  color: #3e2723; /* dark brown text */
+  padding-top: 70px;
+  transition: left 0.3s ease;
+  box-shadow: 2px 0 8px rgba(0,0,0,0.2);
+  z-index: 1000;
+}
+
+.sidebar.active {
+  left: 0;
+}
+
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+}
+
+.sidebar ul li {
+  padding: 15px 20px;
+  border-bottom: 1px solid #d2b48c;
+}
+
+.sidebar ul li a {
+  color: #3e2723;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.sidebar ul li a:hover {
+  text-decoration: underline;
+}
+
+/* Sidebar Close Icon */
+.sidebar .close-btn {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: none;
+  border: none;
+  font-size: 1.2rem;
+  color: #3e2723;
+  cursor: pointer;
+}
   
   /* Search Bar */
   .search-bar {
@@ -173,3 +284,172 @@
     cursor: pointer;
     display: inline-block;
   }
+
+  
+/* Tablets (max-width: 768px) */
+@media (max-width: 768px) {
+  #header {
+    flex-direction: row;
+    padding: 15px 20px;
+    text-align: center;
+  }
+
+  #navbar {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  
+
+  footer {
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+  }
+
+  .footer-help,
+  .footer-account,
+  .footer-logo {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+  .search-bar {
+    width: 100%;
+    height: 40px;
+    font-size: 16px;
+  }
+
+  /* Cart container stacks items vertically */
+  #CartProducts {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    padding: 10px;
+    
+  }
+
+  /* Responsive card layout */
+  .cart-item {
+    width: 95%;
+    max-width: 320px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 16px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    text-align: center;
+  }
+
+  .cart-item img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    margin-bottom: 10px;
+    border-radius: 6px;
+  }
+
+  .quantity-control {
+    flex-direction: row;
+    justify-content: center;
+    margin: 10px 0;
+    width: 100%;
+  }
+
+  .quantity-control button {
+    width: 30px;
+    height: 30px;
+    font-size: 16px;
+  }
+
+  .remove-button {
+    width: 100%;
+    padding: 8px;
+    font-size: 14px;
+    margin-top: 8px;
+  }
+
+  aside {
+    margin-top: 10px;
+    font-weight: bold;
+  }
+
+  
+}
+
+@media (max-width: 480px) {
+  #header {
+    flex-direction: column;
+    padding: 10px;
+  }
+
+  #navbar {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .search-bar {
+    width: 100%;
+    height: 40px;
+    font-size: 16px;
+  }
+
+  /* Cart container stacks items vertically */
+  #CartProducts {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    padding: 10px;
+    
+  }
+
+  /* Responsive card layout */
+  .cart-item {
+    width: 95%;
+    max-width: 320px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 16px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    text-align: center;
+  }
+
+  .cart-item img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    margin-bottom: 10px;
+    border-radius: 6px;
+  }
+
+  .quantity-control {
+    flex-direction: row;
+    justify-content: center;
+    margin: 10px 0;
+    width: 100%;
+  }
+
+  .quantity-control button {
+    width: 30px;
+    height: 30px;
+    font-size: 16px;
+  }
+
+  .remove-button {
+    width: 100%;
+    padding: 8px;
+    font-size: 14px;
+    margin-top: 8px;
+  }
+
+  aside {
+    margin-top: 10px;
+    font-weight: bold;
+  }
+
+
+}

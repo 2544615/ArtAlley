@@ -48,6 +48,7 @@ const imageInput = document.getElementById("image");
 const previewContainer = document.getElementById("preview-images");
 const mainImageText = document.getElementById("select-main-text"); 
 const mainImageIndexInput = document.getElementById("mainImageIndex");
+const backBtn = document.getElementById("back-btn");
 
 let selectedMainImageIndex = null;
 
@@ -79,6 +80,12 @@ imageInput.addEventListener("change", () => {
     previewContainer.appendChild(img);
   });
 });
+
+if (backBtn) {
+    backBtn.addEventListener("click", function () {
+      window.history.back();
+    });
+  }
 
 onAuthStateChanged(auth, (user) => {
   if (!user) {

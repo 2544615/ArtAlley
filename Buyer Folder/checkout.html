@@ -8,16 +8,34 @@
 </head>
 <body>
     <section id="header">
+        <button class="hamburger" id="hamburgerBtn">
+            <i class="fas fa-bars"></i>
+        </button>
         <a href="#"><img src="../SignIn Folder/Black White Bold Modern Studio Logo (2).png " class="" alt=""></a>
         <nav>
             <ul id="navbar">
+                <li><a href="../Buyer Folder/product-listing.html">View Products</a></li>
                 <li><a class="active" href="checkout.html">Checkout</a></li>
                 <li><a  href="../Homepage Folder/homepage.html">Home</a></li>
                 <li><a href="cart.html">View cart</a></li>
-                <li><a href="logout.html">Log Out</a></li>
+                <li><a href="..SignIn Folder/logout.html">Log Out</a></li>
             </ul>
         </nav>
     </section>
+
+    <!-- Sidebar Navigation -->
+  <aside id="sidebar" class="sidebar">
+  <button class="close-btn" onclick="document.getElementById('sidebar').classList.remove('active')">
+    <i class="fas fa-arrow-left"></i>
+  </button>
+    
+    <ul>
+      <li><a href="#">Manage My Account</a></li>
+      <li><a href="#">Track My Order</a></li>
+      <li><a href="view-orders.html">View Orders</a></li>
+      <li><a href="reviews.html">Product Reviews</a></li>
+    </ul>
+  </aside>
 
     <section id="check">
         <h2 id="checkout">Ready to check out?</h2>
@@ -73,7 +91,7 @@
         </form>
     </main>
 
-    <script type="module" src="checkout.js"></script> 
+    
 
     <footer id="check">
         <section class="footer-help">
@@ -98,5 +116,19 @@
             </ul>
         </section>
     </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
+    <script type="module" src="checkout.js"></script> 
+    <script>
+    // Toggle sidebar
+    document.addEventListener("DOMContentLoaded", function () {
+      const sidebar = document.getElementById("sidebar");
+      const hamburgerBtn = document.getElementById("hamburgerBtn");
+      
+      hamburgerBtn.addEventListener("click", () => {
+        sidebar.classList.toggle("active");
+      });
+    });
+  </script>
 </body>
 </html>

@@ -67,7 +67,7 @@ productCard.querySelector('.clickable').addEventListener('click', () => {
     button.addEventListener('click', (e) => {
       e.stopPropagation(); // So it doesn't trigger the "clickable" navigation
       addToCart(product);
-      alert(`${product.name} added to cart`);//added an alert message that your item is added to cart
+      
     });
   });
  
@@ -205,7 +205,7 @@ document.addEventListener("DOMContentLoaded", () => {
       loadProducts();
     } else {
       alert("You need to log in to view the products.");
-      window.location.href = "login.html";
+      window.location.href = "../SignIn Folder/login-buyer.html";
     }
   });
 });

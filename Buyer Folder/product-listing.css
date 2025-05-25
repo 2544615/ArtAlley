@@ -7,14 +7,65 @@ body {
 }
 
 /* Header Styling */
-header {
+/*header {
   display: flex;
   justify-content: space-between; 
   align-items: center; 
   height: 60px; 
   padding: 0 15px; 
   background-color:chocolate;
-}
+}*/
+ #header{
+    display : flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 55px;
+    background-color: #f5deb3;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.06);
+    position: sticky;
+    top: 0;
+    left: 0;
+    z-index: 999;
+
+  }
+ 
+  #navbar{
+    display: flex;
+    align-items: center;
+    justify-content: center ;
+  
+  }
+  
+  #navbar li{
+    list-style: none;
+    padding:  0 20px;
+    position: relative;
+  }
+  
+  #navbar li a{
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 600;
+    color: #d2691e;
+    transition: 0.3s ease;
+  }
+  
+  #navbar li a:hover,
+  #navbar li a.active {
+    color : #f5a718;
+
+  }
+  
+  #navbar li a.active::after,
+  #navbar li a:hover::after{
+    content: "";
+    width: 30%;
+    height: 2px;
+    background: #f5a718;
+    position: absolute;
+    bottom: -4px;
+    left: 20px
+  }
 
 /* Hamburger Button */
 .hamburger {
@@ -245,4 +296,66 @@ header nav {
   background-color: #ddd;
   cursor: not-allowed;
 }
+
+/* Tablets (max-width: 768px) */
+@media (max-width: 768px) {
+  #header {
+    flex-direction: row;
+    padding: 15px 20px;
+    text-align: center;
+  }
+
+  #navbar {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  
+
+  footer {
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+  }
+
+  .footer-help,
+  .footer-account,
+  .footer-logo {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+  .search-bar {
+    width: 100%;
+    height: 40px;
+    font-size: 16px;
+  }
+  
+}
+
+/* Phones (max-width: 480px) */
+@media (max-width: 480px) {
+  #header {
+    padding: 10px;
+  }
+
+  #navbar li {
+    padding: 10px 0;
+  }
+
+  #navbar li a {
+    font-size: 14px;
+  }
+
+ .search-bar {
+    width: 100%;
+    height: 40px;
+    font-size: 16px;
+  }
+
+ 
+  
+}
+
 

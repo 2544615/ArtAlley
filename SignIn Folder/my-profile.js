@@ -28,6 +28,7 @@ const lastNameInput = document.getElementById("lastName");
 const usernameInput = document.getElementById("profileUsername");
 const numberInput = document.getElementById("number");
 const addressInput = document.getElementById("address");
+const backBtn = document.getElementById("back-btn");
 
 // First & Last Name: Only Letters (Strict Validation)
 [firstNameInput, lastNameInput].forEach((input) => {
@@ -82,6 +83,11 @@ numberInput.addEventListener("blur", () => {
   }
 });
 
+  if (backBtn) {
+    backBtn.addEventListener("click", function () {
+      window.history.back();
+    });
+  }
 // Prevent invalid key presses in name & number fields
 [firstNameInput, lastNameInput].forEach((input) => {
   input.addEventListener("keydown", (e) => {
