@@ -209,11 +209,7 @@
 <a name='L144'></a><a href='#L144'>144</a>
 <a name='L145'></a><a href='#L145'>145</a>
 <a name='L146'></a><a href='#L146'>146</a>
-<a name='L147'></a><a href='#L147'>147</a>
-<a name='L148'></a><a href='#L148'>148</a>
-<a name='L149'></a><a href='#L149'>149</a>
-<a name='L150'></a><a href='#L150'>150</a>
-<a name='L151'></a><a href='#L151'>151</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L147'></a><a href='#L147'>147</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -288,7 +284,6 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -297,7 +292,6 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -308,15 +302,14 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -342,7 +335,6 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -416,7 +408,7 @@ const emptyProductSection = <span class="cstat-no" title="statement not covered"
 <span class="cstat-no" title="statement not covered" >        img.alt = product.name;</span>
 &nbsp;
 <span class="cstat-no" title="statement not covered" >        img.addEventListener("click", <span class="fstat-no" title="function not covered" >()</span> =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >          showProductDetails(product); </span>// You'll define this function
+<span class="cstat-no" title="statement not covered" >          showProductDetails(product); </span>
       });
         
       
@@ -438,7 +430,6 @@ const emptyProductSection = <span class="cstat-no" title="statement not covered"
 &nbsp;
         const deleteBtn = <span class="cstat-no" title="statement not covered" >document.createElement("button");</span>
         
-        //deleteBtn.textContent = "Delete";
 <span class="cstat-no" title="statement not covered" >        deleteBtn.className="delete-button";</span>
 <span class="cstat-no" title="statement not covered" >        deleteBtn.innerHTML='&lt;i class="fa-solid fa-trash"&gt;&lt;/i&gt;';</span>
 <span class="cstat-no" title="statement not covered" >        deleteBtn.addEventListener("click", <span class="fstat-no" title="function not covered" >()</span> =&gt; {</span>
@@ -448,7 +439,6 @@ const emptyProductSection = <span class="cstat-no" title="statement not covered"
         });
         const editBtn = <span class="cstat-no" title="statement not covered" >document.createElement("button1");</span>
         
-        //deleteBtn.textContent = "Delete";
 <span class="cstat-no" title="statement not covered" >        editBtn.className="edit-button";</span>
 <span class="cstat-no" title="statement not covered" >        editBtn.innerHTML='&lt;i class="fa-solid fa-pen"&gt;&lt;/i&gt;';</span>
 <span class="cstat-no" title="statement not covered" >        editBtn.addEventListener("click", <span class="fstat-no" title="function not covered" >()</span> =&gt; {</span>
@@ -458,15 +448,14 @@ const emptyProductSection = <span class="cstat-no" title="statement not covered"
         });
 &nbsp;
 &nbsp;
-        
+<span class="cstat-no" title="statement not covered" >        article.appendChild(editBtn);</span>
 <span class="cstat-no" title="statement not covered" >        article.appendChild(img);</span>
 <span class="cstat-no" title="statement not covered" >        article.appendChild(h3);</span>
 <span class="cstat-no" title="statement not covered" >        article.appendChild(quantity);</span>
-       // article.appendChild(desc);
 <span class="cstat-no" title="statement not covered" >        article.appendChild(price);</span>
 <span class="cstat-no" title="statement not covered" >        article.appendChild(deleteBtn);</span>
 &nbsp;
-<span class="cstat-no" title="statement not covered" >        article.appendChild(editBtn);</span>
+       
 &nbsp;
         
 &nbsp;
@@ -492,7 +481,6 @@ async function <span class="fstat-no" title="function not covered" >deleteProduc
 <span class="cstat-no" title="statement not covered" >  try {</span>
 <span class="cstat-no" title="statement not covered" >    console.log("Trying to delete product with ID:", productId);</span>
 <span class="cstat-no" title="statement not covered" >    await deleteDoc(doc(db, "products", productId));</span>
-    // Remove the product from the DOM
 <span class="cstat-no" title="statement not covered" >    document.getElementById(`product-${productId}`).remove();</span>
 <span class="cstat-no" title="statement not covered" >    alert("Product deleted successfully.");</span>
   } catch (error) {
@@ -520,7 +508,7 @@ function <span class="fstat-no" title="function not covered" >showProductDetails
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2025-05-19T03:16:45.976Z
+                at 2025-05-25T18:24:19.899Z
             </div>
         <script src="../prettify.js"></script>
         <script>

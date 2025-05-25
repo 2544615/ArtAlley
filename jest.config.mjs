@@ -1,8 +1,14 @@
 export default {
 
+  // ...existing config...
+
+  extensionsToTreatAsEsm: [], // Treat .js files as ESM
+  transform: {},
+  // OR if you're using Babel:
   transform: {
-    '^.+\\.js$': 'babel-jest',
+    '^.+\\.js$': ['babel-jest', { presets: ['@babel/preset-env'] }],
   },
+  preset: undefined,
 
   // The test environment that will be used for testing
   testEnvironment: 'jsdom',

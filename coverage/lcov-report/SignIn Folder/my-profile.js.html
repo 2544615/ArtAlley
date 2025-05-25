@@ -25,28 +25,28 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>0/117</span>
+                <span class='fraction'>0/121</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>0/48</span>
+                <span class='fraction'>0/50</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>0/18</span>
+                <span class='fraction'>0/19</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>0/116</span>
+                <span class='fraction'>0/120</span>
             </div>
         
             
@@ -272,7 +272,13 @@
 <a name='L207'></a><a href='#L207'>207</a>
 <a name='L208'></a><a href='#L208'>208</a>
 <a name='L209'></a><a href='#L209'>209</a>
-<a name='L210'></a><a href='#L210'>210</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L210'></a><a href='#L210'>210</a>
+<a name='L211'></a><a href='#L211'>211</a>
+<a name='L212'></a><a href='#L212'>212</a>
+<a name='L213'></a><a href='#L213'>213</a>
+<a name='L214'></a><a href='#L214'>214</a>
+<a name='L215'></a><a href='#L215'>215</a>
+<a name='L216'></a><a href='#L216'>216</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -280,7 +286,6 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -293,7 +298,6 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -302,6 +306,7 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -353,10 +358,16 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -479,6 +490,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-app.js";
@@ -489,12 +501,11 @@ import {
   getAuth, onAuthStateChanged
 } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-auth.js";
 &nbsp;
-// Firebase config
 const firebaseConfig = <span class="cstat-no" title="statement not covered" >{</span>
   apiKey: "AIzaSyDUfE0XLFPlpw_SAJIFoQlJhylk-r2VY4Y",
   authDomain: "artalley-b9c96.firebaseapp.com",
   projectId: "artalley-b9c96",
-  storageBucket: "artalley-b9c96.appspot.com",
+  storageBucket: "artalley-b9c96.firebasestorage.app",
   messagingSenderId: "1056868925602",
   appId: "1:1056868925602:web:4fa9734632b255594917fb"
 };
@@ -503,7 +514,6 @@ const app = <span class="cstat-no" title="statement not covered" >initializeApp(
 const db = <span class="cstat-no" title="statement not covered" >getFirestore(app);</span>
 const auth = <span class="cstat-no" title="statement not covered" >getAuth();</span>
 &nbsp;
-// DOM elements
 const form = <span class="cstat-no" title="statement not covered" >document.getElementById("myProfileForm");</span>
 const emailInput = <span class="cstat-no" title="statement not covered" >document.getElementById("email");</span>
 const firstNameInput = <span class="cstat-no" title="statement not covered" >document.getElementById("firstName");</span>
@@ -511,11 +521,12 @@ const lastNameInput = <span class="cstat-no" title="statement not covered" >docu
 const usernameInput = <span class="cstat-no" title="statement not covered" >document.getElementById("profileUsername");</span>
 const numberInput = <span class="cstat-no" title="statement not covered" >document.getElementById("number");</span>
 const addressInput = <span class="cstat-no" title="statement not covered" >document.getElementById("address");</span>
+const backBtn = <span class="cstat-no" title="statement not covered" >document.getElementById("back-btn");</span>
 &nbsp;
-// First &amp; Last Name: Only Letters (Strict Validation)
+&nbsp;
 <span class="cstat-no" title="statement not covered" >[firstNameInput, lastNameInput].forEach(<span class="fstat-no" title="function not covered" >(i</span>nput) =&gt; {</span>
 <span class="cstat-no" title="statement not covered" >  input.addEventListener("input", <span class="fstat-no" title="function not covered" >(e</span>) =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >    e.target.value = e.target.value.replace(/[^A-Za-z]/g, ""); </span>// Remove numbers &amp; special characters
+<span class="cstat-no" title="statement not covered" >    e.target.value = e.target.value.replace(/[^A-Za-z]/g, "");</span>
   });
 &nbsp;
 <span class="cstat-no" title="statement not covered" >  input.pattern = "^[A-Za-z]+$";</span>
@@ -527,7 +538,7 @@ const addressInput = <span class="cstat-no" title="statement not covered" >docum
   };
 });
 &nbsp;
-// Username: Letters, Numbers, and Special Characters (-, _, .)
+&nbsp;
 <span class="cstat-no" title="statement not covered" >usernameInput.pattern = "^[A-Za-z][A-Za-z0-9._-]{3,}$";</span>
 <span class="cstat-no" title="statement not covered" >usernameInput.oninvalid = <span class="fstat-no" title="function not covered" >fu</span>nction () {</span>
 <span class="cstat-no" title="statement not covered" >  this.setCustomValidity("Username must start with a letter, be at least 4 characters, and can include numbers, '.', '_', and '-'.");</span>
@@ -536,7 +547,7 @@ const addressInput = <span class="cstat-no" title="statement not covered" >docum
 <span class="cstat-no" title="statement not covered" >  this.setCustomValidity("");</span>
 };
 &nbsp;
-// Phone Number: Only Digits (No Auto-Sanitization)
+&nbsp;
 <span class="cstat-no" title="statement not covered" >numberInput.pattern = "[0-9]{10}";</span>
 <span class="cstat-no" title="statement not covered" >numberInput.oninvalid = <span class="fstat-no" title="function not covered" >fu</span>nction () {</span>
 <span class="cstat-no" title="statement not covered" >  this.setCustomValidity("Phone number must be exactly 10 digits.");</span>
@@ -547,9 +558,9 @@ const addressInput = <span class="cstat-no" title="statement not covered" >docum
 &nbsp;
 let originalPhoneNumber = <span class="cstat-no" title="statement not covered" >"";</span>
 &nbsp;
-// Restrict phone number input to only digits
+&nbsp;
 <span class="cstat-no" title="statement not covered" >numberInput.addEventListener("input", <span class="fstat-no" title="function not covered" >(e</span>) =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >  e.target.value = e.target.value.replace(/\D/g, ""); </span>// Remove non-numeric characters
+<span class="cstat-no" title="statement not covered" >  e.target.value = e.target.value.replace(/\D/g, "");</span>
 &nbsp;
 <span class="cstat-no" title="statement not covered" >  if (e.target.value.length &lt; 10) {</span>
 <span class="cstat-no" title="statement not covered" >    numberInput.setCustomValidity("Phone number must be exactly 10 digits.");</span>
@@ -565,7 +576,13 @@ let originalPhoneNumber = <span class="cstat-no" title="statement not covered" >
   }
 });
 &nbsp;
-// Prevent invalid key presses in name &amp; number fields
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  if (backBtn) {</span>
+<span class="cstat-no" title="statement not covered" >    backBtn.addEventListener("click", <span class="fstat-no" title="function not covered" >fu</span>nction () {</span>
+<span class="cstat-no" title="statement not covered" >      window.history.back();</span>
+    });
+  }
+&nbsp;
 <span class="cstat-no" title="statement not covered" >[firstNameInput, lastNameInput].forEach(<span class="fstat-no" title="function not covered" >(i</span>nput) =&gt; {</span>
 <span class="cstat-no" title="statement not covered" >  input.addEventListener("keydown", <span class="fstat-no" title="function not covered" >(e</span>) =&gt; {</span>
     const allowedKeys = <span class="cstat-no" title="statement not covered" >["Backspace", "Delete", "ArrowLeft", "ArrowRight", "Tab"];</span>
@@ -582,7 +599,7 @@ let originalPhoneNumber = <span class="cstat-no" title="statement not covered" >
   }
 });
 &nbsp;
-// Firebase authentication state management
+&nbsp;
 <span class="cstat-no" title="statement not covered" >onAuthStateChanged(auth, <span class="fstat-no" title="function not covered" >as</span>ync (user) =&gt; {</span>
 <span class="cstat-no" title="statement not covered" >  if (!user) {</span>
 <span class="cstat-no" title="statement not covered" >    alert("Not logged in. Redirecting to login.");</span>
@@ -603,30 +620,30 @@ let originalPhoneNumber = <span class="cstat-no" title="statement not covered" >
 <span class="cstat-no" title="statement not covered" >  numberInput.value = data.phone || "";</span>
 <span class="cstat-no" title="statement not covered" >  addressInput.value = data.address || "";</span>
 &nbsp;
-  // Store the original phone number for reference
+ 
 <span class="cstat-no" title="statement not covered" >  originalPhoneNumber = data.phone || "";</span>
 &nbsp;
-  // Enable editing when clicked
+&nbsp;
 <span class="cstat-no" title="statement not covered" >  document.querySelectorAll('input[data-editable="true"]').forEach(<span class="fstat-no" title="function not covered" >(i</span>nput) =&gt; {</span>
 <span class="cstat-no" title="statement not covered" >    input.addEventListener("click", <span class="fstat-no" title="function not covered" >()</span> =&gt; {</span>
 <span class="cstat-no" title="statement not covered" >      input.readOnly = false;</span>
 <span class="cstat-no" title="statement not covered" >      input.focus();</span>
     });
 &nbsp;
-    // Auto-save on blur
+  
 <span class="cstat-no" title="statement not covered" >    input.addEventListener("blur", <span class="fstat-no" title="function not covered" >as</span>ync () =&gt; {</span>
       const value = <span class="cstat-no" title="statement not covered" >input.value.trim();</span>
       const field = <span class="cstat-no" title="statement not covered" >input.id;</span>
 &nbsp;
 <span class="cstat-no" title="statement not covered" >      if (!value) {</span>
 <span class="cstat-no" title="statement not covered" >        alert("Field cannot be empty.");</span>
-<span class="cstat-no" title="statement not covered" >        input.value = data[field] || ""; </span>// Revert to original
+<span class="cstat-no" title="statement not covered" >        input.value = data[field] || ""; </span>
 <span class="cstat-no" title="statement not covered" >        input.readOnly = true;</span>
 <span class="cstat-no" title="statement not covered" >        return;</span>
       }
 &nbsp;
 <span class="cstat-no" title="statement not covered" >      if (field === "profileUsername") {</span>
-        // Username validation checks
+        
 <span class="cstat-no" title="statement not covered" >        if (/^\d+$/.test(value)) {</span>
 <span class="cstat-no" title="statement not covered" >          alert("Username cannot consist of numbers only.");</span>
 <span class="cstat-no" title="statement not covered" >          input.value = data.username;</span>
@@ -655,7 +672,7 @@ let originalPhoneNumber = <span class="cstat-no" title="statement not covered" >
 <span class="cstat-no" title="statement not covered" >          return;</span>
         }
 &nbsp;
-        // Check if username is taken
+        
         const usernameQuery = <span class="cstat-no" title="statement not covered" >query(</span>
           collection(db, "users"),
           where("username", "==", value),
@@ -676,7 +693,7 @@ let originalPhoneNumber = <span class="cstat-no" title="statement not covered" >
         }
       }
 &nbsp;
-      // Save update
+&nbsp;
 <span class="cstat-no" title="statement not covered" >      try {</span>
 <span class="cstat-no" title="statement not covered" >        await setDoc(userRef, { [field]: value }, { merge: true });</span>
 <span class="cstat-no" title="statement not covered" >        data[field] = value;</span>
@@ -690,14 +707,15 @@ let originalPhoneNumber = <span class="cstat-no" title="statement not covered" >
 <span class="cstat-no" title="statement not covered" >      input.readOnly = true;</span>
     });
   });
-});</pre></td></tr></table></pre>
+});
+&nbsp;</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
             </div><!-- /wrapper -->
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2025-05-19T03:16:45.976Z
+                at 2025-05-25T18:24:19.899Z
             </div>
         <script src="../prettify.js"></script>
         <script>

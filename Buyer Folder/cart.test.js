@@ -2,17 +2,21 @@
  * @jest-environment jsdom
  */
 
+import { jest, describe, test, expect } from '@jest/globals';
+
+// Import cart functions
 import {
   addToCart,
   getCart,
   updateCartUI,
 } from "./Carts.js";
 
-jest.mock("https://www.gstatic.com/firebasejs/11.6.0/firebase-app.js", () => ({
+// Mock Firebase modules
+jest.mock("https://www.gstatic.com/firebasejs/11.6.0/firebase-app.js ", () => ({
   initializeApp: jest.fn(),
 }));
 
-jest.mock("https://www.gstatic.com/firebasejs/11.6.0/firebase-auth.js", () => {
+jest.mock("https://www.gstatic.com/firebasejs/11.6.0/firebase-auth.js ", () => {
   const user = { uid: "testUser" };
   return {
     getAuth: jest.fn(() => ({
@@ -22,7 +26,7 @@ jest.mock("https://www.gstatic.com/firebasejs/11.6.0/firebase-auth.js", () => {
   };
 });
 
-jest.mock("https://www.gstatic.com/firebasejs/11.6.0/firebase-firestore.js", () => {
+jest.mock("https://www.gstatic.com/firebasejs/11.6.0/firebase-firestore.js ", () => {
   let mockCart = [];
 
   return {
@@ -57,7 +61,7 @@ describe("Cart functionality", () => {
       name: "Test Painting",
       price: 100,
       quantity: 5,
-      imageUrls: ["https://example.com/image.jpg"],
+      imageUrls: ["https://example.com/image.jpg "],
     };
 
     await addToCart(testProduct);

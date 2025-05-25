@@ -299,7 +299,10 @@
 <a name='L234'></a><a href='#L234'>234</a>
 <a name='L235'></a><a href='#L235'>235</a>
 <a name='L236'></a><a href='#L236'>236</a>
-<a name='L237'></a><a href='#L237'>237</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L237'></a><a href='#L237'>237</a>
+<a name='L238'></a><a href='#L238'>238</a>
+<a name='L239'></a><a href='#L239'>239</a>
+<a name='L240'></a><a href='#L240'>240</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -388,21 +391,6 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -410,6 +398,22 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -431,6 +435,8 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -543,7 +549,7 @@ const firebaseConfig = <span class="cstat-no" title="statement not covered" >{</
   apiKey: "AIzaSyDUfE0XLFPlpw_SAJIFoQlJhylk-r2VY4Y",
   authDomain: "artalley-b9c96.firebaseapp.com",
   projectId: "artalley-b9c96",
-  storageBucket: "artalley-b9c96.appspot.com",
+  storageBucket: "artalley-b9c96.firebasestorage.app",
   messagingSenderId: "1056868925602",
   appId: "1:1056868925602:web:4fa9734632b255594917fb"
 };
@@ -552,7 +558,7 @@ const app = <span class="cstat-no" title="statement not covered" >initializeApp(
 const auth = <span class="cstat-no" title="statement not covered" >getAuth();</span>
 const db = <span class="cstat-no" title="statement not covered" >getFirestore(app);</span>
 &nbsp;
-// DOM Elements
+&nbsp;
 const productsList = <span class="cstat-no" title="statement not covered" >document.getElementById('productsList');</span>
 const reviewFilter = <span class="cstat-no" title="statement not covered" >document.getElementById('reviewFilter');</span>
 const modal = <span class="cstat-no" title="statement not covered" >document.getElementById('reviewModal');</span>
@@ -563,12 +569,12 @@ const modalProductName = <span class="cstat-no" title="statement not covered" >d
 const reviewText = <span class="cstat-no" title="statement not covered" >document.getElementById('reviewText');</span>
 const stars = <span class="cstat-no" title="statement not covered" >document.querySelectorAll('.star');</span>
 &nbsp;
-// State
+&nbsp;
 let currentUser = <span class="cstat-no" title="statement not covered" >null;</span>
 let currentProduct = <span class="cstat-no" title="statement not covered" >null;</span>
 let selectedRating = <span class="cstat-no" title="statement not covered" >0;</span>
 &nbsp;
-// Event Listeners
+&nbsp;
 <span class="cstat-no" title="statement not covered" >reviewFilter.addEventListener('change', loadProducts);</span>
 <span class="cstat-no" title="statement not covered" >closeBtn.addEventListener('click', <span class="fstat-no" title="function not covered" >()</span> =&gt; <span class="cstat-no" title="statement not covered" >modal.style.display = 'none')</span>;</span>
 <span class="cstat-no" title="statement not covered" >submitReviewBtn.addEventListener('click', submitReview);</span>
@@ -576,14 +582,14 @@ let selectedRating = <span class="cstat-no" title="statement not covered" >0;</s
 <span class="cstat-no" title="statement not covered" >  star.addEventListener('click', <span class="fstat-no" title="function not covered" >()</span> =&gt; <span class="cstat-no" title="statement not covered" >setRating(star))</span>;</span>
 });
 &nbsp;
-// Close modal when clicking outside
+&nbsp;
 <span class="cstat-no" title="statement not covered" >window.addEventListener('click', <span class="fstat-no" title="function not covered" >(e</span>) =&gt; {</span>
 <span class="cstat-no" title="statement not covered" >  if (e.target === modal) {</span>
 <span class="cstat-no" title="statement not covered" >    modal.style.display = 'none';</span>
   }
 });
 &nbsp;
-// Initialize
+&nbsp;
 <span class="cstat-no" title="statement not covered" >onAuthStateChanged(auth, <span class="fstat-no" title="function not covered" >as</span>ync (user) =&gt; {</span>
 <span class="cstat-no" title="statement not covered" >  if (user) {</span>
 <span class="cstat-no" title="statement not covered" >    currentUser = user;</span>
@@ -593,21 +599,21 @@ let selectedRating = <span class="cstat-no" title="statement not covered" >0;</s
   }
 });
 &nbsp;
-// Load products from orders
+&nbsp;
 async function <span class="fstat-no" title="function not covered" >loadProducts(</span>) {
 <span class="cstat-no" title="statement not covered" >  try {</span>
-<span class="cstat-no" title="statement not covered" >    productsList.innerHTML = '&lt;div class="loading"&gt;Loading your products...&lt;/div&gt;';</span>
+<span class="cstat-no" title="statement not covered" >     productsList.innerHTML = '&lt;p class="loading" role="status"&gt;Loading your products...&lt;/p&gt;';</span>
     
-    // Get all orders for current user
+    
     const q = <span class="cstat-no" title="statement not covered" >query(</span>
       collection(db, "orders"),
       where("userId", "==", currentUser.uid)
     );
     
     const querySnapshot = <span class="cstat-no" title="statement not covered" >await getDocs(q);</span>
-    const productsMap = <span class="cstat-no" title="statement not covered" >new Map();</span> // To avoid duplicates
+    const productsMap = <span class="cstat-no" title="statement not covered" >new Map(); </span>
     
-    // Extract all unique products from orders
+    
 <span class="cstat-no" title="statement not covered" >    querySnapshot.forEach(<span class="fstat-no" title="function not covered" >or</span>derDoc =&gt; {</span>
       const orderData = <span class="cstat-no" title="statement not covered" >orderDoc.data();</span>
 <span class="cstat-no" title="statement not covered" >      if (orderData.items &amp;&amp; orderData.items.length &gt; 0) {</span>
@@ -615,6 +621,7 @@ async function <span class="fstat-no" title="function not covered" >loadProducts
 <span class="cstat-no" title="statement not covered" >          if (!productsMap.has(item.name)) {</span>
 <span class="cstat-no" title="statement not covered" >            productsMap.set(item.name, {</span>
               ...item,
+              productId: item.productId,
               orderId: orderDoc.id,
               orderDate: orderData.timestamp?.toDate() || new Date()
             });
@@ -623,15 +630,15 @@ async function <span class="fstat-no" title="function not covered" >loadProducts
       }
     });
     
-    // Convert to array and sort by order date (newest first)
+    
     const products = <span class="cstat-no" title="statement not covered" >Array.from(productsMap.values()).sort(<span class="fstat-no" title="function not covered" >(a</span>, b) =&gt; <span class="cstat-no" title="statement not covered" >b.orderDate - a.orderDate)</span>;</span>
     
-    // Filter based on selection
+    
     const filterValue = <span class="cstat-no" title="statement not covered" >reviewFilter.value;</span>
     let filteredProducts = <span class="cstat-no" title="statement not covered" >products;</span>
     
 <span class="cstat-no" title="statement not covered" >    if (filterValue === 'reviewed') {</span>
-      // Check which products have reviews
+      
       const reviewedProducts = <span class="cstat-no" title="statement not covered" >await getReviewedProducts();</span>
 <span class="cstat-no" title="statement not covered" >      filteredProducts = products.filter(<span class="fstat-no" title="function not covered" >p </span>=&gt; <span class="cstat-no" title="statement not covered" >reviewedProducts.includes(p.name))</span>;</span>
     } else <span class="cstat-no" title="statement not covered" >if (filterValue === 'not-reviewed') {</span>
@@ -639,7 +646,7 @@ async function <span class="fstat-no" title="function not covered" >loadProducts
 <span class="cstat-no" title="statement not covered" >      filteredProducts = products.filter(<span class="fstat-no" title="function not covered" >p </span>=&gt; <span class="cstat-no" title="statement not covered" >!reviewedProducts.includes(p.name))</span>;</span>
     }
     
-    // Display products
+    
 <span class="cstat-no" title="statement not covered" >    displayProducts(filteredProducts);</span>
     
   } catch (error) {
@@ -648,7 +655,7 @@ async function <span class="fstat-no" title="function not covered" >loadProducts
   }
 }
 &nbsp;
-// Display products in the UI
+&nbsp;
 async function <span class="fstat-no" title="function not covered" >displayProducts(</span>products) {
 <span class="cstat-no" title="statement not covered" >  if (products.length === 0) {</span>
 <span class="cstat-no" title="statement not covered" >    productsList.innerHTML = '&lt;div class="no-products"&gt;No products found matching your criteria.&lt;/div&gt;';</span>
@@ -657,7 +664,7 @@ async function <span class="fstat-no" title="function not covered" >displayProdu
   
 <span class="cstat-no" title="statement not covered" >  productsList.innerHTML = '';</span>
   
-  // Get list of reviewed products to show badges
+  
   const reviewedProducts = <span class="cstat-no" title="statement not covered" >await getReviewedProducts();</span>
   
 <span class="cstat-no" title="statement not covered" >  products.forEach(<span class="fstat-no" title="function not covered" >pr</span>oduct =&gt; {</span>
@@ -666,26 +673,28 @@ async function <span class="fstat-no" title="function not covered" >displayProdu
     
     const isReviewed = <span class="cstat-no" title="statement not covered" >reviewedProducts.includes(product.name);</span>
     
-<span class="cstat-no" title="statement not covered" >    productCard.innerHTML = `</span>
-      &lt;div class="product-info"&gt;
-        &lt;img src="${product.imageUrl || 'https://via.placeholder.com/80'}" 
-             alt="${product.name}" class="product-image"&gt;
-        &lt;div class="product-details"&gt;
-          &lt;h3 class="product-name"&gt;${product.name}&lt;/h3&gt;
-          &lt;p class="product-price"&gt;R${product.price.toFixed(2)}&lt;/p&gt;
-          &lt;p class="order-date"&gt;Ordered: ${product.orderDate.toLocaleDateString()}&lt;/p&gt;
-        &lt;/div&gt;
-      &lt;/div&gt;
-      ${isReviewed 
-        ? '&lt;div class="reviewed-badge"&gt;Reviewed&lt;/div&gt;' 
-        : `&lt;button class="review-btn" data-product='${JSON.stringify(product)}'&gt;
-            Write Review
-           &lt;/button&gt;`}
-    `;
+<span class="cstat-no" title="statement not covered" >   productCard.innerHTML = `</span>
+  &lt;article class="product-info"&gt;
+    &lt;img src="${product.imageUrl || 'https://via.placeholder.com/80'}" 
+         alt="${product.name}" class="product-image"&gt;
+    &lt;section class="product-details"&gt;
+      &lt;h3 class="product-name"&gt;${product.name}&lt;/h3&gt;
+      &lt;p class="product-price"&gt;R${product.price.toFixed(2)}&lt;/p&gt;
+      &lt;time class="order-date" datetime="${product.orderDate.toISOString()}"&gt;
+        Ordered: ${product.orderDate.toLocaleDateString()}
+      &lt;/time&gt;
+    &lt;/section&gt;
+  &lt;/article&gt;
+  ${isReviewed 
+    ? '&lt;output class="reviewed-badge" aria-label="Reviewed"&gt;Reviewed&lt;/output&gt;' 
+    : `&lt;button class="review-btn" data-product='${JSON.stringify(product)}'&gt;
+        Write Review
+       &lt;/button&gt;`}
+`;
     
 <span class="cstat-no" title="statement not covered" >    productsList.appendChild(productCard);</span>
     
-    // Add event listener to review button if it exists
+    
     const reviewBtn = <span class="cstat-no" title="statement not covered" >productCard.querySelector('.review-btn');</span>
 <span class="cstat-no" title="statement not covered" >    if (reviewBtn) {</span>
 <span class="cstat-no" title="statement not covered" >      reviewBtn.addEventListener('click', <span class="fstat-no" title="function not covered" >()</span> =&gt; <span class="cstat-no" title="statement not covered" >openReviewModal(product))</span>;</span>
@@ -693,16 +702,16 @@ async function <span class="fstat-no" title="function not covered" >displayProdu
   });
 }
 &nbsp;
-// Open review modal with product info
+&nbsp;
 function <span class="fstat-no" title="function not covered" >openReviewModal(</span>product) {
 <span class="cstat-no" title="statement not covered" >  currentProduct = product;</span>
 <span class="cstat-no" title="statement not covered" >  selectedRating = 0;</span>
 <span class="cstat-no" title="statement not covered" >  reviewText.value = '';</span>
   
-  // Reset stars
+  
 <span class="cstat-no" title="statement not covered" >  stars.forEach(<span class="fstat-no" title="function not covered" >st</span>ar =&gt; <span class="cstat-no" title="statement not covered" >star.classList.remove('active'))</span>;</span>
   
-  // Set product info in modal
+  
 <span class="cstat-no" title="statement not covered" >  modalProductImage.src = product.imageUrl || 'https://via.placeholder.com/150';</span>
 <span class="cstat-no" title="statement not covered" >  modalProductImage.alt = product.name;</span>
 <span class="cstat-no" title="statement not covered" >  modalProductName.textContent = product.name;</span>
@@ -710,7 +719,7 @@ function <span class="fstat-no" title="function not covered" >openReviewModal(</
 <span class="cstat-no" title="statement not covered" >  modal.style.display = 'block';</span>
 }
 &nbsp;
-// Set star rating
+&nbsp;
 function <span class="fstat-no" title="function not covered" >setRating(</span>star) {
   const value = <span class="cstat-no" title="statement not covered" >parseInt(star.getAttribute('data-value'));</span>
 <span class="cstat-no" title="statement not covered" >  selectedRating = value;</span>
@@ -726,7 +735,7 @@ function <span class="fstat-no" title="function not covered" >setRating(</span>s
   });
 }
 &nbsp;
-// Submit review to Firestore
+&nbsp;
 async function <span class="fstat-no" title="function not covered" >submitReview(</span>) {
 <span class="cstat-no" title="statement not covered" >  if (selectedRating === 0) {</span>
 <span class="cstat-no" title="statement not covered" >    alert('Please select a rating');</span>
@@ -739,7 +748,7 @@ async function <span class="fstat-no" title="function not covered" >submitReview
   }
   
 <span class="cstat-no" title="statement not covered" >  try {</span>
-    // Create or update review document
+    
     const reviewRef = <span class="cstat-no" title="statement not covered" >doc(db, "reviews", `${currentUser.uid}_${currentProduct.name.replace(/\s+/g, '_')}`);</span>
     
 <span class="cstat-no" title="statement not covered" >    await setDoc(reviewRef, {</span>
@@ -753,7 +762,7 @@ async function <span class="fstat-no" title="function not covered" >submitReview
     
 <span class="cstat-no" title="statement not covered" >    alert('Thank you for your review!');</span>
 <span class="cstat-no" title="statement not covered" >    modal.style.display = 'none';</span>
-<span class="cstat-no" title="statement not covered" >    loadProducts(); </span>// Refresh the list
+<span class="cstat-no" title="statement not covered" >    loadProducts(); </span>
     
   } catch (error) {
 <span class="cstat-no" title="statement not covered" >    console.error("Error submitting review:", error);</span>
@@ -761,7 +770,7 @@ async function <span class="fstat-no" title="function not covered" >submitReview
   }
 }
 &nbsp;
-// Get list of product names that user has reviewed
+&nbsp;
 async function <span class="fstat-no" title="function not covered" >getReviewedProducts(</span>) {
   const q = <span class="cstat-no" title="statement not covered" >query(</span>
     collection(db, "reviews"),
@@ -778,7 +787,7 @@ async function <span class="fstat-no" title="function not covered" >getReviewedP
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2025-05-19T03:16:45.976Z
+                at 2025-05-25T18:24:19.899Z
             </div>
         <script src="../prettify.js"></script>
         <script>

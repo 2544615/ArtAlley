@@ -2,15 +2,36 @@
  * @jest-environment jsdom
  */
 
-const fs = require("fs");
-const path = require("path");
+// Import Jest globals
+import { jest } from '@jest/globals';
 
 describe("Product Listing Page Functionality", () => {
   let htmlContent;
 
   beforeAll(() => {
-    const htmlPath = path.resolve(__dirname, "product-listing.html");
-    htmlContent = fs.readFileSync(htmlPath, "utf-8");
+    // Simulate HTML content (fs.readFileSync is not available in E Modules)
+    htmlContent = `
+      <!DOCTYPE html>
+      <html>
+        <head><title>Product Listing</title></head>
+        <body data-authenticated="false">
+          <div id="productContainer"></div>
+          <form id="sortFilterForm">
+            <select id="sortOptions">
+              <option value="priceLowHigh">Price: Low to High</option>
+              <option value="priceHighLow">Price: High to Low</option>
+            </select>
+            <input type="number" id="minPrice" />
+            <input type="number" id="maxPrice" />
+          </form>
+          <button id="prevPage"></button>
+          <button id="nextPage"></button>
+          <input class="search-bar" />
+          <button id="cartButton"></button>
+          <button id="profileButton"></button>
+        </body>
+      </html>
+    `;
   });
 
   beforeEach(() => {
@@ -33,7 +54,7 @@ describe("Product Listing Page Functionality", () => {
       window.location.href = "login.html";
     }
 
-    expect(window.location.href).toBe("login.html"); // Ensure redirection occurs
+    expect(window.location.href).toBe("login.html");
   });
 
   test("Displays products correctly when loaded", () => {
@@ -74,12 +95,12 @@ describe("Product Listing Page Functionality", () => {
 
     // Simulate sorting low to high
     sortDropdown.value = "priceLowHigh";
-    const sortedProductsLowHigh = products.sort((a, b) => a.price - b.price);
+    const sortedProductsLowHigh = [...products].sort((a, b) => a.price - b.price);
     expect(sortedProductsLowHigh[0].name).toBe("Product B");
 
     // Simulate sorting high to low
     sortDropdown.value = "priceHighLow";
-    const sortedProductsHighLow = products.sort((a, b) => b.price - a.price);
+    const sortedProductsHighLow = [...products].sort((a, b) => b.price - a.price);
     expect(sortedProductsHighLow[0].name).toBe("Product A");
   });
 
@@ -101,7 +122,9 @@ describe("Product Listing Page Functionality", () => {
     ];
 
     const filteredProducts = products.filter(
-      (product) => product.price >= parseFloat(minPriceInput.value) && product.price <= parseFloat(maxPriceInput.value)
+      (product) =>
+        product.price >= parseFloat(minPriceInput.value) &&
+        product.price <= parseFloat(maxPriceInput.value)
     );
 
     expect(filteredProducts.length).toBe(2);

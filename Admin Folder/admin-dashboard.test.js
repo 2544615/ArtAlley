@@ -2,6 +2,8 @@
  * @jest-environment jsdom
  */
 
+import { test, describe, expect, beforeEach, afterEach, jest } from '@jest/globals';
+
 describe("Admin dashboard buttons event listeners", () => {
   beforeEach(() => {
     // Set up the DOM buttons
@@ -161,5 +163,4 @@ describe("Admin dashboard buttons event listeners", () => {
     confirmMock.mockRestore();
     alertMock.mockRestore();
   });
-
 });

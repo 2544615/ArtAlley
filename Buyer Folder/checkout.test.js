@@ -9,9 +9,12 @@ import {
   loadCountriesAndCities
 } from './checkout.js';
 
+// Import Jest globals
+import { jest } from '@jest/globals';
+
 // Mock Firebase modules
 jest.mock('firebase/app', () => ({
-  ...jest.requireActual('firebase/app'), // Keep actual implementations
+  ...jest.requireActual('firebase/app'),
   initializeApp: jest.fn(),
   getAuth: jest.fn(() => ({
     currentUser: { uid: 'test-user' }
@@ -132,7 +135,7 @@ describe("Checkout Page Functionality", () => {
     
     const countrySelect = document.getElementById("country");
     expect(countrySelect.innerHTML).toContain("option");
-    expect(fetch).toHaveBeenCalledWith("https://countriesnow.space/api/v0.1/countries/positions");
+    expect(fetch).toHaveBeenCalledWith("https://countriesnow.space/api/v0.1/countries/positions ");
   });
 
   test("handles form submission with empty cart", async () => {
