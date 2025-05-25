@@ -1,7 +1,7 @@
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-app.js";
-import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-auth.js";
-import { getFirestore, doc, getDoc } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-firestore.js";
-import { addToCart } from './Carts.js';  // Adjust path as needed
+import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-app.js";
+import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-auth.js";
+import { getFirestore, doc, getDoc } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-firestore.js";
+import { addToCart } from './Carts.js';  
 
 const firebaseConfig = {
   apiKey: "AIzaSyDUfE0XLFPlpw_SAJIFoQlJhylk-r2VY4Y",
@@ -17,7 +17,7 @@ const auth = getAuth(app);
 const db = getFirestore(app);
 
 function createProductDetailHTML(product) {
-  // Create thumbnails HTML
+  
   const thumbnails = product.imageUrls.map((url, index) => 
     `<img src="${url}" alt="Thumbnail ${index + 1}" class="thumbnail" data-index="${index}">`
   ).join("");
