@@ -6,7 +6,6 @@ import {
   getAuth, onAuthStateChanged
 } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-auth.js";
 
-// Firebase config
 const firebaseConfig = {
   apiKey: "AIzaSyDUfE0XLFPlpw_SAJIFoQlJhylk-r2VY4Y",
   authDomain: "artalley-b9c96.firebaseapp.com",
@@ -20,7 +19,6 @@ const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 const auth = getAuth();
 
-// DOM elements
 const form = document.getElementById("myProfileForm");
 const emailInput = document.getElementById("email");
 const firstNameInput = document.getElementById("firstName");
@@ -29,10 +27,10 @@ const usernameInput = document.getElementById("profileUsername");
 const numberInput = document.getElementById("number");
 const addressInput = document.getElementById("address");
 
-// First & Last Name: Only Letters (Strict Validation)
+
 [firstNameInput, lastNameInput].forEach((input) => {
   input.addEventListener("input", (e) => {
-    e.target.value = e.target.value.replace(/[^A-Za-z]/g, ""); // Remove numbers & special characters
+    e.target.value = e.target.value.replace(/[^A-Za-z]/g, "");
   });
 
   input.pattern = "^[A-Za-z]+$";
@@ -44,7 +42,7 @@ const addressInput = document.getElementById("address");
   };
 });
 
-// Username: Letters, Numbers, and Special Characters (-, _, .)
+
 usernameInput.pattern = "^[A-Za-z][A-Za-z0-9._-]{3,}$";
 usernameInput.oninvalid = function () {
   this.setCustomValidity("Username must start with a letter, be at least 4 characters, and can include numbers, '.', '_', and '-'.");
@@ -53,7 +51,7 @@ usernameInput.oninput = function () {
   this.setCustomValidity("");
 };
 
-// Phone Number: Only Digits (No Auto-Sanitization)
+
 numberInput.pattern = "[0-9]{10}";
 numberInput.oninvalid = function () {
   this.setCustomValidity("Phone number must be exactly 10 digits.");
@@ -64,9 +62,9 @@ numberInput.oninput = function () {
 
 let originalPhoneNumber = "";
 
-// Restrict phone number input to only digits
+
 numberInput.addEventListener("input", (e) => {
-  e.target.value = e.target.value.replace(/\D/g, ""); // Remove non-numeric characters
+  e.target.value = e.target.value.replace(/\D/g, "");
 
   if (e.target.value.length < 10) {
     numberInput.setCustomValidity("Phone number must be exactly 10 digits.");
@@ -82,7 +80,7 @@ numberInput.addEventListener("blur", () => {
   }
 });
 
-// Prevent invalid key presses in name & number fields
+
 [firstNameInput, lastNameInput].forEach((input) => {
   input.addEventListener("keydown", (e) => {
     const allowedKeys = ["Backspace", "Delete", "ArrowLeft", "ArrowRight", "Tab"];
@@ -99,7 +97,7 @@ usernameInput.addEventListener("keydown", (e) => {
   }
 });
 
-// Firebase authentication state management
+
 onAuthStateChanged(auth, async (user) => {
   if (!user) {
     alert("Not logged in. Redirecting to login.");
@@ -120,30 +118,30 @@ onAuthStateChanged(auth, async (user) => {
   numberInput.value = data.phone || "";
   addressInput.value = data.address || "";
 
-  // Store the original phone number for reference
+ 
   originalPhoneNumber = data.phone || "";
 
-  // Enable editing when clicked
+
   document.querySelectorAll('input[data-editable="true"]').forEach((input) => {
     input.addEventListener("click", () => {
       input.readOnly = false;
       input.focus();
     });
 
-    // Auto-save on blur
+  
     input.addEventListener("blur", async () => {
       const value = input.value.trim();
       const field = input.id;
 
       if (!value) {
         alert("Field cannot be empty.");
-        input.value = data[field] || ""; // Revert to original
+        input.value = data[field] || ""; 
         input.readOnly = true;
         return;
       }
 
       if (field === "profileUsername") {
-        // Username validation checks
+        
         if (/^\d+$/.test(value)) {
           alert("Username cannot consist of numbers only.");
           input.value = data.username;
@@ -172,7 +170,7 @@ onAuthStateChanged(auth, async (user) => {
           return;
         }
 
-        // Check if username is taken
+        
         const usernameQuery = query(
           collection(db, "users"),
           where("username", "==", value),
@@ -193,7 +191,7 @@ onAuthStateChanged(auth, async (user) => {
         }
       }
 
-      // Save update
+
       try {
         await setDoc(userRef, { [field]: value }, { merge: true });
         data[field] = value;
