@@ -83,15 +83,14 @@ async function loadProducts() {
     
     products = querySnapshot.docs
       .map((doc) => ({ id: doc.id, ...doc.data() }))
-      .filter((product) => product.quantity > 0); // Exclude out-of-stock items
+      .filter((product) => product.quantity > 0); 
 
     filteredProducts = products;
-    
-    // Check for stored search query
+
     const storedSearch = localStorage.getItem('searchQuery');
     if (storedSearch) {
       filteredProducts = searchProducts(storedSearch);
-      localStorage.removeItem('searchQuery'); // Clear after use
+      localStorage.removeItem('searchQuery'); 
     }
     
     renderProducts(filteredProducts);
