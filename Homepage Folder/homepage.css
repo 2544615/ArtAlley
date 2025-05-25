@@ -2,7 +2,7 @@
 #searchContainer {
   width: 100%;
   padding: 15px 20px;
-  background: chocolate;
+  background: #f5deb3;
   transition: all 0.3s ease;
   display: flex;
   justify-content: center;
@@ -28,20 +28,20 @@
   font-family: sans-serif;
   font-size: 1rem;
   background-color: #f5deb3;
-  color: #3e2723;
+  color: chocolate;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   transition: all 0.2s ease-in-out;
 }
 
 #homeSearchInput:focus {
   outline: none;
-  box-shadow: 0 0 0 2px #8d6e63;
+  box-shadow: 0 0 0 2px #d2691e;
   background-color: white;
 }
 
 #searchForm button {
   padding: 10px 20px;
-  background-color: #8d6e63;
+  background-color: #d2691e;
   color: white;
   border: none;
   border-radius: 8px;
@@ -56,7 +56,7 @@
 }
 
 #searchForm button:hover {
-  background-color: #75594f;
+  background-color: #f5a718;
 }
 
 #searchForm button i {
@@ -72,6 +72,39 @@
   #homeSearchInput, #searchForm button {
     width: 100%;
   }
+
+  .artisan-gallery {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  margin: 40px 20px;
+}
+
+.artisan-gallery img {
+  width: 100%;
+  max-width: 300px;
+  height: auto;
+  border-radius: 10px;
+}
+.auth-section {
+  width: 90%;
+  max-width: 500px;
+}
+footer {
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 20px;
+}
+
+.footer-help,
+.footer-account,
+.footer-logo {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
 }
 
 
@@ -82,12 +115,7 @@ body {
   color: #3e2723;
 }
 
-header {
-  background-color: chocolate;
-  padding: 20px;
-  display: flex;
-  justify-content: flex-end;
-}
+
 
 .icons {
   list-style: none;
@@ -101,7 +129,7 @@ header {
   background: none;
   border: none;
   cursor: pointer;
-  color: white;
+  color: chocolate;
   font-size: 20px;
 }
 
@@ -240,6 +268,69 @@ footer a:hover {
   width: 1px;
   height: 1px;
   overflow: hidden;
+}
+
+#header{
+  display : flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 55px;
+  background-color: #f5deb3;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.06);
+  position: sticky;
+  top: 0;
+  left: 0;
+  z-index: 999;
+
+
+}
+#navbar{
+  display: flex;
+  align-items: center;
+  justify-content: center ;
+
+}
+
+
+@media (max-width: 768px) {
+  #header {
+    flex-direction: column;
+    gap: 10px;
+    padding: 15px;
+  }
+
+  #navbar {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .title-section h1 {
+    font-size: 40px;
+  }
+
+  .title-section p {
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .title-section h1 {
+    font-size: 32px;
+  }
+
+  .title-section p {
+    font-size: 14px;
+  }
+
+  #searchForm button {
+    font-size: 0.9rem;
+    padding: 8px 16px;
+  }
+
+  #homeSearchInput {
+    font-size: 0.9rem;
+    padding: 8px 12px;
+  }
 }
 
 
