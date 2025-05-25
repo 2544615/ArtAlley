@@ -130,22 +130,24 @@ async function displayProducts(products) {
     
     const isReviewed = reviewedProducts.includes(product.name);
     
-    productCard.innerHTML = `
-      <div class="product-info">
-        <img src="${product.imageUrl || 'https://via.placeholder.com/80'}" 
-             alt="${product.name}" class="product-image">
-        <div class="product-details">
-          <h3 class="product-name">${product.name}</h3>
-          <p class="product-price">R${product.price.toFixed(2)}</p>
-          <p class="order-date">Ordered: ${product.orderDate.toLocaleDateString()}</p>
-        </div>
-      </div>
-      ${isReviewed 
-        ? '<div class="reviewed-badge">Reviewed</div>' 
-        : `<button class="review-btn" data-product='${JSON.stringify(product)}'>
-            Write Review
-           </button>`}
-    `;
+   productCard.innerHTML = `
+  <article class="product-info">
+    <img src="${product.imageUrl || 'https://via.placeholder.com/80'}" 
+         alt="${product.name}" class="product-image">
+    <section class="product-details">
+      <h3 class="product-name">${product.name}</h3>
+      <p class="product-price">R${product.price.toFixed(2)}</p>
+      <time class="order-date" datetime="${product.orderDate.toISOString()}">
+        Ordered: ${product.orderDate.toLocaleDateString()}
+      </time>
+    </section>
+  </article>
+  ${isReviewed 
+    ? '<output class="reviewed-badge" aria-label="Reviewed">Reviewed</output>' 
+    : `<button class="review-btn" data-product='${JSON.stringify(product)}'>
+        Write Review
+       </button>`}
+`;
     
     productsList.appendChild(productCard);
     
