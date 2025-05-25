@@ -6,7 +6,7 @@ const firebaseConfig = {
   apiKey: "AIzaSyDUfE0XLFPlpw_SAJIFoQlJhylk-r2VY4Y",
   authDomain: "artalley-b9c96.firebaseapp.com",
   projectId: "artalley-b9c96",
-  storageBucket: "artalley-b9c96.appspot.com",
+  storageBucket: "artalley-b9c96.firebasestorage.app",
   messagingSenderId: "1056868925602",
   appId: "1:1056868925602:web:4fa9734632b255594917fb"
 };
@@ -41,7 +41,7 @@ onAuthStateChanged(auth, async (user) => {
       return;
     }
 
-    ordersContainer.innerHTML = ""; // Clear previous content
+    ordersContainer.innerHTML = ""; 
 
     snapshot.forEach((doc) => {
       console.log("Processing order document:", doc.id);
@@ -51,7 +51,7 @@ onAuthStateChanged(auth, async (user) => {
       let dateStr = "Date not available";
       
       if (order.timestamp?.toDate) {
-        // If timestamp is a Firestore Timestamp object
+        
         const dateObj = order.timestamp.toDate();
         dateStr = dateObj.toLocaleDateString("en-GB", {
           weekday: "short",
@@ -60,7 +60,7 @@ onAuthStateChanged(auth, async (user) => {
           year: "numeric"
         });
       } else if (order.timestamp?.seconds) {
-        // If timestamp has seconds property
+        
         const dateObj = new Date(order.timestamp.seconds * 1000);
         dateStr = dateObj.toLocaleDateString("en-GB", {
           weekday: "short",
