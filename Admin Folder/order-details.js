@@ -17,7 +17,6 @@ const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 const auth = getAuth();
 
-// DOM Elements
 const orderIdElement = document.getElementById('orderId');
 const orderDateElement = document.getElementById('orderDate');
 const orderStatusElement = document.getElementById('orderStatus');
@@ -29,7 +28,6 @@ const statusSelect = document.getElementById('statusSelect');
 const updateStatusBtn = document.getElementById('updateStatusBtn');
 const signOutButton = document.getElementById('signOutButton');
 
-// Get order ID from URL parameters
 const urlParams = new URLSearchParams(window.location.search);
 const orderId = urlParams.get('id');
 
@@ -45,7 +43,6 @@ async function loadOrderData() {
   try {
     console.log("Loading order with ID:", orderId);
     
-    // Fetch order document from Firestore using the order ID as unique identifier
     const orderRef = doc(db, 'orders', orderId);
     const orderSnap = await getDoc(orderRef);
 
@@ -69,14 +66,11 @@ async function loadOrderData() {
 
 function displayOrderDetails(orderData) {
   try {
-    // Display basic order info
     orderIdElement.textContent = orderId;
     
-    // Handle date display
     let dateString = 'Unknown date';
     if (orderData.timestamp) {
       if (orderData.timestamp.toDate) {
-        // Firestore timestamp
         dateString = orderData.timestamp.toDate().toLocaleDateString('en-US', {
           year: 'numeric',
           month: 'short', 
@@ -114,22 +108,17 @@ function displayOrderDetails(orderData) {
     }
     orderDateElement.textContent = dateString;
 
-    // Update status display
     const status = orderData.status || 'pending';
     updateStatusDisplay(status);
 
-    // Display buyer information (User ID only)
     displayBuyerInfo(orderData.userId);
 
-    // Display order items with all required details
     displayOrderItems(orderData.items || []);
 
-    // Calculate and display totals
     calculateTotals(orderData);
     
   } catch (error) {
     console.error("Error displaying order details:", error);
-    showError("Error displaying order information");
   }
 }
 
@@ -148,16 +137,16 @@ async function displayBuyerInfo(buyerId) {
       const buyerName = userData.username || userData.email || 'Unknown Buyer';
 
       buyerDetailsElement.innerHTML = `
-        <div class="buyer-details">
+        <section class="buyer-details">
           <strong>Buyer:</strong> ${buyerName}
-        </div>
+        </section>
       `;
     } else {
-      buyerDetailsElement.innerHTML = '<div>Buyer account not found</div>';
+      buyerDetailsElement.innerHTML = '<section>Buyer account not found</section>';
     }
   } catch (error) {
     console.error("Error fetching buyer info:", error);
-    buyerDetailsElement.innerHTML = '<div>Error loading buyer information</div>';
+    buyerDetailsElement.innerHTML = '<section>Error loading buyer information</section>';
   }
 }
 
@@ -165,10 +154,10 @@ async function displayBuyerInfo(buyerId) {
 async function displayOrderItems(items) {
   if (!items || items.length === 0) {
     itemsListElement.innerHTML = `
-      <div class="no-items">
+      <section class="no-items">
         <i class="fas fa-shopping-basket"></i>
         <span>No items found in this order</span>
-      </div>
+      </section>
     `;
     return;
   }
@@ -184,7 +173,6 @@ async function displayOrderItems(items) {
 
     let sellerInfo = 'Unknown Seller';
 
-    // Fetch seller info from users collection
     if (item.sellerId) {
       try {
         const sellerRef = doc(db, 'users', item.sellerId);
@@ -234,7 +222,6 @@ function calculateTotals(orderData) {
   let shipping = parseFloat(orderData.shippingCost) || 0;
   let tax = parseFloat(orderData.tax) || 0;
 
-  // Calculate subtotal from items
   if (orderData.items && Array.isArray(orderData.items)) {
     subtotal = orderData.items.reduce((sum, item) => {
       const price = parseFloat(item.price) || 0;
@@ -245,10 +232,8 @@ function calculateTotals(orderData) {
 
   const total = subtotal + shipping + tax;
 
-  // Update display
   subtotalElement.textContent = `R${subtotal.toFixed(2)}`;
   
-  // Update shipping and tax if elements exist
   if (shippingElement) {
     shippingElement.textContent = `R${shipping.toFixed(2)}`;
   }
@@ -264,11 +249,9 @@ function updateStatusDisplay(status) {
   const formattedStatus = status.charAt(0).toUpperCase() + status.slice(1);
   orderStatusElement.textContent = formattedStatus;
   
-  // Remove existing status classes and add new one
   orderStatusElement.className = 'status-badge';
   orderStatusElement.classList.add(status.toLowerCase().replace(/\s+/g, '-'));
   
-  // Update select dropdown
   statusSelect.value = status;
 }
 
@@ -327,7 +310,6 @@ function showError(message) {
   }, 4000);
 }
 
-// Event Listeners
 updateStatusBtn.addEventListener('click', updateOrderStatus);
 
 signOutButton.addEventListener('click', () => {
@@ -339,14 +321,12 @@ signOutButton.addEventListener('click', () => {
   });
 });
 
-// Authentication state monitoring
 onAuthStateChanged(auth, (user) => {
   if (!user) {
     window.location.href = "../SignIn Folder/login-admin.html";
     return;
   }
 
-  // Verify admin role
   const userRef = doc(db, 'users', user.uid);
   getDoc(userRef).then((docSnap) => {
     if (!docSnap.exists()) {
@@ -362,7 +342,6 @@ onAuthStateChanged(auth, (user) => {
       return;
     }
     
-    // Load order data if user is authenticated admin
     loadOrderData();
   }).catch((error) => {
     console.error("Error checking user role:", error);
