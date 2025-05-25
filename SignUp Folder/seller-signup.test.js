@@ -19,7 +19,7 @@ describe('Buyer Signup Page', () => {
           <input type="checkbox" id="termsCheckbox" required>
           <button id="register" type="submit">Create Account</button>
           <a href="TermsNConditions.html">Terms & Conditions</a>
-          <div id="icon">Sign Up with Google</div>
+          <section id="icon">Sign Up with Google</section>
         </form>
     `;
     container = document.body;

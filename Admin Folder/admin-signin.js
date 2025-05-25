@@ -61,7 +61,7 @@ submit.addEventListener('click', function(event){
     const userData=await verifyUserRole(user);
     if(!userData)
       return;
-    window.location.href="admin-dashboard.html";
+    window.location.href="admin-users.html";
      // ...
   })
   .catch((error) => {
@@ -89,7 +89,7 @@ google_login.addEventListener("click", function(){
           return;
         }
         console.log(user);
-        window.location.href="admin-dashboard.html";
+        window.location.href="admin-users.html";
       }else{
         alert("User data not found");
       } 

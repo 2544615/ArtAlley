@@ -80,11 +80,13 @@ productCard.querySelector('.clickable').addEventListener('click', () => {
 async function loadProducts() {
   try {
     const querySnapshot = await getDocs(collection(db, "products"));
-    products = querySnapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
     
+    products = querySnapshot.docs
+      .map((doc) => ({ id: doc.id, ...doc.data() }))
+      .filter((product) => product.quantity > 0); 
+
     filteredProducts = products;
-    
-    
+
     const storedSearch = localStorage.getItem('searchQuery');
     if (storedSearch) {
       filteredProducts = searchProducts(storedSearch);

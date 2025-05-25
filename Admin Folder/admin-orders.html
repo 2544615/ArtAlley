@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin - User Management</title>
+  <link rel="stylesheet" href="admin-header.css"> <!-- New header styling -->
+  <link rel="stylesheet" href="admin-orders.css"> <!-- Original main styling -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+  <!-- New Header Only -->
+  <section id="header">
+    <a href="#"><img src="../SignIn Folder/Black White Bold Modern Studio Logo (2).png" class="logo" alt="ArtAlley Logo"></a>
+    <nav>
+      <ul id="navbar">
+        <li><a href="admin-users.html">User Management</a></li>
+        <li><a class="active" href="admin-orders.html">Order Management</a></li>
+      </ul>
+    </nav>
+    <div class="header-icons">
+      <button id="signOutButton"><i class="fas fa-sign-out-alt"></i></button>
+    </div>
+  </section>
+
+  <!-- Main Content -->
+  <main class="container">
+    <section class="search-controls">
+      <input type="text" id="searchInput" placeholder="Search by OrderID or Seller">
+      <button id="searchBtn">Search</button>
+    </section>
+
+    <section class="controls">
+      <label for="sortOrder">Sort by Date:</label>
+      <select id="sortOrder">
+        <option value="desc">Newest First</option>
+        <option value="asc">Oldest First</option>
+      </select>
+      <button id="sortBtn">Sort</button>
+    </section>
+
+    <section id="loadingIndicator" class="loading">Loading orders...</section>
+    <section id="errorMessage" class="message"></section>
+
+    <section id="ordersContainer" class="order-list">
+        <!-- Inside the ordersContainer section, update the sample structure -->
+<div class="order-card" style="display: none;">
+  <div class="order-header">
+    <span class="order-id">Order #12345</span>
+    <span class="order-date">2023-05-15</span>
+  </div>
+  <div class="order-buyer">
+    <span class="buyer-label">Buyer:</span>
+    <span class="buyer-info">John Doe</span>
+  </div>
+  <div class="order-products">
+    <div class="order-product">
+      <span>Product Name x 1</span>
+      <span>$19.99</span>
+    </div>
+  </div>
+  <div class="order-footer">
+    <div class="order-status-container">
+      <span class="order-status">Status: Processing</span>
+      <button class="update-status-btn">Update Status</button>
+    </div>
+    <span class="order-total">Total: $19.99</span>
+  </div>
+</div>
+    </section>
+  </main>
+
+  <script type="module" src="admin-orders.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
+</body>
+</html>

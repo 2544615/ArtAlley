@@ -24,13 +24,14 @@ const usersContainer = document.getElementById('usersContainer');
 const searchInput = document.getElementById('searchInput');
 const searchBtn = document.getElementById('searchBtn');
 const roleFilter = document.getElementById('roleFilter');
+const filterBtn = document.getElementById('filterBtn'); // Added this line
 const signOutButton = document.getElementById('signOutButton');
 
 // Sign Out Handler
 signOutButton.addEventListener("click", async () => {
   try {
     await signOut(auth);
-    window.location.href = "../SignIn Folder/login-admin.html";
+    window.location.href = "admin-signin.html";
   } catch (error) {
     console.error("Sign-out error:", error);
     alert("Failed to sign out.");
@@ -40,7 +41,7 @@ signOutButton.addEventListener("click", async () => {
 // Authentication Check
 onAuthStateChanged(auth, async (user) => {
   if (!user) {
-    window.location.href = "../SignIn Folder/login-admin.html";
+    window.location.href = "admin-signin.html";
     return;
   }
 
@@ -61,8 +62,7 @@ onAuthStateChanged(auth, async (user) => {
   }
 });
 
-// Fetch & Display Users
-// Ensure displayUsers() is declared before loadUsers()
+// Display Users
 function displayUsers(users) {
   usersContainer.innerHTML = ""; // Clear existing users
 
@@ -91,8 +91,7 @@ function displayUsers(users) {
   }
 }
 
-
-// Now loadUsers() can safely call displayUsers()
+// Load Users
 async function loadUsers(filter = "all") {
   try {
     const usersRef = collection(db, "users");
@@ -106,26 +105,32 @@ async function loadUsers(filter = "all") {
       role: doc.data().role
     }));
 
-    displayUsers(usersList); // Now it will work!
+    window.allUsers = usersList; // Store for search functionality
+    displayUsers(usersList);
   } catch (error) {
     console.error("Error fetching users:", error);
     showError(`Failed to fetch users: ${error.message}`);
   }
 }
 
+// Filter Button Functionality - ONLY ADDITION I MADE
+filterBtn.addEventListener("click", () => {
+  const selectedRole = roleFilter.value;
+  loadUsers(selectedRole);
+});
+
 // Search Functionality
 searchBtn.addEventListener("click", () => {
   const searchTerm = searchInput.value.trim().toLowerCase();
-  console.log("Search term entered:", searchTerm); // Debugging step
+  console.log("Search term entered:", searchTerm);
 
-  // Ensure users are available before filtering
   if (!window.allUsers) {
     console.error("Search failed: user list is undefined");
     return;
   }
 
   if (!searchTerm) {
-    displayUsers(window.allUsers); // Show all users if search field is empty
+    displayUsers(window.allUsers);
     return;
   }
 
@@ -133,17 +138,19 @@ searchBtn.addEventListener("click", () => {
     user.username.toLowerCase().includes(searchTerm) || user.email.toLowerCase().includes(searchTerm)
   );
 
-  console.log("Filtered Users:", filteredUsers); // Debugging step
+  console.log("Filtered Users:", filteredUsers);
   displayUsers(filteredUsers);
 });
 
+function showMessage(message) {
+  const messageElement = document.getElementById('errorMessage');
+  messageElement.textContent = message;
+  messageElement.style.display = 'block';
+}
 
-// Implement Search Functionality
-searchBtn.addEventListener("click", () => {
-  const searchTerm = searchInput.value.trim().toLowerCase();
-  const filteredUsers = users.filter(user =>
-    user.username.toLowerCase().includes(searchTerm) || user.email.toLowerCase().includes(searchTerm)
-  );
-
-  displayUsers(filteredUsers);
-});
+function showError(message) {
+  console.error(message);
+  const errorElement = document.getElementById('errorMessage');
+  errorElement.textContent = message;
+  errorElement.style.display = 'block';
+}
