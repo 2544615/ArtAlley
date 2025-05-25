@@ -59,7 +59,7 @@ onAuthStateChanged(auth, async (user) => {
 
 async function loadProducts() {
   try {
-    productsList.innerHTML = '<div class="loading">Loading your products...</div>';
+     productsList.innerHTML = '<p class="loading" role="status">Loading your products...</p>';
     
     
     const q = query(
