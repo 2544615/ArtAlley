@@ -51,7 +51,7 @@ onAuthStateChanged(auth, async (user) => {
         img.alt = product.name;
 
         img.addEventListener("click", () => {
-          showProductDetails(product); // You'll define this function
+          showProductDetails(product); 
       });
         
       
@@ -73,7 +73,6 @@ onAuthStateChanged(auth, async (user) => {
 
         const deleteBtn = document.createElement("button");
         
-        //deleteBtn.textContent = "Delete";
         deleteBtn.className="delete-button";
         deleteBtn.innerHTML='<i class="fa-solid fa-trash"></i>';
         deleteBtn.addEventListener("click", () => {
@@ -83,7 +82,6 @@ onAuthStateChanged(auth, async (user) => {
         });
         const editBtn = document.createElement("button1");
         
-        //deleteBtn.textContent = "Delete";
         editBtn.className="edit-button";
         editBtn.innerHTML='<i class="fa-solid fa-pen"></i>';
         editBtn.addEventListener("click", () => {
@@ -97,7 +95,6 @@ onAuthStateChanged(auth, async (user) => {
         article.appendChild(img);
         article.appendChild(h3);
         article.appendChild(quantity);
-       // article.appendChild(desc);
         article.appendChild(price);
         article.appendChild(deleteBtn);
 
@@ -127,7 +124,6 @@ async function deleteProduct(productId) {
   try {
     console.log("Trying to delete product with ID:", productId);
     await deleteDoc(doc(db, "products", productId));
-    // Remove the product from the DOM
     document.getElementById(`product-${productId}`).remove();
     alert("Product deleted successfully.");
   } catch (error) {
