@@ -16,8 +16,7 @@ const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const db = getFirestore(app);
 import { addToCart } from './Carts.js';
-//require('./cart.js');
-// Variables for Pagination
+
 let currentPage = 1;
 const itemsPerPage = 24; 
 
@@ -25,7 +24,7 @@ const itemsPerPage = 24;
 let products = [];
 let filteredProducts = [];
 
-// Function to Render Products
+
 function renderProducts(productList) {
   const productContainer = document.getElementById("productContainer");
   productContainer.innerHTML = ""; 
@@ -54,10 +53,10 @@ productCard.innerHTML = `
 `;
 
 
-// Attach click listener to the product link (before appending to DOM)
+
 productCard.querySelector('.clickable').addEventListener('click', () => {
-  localStorage.setItem("selectedProductId", product.id); // Save product ID
-  window.location.href = "product-details.html"; // Redirect to detail page
+  localStorage.setItem("selectedProductId", product.id); 
+  window.location.href = "product-details.html"; 
   console.log("Selected Product ID saved to localStorage:", product.id);
 });
 
@@ -65,7 +64,7 @@ productCard.querySelector('.clickable').addEventListener('click', () => {
     productContainer.appendChild(productCard);
     const button = productCard.querySelector('.add-to-cart-btn');
     button.addEventListener('click', (e) => {
-      e.stopPropagation(); // So it doesn't trigger the "clickable" navigation
+      e.stopPropagation(); 
       addToCart(product);
       
     });
@@ -77,19 +76,19 @@ productCard.querySelector('.clickable').addEventListener('click', () => {
   document.getElementById("nextPage").disabled = endIndex >= productList.length;
 }
 
-// Function to Load Products
+
 async function loadProducts() {
   try {
     const querySnapshot = await getDocs(collection(db, "products"));
     products = querySnapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
-    //products = querySnapshot.docs.map((doc) => doc.data());
+    
     filteredProducts = products;
     
-    // Check for stored search query
+    
     const storedSearch = localStorage.getItem('searchQuery');
     if (storedSearch) {
       filteredProducts = searchProducts(storedSearch);
-      localStorage.removeItem('searchQuery'); // Clear after use
+      localStorage.removeItem('searchQuery'); 
     }
     
     renderProducts(filteredProducts);
@@ -99,7 +98,7 @@ async function loadProducts() {
   }
 }
 
-// Sorting Functionality
+
 document.getElementById("sortOptions").addEventListener("change", (event) => {
   const sortBy = event.target.value;
 
@@ -116,11 +115,11 @@ document.getElementById("sortOptions").addEventListener("change", (event) => {
 });
 
 
-// Populate seller dropdown dynamically
+
 async function populateSellerDropdown() {
   try {
     const querySnapshot = await getDocs(collection(db, "products"));
-    const sellerUIDs = new Set(); // Store unique seller IDs
+    const sellerUIDs = new Set(); 
 
     querySnapshot.forEach(doc => {
       const sellerUID = doc.data().sellerUID;
@@ -130,19 +129,19 @@ async function populateSellerDropdown() {
     });
 
     const sellerDropdown = document.getElementById("sellerDropdown");
-    sellerDropdown.innerHTML = '<option value="all">All Sellers</option>'; // Default option
+    sellerDropdown.innerHTML = '<option value="all">All Sellers</option>'; 
 
-    // Retrieve seller information based on sellerUIDs
+    
     for (const uid of sellerUIDs) {
       const sellerRef = doc(db, "users", uid);
       const sellerSnapshot = await getDoc(sellerRef);
 
       if (sellerSnapshot.exists()) {
         const sellerData = sellerSnapshot.data();
-        const sellerName = sellerData.username || sellerData.email; // Show username or fallback to email
+        const sellerName = sellerData.username || sellerData.email; 
 
         const option = document.createElement("option");
-        option.value = uid; // Store UID for filtering
+        option.value = uid; 
         option.textContent = sellerName;
         sellerDropdown.appendChild(option);
       }
@@ -152,7 +151,7 @@ async function populateSellerDropdown() {
   }
 }
 
-// Filtering Functionality
+
 document.getElementById("filterBtn").addEventListener("click", () => {
   const minPrice = parseFloat(document.getElementById("minPrice").value) || 0;
   const maxPrice = parseFloat(document.getElementById("maxPrice").value) || Infinity;
@@ -168,7 +167,7 @@ document.getElementById("filterBtn").addEventListener("click", () => {
   renderProducts(filteredProducts);
 });
 
-// Call function to populate dropdown on page load
+
 document.addEventListener("DOMContentLoaded", () => {
   populateSellerDropdown();
 });
@@ -183,7 +182,7 @@ function searchProducts(query) {
   );
 }
 
-// Pagination Functionality
+
 document.getElementById("prevPage").addEventListener("click", () => {
   if (currentPage > 1) {
     currentPage--;
@@ -198,7 +197,7 @@ document.getElementById("nextPage").addEventListener("click", () => {
   }
 });
 
-// Check Authentication and Load Products
+
 document.addEventListener("DOMContentLoaded", () => {
   onAuthStateChanged(auth, (user) => {
     if (user) {
@@ -210,7 +209,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
-// Add Click Event Listeners for the Icons
+
 document.getElementById("searchButton").addEventListener("click", () => {
   const searchQuery = document.querySelector(".search-bar").value.trim();
   if (searchQuery) {
@@ -245,28 +244,28 @@ document.getElementById("profileButton").addEventListener("click", async () => {
   const user = auth.currentUser;
   if (user) {
     try {
-      const userDocRef = doc(db, "users", user.uid); // Assuming your user profiles are stored in a "users" collection
+      const userDocRef = doc(db, "users", user.uid); 
       const querySnapshot = await getDoc(userDocRef);
-      //let userData = null;
+      
 
       if (!querySnapshot.exists()) {
-        // No profile found — redirect to profile.html
+        
         window.location.href = "../SignUp Folder/buyer-profile.html";
         return;
       }
 
       const userData = querySnapshot.data();
 
-      // Check if any important field is missing
-      const requiredFields = ["firstName","lastName", "email", "phone", "address", "username"]; // Adjust these fields based on your profile structure
+      
+      const requiredFields = ["firstName","lastName", "email", "phone", "address", "username"]; 
       const hasEmptyField = requiredFields.some(field => {
         return !userData[field] ||  (typeof userData[field] === 'string' && userData[field].trim() === "");
       });
 
       if (hasEmptyField) {
-        window.location.href = "../SignUp Folder/buyer-profile.html"; // Go to profile completion page
+        window.location.href = "../SignUp Folder/buyer-profile.html"; 
       } else {
-        window.location.href = "../SignIn Folder/my-profile.html"; // Profile is complete
+        window.location.href = "../SignIn Folder/my-profile-buyer.html"; 
       }
       
     } catch (error) {
@@ -274,7 +273,7 @@ document.getElementById("profileButton").addEventListener("click", async () => {
       alert("Error loading your profile. Try again.");
     }
   } else {
-    window.location.href = "../SignIn Folder/login-buyer.html"; // Just in case user is not authenticated
+    window.location.href = "../SignIn Folder/login-buyer.html"; 
   }
 });
   
