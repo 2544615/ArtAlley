@@ -136,7 +136,7 @@ google_login.addEventListener("click", async function() {
     }
 
     
-    window.location.href = "profile.html"; 
+    window.location.href = "seller-profile.html"; 
   } catch (error) {
     console.error("Error during sign-in:", error.code, error.message);
     alert(`Error: ${error.message}`);
