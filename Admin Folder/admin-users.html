@@ -4,22 +4,26 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Admin - User Management</title>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="admin-dashboard.css"> <!-- Header styling -->
-  <link rel="stylesheet" href="admin-users.css"> <!-- Main styling -->
+  <link rel="stylesheet" href="admin-header.css"> <!-- New header styling -->
+  <link rel="stylesheet" href="admin-users.css"> <!-- Original main styling -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-
-  <!-- HEADER (Uses admin-dashboard.css) -->
-  <header>
-    <h1>ArtAlley Admin Dashboard</h1>
-    <nav class="header-icons">
-      <button id="accountButton"><i class="fas fa-user account-icon"></i></button>
-      <button id="signOutButton"><i class="fas fa-sign-out-alt"></i></button>
+  <!-- New Header Only -->
+  <section id="header">
+    <a href="#"><img src="../SignIn Folder/Black White Bold Modern Studio Logo (2).png" class="logo" alt="ArtAlley Logo"></a>
+    <nav>
+      <ul id="navbar">
+        <li><a class="active" href="admin-users.html">User Management</a></li>
+        <li><a href="admin-orders.html">Order Management</a></li>
+      </ul>
     </nav>
-  </header>
+    <div class="header-icons">
+      <button id="signOutButton"><i class="fas fa-sign-out-alt"></i></button>
+    </div>
+  </section>
 
-  <!-- MAIN CONTENT -->
+  <!-- MAIN CONTENT - Completely Unchanged -->
   <main class="container">
     <section class="search-controls">
       <input type="text" id="searchInput" placeholder="Search by username or email">
@@ -43,7 +47,6 @@
     <section id="usersContainer" class="user-list">
       <!-- User cards will be dynamically inserted here -->
     </section>
-
   </main>
 
   <script type="module" src="admin-users.js"></script>

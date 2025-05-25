@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Order Details | Admin</title>
+  <link rel="stylesheet" href="admin-header.css">
+  <link rel="stylesheet" href="order-details.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+  <!-- Header -->
+  <section id="header">
+    <a href="#"><img src="../SignIn Folder/Black White Bold Modern Studio Logo (2).png" class="logo" alt="ArtAlley Logo"></a>
+    <nav>
+      <ul id="navbar">
+        <li><a href="admin-users.html">User Management</a></li>
+        <li><a href="admin-orders.html">Order Management</a></li>
+      </ul>
+    </nav>
+    <div class="header-icons">
+      <button id="signOutButton"><i class="fas fa-sign-out-alt"></i></button>
+    </div>
+  </section>
+
+  <!-- Main Content -->
+  <main class="container">
+    <div class="order-header">
+      <h1>Order #<span id="orderId">Loading...</span></h1>
+    </div>
+
+    <div class="order-meta">
+      <div>
+        <strong>Date:</strong> <span id="orderDate">Loading...</span>
+      </div>
+      <div>
+        <strong>Status:</strong> 
+        <span id="orderStatus" class="status-badge">Loading...</span>
+      </div>
+    </div>
+
+    <div class="order-grid">
+      <!-- Buyer Info -->
+      <section class="card buyer-info">
+        <h2>Buyer Information</h2>
+        <div id="buyerDetails">
+          <div class="loading">Loading buyer details...</div>
+        </div>
+      </section>
+
+      <!-- Order Items -->
+      <section class="card order-items">
+        <h2>Order Items</h2>
+        <div id="itemsList">
+          <div class="loading">Loading items...</div>
+        </div>
+        <div class="order-totals">
+          <div><span>Total:</span> <span id="subtotal">R0.00</span></div>
+          
+        </div>
+      </section>
+
+      <!-- Status Update -->
+      <section class="card status-update">
+        <h2>Update Order Status</h2>
+        <div class="status-controls">
+          <select id="statusSelect">
+            <option value="pending">Pending</option>
+            <option value="confirmed">Confirmed</option>
+            <option value="out for delivery">Out for Delivery</option>
+            <option value="delivered">Delivered</option>
+          </select>
+          <button id="updateStatusBtn" class="btn-primary">Update</button>
+        </div>
+      </section>
+    </div>
+  </main>
+  <script type="module" src="order-details.js"></script>
+</body>
+</html>

@@ -6,14 +6,12 @@ body {
   color: #3e2723;
 }
 
-/* Ensure header styles are handled separately in admin-dashboard.css */
 .container {
   width: 80%;
   margin: auto;
   padding: 20px;
 }
 
-/* Search Controls */
 .search-controls {
   display: flex;
   justify-content: center;
@@ -29,20 +27,20 @@ body {
 }
 
 #searchBtn {
-  border-radius: 5px;
   padding: 10px;
   font-size: 1rem;
   border: none;
   background-color: chocolate;
   color: white;
   cursor: pointer;
+  border-radius: 5px;
 }
 
 #searchBtn:hover {
   background-color: #8b4513;
 }
 
-/* Role Filter Controls */
+
 .controls {
   display: flex;
   justify-content: center;
@@ -66,61 +64,87 @@ body {
   background-color: #8b4513;
 }
 
-/* User List */
-.user-list {
+.order-list {
   display: flex;
   flex-direction: column;
   gap: 10px;
   margin-top: 20px;
 }
 
-/* User Card */
-.user-card {
+.order-card {
   background: white;
   border: 1px solid #ddd;
   padding: 20px;
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  width: 100%;
+  margin-bottom: 15px;
+}
+
+.order-header {
   display: flex;
-  flex-direction: row;
   justify-content: space-between;
-  align-items: center;
+  margin-bottom: 10px;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 10px;
+}
+
+.order-id {
+  font-weight: bold;
+  color: #d2691e;
   cursor: pointer;
-  transition: transform 0.2s ease-in-out;
-  min-height: 80px; 
-  font-family: 'Spartan',sans-serif;
-  font-size: 17px;
-
 }
 
-/* Email centered */
-.user-card p.email {
-  flex: 1;
-  text-align: center;
+.order-date {
+  color: #666;
 }
 
-/* Role aligned right */
-.user-card p.role {
-  text-align: right;
-  min-width: 120px; /* Ensures consistent alignment */
+.order-buyer {
+  margin: 10px 0;
 }
 
-/* Hover effect */
-.user-card:hover {
-  transform: scale(1.02);
-}
-
-
-/* Error Message & Loading States */
-.error-message {
-  color: red;
+.buyer-label {
   font-weight: bold;
-  text-align: center;
+  margin-right: 5px;
 }
 
-.info-message {
-  color: chocolate;
-  font-weight: bold;
-  text-align: center;
+
+.order-products {
+  margin: 15px 0;
+  border-left: 3px solid #f5deb3;
+  padding-left: 10px;
 }
+
+.order-product {
+  display: flex;
+  justify-content: space-between;
+  margin: 5px 0;
+  padding: 5px 0;
+}
+
+.order-footer {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px solid #eee;
+  font-weight: bold;
+}
+
+.order-status {
+  color: #666;
+}
+
+.order-total {
+  color: #d2691e;
+}
+
+.order-card {
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.order-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+

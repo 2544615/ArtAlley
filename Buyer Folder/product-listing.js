@@ -76,10 +76,23 @@ productCard.querySelector('.clickable').addEventListener('click', () => {
   document.getElementById("nextPage").disabled = endIndex >= productList.length;
 }
 
+<<<<<<< HEAD
 
 async function loadProducts() {
   try {
     const querySnapshot = await getDocs(collection(db, "products"));
+=======
+// Function to Load Products, excluding out-of-stock items
+async function loadProducts() {
+  try {
+    const querySnapshot = await getDocs(collection(db, "products"));
+    
+    products = querySnapshot.docs
+      .map((doc) => ({ id: doc.id, ...doc.data() }))
+      .filter((product) => product.quantity > 0); // Exclude out-of-stock items
+
+    filteredProducts = products;
+>>>>>>> c92034ed (Admin tings)
     
     products = querySnapshot.docs
       .map((doc) => ({ id: doc.id, ...doc.data() }))
@@ -101,6 +114,10 @@ async function loadProducts() {
 }
 
 
+<<<<<<< HEAD
+=======
+// Sorting Functionality
+>>>>>>> c92034ed (Admin tings)
 document.getElementById("sortOptions").addEventListener("change", (event) => {
   const sortBy = event.target.value;
 

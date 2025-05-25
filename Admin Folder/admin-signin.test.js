@@ -40,14 +40,14 @@ passwordInput.value = "password123";
 
 loginButton.addEventListener("click", () => {
   if (emailInput.value && passwordInput.value) {
-    window.location.href = "admin-dashboard.html";
+    window.location.href = "admin-users.html";
   } else {
     alert("Please enter both email and password.");
   }
 });
 
 loginButton.click();
-expect(window.location.href).toBe("admin-dashboard.html");
+expect(window.location.href).toBe("admin-users.html");
 });
 
 test("Denies access for non-admin users", () => {
@@ -72,14 +72,14 @@ Object.defineProperty(window, "location", {
 googleLoginButton.addEventListener("click", () => {
   const userRole = "admin"; // Simulated role check
   if (userRole === "admin") {
-    window.location.href = "admin-dashboard.html";
+    window.location.href = "admin-users.html";
   } else {
     alert("Access denied");
   }
 });
 
 googleLoginButton.click();
-expect(window.location.href).toBe("admin-dashboard.html");
+expect(window.location.href).toBe("admin-users.html");
 });
 
 test("Displays error message for failed login attempt", () => {
