@@ -1,11 +1,8 @@
-// Import the functions you need from the SDKs you need
+
 import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-app.js";
 import {getFirestore,doc,getDoc,setDoc, collection, query, where, getDocs} from "https://www.gstatic.com/firebasejs/11.6.0/firebase-firestore.js";
 import { getAuth, GoogleAuthProvider,signInWithPopup,createUserWithEmailAndPassword,signOut,sendEmailVerification} from "https://www.gstatic.com/firebasejs/11.6.0/firebase-auth.js";
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
 
-// Your web app's Firebase configuration
 const firebaseConfig = {
   apiKey: "AIzaSyDUfE0XLFPlpw_SAJIFoQlJhylk-r2VY4Y",
   authDomain: "artalley-b9c96.firebaseapp.com",
@@ -22,7 +19,7 @@ const db = getFirestore(app);
 auth.languageCode = 'en';
 
 const email = document.getElementById('address');
-//const username= document.getElementById('username');
+
 const password = document.getElementById('password');
 const confirmPassword = document.getElementById('confirmPassword');
 const submit = document.getElementById('register');
@@ -32,7 +29,7 @@ const eyeIcon = document.getElementById('eyeIcon');
 const termsCheckbox = document.getElementById('termsCheckbox');
 const provider = new GoogleAuthProvider();
 
-// Toggle Password Visibility
+
 togglePassword.addEventListener('click', () => {
   const isPassword = password.type === 'password';
   password.type = isPassword ? 'text' : 'password';
@@ -41,10 +38,10 @@ togglePassword.addEventListener('click', () => {
 });
 
 submit.addEventListener('click', async function(event){
-  event.preventDefault(); // prevent form from refreshing/submitting
+  event.preventDefault();
 
   const emailValue = email.value.trim();
-  //const usernameValue = username.value.trim();
+
   const passwordValue = password.value;
   const confirmPasswordValue = confirmPassword.value;
   
@@ -57,7 +54,6 @@ submit.addEventListener('click', async function(event){
     return;
   }
 
-  // ✅ Password Format Check
   const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[\d\W]).{8,}$/;
   if (!passwordRegex.test(passwordValue)) {
     alert("Password must be at least 8 characters long, with at least 1 lowercase letter, 1 uppercase letter, and 1 number or special character.");
@@ -74,36 +70,17 @@ submit.addEventListener('click', async function(event){
     return;
   }
 
-  
-
-  // Regex: only letters, at least 4 characters
-  //const usernameRegex = /^[A-Za-z]{4,}$/;
-
-  
-
-  // Check all fields
-  // if (!usernameValue || !emailValue || !passwordValue) {
-  //   alert('All fields are required.');
-  //   return;
-  // }
-
-  // Validate username format
-  // if (!usernameRegex.test(usernameValue)) {
-  //   alert("The username should have at least 4 characters,no numbers");
-  //   return;
-  // }
-
 
   try {
     const userCredential = await createUserWithEmailAndPassword(auth, emailValue, passwordValue);
     const user = userCredential.user;
 
-      //Send email verification
+ 
   await sendEmailVerification(user);
   alert("A verification email has been sent. Please check your inbox.");
-  // Start auto-check for verification
+  
 const checkInterval = setInterval(async () => {
-  await user.reload(); // Refresh user data
+  await user.reload(); 
 
   const latestUser = auth.currentUser;
 
@@ -113,10 +90,10 @@ const checkInterval = setInterval(async () => {
     console.log('user signed up');
     window.location.href="seller-profile.html";
   }
-}, 5000); // Check every 5 seconds
+}, 5000); 
     await setDoc(doc(db,"users",user.uid),{
       uid:user.uid,
-      //username:usernameValue,
+  
       email:emailValue,
       role:"seller",
       createdAt:new Date()
@@ -126,9 +103,7 @@ const checkInterval = setInterval(async () => {
       await auth.signOut();
       throw new Error("Role verification failed");
     }
-    // alert('Successfully signed up as a seller!');
-    // console.log('user signed up');
-    // window.location.href="seller-profile.html";
+
     } catch(error) {
       const errorMessage = error.message;
       alert(`Error: ${errorMessage}`);
@@ -136,7 +111,6 @@ const checkInterval = setInterval(async () => {
 });
 
 google_login.addEventListener("click", async function() {
-  //const termsChecked = document.getElementById("termsCheckbox").checked;
 
   if (!termsCheckbox.checked) {
     alert("Please accept the terms and conditions first.");
@@ -154,7 +128,7 @@ google_login.addEventListener("click", async function() {
 
       await setDoc(userRef, {
         uid: user.uid,
-        //username: user.displayName || "GoogleUser",
+
         email: user.email,
         role: "seller", 
         createdAt: new Date()

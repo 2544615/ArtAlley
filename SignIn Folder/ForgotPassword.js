@@ -1,4 +1,3 @@
-//  Your Firebase config
 
 const firebaseConfig = {
     apiKey: "AIzaSyDUfE0XLFPlpw_SAJIFoQlJhylk-r2VY4Y",
@@ -10,11 +9,9 @@ const firebaseConfig = {
   };
 
 
-  
-  // Initialize Firebase
   firebase.initializeApp(firebaseConfig);
   
-  //  Listen to form submit
+
   document.getElementById("resetForm").addEventListener("submit", function (e) {
     e.preventDefault();
   
@@ -24,7 +21,7 @@ const firebaseConfig = {
       .then(() => {
         document.getElementById("message").textContent =
           "A password reset link has been sent to your email.";
-      })//The catch is failing in line 27
+      })
       .catch((error) => {
         document.getElementById("message").textContent = error.message;
         console.error("Error sending reset email:", error);

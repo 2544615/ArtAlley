@@ -17,8 +17,6 @@ const app = initializeApp(firebaseConfig);
 const auth = getAuth();
 const db = getFirestore(app);
 
-// Restore input values from localStorage
-    
     document.addEventListener("DOMContentLoaded", () => {
     const emailInput = document.getElementById("email-address");
     const amountInput = document.getElementById("amount");
@@ -53,12 +51,11 @@ const db = getFirestore(app);
         ref: 'TX_' + Math.floor(Math.random() * 1000000000 + 1),
         callback: function(response) {
           alert('✅ Payment successful!\nReference: ' + response.reference);
-          // TODO: Call backend endpoint to verify the payment using this reference
-          // Remove cart items and redirect after success
+
             onAuthStateChanged(auth, async (user) => {
               try{
                 if (user) {
-                  // ✅ Fetch cart items
+                  
                   const cartRef = doc(db, "users", user.uid, "cart", "active");
                   const itemsRef = collection(cartRef, "items");
                   const cartSnapshot = await getDocs(itemsRef);
@@ -76,7 +73,6 @@ const db = getFirestore(app);
                     });
                   });
                 
-                  // ✅ Save to 'orders' collection
                   await addDoc(collection(db, "orders"), {
                     userId: user.uid,
                     timestamp: serverTimestamp(),
@@ -85,7 +81,7 @@ const db = getFirestore(app);
                 
                   console.log("✅ Order saved to Firestore");  
 
-                  // 1. First finalize the order (decrease stock)
+
                   await finalizeOrder(user.uid, db);
 
                   // 2. Then remove the items from the cart
@@ -136,7 +132,7 @@ const db = getFirestore(app);
 
     async function finalizeOrder(userId, db) {
   try {
-    console.log("🛠 Finalizing order for:", userId);  // ✅ START DEBUG
+    console.log("🛠 Finalizing order for:", userId); 
 
 
     const itemsRef = collection(db, "users", userId, "cart", "active", "items");
@@ -151,7 +147,7 @@ const db = getFirestore(app);
       const cartItem = cartDoc.data();
       const { productId, quantity, price } = cartItem;
 
-      console.log("📦 Cart item:", cartItem);  // ✅ DEBUG EACH ITEM//console.log(cartItem);
+      console.log("📦 Cart item:", cartItem); 
 
       if (!productId || !quantity || !price) {
         console.warn("Cart item missing productId, quantity, or price:", cartItem);
@@ -174,13 +170,13 @@ const db = getFirestore(app);
         continue;
       }
 
-      console.log("⬇️ Decreasing stock for product:", productId, "by", quantity);  // ✅ DEBUG STOCK
+      console.log("⬇️ Decreasing stock for product:", productId, "by", quantity);  
 
       // Decrease product quantity
       await updateDoc(productRef, {
         quantity: increment(-Number(quantity))
       });
-      console.log("📝 Recording sale for seller:", sellerUID);  // ✅ DEBUG SALE RECORD
+      console.log("📝 Recording sale for seller:", sellerUID);  
 
       // Record sale for seller
       const saleRef = doc(collection(db, "sellers", sellerUID, "sales"));

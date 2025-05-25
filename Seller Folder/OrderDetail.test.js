@@ -30,7 +30,7 @@ beforeEach(() => {
   OrdersList.innerHTML = '';
 });
 
-// Util to flush promises
+
 const flushPromises = () => new Promise(setImmediate);
 
 describe('Seller Orders Page', () => {

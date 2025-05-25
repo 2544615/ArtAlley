@@ -1,6 +1,4 @@
-/**
- * @jest-environment jsdom
- */
+
 import { fireEvent, getByLabelText, getByRole } from '@testing-library/dom';
 import '@testing-library/jest-dom';
 import { onAuthStateChanged } from 'firebase/auth';
@@ -45,7 +43,7 @@ describe("Seller Profile Form", () => {
       email: 'jane@example.com',
     };
 
-    // Simulate Firebase Auth callback
+
     onAuthStateChanged.mockImplementation((auth, cb) => cb(mockUser));
   });
 

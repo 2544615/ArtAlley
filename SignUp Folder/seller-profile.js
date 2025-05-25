@@ -1,11 +1,8 @@
-// Import the functions you need from the SDKs you need
+
 import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-app.js";
 import {getFirestore,doc,getDoc,setDoc, collection, query, where, getDocs} from "https://www.gstatic.com/firebasejs/11.6.0/firebase-firestore.js";
 import { getAuth, GoogleAuthProvider,signInWithPopup,createUserWithEmailAndPassword,signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-auth.js";
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
 
-// Your web app's Firebase configuration
 const firebaseConfig = {
   apiKey: "AIzaSyDUfE0XLFPlpw_SAJIFoQlJhylk-r2VY4Y",
   authDomain: "artalley-b9c96.firebaseapp.com",
@@ -37,20 +34,17 @@ const profileForm = document.getElementById("profileForm");
         const phone = document.getElementById("number").value.trim();
         const address = document.getElementById("address").value.trim();
 
-        // ✅ Check if username is only numbers
         if (/^\d+$/.test(username)) {
           alert("Username cannot consist of numbers only.");
           return;
         }
 
-        // Check if username meets all the rules: at least 4 characters, no special characters, doesn't start with a number
         const usernamePattern = /^[A-Za-z][A-Za-z0-9]{3,}$/;
         if (!usernamePattern.test(username)) {
           alert("Username must be at least 4 characters, start with a letter, and contain only letters and numbers.");
           return;
         }
 
-        // ✅ Check if username already exists among buyers
         const usersRef = collection(db, "users");
         const buyerQuery = query(usersRef, where("username", "==", username), where("role", "==", "seller"));
         const querySnapshot = await getDocs(buyerQuery);

@@ -1,11 +1,8 @@
-// Import the functions you need from the SDKs you need
+
 import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-app.js";
 import { getAuth, GoogleAuthProvider, signInWithPopup, signInWithEmailAndPassword,signOut  } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-auth.js";
 import{getFirestore,doc,getDoc} from "https://www.gstatic.com/firebasejs/11.6.0/firebase-firestore.js";
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
 
-// Your web app's Firebase configuration
 const firebaseConfig = {
   apiKey: "AIzaSyDUfE0XLFPlpw_SAJIFoQlJhylk-r2VY4Y",
   authDomain: "artalley-b9c96.firebaseapp.com",
@@ -15,7 +12,6 @@ const firebaseConfig = {
   appId: "1:1056868925602:web:4fa9734632b255594917fb"
 };
 
-// Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const auth = getAuth();
 const db=getFirestore(app);
@@ -48,7 +44,7 @@ return userData;
 }
 
 function isProfileComplete(userData) {
-  // You can add more fields if you want to check them
+
   return userData.firstName && userData.lastName && userData.username && userData.phone && userData.address;
 }
 
@@ -62,7 +58,7 @@ submit.addEventListener('click', function(event){
     }
   signInWithEmailAndPassword(auth, emailValue, passwordValue)
   .then(async(userCredential) => {
-    // Signed in 
+
     const user = userCredential.user;
     const latestUser = auth.currentUser;
 
@@ -79,7 +75,7 @@ submit.addEventListener('click', function(event){
     
     console.log('user signed in as a', userData);
     window.location.href="seller-dashboard.html";
-     // ...
+ 
     } else {
       alert("Please complete your profile first.");
       console.log('user signed in as a', userData);

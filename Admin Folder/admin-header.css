@@ -1,4 +1,4 @@
-/* EXACTLY matches your original header styling */
+
 * {
     margin: 0;
     padding: 0;
@@ -25,7 +25,7 @@ html, body {
 
 #header .logo {
     height: auto;
-    width: 120px; /* Matches your original logo sizing */
+    width: 120px; 
 }
 
 #navbar {

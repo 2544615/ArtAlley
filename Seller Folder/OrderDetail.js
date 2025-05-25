@@ -25,12 +25,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const orderDetail = document.getElementById("orderDetail");
 
-    // Retrieve selected order from sessionStorage
+
      const orderData = sessionStorage.getItem("selectedOrder");
-    // if (!orderData) {
-    //   orderDetail.innerHTML = `<p style="text-align:center;">No order selected.</p>`;
-    //   return;
-    // }
+   
 
     const order = JSON.parse(orderData);
     if (!order || !order.sellerItems || !order.buyerId) {
@@ -39,7 +36,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     try {
-      // Get buyer shipping info
+      
       const shippingQuery = query(
         collection(db, "shipping"),
         where("buyeruid", "==", order.buyerId)

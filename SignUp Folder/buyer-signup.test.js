@@ -1,6 +1,4 @@
-/**
- * @jest-environment jsdom
- */
+
 import '../../SignUp Folder/signUpBuyer';
 import { getAuth, createUserWithEmailAndPassword, sendEmailVerification, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 import { getFirestore, doc, getDoc, setDoc } from "firebase/firestore";
@@ -8,7 +6,6 @@ import { getFirestore, doc, getDoc, setDoc } from "firebase/firestore";
 jest.mock("firebase/auth");
 jest.mock("firebase/firestore");
 
-// Helper to setup DOM elements
 function setupDOM({
   email = "test@example.com",
   password = "Test@1234",

@@ -41,53 +41,49 @@ describe("Profile Management Page", () => {
   
     numberInput.dispatchEvent(new Event("input"));
   
-    expect(numberInput.validity.valid).toBe(false); // Should trigger validation error
+    expect(numberInput.validity.valid).toBe(false);
   });
   
   test("Ensure first name only allows letters", () => {
     const firstNameInput = document.querySelector("input#firstName");
-    firstNameInput.value = "John123"; // Invalid case (should reject numbers)
+    firstNameInput.value = "John123"; 
   
     firstNameInput.dispatchEvent(new Event("input"));
   
-    expect(firstNameInput.validity.valid).toBe(false); // Should trigger validation error
+    expect(firstNameInput.validity.valid).toBe(false); 
   });
   
   test("Ensure last name only allows letters", () => {
     const lastNameInput = document.querySelector("input#lastName");
-    lastNameInput.value = "Doe@"; // Invalid case (should reject special characters)
-  
+    lastNameInput.value = "Doe@"; 
     lastNameInput.dispatchEvent(new Event("input"));
   
-    expect(lastNameInput.validity.valid).toBe(false); // Should trigger validation error
+    expect(lastNameInput.validity.valid).toBe(false); 
   });
   
   test("Username follows expected rules", () => {
     const usernameInput = document.querySelector("input#profileUsername");
-  
-    // First case: Should trigger validation error if starting with a number
+
     usernameInput.value = "1234"; 
     usernameInput.dispatchEvent(new Event("input"));
   
-    expect(usernameInput.validity.valid).toBe(false); // Should be invalid
+    expect(usernameInput.validity.valid).toBe(false); 
   
-    // Second case: Should trigger validation error if containing special characters
-    usernameInput.value = "J_Doe"; // Invalid case (should reject `_`)
+    usernameInput.value = "J_Doe"; 
     usernameInput.dispatchEvent(new Event("input"));
   
-    expect(usernameInput.validity.valid).toBe(false); // Should be invalid due to special character
+    expect(usernameInput.validity.valid).toBe(false); 
   
-    // Third case: Should allow letters and numbers (valid username)
-    usernameInput.value = "John123"; // Valid case
+    usernameInput.value = "John123"; 
     usernameInput.dispatchEvent(new Event("input"));
   
-    expect(usernameInput.validity.valid).toBe(true); // Should pass validation
+    expect(usernameInput.validity.valid).toBe(true); 
   });
 
   test("Phone number validation enforces exactly 10 digits", () => {
     const numberInput = document.querySelector("input#number");
 
-    numberInput.value = "123456789"; // Too short
+    numberInput.value = "123456789"; 
     numberInput.dispatchEvent(new Event("blur"));
 
     expect(numberInput.value.length).toBeLessThanOrEqual(10); // Should not exceed 10 digits

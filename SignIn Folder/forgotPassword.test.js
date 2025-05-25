@@ -1,8 +1,4 @@
-/**
- * @jest-environment jsdom
- */
 
-// Polyfill for setImmediate if needed
 if (typeof setImmediate === 'undefined') {
   global.setImmediate = (fn) => setTimeout(fn, 0);
 }
@@ -14,7 +10,6 @@ jest.mock('firebase/app', () => ({
 }));
 
 
-// Mock Firebase before importing your script
 global.firebase = {
   initializeApp: jest.fn(),
   auth: jest.fn(() => ({

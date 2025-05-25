@@ -363,15 +363,7 @@
 <a name='L298'></a><a href='#L298'>298</a>
 <a name='L299'></a><a href='#L299'>299</a>
 <a name='L300'></a><a href='#L300'>300</a>
-<a name='L301'></a><a href='#L301'>301</a>
-<a name='L302'></a><a href='#L302'>302</a>
-<a name='L303'></a><a href='#L303'>303</a>
-<a name='L304'></a><a href='#L304'>304</a>
-<a name='L305'></a><a href='#L305'>305</a>
-<a name='L306'></a><a href='#L306'>306</a>
-<a name='L307'></a><a href='#L307'>307</a>
-<a name='L308'></a><a href='#L308'>308</a>
-<a name='L309'></a><a href='#L309'>309</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L301'></a><a href='#L301'>301</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -545,11 +537,6 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -588,9 +575,6 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -736,18 +720,18 @@ export async function <span class="fstat-no" title="function not covered" >addTo
       }
 &nbsp;
 <span class="cstat-no" title="statement not covered" >    await addDoc(itemsRef, {</span>
-      productId: product.id,  // ✅ Include this
+      productId: product.id,  
       name: product.name,
       price: product.price,
       quantity: 1,
       user: userId,
-      imageUrl: product.imageUrls[0], // First Cloudinary URL
+      imageUrl: product.imageUrls[0], 
       stock: product.quantity,
       sellerId: product.sellerUID
     });
   }
 &nbsp;
-<span class="cstat-no" title="statement not covered" >  updateCartUI(); </span>// Call the UI updater
+<span class="cstat-no" title="statement not covered" >  updateCartUI(); </span>
 }
 &nbsp;
 &nbsp;
@@ -759,7 +743,7 @@ async function <span class="fstat-no" title="function not covered" >loadCartFrom
   const cartItemsRef = <span class="cstat-no" title="statement not covered" >collection(db, "users", user.uid, "cart", "active", "items");</span>
   const snapshot = <span class="cstat-no" title="statement not covered" >await getDocs(cartItemsRef);</span>
 &nbsp;
-<span class="cstat-no" title="statement not covered" >  cart.length = 0; </span>// Clear current cart array
+<span class="cstat-no" title="statement not covered" >  cart.length = 0; </span>
 &nbsp;
 <span class="cstat-no" title="statement not covered" >  snapshot.forEach(<span class="fstat-no" title="function not covered" >do</span>c =&gt; {</span>
 <span class="cstat-no" title="statement not covered" >    cart.push(doc.data());</span>
@@ -773,7 +757,7 @@ async function <span class="fstat-no" title="function not covered" >loadCartFrom
 function <span class="fstat-no" title="function not covered" >updateCartUI(</span>) {
   const cartSection = <span class="cstat-no" title="statement not covered" >document.getElementById('CartProducts');</span>
 <span class="cstat-no" title="statement not covered" >  if (!cartSection) {</span>
-    //console.error('cart-products section not found in DOM');
+    
 <span class="cstat-no" title="statement not covered" >    return;</span>
   }
 <span class="cstat-no" title="statement not covered" >  cartSection.innerHTML = "";</span>
@@ -852,11 +836,6 @@ const itemsRef = <span class="cstat-no" title="statement not covered" >collectio
   const name = <span class="cstat-no" title="statement not covered" >e.target.closest(".cart-item")?.querySelector("h3")?.textContent;</span>
 <span class="cstat-no" title="statement not covered" >  if (!name) <span class="cstat-no" title="statement not covered" >return;</span></span>
 &nbsp;
-/*const user = auth.currentUser;
-if (!user) return alert("You must be logged in.");
-&nbsp;
-const cartRef = doc(db, "users", user.uid, "cart", "active");
-const itemsRef = collection(cartRef, "items");*/
 &nbsp;
 const q = <span class="cstat-no" title="statement not covered" >query(itemsRef, where("name", "==", name));</span>
 const snapshot = <span class="cstat-no" title="statement not covered" >await getDocs(q);</span>
@@ -899,16 +878,13 @@ const docRef = <span class="cstat-no" title="statement not covered" >snapshot.do
 });
 &nbsp;
 &nbsp;
-&nbsp;
-&nbsp;
-//ALso here for the go back
 <span class="cstat-no" title="statement not covered" >document.addEventListener("DOMContentLoaded", <span class="fstat-no" title="function not covered" >fu</span>nction () {</span>
 <span class="cstat-no" title="statement not covered" >  onAuthStateChanged(auth, <span class="fstat-no" title="function not covered" >as</span>ync (user) =&gt; {</span>
 <span class="cstat-no" title="statement not covered" >    if (user) {</span>
 <span class="cstat-no" title="statement not covered" >      await loadCartFromFirestore(user.uid);</span>
-<span class="cstat-no" title="statement not covered" >      updateCartUI(); </span>// update the DOM after loading
-    } else {
-      // Optional: Clear cart and redirect if user logs out
+<span class="cstat-no" title="statement not covered" >      updateCartUI(); </span>
+        } else {
+&nbsp;
 <span class="cstat-no" title="statement not covered" >      cart = [];</span>
 <span class="cstat-no" title="statement not covered" >      updateCartUI();</span>
 <span class="cstat-no" title="statement not covered" >      alert("Please log in.");</span>
@@ -994,7 +970,7 @@ const check = <span class="cstat-no" title="statement not covered" >document.get
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2025-05-25T18:24:19.899Z
+                at 2025-05-25T20:14:13.855Z
             </div>
         <script src="../prettify.js"></script>
         <script>

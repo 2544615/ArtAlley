@@ -149,16 +149,7 @@
 <a name='L84'></a><a href='#L84'>84</a>
 <a name='L85'></a><a href='#L85'>85</a>
 <a name='L86'></a><a href='#L86'>86</a>
-<a name='L87'></a><a href='#L87'>87</a>
-<a name='L88'></a><a href='#L88'>88</a>
-<a name='L89'></a><a href='#L89'>89</a>
-<a name='L90'></a><a href='#L90'>90</a>
-<a name='L91'></a><a href='#L91'>91</a>
-<a name='L92'></a><a href='#L92'>92</a>
-<a name='L93'></a><a href='#L93'>93</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L87'></a><a href='#L87'>87</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -194,18 +185,15 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -247,14 +235,11 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">// Import the functions you need from the SDKs you need
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">&nbsp;
 import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-app.js";
 import {getFirestore,doc,getDoc,setDoc, collection, query, where, getDocs} from "https://www.gstatic.com/firebasejs/11.6.0/firebase-firestore.js";
 import { getAuth, GoogleAuthProvider,signInWithPopup,createUserWithEmailAndPassword,signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-auth.js";
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
 &nbsp;
-// Your web app's Firebase configuration
 const firebaseConfig = <span class="cstat-no" title="statement not covered" >{</span>
   apiKey: "AIzaSyDUfE0XLFPlpw_SAJIFoQlJhylk-r2VY4Y",
   authDomain: "artalley-b9c96.firebaseapp.com",
@@ -286,20 +271,17 @@ const profileForm = <span class="cstat-no" title="statement not covered" >docume
         const phone = <span class="cstat-no" title="statement not covered" >document.getElementById("number").value.trim();</span>
         const address = <span class="cstat-no" title="statement not covered" >document.getElementById("address").value.trim();</span>
 &nbsp;
-        // ✅ Check if username is only numbers
 <span class="cstat-no" title="statement not covered" >        if (/^\d+$/.test(username)) {</span>
 <span class="cstat-no" title="statement not covered" >          alert("Username cannot consist of numbers only.");</span>
 <span class="cstat-no" title="statement not covered" >          return;</span>
         }
 &nbsp;
-        // Check if username meets all the rules: at least 4 characters, no special characters, doesn't start with a number
         const usernamePattern = <span class="cstat-no" title="statement not covered" >/^[A-Za-z][A-Za-z0-9]{3,}$/;</span>
 <span class="cstat-no" title="statement not covered" >        if (!usernamePattern.test(username)) {</span>
 <span class="cstat-no" title="statement not covered" >          alert("Username must be at least 4 characters, start with a letter, and contain only letters and numbers.");</span>
 <span class="cstat-no" title="statement not covered" >          return;</span>
         }
 &nbsp;
-        // ✅ Check if username already exists among buyers
         const usersRef = <span class="cstat-no" title="statement not covered" >collection(db, "users");</span>
         const buyerQuery = <span class="cstat-no" title="statement not covered" >query(usersRef, where("username", "==", username), where("role", "==", "seller"));</span>
         const querySnapshot = <span class="cstat-no" title="statement not covered" >await getDocs(buyerQuery);</span>
@@ -346,7 +328,7 @@ const profileForm = <span class="cstat-no" title="statement not covered" >docume
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2025-05-25T18:24:19.899Z
+                at 2025-05-25T20:14:13.855Z
             </div>
         <script src="../prettify.js"></script>
         <script>

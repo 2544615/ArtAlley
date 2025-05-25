@@ -55,18 +55,18 @@ export async function addToCart(product) {
       }
 
     await addDoc(itemsRef, {
-      productId: product.id,  // ✅ Include this
+      productId: product.id,  
       name: product.name,
       price: product.price,
       quantity: 1,
       user: userId,
-      imageUrl: product.imageUrls[0], // First Cloudinary URL
+      imageUrl: product.imageUrls[0], 
       stock: product.quantity,
       sellerId: product.sellerUID
     });
   }
 
-  updateCartUI(); // Call the UI updater
+  updateCartUI(); 
 }
 
 
@@ -78,7 +78,7 @@ async function loadCartFromFirestore() {
   const cartItemsRef = collection(db, "users", user.uid, "cart", "active", "items");
   const snapshot = await getDocs(cartItemsRef);
 
-  cart.length = 0; // Clear current cart array
+  cart.length = 0; 
 
   snapshot.forEach(doc => {
     cart.push(doc.data());
@@ -92,7 +92,7 @@ async function loadCartFromFirestore() {
 function updateCartUI() {
   const cartSection = document.getElementById('CartProducts');
   if (!cartSection) {
-    //console.error('cart-products section not found in DOM');
+    
     return;
   }
   cartSection.innerHTML = "";
@@ -171,11 +171,6 @@ if (isRemove) {
   const name = e.target.closest(".cart-item")?.querySelector("h3")?.textContent;
   if (!name) return;
 
-/*const user = auth.currentUser;
-if (!user) return alert("You must be logged in.");
-
-const cartRef = doc(db, "users", user.uid, "cart", "active");
-const itemsRef = collection(cartRef, "items");*/
 
 const q = query(itemsRef, where("name", "==", name));
 const snapshot = await getDocs(q);
@@ -218,16 +213,13 @@ await loadCartFromFirestore();
 });
 
 
-
-
-//ALso here for the go back
 document.addEventListener("DOMContentLoaded", function () {
   onAuthStateChanged(auth, async (user) => {
     if (user) {
       await loadCartFromFirestore(user.uid);
-      updateCartUI(); // update the DOM after loading
-    } else {
-      // Optional: Clear cart and redirect if user logs out
+      updateCartUI(); 
+        } else {
+
       cart = [];
       updateCartUI();
       alert("Please log in.");

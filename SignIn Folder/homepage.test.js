@@ -18,13 +18,13 @@ describe('Art Alley Homepage', () => {
     dom = new JSDOM(html, {
       runScripts: 'dangerously',
       resources: 'usable',
-      url: 'http://localhost' // required for localStorage
+      url: 'http://localhost' 
     });
 
     document = dom.window.document;
     window = dom.window;
 
-    // Simulate DOMContentLoaded and load homepage.js manually
+
     const scriptContent = fs.readFileSync(path.resolve(__dirname, '../homepage.js'), 'utf8');
     const scriptEl = document.createElement('script');
     scriptEl.textContent = scriptContent;
@@ -35,7 +35,7 @@ describe('Art Alley Homepage', () => {
       dom.window.document.dispatchEvent(new dom.window.Event('DOMContentLoaded', { bubbles: true }));
     });
 
-    // Mock window.location
+
     delete window.location;
     window.location = { href: '' };
   });

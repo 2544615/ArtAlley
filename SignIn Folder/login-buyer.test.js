@@ -1,6 +1,3 @@
-/**
- * @jest-environment jsdom
- */
 
 import fs from 'fs';
 import path from 'path';
@@ -10,13 +7,13 @@ describe('Buyer Login Page', () => {
   let html;
 
   beforeAll(() => {
-    const htmlPath = path.resolve(__dirname, 'login-buyer.html'); // adjust path as needed
+    const htmlPath = path.resolve(__dirname, 'login-buyer.html'); 
     html = fs.readFileSync(htmlPath, 'utf-8');
   });
 
   beforeEach(() => {
     document.documentElement.innerHTML = html;
-    attachFormListeners(); // ✅ Register event listeners from JS
+    attachFormListeners(); 
   });
 
   test('Loads the login form correctly', () => {
@@ -45,7 +42,7 @@ describe('Buyer Login Page', () => {
     submitEvent.preventDefault = preventDefaultMock;
 
     form.dispatchEvent(submitEvent);
-    expect(preventDefaultMock).toHaveBeenCalled(); // Ensure handler is triggered
+    expect(preventDefaultMock).toHaveBeenCalled(); 
   });
 
   test('Forgot Password link is correct', () => {

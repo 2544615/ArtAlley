@@ -48,11 +48,9 @@ onAuthStateChanged(auth, async (user) => {
       return;
     }
 
-    // Generate HTML
     OrdersList.innerHTML = "";
     console.log("done");
-    // orderDetail.innerHTML= "";
-    // console.log("this is a problem");
+
 
     for (const order of sellerOrders) {
       const shippingQuery = query(
@@ -81,35 +79,15 @@ onAuthStateChanged(auth, async (user) => {
           
         </article>
       `;
-      // const BuyerOrders=document.createElement('section');
-      // BuyerOrders.innerHTML=`
-      //   <h3>Order from: ${fullName}</h3>
-      //   <section class="product-list">
-      //       ${order.sellerItems.map(item => `
-      //         <figure class="product-item">
-      //           <img src="${item.imageUrl || '#'}" alt="${item.name}" />
-      //           <figcaption>
-      //             <p><strong>${item.name}</strong></p>
-      //             <p>Qty: ${item.quantity}</p>
-      //             <p>Price: R${item.price?.toFixed(2) || 'N/A'}</p>
-      //           </figcaption>
-      //         </figure>
-      //       `).join("")}
-      //     </section>
-      
-      // `;
 
-      
       OrdersList.appendChild(listItem);
-      //orderDetail.appendChild(BuyerOrders);
-  // Example click handler
+
   listItem.addEventListener("click", () => {
     try {
       const orderJson = JSON.stringify(order);
       sessionStorage.setItem("selectedOrder", orderJson);
       console.log("Order saved:", orderJson);
   
-      // Delay redirect by 100ms
       setTimeout(() => {
         window.location.href = "OrderDetail.html";
       }, 100);

@@ -27,7 +27,7 @@ describe("Seller Dashboard", () => {
     const emptySection = document.querySelector("#empty-product-section");
     const productList = document.querySelector("#product");
     
-    // Simulating no products available
+   
     emptySection.classList.remove("hidden");
     productList.hidden = true;
 
@@ -40,23 +40,22 @@ describe("Seller Dashboard", () => {
     const addProductBtn = document.querySelector("#add-product-btn");
     expect(addProductBtn).toBeTruthy();
   
-    // Attach event listener manually for Jest to detect it
+
     addProductBtn.addEventListener("click", () => {
       window.location.assign("add-product.html");
     });
   
-    // Mock window.location.assign
     delete window.location;
     window.location = { assign: jest.fn() };
   
-    // Simulate click event
+
     addProductBtn.click();
   
     expect(window.location.assign).toHaveBeenCalledWith("add-product.html"); // Ensure redirection works
   });
   
   test("Ensures delete button removes product from DOM", () => {
-    // Simulating existing product
+    
     const productList = document.querySelector("#product");
     const productElement = document.createElement("article");
     productElement.id = "product-123";
@@ -70,17 +69,14 @@ describe("Seller Dashboard", () => {
 
     expect(document.querySelector("#product-123")).toBeTruthy(); // Product exists
 
-    // Simulate deletion
+  
     deleteBtn.dispatchEvent(new Event("click"));
-    productElement.remove(); // Remove from DOM
-
+    productElement.remove(); 
     expect(document.querySelector("#product-123")).toBeFalsy(); // Product should be gone
   });
 
   test("Redirects to edit page when edit button is clicked", () => {
-    document.body.innerHTML = htmlContent; // Load the HTML
-  
-    // Simulating an existing product item
+    document.body.innerHTML = htmlContent; 
     const productElement = document.createElement("article");
     productElement.id = "product-123";
   
@@ -95,14 +91,13 @@ describe("Seller Dashboard", () => {
     productElement.appendChild(editBtn);
     document.body.appendChild(productElement);
   
-    // Spy on window.location.href
     global.window = Object.create(window);
     Object.defineProperty(window, "location", {
       value: { href: "" },
       writable: true,
     });
   
-    editBtn.click(); // Simulate click
+    editBtn.click(); 
   
     expect(window.location.href).toBe("edit.html?id=123"); // Check correct redirection
   });

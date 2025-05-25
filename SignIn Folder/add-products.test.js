@@ -1,6 +1,4 @@
-/**
- * @jest-environment jsdom
- */
+
 import { fireEvent } from "@testing-library/dom";
 import "@testing-library/jest-dom";
 
@@ -112,7 +110,6 @@ describe("Add Product Page", () => {
     const imageChange = new Event("change");
     imageInput.dispatchEvent(imageChange);
 
-    // Set selectedMainImageIndex manually since click event is not triggered
     const module = await import("../add-products.js");
     const preview = document.getElementById("preview-images");
     preview.innerHTML = `<img src="#" style="border: 3px solid green;" />`;
