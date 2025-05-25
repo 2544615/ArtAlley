@@ -33,7 +33,7 @@
             <h5>ADDRESS DETAILS</h5>
             <fieldset>
               <label for="firstname">Recipient Name:</label>
-              <input type="text" id="firstname" name="firstname" required>
+              <input type="text" id="firstname" name="firstname" required pattern="^[A-Za-z]{2,}$" oninvalid="this.setCustomValidity('Please enter a valid name with only letters and at least 2 characters')" oninput="this.setCustomValidity('')">
               <label for="Contact">Contact Number:</label>
               <input type="tel" id="contact" name="contact" required>
 
@@ -114,5 +114,28 @@
           </ul>
         </section>
       </footer>
+    <script>
+        const phoneInput = document.getElementById('contact');
+
+        
+        phoneInput.addEventListener('input', (e) => {
+          
+          e.target.value = e.target.value
+            .replace(/[^\d+]/g, '')       
+            .replace(/^(\+)(?=.*\+)/g, '') 
+            .replace(/(?!^)\+/g, '');      
+        });
+        
+        
+        phoneInput.addEventListener('keydown', (e) => {
+          const allowedKeys = ['Backspace', 'Delete', 'ArrowLeft', 'ArrowRight', 'Tab'];
+          const isDigit = /^\d$/.test(e.key);
+          const isPlusAtStart = e.key === '+' && phoneInput.selectionStart === 0 && !phoneInput.value.includes('+');
+        
+          if (!isDigit && !isPlusAtStart && !allowedKeys.includes(e.key)) {
+            e.preventDefault();
+          }
+        });  
+    </script>
 </body>
 </html>
