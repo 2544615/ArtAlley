@@ -75,7 +75,7 @@ function displayOrders(orders) {
       
       <section class="order-buyer">
         <span class="buyer-label">Buyer:</span>
-        <span class="buyer-info">${order.buyerName || 'Unknown Buyer'}</span>
+        <span class="buyer-info">${order.buyerName || 'Registered Buyer'}</span>
       </section>
       
       ${productsHTML}
