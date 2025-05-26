@@ -61,8 +61,8 @@ beforeEach(() => {
     <select id="trendFilter"><option value="30" selected>30</option></select>
     <select id="reportType"><option value="table" selected>Table</option></select>
     <select id="valueTypeFilter"><option value="sales" selected>Sales</option></select>
-    <div id="total-sales-summary"></div>
-    <div id="total-quantity-summary"></div>
+    <section id="total-sales-summary"></section>
+    <section id="total-quantity-summary"></section>
   `;
 });
 

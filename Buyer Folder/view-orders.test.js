@@ -10,7 +10,7 @@ delete window.location;
 window.location = { href: '' };
 
 // --- Mock DOM container ---
-document.body.innerHTML = `<div id="ordersContainer"></div>`;
+document.body.innerHTML = `<section id="ordersContainer"></section>`;
 
 // --- Firebase mocks ---
 jest.mock('firebase/app', () => ({
@@ -123,7 +123,7 @@ describe('Orders page', () => {
     await Promise.resolve();
 
     const container = document.getElementById('ordersContainer');
-    // Check that two .order-item divs were created
+    // Check that two .order-item sections were created
     const items = container.querySelectorAll('.order-item');
     expect(items).toHaveLength(2);
 

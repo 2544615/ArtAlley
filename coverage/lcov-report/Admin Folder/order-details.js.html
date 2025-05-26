@@ -17,51 +17,51 @@
 </head>
     
 <body>
-<div class='wrapper'>
-    <div class='pad1'>
+<section class='wrapper'>
+    <section class='pad1'>
         <h1><a href="../index.html">All files</a> / <a href="index.html">Admin Folder</a> order-details.js</h1>
-        <div class='clearfix'>
+        <section class='clearfix'>
             
-            <div class='fl pad1y space-right2'>
+            <section class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Statements</span>
                 <span class='fraction'>0/162</span>
-            </div>
+            </section>
         
             
-            <div class='fl pad1y space-right2'>
+            <section class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Branches</span>
                 <span class='fraction'>0/75</span>
-            </div>
+            </section>
         
             
-            <div class='fl pad1y space-right2'>
+            <section class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Functions</span>
                 <span class='fraction'>0/22</span>
-            </div>
+            </section>
         
             
-            <div class='fl pad1y space-right2'>
+            <section class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Lines</span>
                 <span class='fraction'>0/160</span>
-            </div>
+            </section>
         
             
-        </div>
+        </section>
         <p class="quiet">
             Press <em>n</em> or <em>j</em> to go to the next uncovered block, <em>b</em>, <em>p</em> or <em>k</em> for the previous block.
         </p>
         <template id="filterTemplate">
-            <div class="quiet">
+            <section class="quiet">
                 Filter:
                 <input type="search" id="fileSearch">
-            </div>
+            </section>
         </template>
-    </div>
-    <div class='status-line low'></div>
+    </section>
+    <section class='status-line low'></section>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -889,7 +889,7 @@ function <span class="fstat-no" title="function not covered" >displayOrderDetail
 &nbsp;
 async function <span class="fstat-no" title="function not covered" >displayBuyerInfo(</span>buyerId) {
 <span class="cstat-no" title="statement not covered" >  if (!buyerId) {</span>
-<span class="cstat-no" title="statement not covered" >    buyerDetailsElement.innerHTML = '&lt;div&gt;No buyer information available&lt;/div&gt;';</span>
+<span class="cstat-no" title="statement not covered" >    buyerDetailsElement.innerHTML = '&lt;section&gt;No buyer information available&lt;/section&gt;';</span>
 <span class="cstat-no" title="statement not covered" >    return;</span>
   }
 &nbsp;
@@ -953,28 +953,28 @@ async function <span class="fstat-no" title="function not covered" >displayOrder
     }
 &nbsp;
 <span class="cstat-no" title="statement not covered" >    itemsHTML += `</span>
-      &lt;div class="order-item"&gt;
-        &lt;div class="item-image-container"&gt;
+      &lt;section class="order-item"&gt;
+        &lt;section class="item-image-container"&gt;
           &lt;img src="${imageUrl}" 
                alt="${name}" 
                class="item-image"
                onerror="this.src='https://via.placeholder.com/100x100?text=No+Image'"&gt;
-        &lt;/div&gt;
-        &lt;div class="item-details"&gt;
-          &lt;div class="item-name"&gt;${name}&lt;/div&gt;
-          &lt;div class="item-pricing"&gt;
-            &lt;div class="price-info"&gt;
+        &lt;/section&gt;
+        &lt;section class="item-details"&gt;
+          &lt;section class="item-name"&gt;${name}&lt;/section&gt;
+          &lt;section class="item-pricing"&gt;
+            &lt;section class="price-info"&gt;
               &lt;span class="unit-price"&gt;R${price.toFixed(2)} each&lt;/span&gt;
               &lt;span class="quantity"&gt;Qty: ${quantity}&lt;/span&gt;
               &lt;span class="item-total"&gt;Total: R${itemTotal.toFixed(2)}&lt;/span&gt;
-            &lt;/div&gt;
-          &lt;/div&gt;
-          &lt;div class="seller-info"&gt;
+            &lt;/section&gt;
+          &lt;/section&gt;
+          &lt;section class="seller-info"&gt;
             &lt;span class="seller-label"&gt;&lt;i class="fas fa-store"&gt;&lt;/i&gt; Seller:&lt;/span&gt;
             &lt;span class="seller-id"&gt;${sellerInfo}&lt;/span&gt;
-          &lt;/div&gt;
-        &lt;/div&gt;
-      &lt;/div&gt;
+          &lt;/section&gt;
+        &lt;/section&gt;
+      &lt;/section&gt;
     `;
   }
 &nbsp;
@@ -1046,7 +1046,7 @@ async function <span class="fstat-no" title="function not covered" >updateOrderS
 }
 &nbsp;
 function <span class="fstat-no" title="function not covered" >showMessage(</span>message, type = <span class="branch-0 cbranch-no" title="branch not covered" >'success')</span> {
-  const msg = <span class="cstat-no" title="statement not covered" >document.createElement('div');</span>
+  const msg = <span class="cstat-no" title="statement not covered" >document.createElement('section');</span>
 <span class="cstat-no" title="statement not covered" >  msg.className = `message ${type}`;</span>
 <span class="cstat-no" title="statement not covered" >  msg.innerHTML = `</span>
     &lt;i class="fas fa-check-circle"&gt;&lt;/i&gt;
@@ -1061,7 +1061,7 @@ function <span class="fstat-no" title="function not covered" >showMessage(</span
 }
 &nbsp;
 function <span class="fstat-no" title="function not covered" >showError(</span>message) {
-  const err = <span class="cstat-no" title="statement not covered" >document.createElement('div');</span>
+  const err = <span class="cstat-no" title="statement not covered" >document.createElement('section');</span>
 <span class="cstat-no" title="statement not covered" >  err.className = 'message error';</span>
 <span class="cstat-no" title="statement not covered" >  err.innerHTML = `</span>
     &lt;i class="fas fa-exclamation-circle"&gt;&lt;/i&gt;
@@ -1115,13 +1115,13 @@ function <span class="fstat-no" title="function not covered" >showError(</span>m
 });
 &nbsp;</pre></td></tr></table></pre>
 
-                <div class='push'></div><!-- for sticky footer -->
-            </div><!-- /wrapper -->
-            <div class='footer quiet pad2 space-top1 center small'>
+                <section class='push'></section><!-- for sticky footer -->
+            </section><!-- /wrapper -->
+            <section class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
                 at 2025-05-25T20:14:13.855Z
-            </div>
+            </section>
         <script src="../prettify.js"></script>
         <script>
             window.onload = function () {

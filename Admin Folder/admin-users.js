@@ -71,7 +71,7 @@ function displayUsers(users) {
   }
 
   users.forEach(user => {
-    const userCard = document.createElement("div");
+    const userCard = document.createElement("section");
     userCard.className = "user-card";
 
     userCard.innerHTML = `

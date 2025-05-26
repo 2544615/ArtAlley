@@ -34,10 +34,10 @@ describe("Product Details Page", () => {
 
   beforeEach(() => {
     document.body.innerHTML = `
-      <div id="productName"></div>
-      <div id="productPrice"></div>
-      <div id="productDescription"></div>
-      <div id="imageGallery"></div>
+      <section id="productName"></section>
+      <section id="productPrice"></section>
+      <section id="productDescription"></section>
+      <section id="imageGallery"></section>
       <button id="addToCartBtn">Add to Cart</button>
     `;
 

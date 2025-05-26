@@ -17,51 +17,51 @@
 </head>
     
 <body>
-<div class='wrapper'>
-    <div class='pad1'>
+<section class='wrapper'>
+    <section class='pad1'>
         <h1><a href="../index.html">All files</a> / <a href="index.html">Buyer Folder</a> reviews.js</h1>
-        <div class='clearfix'>
+        <section class='clearfix'>
             
-            <div class='fl pad1y space-right2'>
+            <section class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Statements</span>
                 <span class='fraction'>0/107</span>
-            </div>
+            </section>
         
             
-            <div class='fl pad1y space-right2'>
+            <section class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Branches</span>
                 <span class='fraction'>0/32</span>
-            </div>
+            </section>
         
             
-            <div class='fl pad1y space-right2'>
+            <section class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Functions</span>
                 <span class='fraction'>0/21</span>
-            </div>
+            </section>
         
             
-            <div class='fl pad1y space-right2'>
+            <section class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Lines</span>
                 <span class='fraction'>0/99</span>
-            </div>
+            </section>
         
             
-        </div>
+        </section>
         <p class="quiet">
             Press <em>n</em> or <em>j</em> to go to the next uncovered block, <em>b</em>, <em>p</em> or <em>k</em> for the previous block.
         </p>
         <template id="filterTemplate">
-            <div class="quiet">
+            <section class="quiet">
                 Filter:
                 <input type="search" id="fileSearch">
-            </div>
+            </section>
         </template>
-    </div>
-    <div class='status-line low'></div>
+    </section>
+    <section class='status-line low'></section>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -651,14 +651,14 @@ async function <span class="fstat-no" title="function not covered" >loadProducts
     
   } catch (error) {
 <span class="cstat-no" title="statement not covered" >    console.error("Error loading products:", error);</span>
-<span class="cstat-no" title="statement not covered" >    productsList.innerHTML = `&lt;div class="error"&gt;Error loading products: ${error.message}&lt;/div&gt;`;</span>
+<span class="cstat-no" title="statement not covered" >    productsList.innerHTML = `&lt;sectiontion class="error"&gt;Error loading products: ${error.message}&section/section&gt;`;</span>
   }
 }
 &nbsp;
 &nbsp;
 async function <span class="fstat-no" title="function not covered" >displayProducts(</span>products) {
 <span class="cstat-no" title="statement not covered" >  if (products.length === 0) {</span>
-<span class="cstat-no" title="statement not covered" >    productsList.innerHTML = '&lt;div class="no-products"&gt;No products found matching your criteria.&lt;/div&gt;';</span>
+<span class="cstat-no" title="statement not covered" >    productsList.innerHTML = '&lt;section class="no-products"&gt;No products found matching your criteria.&lt;/section&gt;';</span>
 <span class="cstat-no" title="statement not covered" >    return;</span>
   }
   
@@ -668,7 +668,7 @@ async function <span class="fstat-no" title="function not covered" >displayProdu
   const reviewedProducts = <span class="cstat-no" title="statement not covered" >await getReviewedProducts();</span>
   
 <span class="cstat-no" title="statement not covered" >  products.forEach(<span class="fstat-no" title="function not covered" >pr</span>oduct =&gt; {</span>
-    const productCard = <span class="cstat-no" title="statement not covered" >document.createElement('div');</span>
+    const productCard = <span class="cstat-no" title="statement not covered" >document.createElement('section');</span>
 <span class="cstat-no" title="statement not covered" >    productCard.className = 'product-card';</span>
     
     const isReviewed = <span class="cstat-no" title="statement not covered" >reviewedProducts.includes(product.name);</span>
@@ -782,13 +782,13 @@ async function <span class="fstat-no" title="function not covered" >getReviewedP
 }
 &nbsp;</pre></td></tr></table></pre>
 
-                <div class='push'></div><!-- for sticky footer -->
-            </div><!-- /wrapper -->
-            <div class='footer quiet pad2 space-top1 center small'>
+                <section class='push'></section><!-- for sticky footer -->
+            </section><!-- /wrapper -->
+            <section class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
                 at 2025-05-25T20:14:13.855Z
-            </div>
+            </section>
         <script src="../prettify.js"></script>
         <script>
             window.onload = function () {

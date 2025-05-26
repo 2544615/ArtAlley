@@ -53,7 +53,7 @@ jest.mock("firebase/firestore", () => {
 
 // Setup DOM mocks
 document.body.innerHTML = `
-  <div id="cart-items"></div>
+  <section id="cart-items"></section>
   <button id="deliver">Deliver</button>
   <button id="collect1">Collect</button>
 `;

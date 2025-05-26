@@ -124,7 +124,7 @@ function displayOrderDetails(orderData) {
 
 async function displayBuyerInfo(buyerId) {
   if (!buyerId) {
-    buyerDetailsElement.innerHTML = '<div>No buyer information available</div>';
+    buyerDetailsElement.innerHTML = '<section>No buyer information available</section>';
     return;
   }
 
@@ -188,28 +188,28 @@ async function displayOrderItems(items) {
     }
 
     itemsHTML += `
-      <div class="order-item">
-        <div class="item-image-container">
+      <section class="order-item">
+        <section class="item-image-container">
           <img src="${imageUrl}" 
                alt="${name}" 
                class="item-image"
                onerror="this.src='https://via.placeholder.com/100x100?text=No+Image'">
-        </div>
-        <div class="item-details">
-          <div class="item-name">${name}</div>
-          <div class="item-pricing">
-            <div class="price-info">
+        </section>
+        <section class="item-details">
+          <section class="item-name">${name}</section>
+          <section class="item-pricing">
+            <section class="price-info">
               <span class="unit-price">R${price.toFixed(2)} each</span>
               <span class="quantity">Qty: ${quantity}</span>
               <span class="item-total">Total: R${itemTotal.toFixed(2)}</span>
-            </div>
-          </div>
-          <div class="seller-info">
+            </section>
+          </section>
+          <section class="seller-info">
             <span class="seller-label"><i class="fas fa-store"></i> Seller:</span>
             <span class="seller-id">${sellerInfo}</span>
-          </div>
-        </div>
-      </div>
+          </section>
+        </section>
+      </section>
     `;
   }
 
@@ -281,7 +281,7 @@ async function updateOrderStatus() {
 }
 
 function showMessage(message, type = 'success') {
-  const msg = document.createElement('div');
+  const msg = document.createElement('section');
   msg.className = `message ${type}`;
   msg.innerHTML = `
     <i class="fas fa-check-circle"></i>
@@ -296,7 +296,7 @@ function showMessage(message, type = 'success') {
 }
 
 function showError(message) {
-  const err = document.createElement('div');
+  const err = document.createElement('section');
   err.className = 'message error';
   err.innerHTML = `
     <i class="fas fa-exclamation-circle"></i>

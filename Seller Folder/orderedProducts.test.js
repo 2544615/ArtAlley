@@ -35,7 +35,7 @@ describe('Product Upload Form', () => {
         <textarea id="description">Nice product</textarea>
         <input type="file" id="image" multiple />
         <input id="mainImageIndex" />
-        <div id="preview-images"></div>
+        <section id="preview-images"></section>
         <p id="select-main-text" style="display: none;">Select main image</p>
       </form>
     `;

@@ -25,18 +25,18 @@ jest.mock('firebase/firestore', () => ({
 // Sample DOM setup
 document.body.innerHTML = `
   <select id="reviewFilter"></select>
-  <div id="productsList"></div>
-  <div id="reviewModal" style="display:none"></div>
+  <section id="productsList"></section>
+  <section id="reviewModal" style="display:none"></section>
   <button class="close"></button>
   <button id="submitReview"></button>
   <img id="modalProductImage"/>
-  <div id="modalProductName"></div>
+  <section id="modalProductName"></section>
   <textarea id="reviewText"></textarea>
-  <div class="star" data-value="1">☆</div>
-  <div class="star" data-value="2">☆</div>
-  <div class="star" data-value="3">☆</div>
-  <div class="star" data-value="4">☆</div>
-  <div class="star" data-value="5">☆</div>
+  <section class="star" data-value="1">☆</section>
+  <section class="star" data-value="2">☆</section>
+  <section class="star" data-value="3">☆</section>
+  <section class="star" data-value="4">☆</section>
+  <section class="star" data-value="5">☆</section>
 `;
 
 // Import your original script (adapted to export functions)

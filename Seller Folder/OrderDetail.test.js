@@ -20,7 +20,7 @@ jest.mock('firebase/firestore', () => ({
 }));
 
 // Mock DOM
-document.body.innerHTML = `<div id="Orders"></div>`;
+document.body.innerHTML = `<section id="Orders"></section>`;
 
 const OrdersList = document.getElementById('Orders');
 

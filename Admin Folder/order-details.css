@@ -103,7 +103,7 @@ body {
   padding-top: 15px;
 }
 
-.order-totals div {
+.order-totals section {
   display: flex;
   justify-content: space-between;
   margin-bottom: 8px;

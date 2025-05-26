@@ -73,17 +73,17 @@ onAuthStateChanged(auth, async (user) => {
       const orderGroup = document.createElement("section");
       orderGroup.className = "order-group";
 
-      const dateLabel = document.createElement("div");
+      const dateLabel = document.createElement("section");
       dateLabel.className = "order-date";
       dateLabel.textContent = `Ordered ${dateStr}`;
 
-      const itemContainer = document.createElement("div");
+      const itemContainer = document.createElement("section");
       itemContainer.className = "order-items";
 
       if (order.items && order.items.length > 0) {
         order.items.forEach((item, index) => {
           console.log(`Processing item ${index}:`, item);
-          const itemCard = document.createElement("div");
+          const itemCard = document.createElement("section");
           itemCard.className = "order-item";
           itemCard.innerHTML = `
             <img src="${item.imageUrl || 'https://via.placeholder.com/150'}" alt="${item.name || 'Unnamed item'}" />

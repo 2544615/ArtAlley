@@ -108,14 +108,14 @@ async function loadProducts() {
     
   } catch (error) {
     console.error("Error loading products:", error);
-    productsList.innerHTML = `<div class="error">Error loading products: ${error.message}</div>`;
+    productsList.innerHTML = `<section class="error">Error loading products: ${error.message}</section>`;
   }
 }
 
 
 async function displayProducts(products) {
   if (products.length === 0) {
-    productsList.innerHTML = '<div class="no-products">No products found matching your criteria.</div>';
+    productsList.innerHTML = '<section class="no-products">No products found matching your criteria.</section>';
     return;
   }
   
@@ -125,7 +125,7 @@ async function displayProducts(products) {
   const reviewedProducts = await getReviewedProducts();
   
   products.forEach(product => {
-    const productCard = document.createElement('div');
+    const productCard = document.createElement('section');
     productCard.className = 'product-card';
     
     const isReviewed = reviewedProducts.includes(product.name);

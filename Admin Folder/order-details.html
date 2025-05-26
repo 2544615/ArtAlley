@@ -18,50 +18,50 @@
         <li><a href="admin-orders.html">Order Management</a></li>
       </ul>
     </nav>
-    <div class="header-icons">
+    <section class="header-icons">
       <button id="signOutButton"><i class="fas fa-sign-out-alt"></i></button>
-    </div>
+    </section>
   </section>
 
   <!-- Main Content -->
   <main class="container">
-    <div class="order-header">
+    <section class="order-header">
       <h1>Order #<span id="orderId">Loading...</span></h1>
-    </div>
+    </section>
 
-    <div class="order-meta">
-      <div>
+    <section class="order-meta">
+      <section>
         <strong>Date:</strong> <span id="orderDate">Loading...</span>
-      </div>
-      <div>
+      </section>
+      <section>
         <strong>Status:</strong> 
         <span id="orderStatus" class="status-badge">Loading...</span>
-      </div>
-    </div>
+      </section>
+    </section>
 
-    <div class="order-grid">
+    <section class="order-grid">
    
       <section class="card buyer-info">
         <h2>Buyer Information</h2>
-        <div id="buyerDetails">
-          <div class="loading">Loading buyer details...</div>
-        </div>
+        <section id="buyerDetails">
+          <section class="loading">Loading buyer details...</section>
+        </section>
       </section>
 
       <section class="card order-items">
         <h2>Order Items</h2>
-        <div id="itemsList">
-          <div class="loading">Loading items...</div>
-        </div>
-        <div class="order-totals">
-          <div><span>Total:</span> <span id="subtotal">R0.00</span></div>
+        <section id="itemsList">
+          <section class="loading">Loading items...</section>
+        </section>
+        <section class="order-totals">
+          <section><span>Total:</span> <span id="subtotal">R0.00</span></section>
           
-        </div>
+        </section>
       </section>
 
       <section class="card status-update">
         <h2>Update Order Status</h2>
-        <div class="status-controls">
+        <section class="status-controls">
           <select id="statusSelect">
             <option value="pending">Pending</option>
             <option value="confirmed">Confirmed</option>
@@ -69,9 +69,9 @@
             <option value="delivered">Delivered</option>
           </select>
           <button id="updateStatusBtn" class="btn-primary">Update</button>
-        </div>
+        </section>
       </section>
-    </div>
+    </section>
   </main>
   <script type="module" src="order-details.js"></script>
 </body>

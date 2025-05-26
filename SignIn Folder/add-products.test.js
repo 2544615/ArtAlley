@@ -37,8 +37,8 @@ describe("Add Product Page", () => {
         <textarea id="description">A test product</textarea>
         <input id="image" type="file" multiple />
         <input type="hidden" id="mainImageIndex" />
-        <div id="preview-images"></div>
-        <div id="select-main-text"></div>
+        <section id="preview-images"></section>
+        <section id="select-main-text"></section>
         <button type="submit">Submit</button>
       </form>
       <button id="back-btn">Back</button>

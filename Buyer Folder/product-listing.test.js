@@ -15,7 +15,7 @@ describe("Product Listing Page Functionality", () => {
       <html>
         <head><title>Product Listing</title></head>
         <body data-authenticated="false">
-          <div id="productContainer"></div>
+          <section id="productContainer"></section>
           <form id="sortFilterForm">
             <select id="sortOptions">
               <option value="priceLowHigh">Price: Low to High</option>
@@ -67,7 +67,7 @@ describe("Product Listing Page Functionality", () => {
 
     productContainer.innerHTML = "";
     products.forEach((product) => {
-      const productCard = document.createElement("div");
+      const productCard = document.createElement("section");
       productCard.classList.add("product-card");
       productCard.innerHTML = `<h2>${product.name}</h2><p>Price: R${product.price.toFixed(2)}</p>`;
       productContainer.appendChild(productCard);

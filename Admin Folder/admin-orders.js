@@ -48,23 +48,23 @@ function displayOrders(orders) {
   }
 
   orders.forEach(order => {
-    const orderCard = document.createElement("div");
+    const orderCard = document.createElement("section");
     orderCard.className = "order-card";
     
     // Create product items list if they exist
     let productsHTML = '';
     if (order.items && order.items.length > 0) {
-      productsHTML = '<div class="order-products">';
+      productsHTML = '<section class="order-products">';
       order.items.forEach(item => {
         productsHTML += `
-          <div class="order-product">
+          <section class="order-product">
             <span class="product-name">${item.name || 'Unnamed Product'}</span>
             <span class="product-qty">${item.quantity || 1}x</span>
             <span class="product-price">R${item.price ? item.price.toFixed(2) : '0.00'}</span>
-          </div>
+          </section>
         `;
       });
-      productsHTML += '</div>';
+      productsHTML += '</section>';
     }
 
     orderCard.innerHTML = `
