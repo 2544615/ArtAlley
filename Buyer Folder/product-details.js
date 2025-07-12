@@ -1,6 +1,6 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-app.js";
 import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-auth.js";
-import { getFirestore, doc, getDoc } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-firestore.js";
+import { getFirestore, doc, getDoc, collection, query, where, getDocs } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-firestore.js";
 import { addToCart } from './Carts.js';  
 
 const firebaseConfig = {
@@ -17,7 +17,6 @@ const auth = getAuth(app);
 const db = getFirestore(app);
 
 function createProductDetailHTML(product) {
-  
   const thumbnails = product.imageUrls.map((url, index) => 
     `<img src="${url}" alt="Thumbnail ${index + 1}" class="thumbnail" data-index="${index}">`
   ).join("");
@@ -46,6 +45,7 @@ function createProductDetailHTML(product) {
         <button id="addToCartBtn" type="button">Add to Cart</button>
       </footer>
     </article>
+    <section id="reviewsSection"></section>
   `;
 }
 
@@ -66,6 +66,31 @@ function setupAddToCart(product) {
     addToCart(product);
     alert(`${product.name} added to cart`);
   });
+}
+
+async function getReviewsForProduct(productId) {
+  const reviewsRef = collection(db, "reviews");
+  const q = query(reviewsRef, where("productId", "==", productId));
+  const querySnapshot = await getDocs(q);
+  return querySnapshot.docs.map(doc => doc.data());
+}
+
+function displayReviews(reviews) {
+  const reviewsSection = document.getElementById("reviewsSection");
+  let reviewsHTML = `<h3>Reviews</h3>`;
+  if (reviews.length === 0) {
+    reviewsHTML += "<p>No reviews yet.</p>";
+  } else {
+    reviews.forEach(r => {
+      reviewsHTML += `
+        <article class="review">
+          <strong>Rating:</strong> ${"★".repeat(r.rating)}${"☆".repeat(5 - r.rating)}<br>
+          <span>${r.reviewText}</span>
+        </article>
+      `;
+    });
+  }
+  reviewsSection.innerHTML = reviewsHTML;
 }
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -106,6 +131,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
       setupThumbnailClicks(product);
       setupAddToCart(product);
+
+      // Fetch and display reviews for this product
+      const reviews = await getReviewsForProduct(product.id);
+      displayReviews(reviews);
 
     } catch (error) {
       console.error("Error loading product:", error);
