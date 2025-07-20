@@ -72,20 +72,80 @@ const db = getFirestore(app);
                       sellerId: data.sellerId
                     });
                   });
+
+                  // Get shipping info from localStorage
+                  let shippingData = {};
+
+                  if (localStorage.getItem("shippingFirstName")) {
+                    // Case 1: From checkout.js
+                    shippingData = {
+                      firstname: localStorage.getItem("shippingFirstName"),
+                      lastname: localStorage.getItem("shippingLastName"),
+                      email: localStorage.getItem("checkoutEmail"),
+                      phone: localStorage.getItem("contact"),
+                      address: localStorage.getItem("shippingAddress"),
+                      city: localStorage.getItem("shippingCity"),
+                      country: localStorage.getItem("shippingCountry")
+                    };
+                  } else if (localStorage.getItem("shippingStreet")) {
+                    // Case 2: From checkoutdelivery.js
+                    shippingData = {
+                      name: localStorage.getItem("shippingName"),
+                      email: localStorage.getItem("checkoutEmail"),
+                      phone: localStorage.getItem("contact"),
+                      street: localStorage.getItem("shippingStreet"),
+                      complex: localStorage.getItem("shippingComplex") || "N/A",
+                      suburb: localStorage.getItem("shippingSuburb"),
+                      city: localStorage.getItem("shippingCity"),
+                      province: localStorage.getItem("shippingProvince"),
+                      postalcode: localStorage.getItem("shippingPostalCode"),
+                      country: localStorage.getItem("shippingCountry") || "South Africa"
+                    };
+                  } else {
+                    // Fallback if nothing is available
+                    shippingData = {
+                      email: user.email,
+                      address: "36 Rssik street Marshalltown",
+                      city: "Johannesburg",
+                      country: "South Africa"
+                    };
+                  }
+                  
+                  const amount = localStorage.getItem("cartTotal");
+                
                 
                   await addDoc(collection(db, "orders"), {
-                    userId: user.uid,
-                    timestamp: serverTimestamp(),
-                    items: items
-                  });
+                  userId: user.uid,
+                  amount: amount,
+                  status: "pending",  // initial status for tracking
+                  shipping: shippingData,
+                  items: items,
+                  ref: response.reference,
+                  timestamp: serverTimestamp()
+                });
                 
-                  console.log("✅ Order saved to Firestore");  
+                  console.log("✅ Order saved to Firestore with shipping and status");  
 
 
                   await finalizeOrder(user.uid, db);
 
                   // 2. Then remove the items from the cart
                   await removeItemsFromCart(user);
+
+                  localStorage.removeItem("shippingFirstName");
+                  localStorage.removeItem("shippingLastName");
+                  localStorage.removeItem("shippingAddress");
+                  localStorage.removeItem("shippingCity");
+                  localStorage.removeItem("shippingCountry");
+                  localStorage.removeItem("shippingName");
+                  localStorage.removeItem("shippingStreet");
+                  localStorage.removeItem("shippingSuburb");
+                  localStorage.removeItem("shippingProvince");
+                  localStorage.removeItem("shippingPostalCode");
+                  localStorage.removeItem("checkoutEmail");
+                  localStorage.removeItem("cartTotal");
+
+
                   window.location.href = "product-listing.html";
                 } else {
                 alert("⚠️ User not authenticated.");

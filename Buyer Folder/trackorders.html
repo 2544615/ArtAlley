@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>My Orders</title>
+</head>
+<body>
+  <header>
+    <h1>Track My Orders</h1>
+    <label for="timeFilter">Filter by:</label>
+    <select id="timeFilter">
+      <option value="12">Last 12 months</option>
+      <option value="6">Last 6 months</option>
+      <option value="3">Last 3 months</option>
+    </select>
+  </header>
+
+  <main id="orders">
+    <p>Loading...</p>
+  </main>
+
+  <footer style="margin-top: 20px;">
+    <button id="loadMoreBtn" style="display: none;">Load More</button>
+  </footer>
+
+  <!-- JavaScript module -->
+  <script type="module" src="trackorders.js"></script>
+</body>
+</html>

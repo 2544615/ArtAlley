@@ -26,41 +26,7 @@ onAuthStateChanged(auth, async(user) => {
     
     let total = 0;
 
-    ship.addEventListener("submit", async (e) => {
-        e.preventDefault();
-
-        const firstname = document.getElementById('firstname').value;
-        const lastname = document.getElementById('lastname').value;
-        const country = document.getElementById('country').value;
-        const city = document.getElementById('city').value; 
-        const address = document.getElementById('address').value; 
-        const email = document.getElementById('email').value;
-        const contact = parseInt(document.getElementById('contact').value);
-        const note = document.getElementById('note').value;
-
-        try {
-            await addDoc(collection(db, "shipping"), {
-                firstname,
-                lastname,
-                country,
-                city,
-                address,
-                email,
-                contact,
-                note,
-                buyeruid: user.uid,
-                timestamp: serverTimestamp()
-            });
-
-            localStorage.setItem("checkoutAmount", total.toFixed(2));
-            localStorage.setItem("checkoutEmail", email);
-
-            window.location.href = "paystack.html";
-        } catch (error) {
-            console.error("Error uploading product:", error);
-            alert("Failed to add product.");
-        }
-    });
+    
 
     const cartItemsRef = collection(db, "users", user.uid, "cart", "active", "items");
     const snapshot = await getDocs(cartItemsRef);
@@ -100,6 +66,48 @@ onAuthStateChanged(auth, async(user) => {
         <p style="margin: 0; font-weight: bold;">R${total.toFixed(2)}</p>
     `;
     cartItemsSection.appendChild(totalSection);
+
+    ship.addEventListener("submit", async (e) => {
+        e.preventDefault();
+
+        const firstname = document.getElementById('firstname').value;
+        const lastname = document.getElementById('lastname').value;
+        const country = document.getElementById('country').value;
+        const city = document.getElementById('city').value; 
+        const address = document.getElementById('address').value; 
+        const email = document.getElementById('email').value;
+        const contact = parseInt(document.getElementById('contact').value);
+        const note = document.getElementById('note').value;
+
+        try {
+            await addDoc(collection(db, "shipping"), {
+                firstname,
+                lastname,
+                country,
+                city,
+                address,
+                email,
+                contact,
+                note,
+                buyeruid: user.uid,
+                timestamp: serverTimestamp()
+            });
+
+            localStorage.setItem("cartTotal", total.toFixed(2));
+            localStorage.setItem("checkoutEmail", email);
+            localStorage.setItem("contact", contact);
+            localStorage.setItem("shippingFirstName", firstname);
+            localStorage.setItem("shippingLastName", lastname);
+            localStorage.setItem("shippingCountry", country);
+            localStorage.setItem("shippingCity", city);
+            localStorage.setItem("shippingAddress", address);
+
+            window.location.href = "paystack.html";
+        } catch (error) {
+            console.error("Error saving shipping info:", error);
+            alert("❌ Failed to save shipping info.");
+        }
+    });
 });
 
 const countrySelect = document.getElementById("country");

@@ -84,7 +84,7 @@ onAuthStateChanged(auth, async (user) => {
     }
 
     // ✅ Submit Form
-    const ship = document.getElementById('form2');
+    //const ship = document.getElementById('form2');
     ship.addEventListener("submit", async (e) => {
       e.preventDefault();
 
@@ -100,15 +100,25 @@ onAuthStateChanged(auth, async (user) => {
       const note = document.getElementById('note').value;
 
       try {
-        await addDoc(collection(db, "delivery"), {
+        await addDoc(collection(db, "users", user.uid, "delivery"), {
           name, complex, province, city, street,
           email, cellphone, note, suburb,postalcode,
           buyeruid: user.uid,
           timestamp: serverTimestamp()
         });
 
-        localStorage.setItem("checkoutAmount", total.toFixed(2));
+        localStorage.setItem("shippingName", name);
+        localStorage.setItem("cartTotal", total.toFixed(2));
+        localStorage.setItem("contact", cellphone);
         localStorage.setItem("checkoutEmail", email);
+        localStorage.setItem("shippingCity", city);
+        localStorage.setItem("shippingStreet", street);
+        localStorage.setItem("shippingComplex", complex);
+        localStorage.setItem("shippingSuburb", suburb);
+        localStorage.setItem("shippingProvince", province);
+        localStorage.setItem("shippingPostalCode", postalcode);
+        localStorage.setItem("shippingCountry", "South Africa");
+
 
         window.location.href = "paystack.html";
       } catch (error) {
@@ -129,11 +139,13 @@ const provinces = [
   "Limpopo", "Mpumalanga", "North West", "Northern Cape", "Western Cape"
 ];
 
-const province = document.getElementById("province");
-province.innerHTML = '<option value="">Select your province</option>';
-provinces.sort().forEach(prov => {
-  const option = document.createElement("option");
-  option.value = prov;
-  option.textContent = prov;
-  province.appendChild(option);
+document.addEventListener("DOMContentLoaded", () => {
+  const province = document.getElementById("province");
+  province.innerHTML = '<option value="">Select your province</option>';
+  provinces.sort().forEach(prov => {
+    const option = document.createElement("option");
+    option.value = prov;
+    option.textContent = prov;
+    province.appendChild(option);
+  });
 });
